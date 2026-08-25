@@ -1,0 +1,21 @@
+{
+  "order_id": 100,
+  "amount": 10,
+  "pay_amount": 10,
+  "fee_rate": 0,
+  "status": "PENDING",
+  "result_type": "jsapi_ready",
+  "payment_type": "wxpay",
+  "out_trade_no": "sub2_20260825jSAPI",
+  "currency": "CNY",
+  "expires_at": "2026-08-25T10:30:00Z",
+  "jsapi": {
+    "appId": "wx_appid",
+    "timeStamp": "1724581800",
+    "nonceStr": "nonce",
+    "package": "prepay_id=secret",
+    "signType": "RSA",
+    "paySign": "pay-sign-secret"
+  },
+  "resume_token": "resume-token-secret"
+}

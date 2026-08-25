@@ -1,0 +1,15 @@
+{
+  "methods": {
+    "alipay": {
+      "payment_type": "alipay",
+      "display_name": "Alipay",
+      "currency": "CNY",
+      "fee_rate": 2.5,
+      "daily_limit": 5000,
+      "single_min": 1,
+      "single_max": 1000
+    }
+  },
+  "global_min": 1,
+  "global_max": 1000
+}

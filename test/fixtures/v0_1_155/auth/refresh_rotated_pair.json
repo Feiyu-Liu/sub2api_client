@@ -1,0 +1,10 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "access_token": "test-rotated-access-token-not-a-real-secret",
+    "refresh_token": "test-rotated-refresh-token-not-a-real-secret",
+    "expires_in": 3600,
+    "token_type": "Bearer"
+  }
+}

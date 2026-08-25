@@ -1,0 +1,20 @@
+{
+  "order_id": 99,
+  "amount": 10,
+  "pay_amount": 10.25,
+  "fee_rate": 2.5,
+  "status": "PENDING",
+  "result_type": "order_created",
+  "payment_type": "stripe",
+  "out_trade_no": "sub2_20260825aB3kX9mQ",
+  "pay_url": "https://checkout.example/secret-session",
+  "qr_code": "weixin://secret-qr",
+  "client_secret": "pi_secret_very_secret",
+  "intent_id": "pi_123",
+  "currency": "USD",
+  "country_code": "US",
+  "payment_env": "test",
+  "expires_at": "2026-08-25T10:30:00Z",
+  "payment_mode": "redirect",
+  "resume_token": "resume-token-secret"
+}

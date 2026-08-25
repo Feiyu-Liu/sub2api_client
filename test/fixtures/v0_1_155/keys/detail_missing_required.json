@@ -1,0 +1,23 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "id": 99,
+    "user_id": 42,
+    "name": "Codex Desktop",
+    "status": "active",
+    "ip_whitelist": [],
+    "ip_blacklist": [],
+    "quota": 0,
+    "quota_used": 0,
+    "created_at": "2026-08-25T00:00:00Z",
+    "updated_at": "2026-08-25T00:00:00Z",
+    "current_concurrency": 0,
+    "rate_limit_5h": 0,
+    "rate_limit_1d": 0,
+    "rate_limit_7d": 0,
+    "usage_5h": 0,
+    "usage_1d": 0,
+    "usage_7d": 0
+  }
+}

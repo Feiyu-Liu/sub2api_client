@@ -1,0 +1,24 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "backend_mode_enabled": false,
+    "dingtalk_oauth_enabled": false,
+    "email_verify_enabled": true,
+    "github_oauth_enabled": true,
+    "google_oauth_enabled": false,
+    "invitation_code_enabled": false,
+    "linuxdo_oauth_enabled": true,
+    "oidc_oauth_enabled": false,
+    "password_reset_enabled": true,
+    "payment_enabled": true,
+    "registration_enabled": true,
+    "server_timezone": "Asia/Shanghai",
+    "server_utc_offset": "+08:00",
+    "totp_enabled": true,
+    "turnstile_enabled": true,
+    "turnstile_site_key": "public-site-key",
+    "version": "0.1.155",
+    "wechat_oauth_enabled": false
+  }
+}
