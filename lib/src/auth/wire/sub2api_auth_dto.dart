@@ -51,7 +51,7 @@ final class Sub2ApiTwoFactorLoginRequestDto {
     Sub2ApiTwoFactorLoginRequest request,
   ) => Sub2ApiTwoFactorLoginRequestDto(
     tempToken: request.temporaryToken.reveal(),
-    totpCode: request.totpCode,
+    totpCode: request.totpCode.reveal(),
   );
 
   @JsonKey(name: 'temp_token')
@@ -89,7 +89,7 @@ final class Sub2ApiRegistrationRequestDto {
     tencentCaptchaRandstr: request.captcha.tencentCaptchaRandstr,
     tencentCaptchaTicket: request.captcha.tencentCaptchaTicket,
     turnstileToken: request.captcha.turnstileToken,
-    verifyCode: request.verificationCode,
+    verifyCode: request.verificationCode?.reveal(),
   );
 
   @JsonKey(name: 'aff_code', includeIfNull: false)
@@ -110,6 +110,92 @@ final class Sub2ApiRegistrationRequestDto {
   final String? verifyCode;
 
   Map<String, Object?> toJson() => _$Sub2ApiRegistrationRequestDtoToJson(this);
+}
+
+/// Internal request DTO for `POST /api/v1/auth/send-verify-code`.
+@JsonSerializable(checked: true, createFactory: false)
+final class Sub2ApiEmailVerificationCodeRequestDto {
+  const Sub2ApiEmailVerificationCodeRequestDto({
+    required this.email,
+    this.turnstileToken,
+  });
+
+  factory Sub2ApiEmailVerificationCodeRequestDto.fromPublic(
+    Sub2ApiEmailVerificationCodeRequest request,
+  ) => Sub2ApiEmailVerificationCodeRequestDto(
+    email: request.email,
+    turnstileToken: request.captcha.turnstileToken,
+  );
+
+  final String email;
+  @JsonKey(name: 'turnstile_token', includeIfNull: false)
+  final String? turnstileToken;
+
+  Map<String, Object?> toJson() =>
+      _$Sub2ApiEmailVerificationCodeRequestDtoToJson(this);
+}
+
+/// Internal request DTO for `POST /api/v1/auth/validate-invitation-code`.
+@JsonSerializable(checked: true, createFactory: false)
+final class Sub2ApiInvitationCodeValidationRequestDto {
+  const Sub2ApiInvitationCodeValidationRequestDto({required this.code});
+
+  factory Sub2ApiInvitationCodeValidationRequestDto.fromPublic(
+    Sub2ApiInvitationCodeValidationRequest request,
+  ) => Sub2ApiInvitationCodeValidationRequestDto(code: request.code);
+
+  final String code;
+
+  Map<String, Object?> toJson() =>
+      _$Sub2ApiInvitationCodeValidationRequestDtoToJson(this);
+}
+
+/// Internal request DTO for `POST /api/v1/auth/forgot-password`.
+@JsonSerializable(checked: true, createFactory: false)
+final class Sub2ApiForgotPasswordRequestDto {
+  const Sub2ApiForgotPasswordRequestDto({
+    required this.email,
+    this.turnstileToken,
+  });
+
+  factory Sub2ApiForgotPasswordRequestDto.fromPublic(
+    Sub2ApiForgotPasswordRequest request,
+  ) => Sub2ApiForgotPasswordRequestDto(
+    email: request.email,
+    turnstileToken: request.captcha.turnstileToken,
+  );
+
+  final String email;
+  @JsonKey(name: 'turnstile_token', includeIfNull: false)
+  final String? turnstileToken;
+
+  Map<String, Object?> toJson() =>
+      _$Sub2ApiForgotPasswordRequestDtoToJson(this);
+}
+
+/// Internal request DTO for `POST /api/v1/auth/reset-password`.
+@JsonSerializable(checked: true, createFactory: false)
+final class Sub2ApiResetPasswordRequestDto {
+  const Sub2ApiResetPasswordRequestDto({
+    required this.email,
+    required this.newPassword,
+    required this.token,
+  });
+
+  factory Sub2ApiResetPasswordRequestDto.fromPublic(
+    Sub2ApiResetPasswordRequest request,
+  ) => Sub2ApiResetPasswordRequestDto(
+    email: request.email,
+    newPassword: request.newPassword.reveal(),
+    token: request.token.reveal(),
+  );
+
+  final String email;
+  @JsonKey(name: 'new_password')
+  final String newPassword;
+  final String token;
+
+  Map<String, Object?> toJson() => _$Sub2ApiResetPasswordRequestDtoToJson(this);
 }
 
 /// Internal request DTO for `POST /api/v1/auth/refresh`.
@@ -282,10 +368,113 @@ final class Sub2ApiRefreshResponseDto {
   }
 }
 
+/// Internal response DTO for email verification-code delivery.
+@JsonSerializable(createToJson: false, checked: true)
+final class Sub2ApiEmailVerificationCodeSentDto {
+  const Sub2ApiEmailVerificationCodeSentDto({
+    required this.countdown,
+    required this.message,
+  });
+
+  factory Sub2ApiEmailVerificationCodeSentDto.fromJson(
+    Map<String, Object?> json,
+  ) => _$Sub2ApiEmailVerificationCodeSentDtoFromJson(json);
+
+  final int countdown;
+  final String message;
+
+  Sub2ApiEmailVerificationCodeSent toPublicModel() {
+    if (countdown < 0 || message.isEmpty) {
+      throw _invalidEmailVerificationCodeResponse();
+    }
+    return Sub2ApiEmailVerificationCodeSent(
+      cooldown: Duration(seconds: countdown),
+      message: message,
+    );
+  }
+}
+
+/// Internal response DTO for invitation-code validation.
+@JsonSerializable(createToJson: false, checked: true)
+final class Sub2ApiInvitationCodeValidationDto {
+  const Sub2ApiInvitationCodeValidationDto({
+    required this.valid,
+    this.errorCode,
+  });
+
+  factory Sub2ApiInvitationCodeValidationDto.fromJson(
+    Map<String, Object?> json,
+  ) => _$Sub2ApiInvitationCodeValidationDtoFromJson(json);
+
+  @JsonKey(name: 'error_code')
+  final String? errorCode;
+  final bool valid;
+
+  Sub2ApiInvitationCodeValidation toPublicModel() {
+    if (!valid && (errorCode == null || errorCode!.isEmpty)) {
+      throw _invalidInvitationCodeValidationResponse();
+    }
+    if (errorCode != null && errorCode!.isEmpty) {
+      throw _invalidInvitationCodeValidationResponse();
+    }
+    return Sub2ApiInvitationCodeValidation(
+      errorCode: errorCode,
+      isValid: valid,
+    );
+  }
+}
+
+/// Internal response DTO shared by the password-reset endpoints.
+@JsonSerializable(createToJson: false, checked: true)
+final class Sub2ApiAuthMessageDto {
+  const Sub2ApiAuthMessageDto({required this.message});
+
+  factory Sub2ApiAuthMessageDto.fromJson(Map<String, Object?> json) =>
+      _$Sub2ApiAuthMessageDtoFromJson(json);
+
+  final String message;
+
+  Sub2ApiForgotPasswordResult toForgotPasswordPublicModel() {
+    if (message.isEmpty) throw _invalidForgotPasswordResponse();
+    return Sub2ApiForgotPasswordResult(message: message);
+  }
+
+  Sub2ApiResetPasswordResult toResetPasswordPublicModel() {
+    if (message.isEmpty) throw _invalidResetPasswordResponse();
+    return Sub2ApiResetPasswordResult(message: message);
+  }
+}
+
 bool _notBlank(String? value) => value != null && value.isNotEmpty;
 
 Sub2ApiException _invalidLoginResponse() => const Sub2ApiException(
   kind: Sub2ApiFailureKind.protocol,
   code: 'protocol.invalid_login_response',
+  retryable: false,
+);
+
+Sub2ApiException _invalidEmailVerificationCodeResponse() =>
+    const Sub2ApiException(
+      kind: Sub2ApiFailureKind.protocol,
+      code: 'protocol.invalid_email_verification_code_response',
+      retryable: false,
+    );
+
+Sub2ApiException _invalidInvitationCodeValidationResponse() =>
+    const Sub2ApiException(
+      kind: Sub2ApiFailureKind.protocol,
+      code: 'protocol.invalid_invitation_code_validation_response',
+      retryable: false,
+    );
+
+Sub2ApiException _invalidForgotPasswordResponse() => const Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_forgot_password_response',
+  retryable: false,
+);
+
+Sub2ApiException _invalidResetPasswordResponse() => const Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_reset_password_response',
   retryable: false,
 );

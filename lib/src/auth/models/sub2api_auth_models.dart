@@ -27,6 +27,9 @@ final class Sub2ApiCaptchaProof {
   final String? tencentCaptchaRandstr;
   final String? tencentCaptchaTicket;
   final String? turnstileToken;
+
+  @override
+  String toString() => 'Sub2ApiCaptchaProof(<redacted>)';
 }
 
 /// Credentials for password login.
@@ -64,7 +67,7 @@ final class Sub2ApiRegistrationRequest {
   final String? invitationCode;
   final Sub2ApiPassword password;
   final String? promoCode;
-  final String? verificationCode;
+  final Sub2ApiVerificationCode? verificationCode;
 
   @override
   String toString() =>
@@ -79,11 +82,122 @@ final class Sub2ApiTwoFactorLoginRequest {
   });
 
   final Sub2ApiTwoFactorTemporaryToken temporaryToken;
-  final String totpCode;
+  final Sub2ApiVerificationCode totpCode;
 
   @override
   String toString() =>
       'Sub2ApiTwoFactorLoginRequest(temporaryToken: <redacted>, totpCode: <redacted>)';
+}
+
+/// Request to send the registration email verification code.
+final class Sub2ApiEmailVerificationCodeRequest {
+  const Sub2ApiEmailVerificationCodeRequest({
+    required this.email,
+    this.captcha = const Sub2ApiCaptchaProof(),
+  });
+
+  /// Captcha proof if the server requires it for this public endpoint.
+  final Sub2ApiCaptchaProof captcha;
+
+  /// Destination address for the verification email.
+  final String email;
+
+  @override
+  String toString() =>
+      'Sub2ApiEmailVerificationCodeRequest(email: $email, captcha: <redacted>)';
+}
+
+/// Server acknowledgement for an email verification-code delivery attempt.
+final class Sub2ApiEmailVerificationCodeSent {
+  const Sub2ApiEmailVerificationCodeSent({
+    required this.cooldown,
+    required this.message,
+  });
+
+  /// Minimum wait before requesting another code.
+  final Duration cooldown;
+
+  /// Server-supplied non-sensitive acknowledgement.
+  final String message;
+}
+
+/// Request to validate an invitation code before registration.
+final class Sub2ApiInvitationCodeValidationRequest {
+  const Sub2ApiInvitationCodeValidationRequest({required this.code});
+
+  /// Invitation code to validate.
+  final String code;
+}
+
+/// Result of invitation-code validation.
+final class Sub2ApiInvitationCodeValidation {
+  const Sub2ApiInvitationCodeValidation({
+    required this.isValid,
+    this.errorCode,
+  });
+
+  /// Server error code when [isValid] is false.
+  final String? errorCode;
+
+  /// Whether the invitation code may be used for registration.
+  final bool isValid;
+}
+
+/// Request for an email password-reset link.
+final class Sub2ApiForgotPasswordRequest {
+  const Sub2ApiForgotPasswordRequest({
+    required this.email,
+    this.captcha = const Sub2ApiCaptchaProof(),
+  });
+
+  /// Captcha proof if the server requires it for this public endpoint.
+  final Sub2ApiCaptchaProof captcha;
+
+  /// Account email address.
+  final String email;
+
+  @override
+  String toString() =>
+      'Sub2ApiForgotPasswordRequest(email: $email, captcha: <redacted>)';
+}
+
+/// Server acknowledgement for a password-reset-link request.
+final class Sub2ApiForgotPasswordResult {
+  const Sub2ApiForgotPasswordResult({required this.message});
+
+  /// Server-supplied non-sensitive acknowledgement.
+  final String message;
+}
+
+/// Credentials used to reset a password from a reset-link token.
+final class Sub2ApiResetPasswordRequest {
+  const Sub2ApiResetPasswordRequest({
+    required this.email,
+    required this.newPassword,
+    required this.token,
+  });
+
+  /// Account email address.
+  final String email;
+
+  /// Replacement password. It is always redacted when stringified.
+  final Sub2ApiPassword newPassword;
+
+  /// Single-use reset token. It is always redacted when stringified.
+  final Sub2ApiPasswordResetToken token;
+
+  @override
+  String toString() =>
+      'Sub2ApiResetPasswordRequest(email: $email, token: <redacted>, '
+      'newPassword: <redacted>)';
+}
+
+/// Server acknowledgement after a successful password reset.
+final class Sub2ApiResetPasswordResult {
+  const Sub2ApiResetPasswordResult({required this.message});
+
+  /// Server-supplied non-sensitive acknowledgement.
+  final String message;
 }
 
 /// Token pair emitted by a successful refresh operation.

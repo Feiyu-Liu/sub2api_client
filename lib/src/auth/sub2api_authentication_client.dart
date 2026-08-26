@@ -12,6 +12,30 @@ import 'wire/sub2api_auth_dto.dart';
 
 /// Provides password authentication operations supported by v0.1.
 abstract interface class Sub2ApiAuthenticationClient {
+  /// Sends a registration verification code to an email address.
+  Future<Sub2ApiEmailVerificationCodeSent> sendEmailVerificationCode(
+    Sub2ApiEmailVerificationCodeRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Validates an invitation code before registration.
+  Future<Sub2ApiInvitationCodeValidation> validateInvitationCode(
+    Sub2ApiInvitationCodeValidationRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Requests an email password-reset link without exposing account existence.
+  Future<Sub2ApiForgotPasswordResult> forgotPassword(
+    Sub2ApiForgotPasswordRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Replaces a password using a single-use reset-link token.
+  Future<Sub2ApiResetPasswordResult> resetPassword(
+    Sub2ApiResetPasswordRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   /// Completes a pending TOTP challenge.
   Future<Sub2ApiLoginResult> completeTwoFactorLogin(
     Sub2ApiTwoFactorLoginRequest request, {
@@ -84,6 +108,74 @@ final class _Sub2ApiAuthenticationClient
   final String _scope;
   final AuthWireService _service;
   final Sub2ApiSessionCoordinator _sessions;
+
+  /// Sends a registration verification code to an email address.
+  @override
+  Future<Sub2ApiEmailVerificationCodeSent> sendEmailVerificationCode(
+    Sub2ApiEmailVerificationCodeRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.publicRequest<Sub2ApiEmailVerificationCodeSent>(
+    send: (cancelToken, options, authorization) =>
+        _service.sendEmailVerificationCode(
+          Sub2ApiEmailVerificationCodeRequestDto.fromPublic(request).toJson(),
+          cancelToken,
+          options,
+          authorization,
+        ),
+    decode: _decodeEmailVerificationCodeSent,
+    requestOptions: requestOptions,
+  );
+
+  /// Validates an invitation code before registration.
+  @override
+  Future<Sub2ApiInvitationCodeValidation> validateInvitationCode(
+    Sub2ApiInvitationCodeValidationRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.publicRequest<Sub2ApiInvitationCodeValidation>(
+    send: (cancelToken, options, authorization) =>
+        _service.validateInvitationCode(
+          Sub2ApiInvitationCodeValidationRequestDto.fromPublic(
+            request,
+          ).toJson(),
+          cancelToken,
+          options,
+          authorization,
+        ),
+    decode: _decodeInvitationCodeValidation,
+    requestOptions: requestOptions,
+  );
+
+  /// Requests an email password-reset link without exposing account existence.
+  @override
+  Future<Sub2ApiForgotPasswordResult> forgotPassword(
+    Sub2ApiForgotPasswordRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.publicRequest<Sub2ApiForgotPasswordResult>(
+    send: (cancelToken, options, authorization) => _service.forgotPassword(
+      Sub2ApiForgotPasswordRequestDto.fromPublic(request).toJson(),
+      cancelToken,
+      options,
+      authorization,
+    ),
+    decode: _decodeForgotPassword,
+    requestOptions: requestOptions,
+  );
+
+  /// Replaces a password using a single-use reset-link token.
+  @override
+  Future<Sub2ApiResetPasswordResult> resetPassword(
+    Sub2ApiResetPasswordRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.publicRequest<Sub2ApiResetPasswordResult>(
+    send: (cancelToken, options, authorization) => _service.resetPassword(
+      Sub2ApiResetPasswordRequestDto.fromPublic(request).toJson(),
+      cancelToken,
+      options,
+      authorization,
+    ),
+    decode: _decodeResetPassword,
+    requestOptions: requestOptions,
+  );
 
   /// Completes a pending TOTP challenge.
   @override
@@ -229,7 +321,7 @@ final class _Sub2ApiAuthenticationClient
   Sub2ApiLoginResult _decodeLogin(Object? data) {
     try {
       return Sub2ApiLoginResponseDto.fromJson(
-        _objectMap(data),
+        _objectMap(data, _invalidLoginResponse),
       ).toPublicModel(scope: _scope);
     } on Sub2ApiException {
       rethrow;
@@ -245,7 +337,7 @@ final class _Sub2ApiAuthenticationClient
   static Sub2ApiRefreshedTokens _decodeRefresh(Object? data) {
     try {
       return Sub2ApiRefreshResponseDto.fromJson(
-        _objectMap(data),
+        _objectMap(data, _invalidRefreshResponse),
       ).toPublicModel();
     } on Sub2ApiException {
       rethrow;
@@ -257,26 +349,106 @@ final class _Sub2ApiAuthenticationClient
       );
     }
   }
+
+  static Sub2ApiEmailVerificationCodeSent _decodeEmailVerificationCodeSent(
+    Object? data,
+  ) {
+    try {
+      return Sub2ApiEmailVerificationCodeSentDto.fromJson(
+        _objectMap(data, _invalidEmailVerificationCodeResponse),
+      ).toPublicModel();
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw _invalidEmailVerificationCodeResponse;
+    }
+  }
+
+  static Sub2ApiInvitationCodeValidation _decodeInvitationCodeValidation(
+    Object? data,
+  ) {
+    try {
+      return Sub2ApiInvitationCodeValidationDto.fromJson(
+        _objectMap(data, _invalidInvitationCodeValidationResponse),
+      ).toPublicModel();
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw _invalidInvitationCodeValidationResponse;
+    }
+  }
+
+  static Sub2ApiForgotPasswordResult _decodeForgotPassword(Object? data) {
+    try {
+      return Sub2ApiAuthMessageDto.fromJson(
+        _objectMap(data, _invalidForgotPasswordResponse),
+      ).toForgotPasswordPublicModel();
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw _invalidForgotPasswordResponse;
+    }
+  }
+
+  static Sub2ApiResetPasswordResult _decodeResetPassword(Object? data) {
+    try {
+      return Sub2ApiAuthMessageDto.fromJson(
+        _objectMap(data, _invalidResetPasswordResponse),
+      ).toResetPasswordPublicModel();
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw _invalidResetPasswordResponse;
+    }
+  }
 }
 
-Map<String, Object?> _objectMap(Object? value) {
+Map<String, Object?> _objectMap(Object? value, Sub2ApiException failure) {
   if (value is! Map) {
-    throw const Sub2ApiException(
-      kind: Sub2ApiFailureKind.protocol,
-      code: 'protocol.invalid_login_response',
-      retryable: false,
-    );
+    throw failure;
   }
   final result = <String, Object?>{};
   for (final entry in value.entries) {
     if (entry.key is! String) {
-      throw const Sub2ApiException(
-        kind: Sub2ApiFailureKind.protocol,
-        code: 'protocol.invalid_login_response',
-        retryable: false,
-      );
+      throw failure;
     }
     result[entry.key as String] = entry.value;
   }
   return result;
 }
+
+const _invalidLoginResponse = Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_login_response',
+  retryable: false,
+);
+
+const _invalidRefreshResponse = Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_refresh_response',
+  retryable: false,
+);
+
+const _invalidEmailVerificationCodeResponse = Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_email_verification_code_response',
+  retryable: false,
+);
+
+const _invalidInvitationCodeValidationResponse = Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_invitation_code_validation_response',
+  retryable: false,
+);
+
+const _invalidForgotPasswordResponse = Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_forgot_password_response',
+  retryable: false,
+);
+
+const _invalidResetPasswordResponse = Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_reset_password_response',
+  retryable: false,
+);

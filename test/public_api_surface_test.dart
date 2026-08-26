@@ -34,6 +34,26 @@ void main() {
       Sub2ApiRequestOptions? requestOptions,
     })
     completeTwoFactorLogin = auth.completeTwoFactorLogin;
+    final Future<Sub2ApiEmailVerificationCodeSent> Function(
+      Sub2ApiEmailVerificationCodeRequest, {
+      Sub2ApiRequestOptions? requestOptions,
+    })
+    sendEmailVerificationCode = auth.sendEmailVerificationCode;
+    final Future<Sub2ApiInvitationCodeValidation> Function(
+      Sub2ApiInvitationCodeValidationRequest, {
+      Sub2ApiRequestOptions? requestOptions,
+    })
+    validateInvitationCode = auth.validateInvitationCode;
+    final Future<Sub2ApiForgotPasswordResult> Function(
+      Sub2ApiForgotPasswordRequest, {
+      Sub2ApiRequestOptions? requestOptions,
+    })
+    forgotPassword = auth.forgotPassword;
+    final Future<Sub2ApiResetPasswordResult> Function(
+      Sub2ApiResetPasswordRequest, {
+      Sub2ApiRequestOptions? requestOptions,
+    })
+    resetPassword = auth.resetPassword;
     final Future<void> Function({Sub2ApiRequestOptions? requestOptions})
     logout = auth.logout;
     final Future<Sub2ApiLoginResult> Function(
@@ -114,6 +134,10 @@ void main() {
       getCapabilities,
       login,
       completeTwoFactorLogin,
+      sendEmailVerificationCode,
+      validateInvitationCode,
+      forgotPassword,
+      resetPassword,
       logout,
       register,
       getProfile,

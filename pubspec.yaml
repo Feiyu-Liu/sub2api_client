@@ -1,6 +1,6 @@
 name: sub2api_client
 description: A typed, pure-Dart client for the Sub2API user API.
-version: 0.1.0-dev.1
+version: 0.1.0-dev.2
 repository: https://github.com/Feiyu-Liu/sub2api_client
 issue_tracker: https://github.com/Feiyu-Liu/sub2api_client/issues
 

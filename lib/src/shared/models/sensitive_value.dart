@@ -38,7 +38,17 @@ final class Sub2ApiPassword extends _SensitiveValue {
   const Sub2ApiPassword(super.value);
 }
 
+/// A one-time verification code supplied to an authentication operation.
+final class Sub2ApiVerificationCode extends _SensitiveValue {
+  const Sub2ApiVerificationCode(super.value);
+}
+
 /// Short-lived token used to complete a two-factor authentication challenge.
 final class Sub2ApiTwoFactorTemporaryToken extends _SensitiveValue {
   const Sub2ApiTwoFactorTemporaryToken(super.value);
+}
+
+/// A single-use token from a password-reset link.
+final class Sub2ApiPasswordResetToken extends _SensitiveValue {
+  const Sub2ApiPasswordResetToken(super.value);
 }

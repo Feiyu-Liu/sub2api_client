@@ -1,0 +1,8 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "message": "Verification code sent successfully",
+    "countdown": 60
+  }
+}

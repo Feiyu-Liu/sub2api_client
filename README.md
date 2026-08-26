@@ -1,6 +1,6 @@
 # sub2api_client
 
-A typed, pure-Dart client for the Sub2API user API. Version `0.1.0-dev.1`
+A typed, pure-Dart client for the Sub2API user API. Version `0.1.0-dev.2`
 targets Sub2API `v0.1.155` at commit
 `41cec0db059ffb82d0efdcfcf07a24ab51fbfe97`.
 
@@ -11,7 +11,8 @@ plugin, browser launcher, or native dependency.
 ## Supported user API
 
 - Capability bootstrap.
-- Registration, login, two-factor login, refresh, and logout.
+- Registration, login, two-factor login, refresh, logout, email verification
+  code delivery, invitation-code validation, and password reset requests.
 - User profile read/update and password change.
 - API/Installation Key list, detail, create, update, and delete.
 - Usage list, detail, and aggregate statistics.

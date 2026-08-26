@@ -37,6 +37,32 @@ Map<String, dynamic> _$Sub2ApiRegistrationRequestDtoToJson(
   'verify_code': ?instance.verifyCode,
 };
 
+Map<String, dynamic> _$Sub2ApiEmailVerificationCodeRequestDtoToJson(
+  Sub2ApiEmailVerificationCodeRequestDto instance,
+) => <String, dynamic>{
+  'email': instance.email,
+  'turnstile_token': ?instance.turnstileToken,
+};
+
+Map<String, dynamic> _$Sub2ApiInvitationCodeValidationRequestDtoToJson(
+  Sub2ApiInvitationCodeValidationRequestDto instance,
+) => <String, dynamic>{'code': instance.code};
+
+Map<String, dynamic> _$Sub2ApiForgotPasswordRequestDtoToJson(
+  Sub2ApiForgotPasswordRequestDto instance,
+) => <String, dynamic>{
+  'email': instance.email,
+  'turnstile_token': ?instance.turnstileToken,
+};
+
+Map<String, dynamic> _$Sub2ApiResetPasswordRequestDtoToJson(
+  Sub2ApiResetPasswordRequestDto instance,
+) => <String, dynamic>{
+  'email': instance.email,
+  'new_password': instance.newPassword,
+  'token': instance.token,
+};
+
 Map<String, dynamic> _$Sub2ApiRefreshRequestDtoToJson(
   Sub2ApiRefreshRequestDto instance,
 ) => <String, dynamic>{'refresh_token': instance.refreshToken};
@@ -115,3 +141,39 @@ Sub2ApiRefreshResponseDto _$Sub2ApiRefreshResponseDtoFromJson(
     'tokenType': 'token_type',
   },
 );
+
+Sub2ApiEmailVerificationCodeSentDto
+_$Sub2ApiEmailVerificationCodeSentDtoFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('Sub2ApiEmailVerificationCodeSentDto', json, (
+      $checkedConvert,
+    ) {
+      final val = Sub2ApiEmailVerificationCodeSentDto(
+        countdown: $checkedConvert('countdown', (v) => (v as num).toInt()),
+        message: $checkedConvert('message', (v) => v as String),
+      );
+      return val;
+    });
+
+Sub2ApiInvitationCodeValidationDto _$Sub2ApiInvitationCodeValidationDtoFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate(
+  'Sub2ApiInvitationCodeValidationDto',
+  json,
+  ($checkedConvert) {
+    final val = Sub2ApiInvitationCodeValidationDto(
+      valid: $checkedConvert('valid', (v) => v as bool),
+      errorCode: $checkedConvert('error_code', (v) => v as String?),
+    );
+    return val;
+  },
+  fieldKeyMap: const {'errorCode': 'error_code'},
+);
+
+Sub2ApiAuthMessageDto _$Sub2ApiAuthMessageDtoFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('Sub2ApiAuthMessageDto', json, ($checkedConvert) {
+  final val = Sub2ApiAuthMessageDto(
+    message: $checkedConvert('message', (v) => v as String),
+  );
+  return val;
+});

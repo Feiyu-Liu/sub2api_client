@@ -1,0 +1,8 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "valid": false,
+    "error_code": "INVITATION_CODE_USED"
+  }
+}

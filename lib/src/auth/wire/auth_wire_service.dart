@@ -24,6 +24,38 @@ abstract class AuthWireService {
     @Header('Authorization') String? authorization,
   );
 
+  @POST('/api/v1/auth/send-verify-code')
+  Future<HttpResponse<Object?>> sendEmailVerificationCode(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+  );
+
+  @POST('/api/v1/auth/validate-invitation-code')
+  Future<HttpResponse<Object?>> validateInvitationCode(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+  );
+
+  @POST('/api/v1/auth/forgot-password')
+  Future<HttpResponse<Object?>> forgotPassword(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+  );
+
+  @POST('/api/v1/auth/reset-password')
+  Future<HttpResponse<Object?>> resetPassword(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+  );
+
   @POST('/api/v1/auth/logout')
   Future<HttpResponse<Object?>> logout(
     @Body() Map<String, Object?> body,

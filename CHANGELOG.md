@@ -1,3 +1,13 @@
+## 0.1.0-dev.2
+
+- Add typed public Auth operations for email verification-code delivery,
+  invitation-code validation, forgot-password, and reset-password flows from
+  the fixed Sub2API `v0.1.155` contract.
+- Add fixed-source success fixtures plus transport, response-mapping, and
+  public API-surface coverage for those operations.
+- Redact email verification codes and reset-link tokens by default, alongside
+  password values.
+
 ## 0.1.0-dev.1
 
 - Establish the pure-Dart package boundary, strict analysis, source generation,
