@@ -63,6 +63,11 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<List<String>> previewUpstreamModels(
+    Sub2ApiAdminUpstreamModelPreviewRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminUpstreamBillingProbeSettings>
   getUpstreamBillingProbeSettings({Sub2ApiRequestOptions? requestOptions});
 
@@ -479,6 +484,43 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         _apiKey(credential),
       ),
       decode: mapAdminAccountTierRefreshResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<List<String>> previewUpstreamModels(
+    Sub2ApiAdminUpstreamModelPreviewRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final apiKey = request.apiKey.reveal().trim();
+    if (apiKey.isEmpty) {
+      throw _validation('admin.accounts.api_key_required');
+    }
+    final baseUrl = request.baseUrl;
+    if (baseUrl != null &&
+        (!baseUrl.hasScheme ||
+            (baseUrl.scheme != 'http' && baseUrl.scheme != 'https') ||
+            baseUrl.host.isEmpty ||
+            baseUrl.userInfo.isNotEmpty ||
+            baseUrl.hasFragment)) {
+      throw _validation('admin.accounts.invalid_base_url');
+    }
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.previewUpstreamModels(
+            <String, Object?>{
+              'platform': _wirePlatform(request.platform),
+              'type': _wireType(request.type),
+              'base_url': baseUrl?.toString() ?? '',
+              'api_key': apiKey,
+            },
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminSyncedUpstreamModels,
       requestOptions: requestOptions,
     );
   }

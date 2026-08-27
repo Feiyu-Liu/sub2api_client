@@ -1,3 +1,4 @@
+import '../shared/models/sensitive_value.dart';
 import '../shared/models/sub2api_decimal.dart';
 import '../shared/models/sub2api_page.dart';
 import 'sub2api_admin_user_models.dart';
@@ -769,6 +770,20 @@ final class Sub2ApiAdminAccountTierRefreshResult {
   final int driveStorageLimit;
   final int driveStorageUsage;
   final DateTime updatedAt;
+}
+
+final class Sub2ApiAdminUpstreamModelPreviewRequest {
+  const Sub2ApiAdminUpstreamModelPreviewRequest({
+    required this.platform,
+    required this.type,
+    required this.apiKey,
+    this.baseUrl,
+  });
+
+  final Sub2ApiAdminAccountPlatform platform;
+  final Sub2ApiAdminAccountType type;
+  final Uri? baseUrl;
+  final Sub2ApiApiKeySecret apiKey;
 }
 
 final class Sub2ApiAdminAccountBatchUsage {
