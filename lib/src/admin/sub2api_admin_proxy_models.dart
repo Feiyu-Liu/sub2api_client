@@ -144,3 +144,205 @@ final class Sub2ApiAdminProxyStats {
   final Sub2ApiDecimal successRate;
   final Sub2ApiDecimal averageLatency;
 }
+
+final class Sub2ApiAdminCreateProxyRequest {
+  const Sub2ApiAdminCreateProxyRequest({
+    required this.idempotencyKey,
+    required this.name,
+    required this.protocol,
+    required this.host,
+    required this.port,
+    this.username,
+    this.password,
+    this.expiresAt,
+    this.fallbackMode = Sub2ApiAdminProxyFallbackMode.none,
+    this.backupProxyId,
+    this.expiryWarnDays = 0,
+  });
+
+  final String idempotencyKey;
+  final String name;
+  final Sub2ApiAdminProxyProtocol protocol;
+  final String host;
+  final int port;
+  final String? username;
+  final Sub2ApiAdminProxyPassword? password;
+  final DateTime? expiresAt;
+  final Sub2ApiAdminProxyFallbackMode fallbackMode;
+  final int? backupProxyId;
+  final int expiryWarnDays;
+
+  @override
+  String toString() =>
+      'Sub2ApiAdminCreateProxyRequest(idempotencyKey: '
+      '${idempotencyKey.isEmpty ? '<empty>' : '<provided>'}, name: $name, '
+      'protocol: $protocol, host: $host, port: $port, username: $username, '
+      'password: <redacted>, expiresAt: $expiresAt, fallbackMode: '
+      '$fallbackMode, backupProxyId: $backupProxyId, expiryWarnDays: '
+      '$expiryWarnDays)';
+}
+
+/// Proxy update with explicit replacement state for server-replaced fields.
+final class Sub2ApiAdminUpdateProxyRequest {
+  const Sub2ApiAdminUpdateProxyRequest({
+    required this.expiresAt,
+    required this.fallbackMode,
+    required this.backupProxyId,
+    required this.expiryWarnDays,
+    this.name,
+    this.protocol,
+    this.host,
+    this.port,
+    this.username,
+    this.password,
+    this.status,
+  });
+
+  final String? name;
+  final Sub2ApiAdminProxyProtocol? protocol;
+  final String? host;
+  final int? port;
+  final String? username;
+  final Sub2ApiAdminProxyPassword? password;
+  final Sub2ApiAdminProxyStatus? status;
+  final DateTime? expiresAt;
+  final Sub2ApiAdminProxyFallbackMode fallbackMode;
+  final int? backupProxyId;
+  final int expiryWarnDays;
+
+  @override
+  String toString() =>
+      'Sub2ApiAdminUpdateProxyRequest(name: $name, protocol: $protocol, '
+      'host: $host, port: $port, username: $username, password: <redacted>, '
+      'status: $status, expiresAt: $expiresAt, fallbackMode: $fallbackMode, '
+      'backupProxyId: $backupProxyId, expiryWarnDays: $expiryWarnDays)';
+}
+
+final class Sub2ApiAdminBatchCreateProxyInput {
+  const Sub2ApiAdminBatchCreateProxyInput({
+    required this.protocol,
+    required this.host,
+    required this.port,
+    this.username,
+    this.password,
+  });
+
+  final Sub2ApiAdminProxyProtocol protocol;
+  final String host;
+  final int port;
+  final String? username;
+  final Sub2ApiAdminProxyPassword? password;
+}
+
+final class Sub2ApiAdminBatchCreateProxiesResult {
+  const Sub2ApiAdminBatchCreateProxiesResult({
+    required this.created,
+    required this.skipped,
+  });
+
+  final int created;
+  final int skipped;
+}
+
+final class Sub2ApiAdminProxyActionResult {
+  const Sub2ApiAdminProxyActionResult(this.message);
+
+  final String message;
+}
+
+final class Sub2ApiAdminProxyBatchDeleteSkipped {
+  const Sub2ApiAdminProxyBatchDeleteSkipped({
+    required this.proxyId,
+    required this.reason,
+  });
+
+  final int proxyId;
+  final String reason;
+}
+
+final class Sub2ApiAdminProxyBatchDeleteResult {
+  Sub2ApiAdminProxyBatchDeleteResult({
+    required List<int> deletedIds,
+    required List<Sub2ApiAdminProxyBatchDeleteSkipped> skipped,
+  }) : deletedIds = List.unmodifiable(deletedIds),
+       skipped = List.unmodifiable(skipped);
+
+  final List<int> deletedIds;
+  final List<Sub2ApiAdminProxyBatchDeleteSkipped> skipped;
+}
+
+final class Sub2ApiAdminProxyTestResult {
+  const Sub2ApiAdminProxyTestResult({
+    required this.success,
+    required this.message,
+    required this.latencyMs,
+    required this.ipAddress,
+    required this.city,
+    required this.region,
+    required this.country,
+    required this.countryCode,
+  });
+
+  final bool success;
+  final String message;
+  final int? latencyMs;
+  final String ipAddress;
+  final String city;
+  final String region;
+  final String country;
+  final String countryCode;
+}
+
+enum Sub2ApiAdminProxyQualityItemStatus { pass, warn, fail, challenge }
+
+final class Sub2ApiAdminProxyQualityItem {
+  const Sub2ApiAdminProxyQualityItem({
+    required this.target,
+    required this.status,
+    required this.httpStatus,
+    required this.latencyMs,
+    required this.message,
+    required this.cfRay,
+  });
+
+  final String target;
+  final Sub2ApiAdminProxyQualityItemStatus status;
+  final int? httpStatus;
+  final int? latencyMs;
+  final String message;
+  final String cfRay;
+}
+
+final class Sub2ApiAdminProxyQualityResult {
+  Sub2ApiAdminProxyQualityResult({
+    required this.proxyId,
+    required this.score,
+    required this.grade,
+    required this.summary,
+    required this.exitIp,
+    required this.country,
+    required this.countryCode,
+    required this.baseLatencyMs,
+    required this.passedCount,
+    required this.warnCount,
+    required this.failedCount,
+    required this.challengeCount,
+    required this.checkedAt,
+    required List<Sub2ApiAdminProxyQualityItem> items,
+  }) : items = List.unmodifiable(items);
+
+  final int proxyId;
+  final int score;
+  final String grade;
+  final String summary;
+  final String exitIp;
+  final String country;
+  final String countryCode;
+  final int? baseLatencyMs;
+  final int passedCount;
+  final int warnCount;
+  final int failedCount;
+  final int challengeCount;
+  final DateTime checkedAt;
+  final List<Sub2ApiAdminProxyQualityItem> items;
+}

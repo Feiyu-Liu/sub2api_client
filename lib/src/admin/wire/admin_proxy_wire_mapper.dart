@@ -52,6 +52,119 @@ Sub2ApiAdminProxyStats mapAdminProxyStats(Object? data) => _map(() {
   );
 });
 
+Sub2ApiAdminProxyActionResult mapAdminProxyActionResult(Object? data) => _map(
+  () =>
+      Sub2ApiAdminProxyActionResult(_nonEmptyString(_object(data), 'message')),
+);
+
+Sub2ApiAdminBatchCreateProxiesResult mapAdminBatchCreateProxiesResult(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  return Sub2ApiAdminBatchCreateProxiesResult(
+    created: _nonNegativeInteger(source, 'created'),
+    skipped: _nonNegativeInteger(source, 'skipped'),
+  );
+});
+
+Sub2ApiAdminProxyBatchDeleteResult mapAdminProxyBatchDeleteResult(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  final deletedIds = _list(source, 'deleted_ids')
+      .map((value) {
+        if (value is! int || value <= 0) throw const FormatException();
+        return value;
+      })
+      .toList(growable: false);
+  final skipped = _list(source, 'skipped')
+      .map(_object)
+      .map(
+        (item) => Sub2ApiAdminProxyBatchDeleteSkipped(
+          proxyId: _positiveInteger(item, 'id'),
+          reason: _nonEmptyString(item, 'reason'),
+        ),
+      )
+      .toList(growable: false);
+  final deletedSet = deletedIds.toSet();
+  final skippedSet = skipped.map((item) => item.proxyId).toSet();
+  if (deletedSet.length != deletedIds.length ||
+      skippedSet.length != skipped.length ||
+      deletedSet.intersection(skippedSet).isNotEmpty) {
+    throw const FormatException();
+  }
+  return Sub2ApiAdminProxyBatchDeleteResult(
+    deletedIds: deletedIds,
+    skipped: skipped,
+  );
+});
+
+Sub2ApiAdminProxyTestResult mapAdminProxyTestResult(Object? data) => _map(() {
+  final source = _object(data);
+  final success = _boolean(source, 'success');
+  final latencyMs = _nullableNonNegativeInteger(source, 'latency_ms');
+  if (!success && latencyMs != null) throw const FormatException();
+  return Sub2ApiAdminProxyTestResult(
+    success: success,
+    message: _nonEmptyString(source, 'message'),
+    latencyMs: latencyMs,
+    ipAddress: _optionalString(source, 'ip_address'),
+    city: _optionalString(source, 'city'),
+    region: _optionalString(source, 'region'),
+    country: _optionalString(source, 'country'),
+    countryCode: _optionalString(source, 'country_code'),
+  );
+});
+
+Sub2ApiAdminProxyQualityResult mapAdminProxyQualityResult(Object? data) =>
+    _map(() {
+      final source = _object(data);
+      final score = _nonNegativeInteger(source, 'score');
+      if (score > 100) throw const FormatException();
+      final items = _list(source, 'items')
+          .map(_object)
+          .map(
+            (item) => Sub2ApiAdminProxyQualityItem(
+              target: _nonEmptyString(item, 'target'),
+              status: switch (_nonEmptyString(item, 'status')) {
+                'pass' => Sub2ApiAdminProxyQualityItemStatus.pass,
+                'warn' => Sub2ApiAdminProxyQualityItemStatus.warn,
+                'fail' => Sub2ApiAdminProxyQualityItemStatus.fail,
+                'challenge' => Sub2ApiAdminProxyQualityItemStatus.challenge,
+                _ => throw const FormatException(),
+              },
+              httpStatus: _nullableNonNegativeInteger(item, 'http_status'),
+              latencyMs: _nullableNonNegativeInteger(item, 'latency_ms'),
+              message: _optionalString(item, 'message'),
+              cfRay: _optionalString(item, 'cf_ray'),
+            ),
+          )
+          .toList(growable: false);
+      final passed = _nonNegativeInteger(source, 'passed_count');
+      final warned = _nonNegativeInteger(source, 'warn_count');
+      final failed = _nonNegativeInteger(source, 'failed_count');
+      final challenged = _nonNegativeInteger(source, 'challenge_count');
+      if (passed + warned + failed + challenged != items.length) {
+        throw const FormatException();
+      }
+      return Sub2ApiAdminProxyQualityResult(
+        proxyId: _positiveInteger(source, 'proxy_id'),
+        score: score,
+        grade: _nonEmptyString(source, 'grade'),
+        summary: _nonEmptyString(source, 'summary'),
+        exitIp: _optionalString(source, 'exit_ip'),
+        country: _optionalString(source, 'country'),
+        countryCode: _optionalString(source, 'country_code'),
+        baseLatencyMs: _nullableNonNegativeInteger(source, 'base_latency_ms'),
+        passedCount: passed,
+        warnCount: warned,
+        failedCount: failed,
+        challengeCount: challenged,
+        checkedAt: _unixDateTime(source, 'checked_at'),
+        items: items,
+      );
+    });
+
 Sub2ApiAdminProxy _proxy(Map<String, Object?> source) {
   final password = _optionalString(source, 'password');
   final accountCount = _nullableNonNegativeInteger(source, 'account_count');
@@ -186,6 +299,12 @@ String? _nullableString(Map<String, Object?> source, String key) {
   return value;
 }
 
+bool _boolean(Map<String, Object?> source, String key) {
+  final value = source[key];
+  if (value is! bool) throw const FormatException();
+  return value;
+}
+
 int _integer(Map<String, Object?> source, String key) {
   final value = source[key];
   if (value is! int) throw const FormatException();
@@ -246,6 +365,11 @@ DateTime? _nullableUnixDateTime(Map<String, Object?> source, String key) {
   final value = source[key];
   if (value == null) return null;
   if (value is! int || value <= 0) throw const FormatException();
+  return DateTime.fromMillisecondsSinceEpoch(value * 1000, isUtc: true);
+}
+
+DateTime _unixDateTime(Map<String, Object?> source, String key) {
+  final value = _positiveInteger(source, key);
   return DateTime.fromMillisecondsSinceEpoch(value * 1000, isUtc: true);
 }
 
