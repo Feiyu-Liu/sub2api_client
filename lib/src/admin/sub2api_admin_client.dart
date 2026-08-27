@@ -7,6 +7,7 @@ import '../shared/session/session_coordinator.dart';
 import '../shared/session/sub2api_session.dart';
 import '../shared/transport/request_executor_impl.dart';
 import 'sub2api_admin_accounts_client.dart';
+import 'sub2api_admin_compliance_client.dart';
 import 'sub2api_admin_credential_mode.dart';
 import 'sub2api_admin_dashboard_client.dart';
 import 'sub2api_admin_groups_client.dart';
@@ -32,6 +33,7 @@ final class Sub2ApiAdminClient {
 
   Sub2ApiAdminClient._({
     required this.accounts,
+    required this.compliance,
     required this.dashboard,
     required this.groups,
     required this.proxies,
@@ -48,6 +50,7 @@ final class Sub2ApiAdminClient {
        _sessions = sessions;
 
   final Sub2ApiAdminAccountsClient accounts;
+  final Sub2ApiAdminComplianceClient compliance;
   final Sub2ApiAdminDashboardClient dashboard;
   final Sub2ApiAdminGroupsClient groups;
   final Sub2ApiAdminProxiesClient proxies;
@@ -101,6 +104,11 @@ Sub2ApiAdminClient _create({
       dio: dio,
       requestExecutor: adminExecutor,
       streamExecutor: adminExecutor,
+      credentialMode: Sub2ApiAdminCredentialMode.jwt,
+    ),
+    compliance: createSub2ApiAdminComplianceClient(
+      dio: dio,
+      requestExecutor: adminExecutor,
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
     ),
     dashboard: createSub2ApiAdminDashboardClient(
