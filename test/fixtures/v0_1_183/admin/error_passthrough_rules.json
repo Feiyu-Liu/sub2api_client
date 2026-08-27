@@ -1,0 +1,20 @@
+{
+  "rule": {
+    "id": 4,
+    "name": "Preserve overload",
+    "enabled": true,
+    "priority": 10,
+    "error_codes": [429, 503],
+    "keywords": ["overloaded"],
+    "match_mode": "any",
+    "platforms": ["anthropic", "openai"],
+    "passthrough_code": false,
+    "response_code": 503,
+    "passthrough_body": false,
+    "custom_message": "Upstream temporarily unavailable",
+    "skip_monitoring": true,
+    "description": "Normalize transient overloads",
+    "created_at": "2026-08-26T00:00:00Z",
+    "updated_at": "2026-08-27T00:00:00Z"
+  }
+}
