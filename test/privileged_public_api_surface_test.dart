@@ -33,6 +33,9 @@ void main() {
         admin.antigravityOAuth;
     final Sub2ApiAdminAntigravityOAuthClient opsAntigravityOAuth =
         ops.antigravityOAuth;
+    final Sub2ApiAdminAnnouncementsClient adminAnnouncements =
+        admin.announcements;
+    final Sub2ApiAdminAnnouncementsClient opsAnnouncements = ops.announcements;
     final Sub2ApiAdminAuditLogsClient adminAuditLogs = admin.auditLogs;
     final Sub2ApiAdminAuditLogsClient opsAuditLogs = ops.auditLogs;
     final Sub2ApiAdminCNProvidersClient adminCNProviders = admin.cnProviders;
@@ -114,6 +117,8 @@ void main() {
       opsAccounts,
       adminAntigravityOAuth,
       opsAntigravityOAuth,
+      adminAnnouncements,
+      opsAnnouncements,
       adminAuditLogs,
       opsAuditLogs,
       adminCNProviders,

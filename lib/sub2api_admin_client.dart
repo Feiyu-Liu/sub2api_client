@@ -4,6 +4,9 @@ library;
 export 'src/admin/sub2api_admin_account_models.dart';
 export 'src/admin/sub2api_admin_accounts_client.dart'
     show Sub2ApiAdminAccountsClient;
+export 'src/admin/sub2api_admin_announcement_models.dart';
+export 'src/admin/sub2api_admin_announcements_client.dart'
+    show Sub2ApiAdminAnnouncementsClient;
 export 'src/admin/sub2api_admin_antigravity_oauth_client.dart'
     show Sub2ApiAdminAntigravityOAuthClient;
 export 'src/admin/sub2api_admin_antigravity_oauth_models.dart';

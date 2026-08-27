@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../shared/configuration/sub2api_configuration.dart';
 import 'sub2api_admin_accounts_client.dart';
+import 'sub2api_admin_announcements_client.dart';
 import 'sub2api_admin_antigravity_oauth_client.dart';
 import 'sub2api_admin_audit_logs_client.dart';
 import 'sub2api_admin_cn_providers_client.dart';
@@ -50,6 +51,7 @@ final class Sub2ApiOpsClient {
   Sub2ApiOpsClient._({
     required this.accounts,
     required this.antigravityOAuth,
+    required this.announcements,
     required this.auditLogs,
     required this.cnProviders,
     required this.compliance,
@@ -70,6 +72,7 @@ final class Sub2ApiOpsClient {
 
   final Sub2ApiAdminAccountsClient accounts;
   final Sub2ApiAdminAntigravityOAuthClient antigravityOAuth;
+  final Sub2ApiAdminAnnouncementsClient announcements;
   final Sub2ApiAdminAuditLogsClient auditLogs;
   final Sub2ApiAdminCNProvidersClient cnProviders;
   final Sub2ApiAdminComplianceClient compliance;
@@ -112,6 +115,11 @@ Sub2ApiOpsClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
     ),
     antigravityOAuth: createSub2ApiAdminAntigravityOAuthClient(
+      dio: dio,
+      requestExecutor: executor,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
+    announcements: createSub2ApiAdminAnnouncementsClient(
       dio: dio,
       requestExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
