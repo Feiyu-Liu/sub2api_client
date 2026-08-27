@@ -89,6 +89,11 @@ final class Sub2ApiAdminOAuthSessionId extends _SensitiveValue {
   const Sub2ApiAdminOAuthSessionId(super.value);
 }
 
+/// CSRF state binding an administrator OAuth authorization ceremony.
+final class Sub2ApiAdminOAuthState extends _SensitiveValue {
+  const Sub2ApiAdminOAuthState(super.value);
+}
+
 /// Single-use authorization code returned by an OAuth provider.
 final class Sub2ApiOAuthAuthorizationCode extends _SensitiveValue {
   const Sub2ApiOAuthAuthorizationCode(super.value);

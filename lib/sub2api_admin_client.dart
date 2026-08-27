@@ -4,6 +4,9 @@ library;
 export 'src/admin/sub2api_admin_account_models.dart';
 export 'src/admin/sub2api_admin_accounts_client.dart'
     show Sub2ApiAdminAccountsClient;
+export 'src/admin/sub2api_admin_antigravity_oauth_client.dart'
+    show Sub2ApiAdminAntigravityOAuthClient;
+export 'src/admin/sub2api_admin_antigravity_oauth_models.dart';
 export 'src/admin/sub2api_admin_audit_log_models.dart';
 export 'src/admin/sub2api_admin_audit_logs_client.dart'
     show Sub2ApiAdminAuditLogsClient;
@@ -31,6 +34,7 @@ export 'src/shared/errors/sub2api_exception.dart';
 export 'src/shared/models/sensitive_value.dart'
     show
         Sub2ApiAdminOAuthSessionId,
+        Sub2ApiAdminOAuthState,
         Sub2ApiAdminAccountDataArchive,
         Sub2ApiAdminCodexSessionPayload,
         Sub2ApiAdminProxyPassword,
@@ -41,6 +45,7 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiOAuthCookieSessionKey,
         Sub2ApiOllamaCloudSession,
         Sub2ApiPassword,
+        Sub2ApiRefreshToken,
         Sub2ApiVerificationCode;
 export 'src/shared/models/sub2api_decimal.dart';
 export 'src/shared/models/sub2api_page.dart';
