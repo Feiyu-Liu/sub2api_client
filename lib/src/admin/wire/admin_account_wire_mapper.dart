@@ -35,6 +35,59 @@ Sub2ApiAdminAccount mapAdminShadowAccount(Object? data, int parentAccountId) =>
       return account;
     });
 
+Sub2ApiAdminCrsPreviewResult mapAdminCrsPreviewResult(Object? data) => _map(() {
+  final source = _object(data);
+  final newAccounts = _list(
+    source,
+    'new_accounts',
+  ).map(_object).map(_crsPreviewAccount).toList(growable: false);
+  final existingAccounts = _list(
+    source,
+    'existing_accounts',
+  ).map(_object).map(_crsPreviewAccount).toList(growable: false);
+  final allIds = <String>{};
+  for (final account in [...newAccounts, ...existingAccounts]) {
+    if (!allIds.add(account.crsAccountId)) throw const FormatException();
+  }
+  return Sub2ApiAdminCrsPreviewResult(
+    newAccounts: newAccounts,
+    existingAccounts: existingAccounts,
+  );
+});
+
+Sub2ApiAdminCrsSyncResult mapAdminCrsSyncResult(Object? data) => _map(() {
+  final source = _object(data);
+  final created = _nonNegativeInteger(source, 'created');
+  final updated = _nonNegativeInteger(source, 'updated');
+  final skipped = _nonNegativeInteger(source, 'skipped');
+  final failed = _nonNegativeInteger(source, 'failed');
+  final items = _list(
+    source,
+    'items',
+  ).map(_object).map(_crsSyncItem).toList(growable: false);
+  final counts = <Sub2ApiAdminCrsSyncAction, int>{
+    for (final action in Sub2ApiAdminCrsSyncAction.values) action: 0,
+  };
+  final ids = <String>{};
+  for (final item in items) {
+    counts[item.action] = counts[item.action]! + 1;
+    if (!ids.add(item.crsAccountId)) throw const FormatException();
+  }
+  if (counts[Sub2ApiAdminCrsSyncAction.created] != created ||
+      counts[Sub2ApiAdminCrsSyncAction.updated] != updated ||
+      counts[Sub2ApiAdminCrsSyncAction.skipped] != skipped ||
+      counts[Sub2ApiAdminCrsSyncAction.failed] != failed) {
+    throw const FormatException();
+  }
+  return Sub2ApiAdminCrsSyncResult(
+    created: created,
+    updated: updated,
+    skipped: skipped,
+    failed: failed,
+    items: items,
+  );
+});
+
 Sub2ApiAdminAccountActionResult mapAdminAccountActionResult(Object? data) =>
     _map(() {
       final source = _object(data);
@@ -531,6 +584,37 @@ Sub2ApiAdminAccountBatchMaintenanceResult _accountBatchMaintenance(
     failed: failed,
     errors: errors,
     warnings: warnings,
+  );
+}
+
+Sub2ApiAdminCrsPreviewAccount _crsPreviewAccount(Map<String, Object?> source) =>
+    Sub2ApiAdminCrsPreviewAccount(
+      crsAccountId: _nonEmptyString(source, 'crs_account_id'),
+      kind: _nonEmptyString(source, 'kind'),
+      name: _nonEmptyString(source, 'name'),
+      platform: _platform(_nonEmptyString(source, 'platform')),
+      type: _accountType(_nonEmptyString(source, 'type')),
+    );
+
+Sub2ApiAdminCrsSyncItem _crsSyncItem(Map<String, Object?> source) {
+  final action = switch (_nonEmptyString(source, 'action')) {
+    'created' => Sub2ApiAdminCrsSyncAction.created,
+    'updated' => Sub2ApiAdminCrsSyncAction.updated,
+    'skipped' => Sub2ApiAdminCrsSyncAction.skipped,
+    'failed' => Sub2ApiAdminCrsSyncAction.failed,
+    _ => throw const FormatException(),
+  };
+  final error = _optionalString(source, 'error').trim();
+  final failed =
+      action == Sub2ApiAdminCrsSyncAction.failed ||
+      action == Sub2ApiAdminCrsSyncAction.skipped;
+  if (failed == error.isEmpty) throw const FormatException();
+  return Sub2ApiAdminCrsSyncItem(
+    crsAccountId: _nonEmptyString(source, 'crs_account_id'),
+    kind: _nonEmptyString(source, 'kind'),
+    name: _nonEmptyString(source, 'name'),
+    action: action,
+    error: error,
   );
 }
 

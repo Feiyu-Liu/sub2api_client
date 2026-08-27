@@ -800,6 +800,99 @@ final class Sub2ApiAdminCreateShadowRequest {
   final List<int> groupIds;
 }
 
+final class Sub2ApiAdminCrsPreviewRequest {
+  const Sub2ApiAdminCrsPreviewRequest({
+    required this.baseUrl,
+    required this.username,
+    required this.password,
+  });
+
+  final Uri baseUrl;
+  final String username;
+  final Sub2ApiPassword password;
+}
+
+final class Sub2ApiAdminCrsSyncRequest {
+  Sub2ApiAdminCrsSyncRequest({
+    required this.baseUrl,
+    required this.username,
+    required this.password,
+    this.syncProxies = true,
+    List<String>? selectedAccountIds,
+  }) : selectedAccountIds = selectedAccountIds == null
+           ? null
+           : List.unmodifiable(selectedAccountIds);
+
+  final Uri baseUrl;
+  final String username;
+  final Sub2ApiPassword password;
+  final bool syncProxies;
+
+  /// `null` creates all new accounts; an empty list creates none.
+  final List<String>? selectedAccountIds;
+}
+
+final class Sub2ApiAdminCrsPreviewAccount {
+  const Sub2ApiAdminCrsPreviewAccount({
+    required this.crsAccountId,
+    required this.kind,
+    required this.name,
+    required this.platform,
+    required this.type,
+  });
+
+  final String crsAccountId;
+  final String kind;
+  final String name;
+  final Sub2ApiAdminAccountPlatform platform;
+  final Sub2ApiAdminAccountType type;
+}
+
+final class Sub2ApiAdminCrsPreviewResult {
+  Sub2ApiAdminCrsPreviewResult({
+    required List<Sub2ApiAdminCrsPreviewAccount> newAccounts,
+    required List<Sub2ApiAdminCrsPreviewAccount> existingAccounts,
+  }) : newAccounts = List.unmodifiable(newAccounts),
+       existingAccounts = List.unmodifiable(existingAccounts);
+
+  final List<Sub2ApiAdminCrsPreviewAccount> newAccounts;
+  final List<Sub2ApiAdminCrsPreviewAccount> existingAccounts;
+}
+
+enum Sub2ApiAdminCrsSyncAction { created, updated, skipped, failed }
+
+final class Sub2ApiAdminCrsSyncItem {
+  const Sub2ApiAdminCrsSyncItem({
+    required this.crsAccountId,
+    required this.kind,
+    required this.name,
+    required this.action,
+    required this.error,
+  });
+
+  final String crsAccountId;
+  final String kind;
+  final String name;
+  final Sub2ApiAdminCrsSyncAction action;
+  final String error;
+}
+
+final class Sub2ApiAdminCrsSyncResult {
+  Sub2ApiAdminCrsSyncResult({
+    required this.created,
+    required this.updated,
+    required this.skipped,
+    required this.failed,
+    required List<Sub2ApiAdminCrsSyncItem> items,
+  }) : items = List.unmodifiable(items);
+
+  final int created;
+  final int updated;
+  final int skipped;
+  final int failed;
+  final List<Sub2ApiAdminCrsSyncItem> items;
+}
+
 final class Sub2ApiAdminAccountBatchUsage {
   Sub2ApiAdminAccountBatchUsage({
     required Map<int, Sub2ApiAdminAccountUsage> usage,

@@ -74,6 +74,16 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminCrsPreviewResult> previewCrs(
+    Sub2ApiAdminCrsPreviewRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminCrsSyncResult> syncFromCrs(
+    Sub2ApiAdminCrsSyncRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminUpstreamBillingProbeSettings>
   getUpstreamBillingProbeSettings({Sub2ApiRequestOptions? requestOptions});
 
@@ -567,6 +577,55 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         _apiKey(credential),
       ),
       decode: (data) => mapAdminShadowAccount(data, parentAccountId),
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminCrsPreviewResult> previewCrs(
+    Sub2ApiAdminCrsPreviewRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final body = _crsConnectionBody(
+      request.baseUrl,
+      request.username,
+      request.password,
+    );
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.previewCrs(
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminCrsPreviewResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminCrsSyncResult> syncFromCrs(
+    Sub2ApiAdminCrsSyncRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final body = _crsConnectionBody(
+      request.baseUrl,
+      request.username,
+      request.password,
+    );
+    final selectedIds = _normalizeCrsAccountIds(request.selectedAccountIds);
+    body['sync_proxies'] = request.syncProxies;
+    if (selectedIds != null) body['selected_account_ids'] = selectedIds;
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.syncFromCrs(
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminCrsSyncResult,
       requestOptions: requestOptions,
     );
   }
@@ -1243,6 +1302,48 @@ List<int> _requiredAccountIds(List<int> accountIds) {
 List<int> _normalizePositiveIds(List<int> ids, {required String code}) {
   if (ids.any((id) => id <= 0)) throw _validation(code);
   return <int>{...ids}.toList(growable: false);
+}
+
+Map<String, Object?> _crsConnectionBody(
+  Uri baseUrl,
+  String username,
+  Sub2ApiPassword password,
+) {
+  if (!baseUrl.hasScheme ||
+      (baseUrl.scheme != 'http' && baseUrl.scheme != 'https') ||
+      baseUrl.host.isEmpty ||
+      baseUrl.userInfo.isNotEmpty ||
+      baseUrl.hasQuery ||
+      baseUrl.hasFragment) {
+    throw _validation('admin.accounts.invalid_crs_base_url');
+  }
+  final normalizedUsername = username.trim();
+  if (normalizedUsername.isEmpty) {
+    throw _validation('admin.accounts.crs_username_required');
+  }
+  final revealedPassword = password.reveal();
+  if (revealedPassword.trim().isEmpty) {
+    throw _validation('admin.accounts.crs_password_required');
+  }
+  return <String, Object?>{
+    'base_url': baseUrl.toString(),
+    'username': normalizedUsername,
+    'password': revealedPassword,
+  };
+}
+
+List<String>? _normalizeCrsAccountIds(List<String>? ids) {
+  if (ids == null) return null;
+  final normalized = <String>[];
+  final seen = <String>{};
+  for (final value in ids) {
+    final id = value.trim();
+    if (id.isEmpty) {
+      throw _validation('admin.accounts.invalid_crs_account_id');
+    }
+    if (seen.add(id)) normalized.add(id);
+  }
+  return List.unmodifiable(normalized);
 }
 
 void _validateOllamaCloudUsageSettings(
