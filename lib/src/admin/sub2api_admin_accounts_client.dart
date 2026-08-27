@@ -40,6 +40,11 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminBatchAccountMutationResult> batchUpdateCredentials(
+    Sub2ApiAdminBatchUpdateCredentialsRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminAccount> duplicate(
     int accountId,
     Sub2ApiAdminDuplicateAccountRequest request, {
@@ -453,6 +458,47 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         _apiKey(credential),
       ),
       decode: mapAdminAccount,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminBatchAccountMutationResult> batchUpdateCredentials(
+    Sub2ApiAdminBatchUpdateCredentialsRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final accountIds = _requiredAccountIds(request.accountIds);
+    final (field, value) = switch (request.update) {
+      Sub2ApiAdminBatchAccountUuidUpdate(:final value) => (
+        'account_uuid',
+        value?.trim(),
+      ),
+      Sub2ApiAdminBatchOrganizationUuidUpdate(:final value) => (
+        'org_uuid',
+        value?.trim(),
+      ),
+      Sub2ApiAdminBatchInterceptWarmupUpdate(:final value) => (
+        'intercept_warmup_requests',
+        value,
+      ),
+    };
+    if (value is String && value.isEmpty) {
+      throw _validation('admin.accounts.invalid_credential_value');
+    }
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.batchUpdateCredentials(
+            <String, Object?>{
+              'account_ids': accountIds,
+              'field': field,
+              'value': value,
+            },
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminBatchAccountMutationResult,
       requestOptions: requestOptions,
     );
   }

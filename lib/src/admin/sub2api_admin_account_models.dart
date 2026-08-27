@@ -306,6 +306,80 @@ final class Sub2ApiAdminUpdateAccountRequest {
   final bool confirmMixedChannelRisk;
 }
 
+sealed class Sub2ApiAdminBatchCredentialUpdate {
+  const Sub2ApiAdminBatchCredentialUpdate();
+
+  const factory Sub2ApiAdminBatchCredentialUpdate.accountUuid(String? value) =
+      Sub2ApiAdminBatchAccountUuidUpdate;
+  const factory Sub2ApiAdminBatchCredentialUpdate.organizationUuid(
+    String? value,
+  ) = Sub2ApiAdminBatchOrganizationUuidUpdate;
+  const factory Sub2ApiAdminBatchCredentialUpdate.interceptWarmupRequests(
+    bool value,
+  ) = Sub2ApiAdminBatchInterceptWarmupUpdate;
+}
+
+final class Sub2ApiAdminBatchAccountUuidUpdate
+    extends Sub2ApiAdminBatchCredentialUpdate {
+  const Sub2ApiAdminBatchAccountUuidUpdate(this.value);
+
+  final String? value;
+}
+
+final class Sub2ApiAdminBatchOrganizationUuidUpdate
+    extends Sub2ApiAdminBatchCredentialUpdate {
+  const Sub2ApiAdminBatchOrganizationUuidUpdate(this.value);
+
+  final String? value;
+}
+
+final class Sub2ApiAdminBatchInterceptWarmupUpdate
+    extends Sub2ApiAdminBatchCredentialUpdate {
+  const Sub2ApiAdminBatchInterceptWarmupUpdate(this.value);
+
+  final bool value;
+}
+
+final class Sub2ApiAdminBatchUpdateCredentialsRequest {
+  Sub2ApiAdminBatchUpdateCredentialsRequest({
+    required List<int> accountIds,
+    required this.update,
+  }) : accountIds = List.unmodifiable(accountIds);
+
+  final List<int> accountIds;
+  final Sub2ApiAdminBatchCredentialUpdate update;
+}
+
+final class Sub2ApiAdminBatchAccountMutationItem {
+  const Sub2ApiAdminBatchAccountMutationItem({
+    required this.accountId,
+    required this.success,
+    required this.error,
+  });
+
+  final int accountId;
+  final bool success;
+  final String error;
+}
+
+final class Sub2ApiAdminBatchAccountMutationResult {
+  Sub2ApiAdminBatchAccountMutationResult({
+    required this.success,
+    required this.failed,
+    required List<int> successIds,
+    required List<int> failedIds,
+    required List<Sub2ApiAdminBatchAccountMutationItem> results,
+  }) : successIds = List.unmodifiable(successIds),
+       failedIds = List.unmodifiable(failedIds),
+       results = List.unmodifiable(results);
+
+  final int success;
+  final int failed;
+  final List<int> successIds;
+  final List<int> failedIds;
+  final List<Sub2ApiAdminBatchAccountMutationItem> results;
+}
+
 final class Sub2ApiAdminAccountListQuery {
   const Sub2ApiAdminAccountListQuery({
     this.page,

@@ -56,6 +56,15 @@ abstract class AdminAccountWireService {
     @Header('x-api-key') String? apiKey,
   );
 
+  @POST('/api/v1/admin/accounts/batch-update-credentials')
+  Future<HttpResponse<Object?>> batchUpdateCredentials(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
   @POST('/api/v1/admin/accounts/{id}/duplicate')
   Future<HttpResponse<Object?>> duplicateAccount(
     @Path('id') int accountId,

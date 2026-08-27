@@ -212,6 +212,59 @@ Sub2ApiAdminBatchCreateAccountsResult mapAdminBatchCreateAccountsResult(
   );
 });
 
+Sub2ApiAdminBatchAccountMutationResult mapAdminBatchAccountMutationResult(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  final success = _nonNegativeInteger(source, 'success');
+  final failed = _nonNegativeInteger(source, 'failed');
+  final successIds = _positiveIntegerList(source, 'success_ids');
+  final failedIds = _positiveIntegerList(source, 'failed_ids');
+  final results = _list(source, 'results')
+      .map(_object)
+      .map((item) {
+        final itemSuccess = _boolean(item, 'success');
+        final error = _optionalString(item, 'error').trim();
+        if (itemSuccess == error.isNotEmpty) throw const FormatException();
+        return Sub2ApiAdminBatchAccountMutationItem(
+          accountId: _positiveInteger(item, 'account_id'),
+          success: itemSuccess,
+          error: error,
+        );
+      })
+      .toList(growable: false);
+  final successSet = successIds.toSet();
+  final failedSet = failedIds.toSet();
+  final resultSuccessIds = results
+      .where((item) => item.success)
+      .map((item) => item.accountId)
+      .toSet();
+  final resultFailedIds = results
+      .where((item) => !item.success)
+      .map((item) => item.accountId)
+      .toSet();
+  if (successIds.length != success ||
+      failedIds.length != failed ||
+      successSet.length != successIds.length ||
+      failedSet.length != failedIds.length ||
+      successSet.intersection(failedSet).isNotEmpty ||
+      resultSuccessIds.length != success ||
+      resultFailedIds.length != failed ||
+      !resultSuccessIds.containsAll(successSet) ||
+      !successSet.containsAll(resultSuccessIds) ||
+      !resultFailedIds.containsAll(failedSet) ||
+      !failedSet.containsAll(resultFailedIds)) {
+    throw const FormatException();
+  }
+  return Sub2ApiAdminBatchAccountMutationResult(
+    success: success,
+    failed: failed,
+    successIds: successIds,
+    failedIds: failedIds,
+    results: results,
+  );
+});
+
 Sub2ApiAdminAccountBatchMaintenanceResult mapAdminAccountBatchMaintenanceResult(
   Object? data,
 ) =>
