@@ -124,6 +124,11 @@ final class Sub2ApiAdminProxyPassword extends _SensitiveValue {
   const Sub2ApiAdminProxyPassword(super.value);
 }
 
+/// Authorized proxy-only migration archive containing proxy passwords.
+final class Sub2ApiAdminProxyDataArchive extends _SensitiveValue {
+  const Sub2ApiAdminProxyDataArchive(super.value);
+}
+
 /// Signed token carried by a notification-email unsubscribe link.
 final class Sub2ApiNotificationUnsubscribeToken extends _SensitiveValue {
   const Sub2ApiNotificationUnsubscribeToken(super.value);

@@ -346,3 +346,98 @@ final class Sub2ApiAdminProxyQualityResult {
   final DateTime checkedAt;
   final List<Sub2ApiAdminProxyQualityItem> items;
 }
+
+sealed class Sub2ApiAdminProxyDataSelector {
+  const Sub2ApiAdminProxyDataSelector();
+
+  factory Sub2ApiAdminProxyDataSelector.ids(List<int> proxyIds) =
+      Sub2ApiAdminProxyDataIdsSelector;
+  const factory Sub2ApiAdminProxyDataSelector.filters(
+    Sub2ApiAdminProxyDataFilters filters,
+  ) = Sub2ApiAdminProxyDataFiltersSelector;
+  const factory Sub2ApiAdminProxyDataSelector.all() =
+      Sub2ApiAdminProxyDataAllSelector;
+}
+
+final class Sub2ApiAdminProxyDataIdsSelector
+    extends Sub2ApiAdminProxyDataSelector {
+  Sub2ApiAdminProxyDataIdsSelector(List<int> proxyIds)
+    : proxyIds = List.unmodifiable(proxyIds);
+
+  final List<int> proxyIds;
+}
+
+final class Sub2ApiAdminProxyDataFiltersSelector
+    extends Sub2ApiAdminProxyDataSelector {
+  const Sub2ApiAdminProxyDataFiltersSelector(this.filters);
+
+  final Sub2ApiAdminProxyDataFilters filters;
+}
+
+final class Sub2ApiAdminProxyDataAllSelector
+    extends Sub2ApiAdminProxyDataSelector {
+  const Sub2ApiAdminProxyDataAllSelector();
+}
+
+final class Sub2ApiAdminProxyDataFilters {
+  const Sub2ApiAdminProxyDataFilters({this.protocol, this.status, this.search});
+
+  final Sub2ApiAdminProxyProtocol? protocol;
+  final Sub2ApiAdminProxyStatus? status;
+  final String? search;
+}
+
+final class Sub2ApiAdminProxyDataExportQuery {
+  const Sub2ApiAdminProxyDataExportQuery({
+    this.selector = const Sub2ApiAdminProxyDataSelector.all(),
+    this.sortBy = Sub2ApiAdminProxySort.id,
+    this.sortDescending = true,
+  });
+
+  final Sub2ApiAdminProxyDataSelector selector;
+  final Sub2ApiAdminProxySort sortBy;
+  final bool sortDescending;
+}
+
+final class Sub2ApiAdminProxyDataExport {
+  const Sub2ApiAdminProxyDataExport({
+    required this.exportedAt,
+    required this.proxyCount,
+    required this.archive,
+  });
+
+  final DateTime exportedAt;
+  final int proxyCount;
+  final Sub2ApiAdminProxyDataArchive archive;
+
+  @override
+  String toString() =>
+      'Sub2ApiAdminProxyDataExport(exportedAt: $exportedAt, '
+      'proxyCount: $proxyCount, archive: <redacted>)';
+}
+
+final class Sub2ApiAdminProxyDataImportError {
+  const Sub2ApiAdminProxyDataImportError({
+    required this.name,
+    required this.proxyKey,
+    required this.message,
+  });
+
+  final String name;
+  final String proxyKey;
+  final String message;
+}
+
+final class Sub2ApiAdminProxyDataImportResult {
+  Sub2ApiAdminProxyDataImportResult({
+    required this.created,
+    required this.reused,
+    required this.failed,
+    required List<Sub2ApiAdminProxyDataImportError> errors,
+  }) : errors = List.unmodifiable(errors);
+
+  final int created;
+  final int reused;
+  final int failed;
+  final List<Sub2ApiAdminProxyDataImportError> errors;
+}

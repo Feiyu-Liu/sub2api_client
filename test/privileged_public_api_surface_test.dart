@@ -31,6 +31,16 @@ void main() {
     final Sub2ApiAdminAccountsClient opsAccounts = ops.accounts;
     final Sub2ApiAdminProxiesClient adminProxies = admin.proxies;
     final Sub2ApiAdminProxiesClient opsProxies = ops.proxies;
+    final Future<Sub2ApiAdminProxyDataExport> Function({
+      Sub2ApiAdminProxyDataExportQuery query,
+      Sub2ApiRequestOptions? requestOptions,
+    })
+    exportProxyData = adminProxies.exportData;
+    final Future<Sub2ApiAdminProxyDataImportResult> Function(
+      Sub2ApiAdminProxyDataArchive, {
+      Sub2ApiRequestOptions? requestOptions,
+    })
+    importProxyData = opsProxies.importData;
     final Future<Sub2ApiAdminIdentity> Function({
       Sub2ApiRequestOptions? requestOptions,
     })
@@ -72,6 +82,8 @@ void main() {
       importCodexSessions,
       adminProxies,
       opsProxies,
+      exportProxyData,
+      importProxyData,
     ], everyElement(isNotNull));
   });
 

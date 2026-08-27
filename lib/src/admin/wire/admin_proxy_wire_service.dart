@@ -117,4 +117,22 @@ abstract class AdminProxyWireService {
     @Header('Authorization') String? authorization,
     @Header('x-api-key') String? apiKey,
   );
+
+  @GET('/api/v1/admin/proxies/data')
+  Future<HttpResponse<Object?>> exportData(
+    @Queries() Map<String, dynamic> query,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/proxies/data')
+  Future<HttpResponse<Object?>> importData(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
 }

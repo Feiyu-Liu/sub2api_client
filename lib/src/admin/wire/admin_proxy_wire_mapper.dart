@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../../shared/errors/sub2api_exception.dart';
 import '../../shared/models/sensitive_value.dart';
 import '../../shared/models/sub2api_decimal.dart';
@@ -164,6 +166,95 @@ Sub2ApiAdminProxyQualityResult mapAdminProxyQualityResult(Object? data) =>
         items: items,
       );
     });
+
+Sub2ApiAdminProxyDataExport mapAdminProxyDataExport(Object? data) => _map(() {
+  final source = _object(data);
+  _validateDataHeader(source);
+  final proxies = _list(source, 'proxies').map(_object).toList();
+  final accounts = _list(source, 'accounts');
+  if (accounts.isNotEmpty) throw const FormatException();
+  for (final proxy in proxies) {
+    _validateDataProxy(proxy);
+  }
+  return Sub2ApiAdminProxyDataExport(
+    exportedAt: _dateTime(source, 'exported_at'),
+    proxyCount: proxies.length,
+    archive: Sub2ApiAdminProxyDataArchive(jsonEncode(source)),
+  );
+});
+
+Sub2ApiAdminProxyDataImportResult mapAdminProxyDataImportResult(Object? data) =>
+    _map(() {
+      final source = _object(data);
+      final accountCreated = _nonNegativeInteger(source, 'account_created');
+      final accountFailed = _nonNegativeInteger(source, 'account_failed');
+      if (accountCreated != 0 || accountFailed != 0) {
+        throw const FormatException();
+      }
+      final errors = source['errors'] == null
+          ? <Object?>[]
+          : _array(source['errors']);
+      return Sub2ApiAdminProxyDataImportResult(
+        created: _nonNegativeInteger(source, 'proxy_created'),
+        reused: _nonNegativeInteger(source, 'proxy_reused'),
+        failed: _nonNegativeInteger(source, 'proxy_failed'),
+        errors: errors
+            .map(_object)
+            .map((error) {
+              if (_nonEmptyString(error, 'kind') != 'proxy') {
+                throw const FormatException();
+              }
+              return Sub2ApiAdminProxyDataImportError(
+                name: _optionalString(error, 'name'),
+                proxyKey: _optionalString(error, 'proxy_key'),
+                message: _nonEmptyString(error, 'message'),
+              );
+            })
+            .toList(growable: false),
+      );
+    });
+
+void _validateDataHeader(Map<String, Object?> source) {
+  final type = _optionalString(source, 'type');
+  if (type.isNotEmpty && type != 'sub2api-data' && type != 'sub2api-bundle') {
+    throw const FormatException();
+  }
+  final version = source['version'];
+  if (version != null && version != 0 && version != 1) {
+    throw const FormatException();
+  }
+}
+
+void _validateDataProxy(Map<String, Object?> source) {
+  _nonEmptyString(source, 'proxy_key');
+  _nonEmptyString(source, 'name');
+  final protocol = _nonEmptyString(source, 'protocol');
+  if (!const {'http', 'https', 'socks5', 'socks5h'}.contains(protocol)) {
+    throw const FormatException();
+  }
+  _nonEmptyString(source, 'host');
+  _port(source, 'port');
+  _optionalString(source, 'username');
+  _optionalString(source, 'password');
+  final status = _nonEmptyString(source, 'status');
+  if (status != 'active' && status != 'inactive' && status != 'expired') {
+    throw const FormatException();
+  }
+  final expiresAt = source['expires_at'];
+  if (expiresAt != null && (expiresAt is! int || expiresAt <= 0)) {
+    throw const FormatException();
+  }
+  final fallback = _optionalString(source, 'fallback_mode');
+  if (fallback.isNotEmpty &&
+      !const {'none', 'proxy', 'direct'}.contains(fallback)) {
+    throw const FormatException();
+  }
+  _optionalString(source, 'backup_proxy_name');
+  final warnDays = source['expiry_warn_days'];
+  if (warnDays != null && (warnDays is! int || warnDays < 0)) {
+    throw const FormatException();
+  }
+}
 
 Sub2ApiAdminProxy _proxy(Map<String, Object?> source) {
   final password = _optionalString(source, 'password');

@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 
 import '../shared/errors/sub2api_exception.dart';
+import '../shared/models/sensitive_value.dart';
 import '../shared/request/sub2api_request_options.dart';
 import '../shared/transport/request_executor.dart';
 import 'sub2api_admin_credential_mode.dart';
@@ -67,6 +70,17 @@ abstract interface class Sub2ApiAdminProxiesClient {
 
   Future<Sub2ApiAdminProxyBatchDeleteResult> batchDelete(
     List<int> proxyIds, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminProxyDataExport> exportData({
+    Sub2ApiAdminProxyDataExportQuery query =
+        const Sub2ApiAdminProxyDataExportQuery(),
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminProxyDataImportResult> importData(
+    Sub2ApiAdminProxyDataArchive archive, {
     Sub2ApiRequestOptions? requestOptions,
   });
 }
@@ -341,6 +355,48 @@ final class _Sub2ApiAdminProxiesClient implements Sub2ApiAdminProxiesClient {
     );
   }
 
+  @override
+  Future<Sub2ApiAdminProxyDataExport> exportData({
+    Sub2ApiAdminProxyDataExportQuery query =
+        const Sub2ApiAdminProxyDataExportQuery(),
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (_credentialMode != Sub2ApiAdminCredentialMode.jwt) {
+      throw _stepUpAdminApiKeyForbidden;
+    }
+    final queryParameters = _proxyDataExportQuery(query);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.exportData(
+        queryParameters,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminProxyDataExport,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminProxyDataImportResult> importData(
+    Sub2ApiAdminProxyDataArchive archive, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final body = _proxyDataImportBody(archive);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.importData(
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminProxyDataImportResult,
+      requestOptions: requestOptions,
+    );
+  }
+
   String? _authorization(String? credential) =>
       _credentialMode == Sub2ApiAdminCredentialMode.jwt ? credential : null;
 
@@ -509,8 +565,77 @@ List<int> _requiredProxyIds(List<int> proxyIds) {
   return ids;
 }
 
+Map<String, dynamic> _proxyDataExportQuery(
+  Sub2ApiAdminProxyDataExportQuery query,
+) {
+  final result = <String, dynamic>{};
+  switch (query.selector) {
+    case Sub2ApiAdminProxyDataIdsSelector(:final proxyIds):
+      result['ids'] = _requiredProxyIds(proxyIds).join(',');
+    case Sub2ApiAdminProxyDataFiltersSelector(:final filters):
+      final search = filters.search?.trim();
+      if (search != null && search.runes.length > 100) {
+        throw _validation('admin.proxies.search_too_long');
+      }
+      result.addAll(<String, dynamic>{
+        if (filters.protocol != null) 'protocol': filters.protocol!.name,
+        if (filters.status != null) 'status': filters.status!.name,
+        'search': ?search,
+      });
+    case Sub2ApiAdminProxyDataAllSelector():
+      break;
+  }
+  result['sort_by'] = _wireSort(query.sortBy);
+  result['sort_order'] = query.sortDescending ? 'desc' : 'asc';
+  return result;
+}
+
+Map<String, Object?> _proxyDataImportBody(
+  Sub2ApiAdminProxyDataArchive archive,
+) {
+  late final Object? decoded;
+  try {
+    decoded = jsonDecode(archive.reveal());
+  } on Object {
+    throw _validation('admin.proxies.invalid_data_archive');
+  }
+  if (decoded is! Map) {
+    throw _validation('admin.proxies.invalid_data_archive');
+  }
+  final data = <String, Object?>{};
+  for (final entry in decoded.entries) {
+    if (entry.key is! String) {
+      throw _validation('admin.proxies.invalid_data_archive');
+    }
+    data[entry.key as String] = entry.value;
+  }
+  final type = data['type'];
+  if (type != null &&
+      type != '' &&
+      type != 'sub2api-data' &&
+      type != 'sub2api-bundle') {
+    throw _validation('admin.proxies.unsupported_data_archive_type');
+  }
+  final version = data['version'];
+  if (version != null && version != 0 && version != 1) {
+    throw _validation('admin.proxies.unsupported_data_archive_version');
+  }
+  final proxies = data['proxies'];
+  final accounts = data['accounts'];
+  if (proxies is! List || accounts is! List || accounts.isNotEmpty) {
+    throw _validation('admin.proxies.invalid_data_archive');
+  }
+  return <String, Object?>{'data': data};
+}
+
 Sub2ApiException _validation(String code) => Sub2ApiException(
   kind: Sub2ApiFailureKind.validation,
   code: code,
+  retryable: false,
+);
+
+const _stepUpAdminApiKeyForbidden = Sub2ApiException(
+  kind: Sub2ApiFailureKind.forbidden,
+  code: 'auth.step_up_admin_api_key_forbidden',
   retryable: false,
 );

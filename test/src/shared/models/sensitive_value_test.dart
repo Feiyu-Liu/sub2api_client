@@ -21,6 +21,7 @@ void main() {
       Sub2ApiAdminAccountDataArchive(sentinel),
       Sub2ApiAdminCodexSessionPayload(sentinel),
       Sub2ApiAdminProxyPassword(sentinel),
+      Sub2ApiAdminProxyDataArchive(sentinel),
       Sub2ApiNotificationUnsubscribeToken(sentinel),
     ];
 
