@@ -16,7 +16,10 @@ typedef Sub2ApiRefreshSession =
     Future<Sub2ApiSession> Function(Sub2ApiSession current);
 
 final class Sub2ApiRequestExecutorImpl
-    implements Sub2ApiRequestExecutor, Sub2ApiProtectedStreamExecutor {
+    implements
+        Sub2ApiRequestExecutor,
+        Sub2ApiProtectedRawMutationExecutor,
+        Sub2ApiProtectedStreamExecutor {
   Sub2ApiRequestExecutorImpl({
     required Sub2ApiConfiguration configuration,
     required Sub2ApiSessionCoordinator sessions,
@@ -252,6 +255,28 @@ final class Sub2ApiRequestExecutorImpl
       send,
       decode,
       authorization: _authorization(snapshot.session),
+    );
+  }
+
+  @override
+  Future<T> protectedNonReplayableRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) throw _notAuthenticated;
+    return _attempt(
+      control,
+      send,
+      decode,
+      authorization: _authorization(snapshot.session),
+      allowRawSuccess: true,
     );
   }
 

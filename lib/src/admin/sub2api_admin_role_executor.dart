@@ -8,7 +8,10 @@ import 'sub2api_admin_models.dart';
 
 /// JWT executor wrapper that proves the current user is an administrator.
 final class Sub2ApiAdminRoleExecutor
-    implements Sub2ApiRequestExecutor, Sub2ApiProtectedStreamExecutor {
+    implements
+        Sub2ApiRequestExecutor,
+        Sub2ApiProtectedRawMutationExecutor,
+        Sub2ApiProtectedStreamExecutor {
   Sub2ApiAdminRoleExecutor({
     required Sub2ApiAuthenticationClient authentication,
     required Sub2ApiRequestExecutor delegate,
@@ -68,6 +71,25 @@ final class Sub2ApiAdminRoleExecutor
       decode: decode,
       requestOptions: requestOptions,
     );
+  }
+
+  @override
+  Future<T> protectedNonReplayableRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    await bootstrap(requestOptions: requestOptions);
+    final delegate = _delegate;
+    if (delegate is! Sub2ApiProtectedRawMutationExecutor) {
+      throw UnsupportedError('Delegate does not support raw mutations.');
+    }
+    return (delegate as Sub2ApiProtectedRawMutationExecutor)
+        .protectedNonReplayableRequestAllowingRawSuccess(
+          send: send,
+          decode: decode,
+          requestOptions: requestOptions,
+        );
   }
 
   @override

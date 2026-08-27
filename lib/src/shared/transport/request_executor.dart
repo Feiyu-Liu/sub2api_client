@@ -25,6 +25,15 @@ abstract interface class Sub2ApiProtectedStreamExecutor {
   });
 }
 
+/// Internal seam for raw-success mutations that must never be replayed.
+abstract interface class Sub2ApiProtectedRawMutationExecutor {
+  Future<T> protectedNonReplayableRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+}
+
 /// Internal execution seam that owns envelope, error, deadline, and refresh.
 abstract interface class Sub2ApiRequestExecutor {
   Future<T> publicRequest<T>({

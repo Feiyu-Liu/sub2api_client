@@ -11,6 +11,7 @@ import 'sub2api_admin_dashboard_client.dart';
 import 'sub2api_admin_gemini_oauth_client.dart';
 import 'sub2api_admin_groups_client.dart';
 import 'sub2api_admin_proxies_client.dart';
+import 'sub2api_admin_scheduled_tests_client.dart';
 import 'sub2api_admin_users_client.dart';
 import 'sub2api_ops_credentials.dart';
 import 'sub2api_ops_request_executor.dart';
@@ -54,6 +55,7 @@ final class Sub2ApiOpsClient {
     required this.geminiOAuth,
     required this.groups,
     required this.proxies,
+    required this.scheduledTests,
     required this.users,
     required Dio dio,
     required Sub2ApiOpsRequestExecutor executor,
@@ -71,6 +73,7 @@ final class Sub2ApiOpsClient {
   final Sub2ApiAdminGeminiOAuthClient geminiOAuth;
   final Sub2ApiAdminGroupsClient groups;
   final Sub2ApiAdminProxiesClient proxies;
+  final Sub2ApiAdminScheduledTestsClient scheduledTests;
   final Sub2ApiAdminUsersClient users;
   final Dio _dio;
   final Sub2ApiOpsRequestExecutor _executor;
@@ -140,6 +143,12 @@ Sub2ApiOpsClient _create({
     proxies: createSub2ApiAdminProxiesClient(
       dio: dio,
       requestExecutor: executor,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
+    scheduledTests: createSub2ApiAdminScheduledTestsClient(
+      dio: dio,
+      requestExecutor: executor,
+      rawMutationExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
     ),
     users: createSub2ApiAdminUsersClient(

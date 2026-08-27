@@ -12,7 +12,10 @@ import 'sub2api_ops_credentials.dart';
 
 /// Admin API Key executor with no JWT, refresh, or credential fallback path.
 final class Sub2ApiOpsRequestExecutor
-    implements Sub2ApiRequestExecutor, Sub2ApiProtectedStreamExecutor {
+    implements
+        Sub2ApiRequestExecutor,
+        Sub2ApiProtectedRawMutationExecutor,
+        Sub2ApiProtectedStreamExecutor {
   Sub2ApiOpsRequestExecutor({
     required Sub2ApiConfiguration configuration,
     required Sub2ApiAdminApiKeyProvider credentialProvider,
@@ -53,6 +56,18 @@ final class Sub2ApiOpsRequestExecutor
     required T Function(Object? data) decode,
     Sub2ApiRequestOptions? requestOptions,
   }) => _execute(send: send, decode: decode, requestOptions: requestOptions);
+
+  @override
+  Future<T> protectedNonReplayableRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _execute(
+    send: send,
+    decode: decode,
+    requestOptions: requestOptions,
+    allowRawSuccess: true,
+  );
 
   @override
   Future<Response<ResponseBody>> protectedNonReplayableStreamRequest({

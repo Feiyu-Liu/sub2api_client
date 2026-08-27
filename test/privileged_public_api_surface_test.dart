@@ -43,6 +43,10 @@ void main() {
     final Sub2ApiAdminGeminiOAuthClient opsGeminiOAuth = ops.geminiOAuth;
     final Sub2ApiAdminProxiesClient adminProxies = admin.proxies;
     final Sub2ApiAdminProxiesClient opsProxies = ops.proxies;
+    final Sub2ApiAdminScheduledTestsClient adminScheduledTests =
+        admin.scheduledTests;
+    final Sub2ApiAdminScheduledTestsClient opsScheduledTests =
+        ops.scheduledTests;
     final Future<Sub2ApiAdminProxyDataExport> Function({
       Sub2ApiAdminProxyDataExportQuery query,
       Sub2ApiRequestOptions? requestOptions,
@@ -111,6 +115,8 @@ void main() {
       importCodexSessions,
       adminProxies,
       opsProxies,
+      adminScheduledTests,
+      opsScheduledTests,
       exportProxyData,
       importProxyData,
       updateAdminApiKey,
