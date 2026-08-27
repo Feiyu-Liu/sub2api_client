@@ -20,6 +20,7 @@ import 'sub2api_admin_models.dart';
 import 'sub2api_admin_proxies_client.dart';
 import 'sub2api_admin_role_executor.dart';
 import 'sub2api_admin_scheduled_tests_client.dart';
+import 'sub2api_admin_tls_fingerprints_client.dart';
 import 'sub2api_admin_users_client.dart';
 
 /// Administrator-JWT facade for the Sub2API management plane.
@@ -49,6 +50,7 @@ final class Sub2ApiAdminClient {
     required this.groups,
     required this.proxies,
     required this.scheduledTests,
+    required this.tlsFingerprints,
     required this.users,
     required Sub2ApiAdminRoleExecutor adminExecutor,
     required Dio dio,
@@ -72,6 +74,7 @@ final class Sub2ApiAdminClient {
   final Sub2ApiAdminGroupsClient groups;
   final Sub2ApiAdminProxiesClient proxies;
   final Sub2ApiAdminScheduledTestsClient scheduledTests;
+  final Sub2ApiAdminTLSFingerprintsClient tlsFingerprints;
   final Sub2ApiAdminUsersClient users;
   final Sub2ApiAdminRoleExecutor _adminExecutor;
   final Dio _dio;
@@ -173,6 +176,11 @@ Sub2ApiAdminClient _create({
       dio: dio,
       requestExecutor: adminExecutor,
       rawMutationExecutor: adminExecutor,
+      credentialMode: Sub2ApiAdminCredentialMode.jwt,
+    ),
+    tlsFingerprints: createSub2ApiAdminTLSFingerprintsClient(
+      dio: dio,
+      requestExecutor: adminExecutor,
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
     ),
     users: createSub2ApiAdminUsersClient(

@@ -51,6 +51,10 @@ void main() {
         admin.scheduledTests;
     final Sub2ApiAdminScheduledTestsClient opsScheduledTests =
         ops.scheduledTests;
+    final Sub2ApiAdminTLSFingerprintsClient adminTLSFingerprints =
+        admin.tlsFingerprints;
+    final Sub2ApiAdminTLSFingerprintsClient opsTLSFingerprints =
+        ops.tlsFingerprints;
     final Future<Sub2ApiAdminProxyDataExport> Function({
       Sub2ApiAdminProxyDataExportQuery query,
       Sub2ApiRequestOptions? requestOptions,
@@ -121,6 +125,8 @@ void main() {
       opsProxies,
       adminScheduledTests,
       opsScheduledTests,
+      adminTLSFingerprints,
+      opsTLSFingerprints,
       exportProxyData,
       importProxyData,
       updateAdminApiKey,

@@ -36,6 +36,9 @@ export 'src/admin/sub2api_admin_scheduled_test_models.dart';
 export 'src/admin/sub2api_admin_scheduled_tests_client.dart'
     show Sub2ApiAdminScheduledTestsClient;
 export 'src/admin/sub2api_admin_subscription_models.dart';
+export 'src/admin/sub2api_admin_tls_fingerprint_models.dart';
+export 'src/admin/sub2api_admin_tls_fingerprints_client.dart'
+    show Sub2ApiAdminTLSFingerprintsClient;
 export 'src/admin/sub2api_admin_user_models.dart';
 export 'src/admin/sub2api_admin_users_client.dart' show Sub2ApiAdminUsersClient;
 export 'src/commerce/sub2api_commerce_models.dart' show Sub2ApiUserSubscription;
