@@ -29,6 +29,8 @@ void main() {
     final Sub2ApiAdminUsersClient opsUsers = ops.users;
     final Sub2ApiAdminAccountsClient adminAccounts = admin.accounts;
     final Sub2ApiAdminAccountsClient opsAccounts = ops.accounts;
+    final Sub2ApiAdminAuditLogsClient adminAuditLogs = admin.auditLogs;
+    final Sub2ApiAdminAuditLogsClient opsAuditLogs = ops.auditLogs;
     final Sub2ApiAdminComplianceClient adminCompliance = admin.compliance;
     final Sub2ApiAdminComplianceClient opsCompliance = ops.compliance;
     final Sub2ApiAdminProxiesClient adminProxies = admin.proxies;
@@ -90,6 +92,8 @@ void main() {
       opsUsers,
       adminAccounts,
       opsAccounts,
+      adminAuditLogs,
+      opsAuditLogs,
       exportAccountData,
       importAccountData,
       importCodexSessions,
