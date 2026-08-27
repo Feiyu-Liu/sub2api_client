@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../../shared/errors/sub2api_exception.dart';
 import '../../shared/models/sensitive_value.dart';
 import '../../shared/models/sub2api_decimal.dart';
@@ -21,6 +23,35 @@ Sub2ApiAdminAccountPage mapAdminAccountPage(Object? data) => _map(() {
 
 Sub2ApiAdminAccount mapAdminAccount(Object? data) =>
     _map(() => _account(_object(data)));
+
+Sub2ApiAdminAccountDataExport mapAdminAccountDataExport(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  final type = _optionalString(source, 'type');
+  if (type.isNotEmpty && type != 'sub2api-data' && type != 'sub2api-bundle') {
+    throw const FormatException();
+  }
+  final version = source['version'];
+  if (version != null && version != 0 && version != 1) {
+    throw const FormatException();
+  }
+  final proxies = _list(source, 'proxies').map(_object).toList();
+  final accounts = _list(source, 'accounts').map(_object).toList();
+  for (final proxy in proxies) {
+    _validateAccountDataProxy(proxy);
+  }
+  for (final account in accounts) {
+    _validateAccountDataAccount(account);
+  }
+  return Sub2ApiAdminAccountDataExport(
+    exportedAt: _dateTime(source, 'exported_at'),
+    proxyCount: proxies.length,
+    accountCount: accounts.length,
+    skippedShadowCount: _optionalNonNegativeInteger(source, 'skipped_shadows'),
+    archive: Sub2ApiAdminAccountDataArchive(jsonEncode(source)),
+  );
+});
 
 Sub2ApiAdminAccount mapAdminShadowAccount(Object? data, int parentAccountId) =>
     _map(() {
@@ -1067,6 +1098,52 @@ Sub2ApiAdminAccountType _accountType(String value) => switch (value) {
   'service_account' => Sub2ApiAdminAccountType.serviceAccount,
   _ => throw const FormatException(),
 };
+
+void _validateAccountDataProxy(Map<String, Object?> source) {
+  final proxyKey = _nonEmptyString(source, 'proxy_key');
+  if (!proxyKey.contains('|')) throw const FormatException();
+  _nonEmptyString(source, 'name');
+  final protocol = _nonEmptyString(source, 'protocol');
+  if (!const {'http', 'https', 'socks5', 'socks5h'}.contains(protocol)) {
+    throw const FormatException();
+  }
+  _nonEmptyString(source, 'host');
+  final port = _positiveInteger(source, 'port');
+  if (port > 65535) throw const FormatException();
+  _nullableString(source, 'username');
+  _nullableString(source, 'password');
+  final status = _nonEmptyString(source, 'status');
+  if (status != 'active' && status != 'inactive') {
+    throw const FormatException();
+  }
+  _nullableUnixDateTime(source, 'expires_at');
+  final fallbackMode = _optionalString(source, 'fallback_mode');
+  if (fallbackMode.isNotEmpty &&
+      !const {'none', 'direct', 'proxy'}.contains(fallbackMode)) {
+    throw const FormatException();
+  }
+  _optionalString(source, 'backup_proxy_name');
+  _optionalNonNegativeInteger(source, 'expiry_warn_days');
+}
+
+void _validateAccountDataAccount(Map<String, Object?> source) {
+  _nonEmptyString(source, 'name');
+  _nullableString(source, 'notes');
+  _platform(_nonEmptyString(source, 'platform'));
+  _accountType(_nonEmptyString(source, 'type'));
+  _jsonObject(source['credentials']);
+  if (source['extra'] != null) _jsonObject(source['extra']);
+  _nullableString(source, 'proxy_key');
+  _nonNegativeInteger(source, 'concurrency');
+  _nonNegativeInteger(source, 'priority');
+  final rateMultiplier = _nullableDecimal(source, 'rate_multiplier');
+  if (rateMultiplier != null &&
+      rateMultiplier.compareTo(Sub2ApiDecimal.zero()) < 0) {
+    throw const FormatException();
+  }
+  _nullableUnixDateTime(source, 'expires_at');
+  _nullableBoolean(source, 'auto_pause_on_expired');
+}
 
 Sub2ApiAdminAccountStatus _status(String value) => switch (value) {
   'active' => Sub2ApiAdminAccountStatus.active,

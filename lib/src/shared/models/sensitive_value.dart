@@ -104,6 +104,14 @@ final class Sub2ApiAdminCredentialSecret extends _SensitiveValue {
   const Sub2ApiAdminCredentialSecret(super.value);
 }
 
+/// Authorized account-data archive returned by an administrator export.
+///
+/// The JSON payload can contain provider credentials and proxy passwords, so
+/// stringification is always redacted and access requires an explicit reveal.
+final class Sub2ApiAdminAccountDataArchive extends _SensitiveValue {
+  const Sub2ApiAdminAccountDataArchive(super.value);
+}
+
 /// Signed token carried by a notification-email unsubscribe link.
 final class Sub2ApiNotificationUnsubscribeToken extends _SensitiveValue {
   const Sub2ApiNotificationUnsubscribeToken(super.value);

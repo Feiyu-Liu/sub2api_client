@@ -25,6 +25,13 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  /// Exports a credential-bearing backup through a step-up verified Admin JWT.
+  Future<Sub2ApiAdminAccountDataExport> exportData({
+    Sub2ApiAdminAccountDataExportQuery query =
+        const Sub2ApiAdminAccountDataExportQuery(),
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminAccount> create(
     Sub2ApiAdminCreateAccountRequest request, {
     Sub2ApiRequestOptions? requestOptions,
@@ -414,6 +421,29 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         _apiKey(credential),
       ),
       decode: mapAdminAccount,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccountDataExport> exportData({
+    Sub2ApiAdminAccountDataExportQuery query =
+        const Sub2ApiAdminAccountDataExportQuery(),
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (_credentialMode != Sub2ApiAdminCredentialMode.jwt) {
+      throw _stepUpAdminApiKeyForbidden;
+    }
+    final queryParameters = _accountDataExportQuery(query);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.exportData(
+        queryParameters,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminAccountDataExport,
       requestOptions: requestOptions,
     );
   }
@@ -2092,6 +2122,47 @@ Map<String, Object?> _bulkUpdateAccountBody(
   return body;
 }
 
+Map<String, dynamic> _accountDataExportQuery(
+  Sub2ApiAdminAccountDataExportQuery query,
+) {
+  final result = <String, dynamic>{};
+  switch (query.selector) {
+    case Sub2ApiAdminBulkAccountIdsSelector(:final accountIds):
+      result['ids'] = _requiredAccountIds(accountIds).join(',');
+    case Sub2ApiAdminBulkAccountFiltersSelector(:final filters):
+      final search = filters.search?.trim();
+      final privacyMode = filters.privacyMode?.trim();
+      if (search != null && search.runes.length > 100) {
+        throw _validation('admin.accounts.search_too_long');
+      }
+      result.addAll(<String, dynamic>{
+        if (filters.platform != null)
+          'platform': _wirePlatform(filters.platform!),
+        if (filters.type != null) 'type': _wireType(filters.type!),
+        if (filters.status != null) 'status': filters.status!.name,
+        'search': ?search,
+        'privacy_mode': ?privacyMode,
+      });
+      switch (filters.group) {
+        case Sub2ApiAdminBulkAnyGroupFilter():
+          break;
+        case Sub2ApiAdminBulkUngroupedFilter():
+          result['group'] = 'ungrouped';
+        case Sub2ApiAdminBulkGroupIdFilter(:final groupId):
+          if (groupId <= 0) {
+            throw _validation('admin.accounts.invalid_group_id');
+          }
+          result['group'] = groupId;
+      }
+    case Sub2ApiAdminBulkAllAccountsSelector():
+      break;
+  }
+  result['sort_by'] = _wireSort(query.sortBy);
+  result['sort_order'] = query.sortDescending ? 'desc' : 'asc';
+  if (!query.includeProxies) result['include_proxies'] = false;
+  return result;
+}
+
 Map<String, Object?> _bulkFilterBody(Sub2ApiAdminBulkAccountFilters filters) {
   final body = <String, Object?>{};
   if (filters.platform != null) {
@@ -2498,6 +2569,12 @@ const _setCookieAttributes = <String>{
 const _invalidAccountTestStream = Sub2ApiException(
   kind: Sub2ApiFailureKind.protocol,
   code: 'protocol.invalid_admin_account_test_stream',
+  retryable: false,
+);
+
+const _stepUpAdminApiKeyForbidden = Sub2ApiException(
+  kind: Sub2ApiFailureKind.forbidden,
+  code: 'auth.step_up_admin_api_key_forbidden',
   retryable: false,
 );
 

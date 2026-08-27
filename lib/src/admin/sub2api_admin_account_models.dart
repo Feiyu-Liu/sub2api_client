@@ -412,6 +412,44 @@ final class Sub2ApiAdminBulkAllAccountsSelector
   const Sub2ApiAdminBulkAllAccountsSelector();
 }
 
+/// Selection and ordering for an authorized account-data export.
+final class Sub2ApiAdminAccountDataExportQuery {
+  const Sub2ApiAdminAccountDataExportQuery({
+    this.selector = const Sub2ApiAdminBulkAccountSelector.allAccounts(),
+    this.includeProxies = true,
+    this.sortBy = Sub2ApiAdminAccountSort.name,
+    this.sortDescending = false,
+  });
+
+  final Sub2ApiAdminBulkAccountSelector selector;
+  final bool includeProxies;
+  final Sub2ApiAdminAccountSort sortBy;
+  final bool sortDescending;
+}
+
+/// Metadata plus the explicitly revealable JSON from an account-data export.
+final class Sub2ApiAdminAccountDataExport {
+  const Sub2ApiAdminAccountDataExport({
+    required this.exportedAt,
+    required this.proxyCount,
+    required this.accountCount,
+    required this.skippedShadowCount,
+    required this.archive,
+  });
+
+  final DateTime exportedAt;
+  final int proxyCount;
+  final int accountCount;
+  final int skippedShadowCount;
+  final Sub2ApiAdminAccountDataArchive archive;
+
+  @override
+  String toString() =>
+      'Sub2ApiAdminAccountDataExport(exportedAt: $exportedAt, '
+      'proxyCount: $proxyCount, accountCount: $accountCount, '
+      'skippedShadowCount: $skippedShadowCount, archive: <redacted>)';
+}
+
 sealed class Sub2ApiAdminBulkGroupFilter {
   const Sub2ApiAdminBulkGroupFilter();
 

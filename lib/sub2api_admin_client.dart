@@ -22,6 +22,7 @@ export 'src/shared/errors/sub2api_exception.dart';
 export 'src/shared/models/sensitive_value.dart'
     show
         Sub2ApiAdminOAuthSessionId,
+        Sub2ApiAdminAccountDataArchive,
         Sub2ApiAdminCredentialSecret,
         Sub2ApiApiKeySecret,
         Sub2ApiOAuthAuthorizationCode,

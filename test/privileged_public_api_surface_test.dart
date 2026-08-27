@@ -41,6 +41,11 @@ void main() {
       Sub2ApiRequestOptions? requestOptions,
     })
     opsStats = opsDashboard.getStats;
+    final Future<Sub2ApiAdminAccountDataExport> Function({
+      Sub2ApiAdminAccountDataExportQuery query,
+      Sub2ApiRequestOptions? requestOptions,
+    })
+    exportAccountData = adminAccounts.exportData;
 
     expect(<Object>[
       bootstrap,
@@ -50,6 +55,7 @@ void main() {
       opsUsers,
       adminAccounts,
       opsAccounts,
+      exportAccountData,
     ], everyElement(isNotNull));
   });
 
