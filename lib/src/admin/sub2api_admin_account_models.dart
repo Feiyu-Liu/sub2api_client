@@ -450,6 +450,59 @@ final class Sub2ApiAdminAccountDataExport {
       'skippedShadowCount: $skippedShadowCount, archive: <redacted>)';
 }
 
+/// Idempotent import of an opaque credential-bearing account-data archive.
+final class Sub2ApiAdminAccountDataImportRequest {
+  const Sub2ApiAdminAccountDataImportRequest({
+    required this.idempotencyKey,
+    required this.archive,
+    this.skipDefaultGroupBind,
+  });
+
+  final String idempotencyKey;
+  final Sub2ApiAdminAccountDataArchive archive;
+  final bool? skipDefaultGroupBind;
+
+  @override
+  String toString() =>
+      'Sub2ApiAdminAccountDataImportRequest(idempotencyKey: '
+      '${idempotencyKey.isEmpty ? '<empty>' : '<provided>'}, '
+      'archive: <redacted>, skipDefaultGroupBind: $skipDefaultGroupBind)';
+}
+
+enum Sub2ApiAdminAccountDataImportErrorKind { proxy, account }
+
+final class Sub2ApiAdminAccountDataImportError {
+  const Sub2ApiAdminAccountDataImportError({
+    required this.kind,
+    required this.name,
+    required this.proxyKey,
+    required this.message,
+  });
+
+  final Sub2ApiAdminAccountDataImportErrorKind kind;
+  final String name;
+  final String proxyKey;
+  final String message;
+}
+
+final class Sub2ApiAdminAccountDataImportResult {
+  Sub2ApiAdminAccountDataImportResult({
+    required this.proxyCreated,
+    required this.proxyReused,
+    required this.proxyFailed,
+    required this.accountCreated,
+    required this.accountFailed,
+    required List<Sub2ApiAdminAccountDataImportError> errors,
+  }) : errors = List.unmodifiable(errors);
+
+  final int proxyCreated;
+  final int proxyReused;
+  final int proxyFailed;
+  final int accountCreated;
+  final int accountFailed;
+  final List<Sub2ApiAdminAccountDataImportError> errors;
+}
+
 sealed class Sub2ApiAdminBulkGroupFilter {
   const Sub2ApiAdminBulkGroupFilter();
 

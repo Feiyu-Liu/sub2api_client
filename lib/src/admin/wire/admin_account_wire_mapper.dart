@@ -53,6 +53,34 @@ Sub2ApiAdminAccountDataExport mapAdminAccountDataExport(
   );
 });
 
+Sub2ApiAdminAccountDataImportResult mapAdminAccountDataImportResult(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  return Sub2ApiAdminAccountDataImportResult(
+    proxyCreated: _nonNegativeInteger(source, 'proxy_created'),
+    proxyReused: _nonNegativeInteger(source, 'proxy_reused'),
+    proxyFailed: _nonNegativeInteger(source, 'proxy_failed'),
+    accountCreated: _nonNegativeInteger(source, 'account_created'),
+    accountFailed: _nonNegativeInteger(source, 'account_failed'),
+    errors: _optionalList(source, 'errors')
+        .map(_object)
+        .map(
+          (error) => Sub2ApiAdminAccountDataImportError(
+            kind: switch (_nonEmptyString(error, 'kind')) {
+              'proxy' => Sub2ApiAdminAccountDataImportErrorKind.proxy,
+              'account' => Sub2ApiAdminAccountDataImportErrorKind.account,
+              _ => throw const FormatException(),
+            },
+            name: _optionalString(error, 'name'),
+            proxyKey: _optionalString(error, 'proxy_key'),
+            message: _nonEmptyString(error, 'message'),
+          ),
+        )
+        .toList(growable: false),
+  );
+});
+
 Sub2ApiAdminAccount mapAdminShadowAccount(Object? data, int parentAccountId) =>
     _map(() {
       final account = _account(_object(data));

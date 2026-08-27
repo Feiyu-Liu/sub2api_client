@@ -46,6 +46,11 @@ void main() {
       Sub2ApiRequestOptions? requestOptions,
     })
     exportAccountData = adminAccounts.exportData;
+    final Future<Sub2ApiAdminAccountDataImportResult> Function(
+      Sub2ApiAdminAccountDataImportRequest, {
+      Sub2ApiRequestOptions? requestOptions,
+    })
+    importAccountData = adminAccounts.importData;
 
     expect(<Object>[
       bootstrap,
@@ -56,6 +61,7 @@ void main() {
       adminAccounts,
       opsAccounts,
       exportAccountData,
+      importAccountData,
     ], everyElement(isNotNull));
   });
 

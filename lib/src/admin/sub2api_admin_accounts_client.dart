@@ -32,6 +32,11 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminAccountDataImportResult> importData(
+    Sub2ApiAdminAccountDataImportRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminAccount> create(
     Sub2ApiAdminCreateAccountRequest request, {
     Sub2ApiRequestOptions? requestOptions,
@@ -444,6 +449,27 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         _apiKey(credential),
       ),
       decode: mapAdminAccountDataExport,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccountDataImportResult> importData(
+    Sub2ApiAdminAccountDataImportRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final key = _requiredIdempotencyKey(request.idempotencyKey);
+    final body = _accountDataImportBody(request);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.importData(
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+        key,
+      ),
+      decode: mapAdminAccountDataImportResult,
       requestOptions: requestOptions,
     );
   }
@@ -2161,6 +2187,45 @@ Map<String, dynamic> _accountDataExportQuery(
   result['sort_order'] = query.sortDescending ? 'desc' : 'asc';
   if (!query.includeProxies) result['include_proxies'] = false;
   return result;
+}
+
+Map<String, Object?> _accountDataImportBody(
+  Sub2ApiAdminAccountDataImportRequest request,
+) {
+  late final Object? decoded;
+  try {
+    decoded = jsonDecode(request.archive.reveal());
+  } on Object {
+    throw _validation('admin.accounts.invalid_data_archive');
+  }
+  if (decoded is! Map) {
+    throw _validation('admin.accounts.invalid_data_archive');
+  }
+  final data = <String, Object?>{};
+  for (final entry in decoded.entries) {
+    if (entry.key is! String) {
+      throw _validation('admin.accounts.invalid_data_archive');
+    }
+    data[entry.key as String] = entry.value;
+  }
+  final type = data['type'];
+  if (type != null &&
+      type != '' &&
+      type != 'sub2api-data' &&
+      type != 'sub2api-bundle') {
+    throw _validation('admin.accounts.unsupported_data_archive_type');
+  }
+  final version = data['version'];
+  if (version != null && version != 0 && version != 1) {
+    throw _validation('admin.accounts.unsupported_data_archive_version');
+  }
+  if (data['proxies'] is! List || data['accounts'] is! List) {
+    throw _validation('admin.accounts.invalid_data_archive');
+  }
+  return <String, Object?>{
+    'data': data,
+    'skip_default_group_bind': ?request.skipDefaultGroupBind,
+  };
 }
 
 Map<String, Object?> _bulkFilterBody(Sub2ApiAdminBulkAccountFilters filters) {

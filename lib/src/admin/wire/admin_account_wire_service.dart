@@ -26,6 +26,16 @@ abstract class AdminAccountWireService {
     @Header('x-api-key') String? apiKey,
   );
 
+  @POST('/api/v1/admin/accounts/data')
+  Future<HttpResponse<Object?>> importData(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+    @Header('Idempotency-Key') String idempotencyKey,
+  );
+
   @GET('/api/v1/admin/accounts/{id}')
   Future<HttpResponse<Object?>> getAccount(
     @Path('id') int accountId,
