@@ -135,6 +135,79 @@ abstract class AdminAccountWireService {
     @Header('x-api-key') String? apiKey,
   );
 
+  @POST('/api/v1/admin/accounts/{id}/recover-state')
+  Future<HttpResponse<Object?>> recoverAccountState(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/{id}/clear-error')
+  Future<HttpResponse<Object?>> clearAccountError(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/{id}/revert-proxy-fallback')
+  Future<HttpResponse<Object?>> revertAccountProxyFallback(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/{id}/clear-rate-limit')
+  Future<HttpResponse<Object?>> clearAccountRateLimit(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/{id}/reset-quota')
+  Future<HttpResponse<Object?>> resetAccountQuota(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @DELETE('/api/v1/admin/accounts/{id}/temp-unschedulable')
+  Future<HttpResponse<Object?>> clearTempUnschedulable(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/{id}/schedulable')
+  Future<HttpResponse<Object?>> setAccountSchedulable(
+    @Path('id') int accountId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/{id}/set-privacy')
+  Future<HttpResponse<Object?>> setAccountPrivacy(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
   @GET('/api/v1/admin/accounts/{id}/stats')
   Future<HttpResponse<Object?>> accountStats(
     @Path('id') int accountId,

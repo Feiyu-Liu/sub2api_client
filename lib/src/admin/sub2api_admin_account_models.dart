@@ -664,6 +664,12 @@ final class Sub2ApiAdminAccountProbeToggleResult {
   final bool enabled;
 }
 
+final class Sub2ApiAdminAccountActionResult {
+  const Sub2ApiAdminAccountActionResult({required this.message});
+
+  final String message;
+}
+
 final class Sub2ApiAdminUpstreamBillingProbeData {
   const Sub2ApiAdminUpstreamBillingProbeData({
     required this.object,

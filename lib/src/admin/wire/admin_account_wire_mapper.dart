@@ -21,6 +21,14 @@ Sub2ApiAdminAccountPage mapAdminAccountPage(Object? data) => _map(() {
 Sub2ApiAdminAccount mapAdminAccount(Object? data) =>
     _map(() => _account(_object(data)));
 
+Sub2ApiAdminAccountActionResult mapAdminAccountActionResult(Object? data) =>
+    _map(() {
+      final source = _object(data);
+      return Sub2ApiAdminAccountActionResult(
+        message: _nonEmptyString(source, 'message'),
+      );
+    });
+
 Sub2ApiAdminUpstreamBillingProbeSettings mapAdminUpstreamBillingProbeSettings(
   Object? data,
 ) => _map(() {

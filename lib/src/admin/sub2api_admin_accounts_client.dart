@@ -86,6 +86,47 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminAccount> recoverState(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccount> clearError(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccountActionResult> revertProxyFallback(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccount> clearRateLimit(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccount> resetQuota(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccountActionResult> clearTempUnschedulable(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccount> setSchedulable(
+    int accountId, {
+    required bool schedulable,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccount> setPrivacy(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminAccountStats> getStats(
     int accountId, {
     int days = 30,
@@ -460,6 +501,137 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
   }
 
   @override
+  Future<Sub2ApiAdminAccount> recoverState(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _accountAction(
+    accountId,
+    send: (cancelToken, options, credential) => _service.recoverAccountState(
+      accountId,
+      cancelToken,
+      options,
+      _authorization(credential),
+      _apiKey(credential),
+    ),
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminAccount> clearError(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _accountAction(
+    accountId,
+    send: (cancelToken, options, credential) => _service.clearAccountError(
+      accountId,
+      cancelToken,
+      options,
+      _authorization(credential),
+      _apiKey(credential),
+    ),
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminAccountActionResult> revertProxyFallback(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _messageAction(
+    accountId,
+    send: (cancelToken, options, credential) =>
+        _service.revertAccountProxyFallback(
+          accountId,
+          cancelToken,
+          options,
+          _authorization(credential),
+          _apiKey(credential),
+        ),
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminAccount> clearRateLimit(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _accountAction(
+    accountId,
+    send: (cancelToken, options, credential) => _service.clearAccountRateLimit(
+      accountId,
+      cancelToken,
+      options,
+      _authorization(credential),
+      _apiKey(credential),
+    ),
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminAccount> resetQuota(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _accountAction(
+    accountId,
+    send: (cancelToken, options, credential) => _service.resetAccountQuota(
+      accountId,
+      cancelToken,
+      options,
+      _authorization(credential),
+      _apiKey(credential),
+    ),
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminAccountActionResult> clearTempUnschedulable(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _messageAction(
+    accountId,
+    send: (cancelToken, options, credential) => _service.clearTempUnschedulable(
+      accountId,
+      cancelToken,
+      options,
+      _authorization(credential),
+      _apiKey(credential),
+    ),
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminAccount> setSchedulable(
+    int accountId, {
+    required bool schedulable,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _accountAction(
+    accountId,
+    send: (cancelToken, options, credential) => _service.setAccountSchedulable(
+      accountId,
+      <String, Object?>{'schedulable': schedulable},
+      cancelToken,
+      options,
+      _authorization(credential),
+      _apiKey(credential),
+    ),
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminAccount> setPrivacy(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _accountAction(
+    accountId,
+    send: (cancelToken, options, credential) => _service.setAccountPrivacy(
+      accountId,
+      cancelToken,
+      options,
+      _authorization(credential),
+      _apiKey(credential),
+    ),
+    requestOptions: requestOptions,
+  );
+
+  @override
   Future<Sub2ApiAdminAccountStats> getStats(
     int accountId, {
     int days = 30,
@@ -602,6 +774,32 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
 
   String? _apiKey(String? credential) =>
       _credentialMode == Sub2ApiAdminCredentialMode.apiKey ? credential : null;
+
+  Future<Sub2ApiAdminAccount> _accountAction(
+    int accountId, {
+    required Sub2ApiWireCall send,
+    required Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: send,
+      decode: mapAdminAccount,
+      requestOptions: requestOptions,
+    );
+  }
+
+  Future<Sub2ApiAdminAccountActionResult> _messageAction(
+    int accountId, {
+    required Sub2ApiWireCall send,
+    required Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: send,
+      decode: mapAdminAccountActionResult,
+      requestOptions: requestOptions,
+    );
+  }
 }
 
 void _validateAccountId(int accountId) {
