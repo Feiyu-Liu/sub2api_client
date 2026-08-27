@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "id": 901,
+      "created_at": "2026-08-27T03:04:05Z",
+      "model": "gpt-5.6",
+      "inbound_endpoint": "/v1/responses",
+      "status_code": 429,
+      "category": "rate_limit",
+      "platform": "openai",
+      "message": "Rate limit exceeded",
+      "key_name": "Desktop App",
+      "key_deleted": false,
+      "client_ip": "203.0.113.9",
+      "group_name": "default",
+      "request_type": 3,
+      "stream": true,
+      "user_agent": "sub2api-client-test"
+    }
+  ],
+  "total": 1,
+  "page": 2,
+  "page_size": 10,
+  "pages": 1
+}

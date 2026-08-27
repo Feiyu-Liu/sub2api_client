@@ -1,0 +1,12 @@
+{
+  "auth_result": "pending_session",
+  "provider": "oidc",
+  "intent": "login",
+  "step": "choose_account_action_required",
+  "adoption_required": true,
+  "email_binding_required": true,
+  "existing_account_bindable": true,
+  "email": "existing@example.test",
+  "resolved_email": "existing@example.test",
+  "redirect": "/auth/oidc/callback"
+}

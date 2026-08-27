@@ -1,0 +1,48 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "session_token": "passkey-registration-session-sentinel",
+    "options": {
+      "publicKey": {
+        "rp": {
+          "id": "sub2api.example.test",
+          "name": "Sub2API Test"
+        },
+        "user": {
+          "id": "BAUG",
+          "name": "user@example.test",
+          "displayName": "Codex User"
+        },
+        "challenge": "AQID",
+        "pubKeyCredParams": [
+          {
+            "type": "public-key",
+            "alg": -7
+          }
+        ],
+        "timeout": 300000,
+        "excludeCredentials": [
+          {
+            "type": "public-key",
+            "id": "BwgJ",
+            "transports": ["internal"]
+          }
+        ],
+        "authenticatorSelection": {
+          "authenticatorAttachment": "platform",
+          "requireResidentKey": true,
+          "residentKey": "required",
+          "userVerification": "required"
+        },
+        "hints": ["client-device"],
+        "attestation": "none",
+        "attestationFormats": ["packed"],
+        "extensions": {
+          "credProps": true
+        }
+      },
+      "mediation": "optional"
+    }
+  }
+}

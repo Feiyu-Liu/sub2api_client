@@ -224,7 +224,7 @@ return $default(_that.id,_that.email,_that.username,_that.role,_that.balance,_th
 
 class _Sub2ApiUserProfile implements Sub2ApiUserProfile {
   const _Sub2ApiUserProfile({required this.id, required this.email, required this.username, required this.role, required this.balance, required this.frozenBalance, required this.concurrency, required this.status, required final  List<int> allowedGroups, required this.balanceNotifyEnabled, required this.balanceNotifyThresholdType, required this.balanceNotifyThreshold, required this.totalRecharged, required this.rpmLimit, required this.createdAt, required this.updatedAt, this.lastActiveAt, this.avatarUrl}): _allowedGroups = allowedGroups;
-  
+
 
 @override final  int id;
 @override final  String email;
@@ -524,7 +524,7 @@ return $default(_that.username,_that.avatarUrl,_that.balanceNotifyEnabled,_that.
 
 class _Sub2ApiUpdateUserProfileRequest implements Sub2ApiUpdateUserProfileRequest {
   const _Sub2ApiUpdateUserProfileRequest({this.username, this.avatarUrl, this.balanceNotifyEnabled, this.balanceNotifyThreshold});
-  
+
 
 @override final  String? username;
 @override final  String? avatarUrl;
@@ -585,6 +585,822 @@ as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // igno
 as String?,balanceNotifyEnabled: freezed == balanceNotifyEnabled ? _self.balanceNotifyEnabled : balanceNotifyEnabled // ignore: cast_nullable_to_non_nullable
 as bool?,balanceNotifyThreshold: freezed == balanceNotifyThreshold ? _self.balanceNotifyThreshold : balanceNotifyThreshold // ignore: cast_nullable_to_non_nullable
 as Sub2ApiDecimal?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+mixin _$Sub2ApiAffiliateInvitee {
+
+ int get userId; String get email; String get username; DateTime? get createdAt; Sub2ApiDecimal get totalRebate;
+/// Create a copy of Sub2ApiAffiliateInvitee
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$Sub2ApiAffiliateInviteeCopyWith<Sub2ApiAffiliateInvitee> get copyWith => _$Sub2ApiAffiliateInviteeCopyWithImpl<Sub2ApiAffiliateInvitee>(this as Sub2ApiAffiliateInvitee, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiAffiliateInvitee&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.email, email) || other.email == email)&&(identical(other.username, username) || other.username == username)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.totalRebate, totalRebate) || other.totalRebate == totalRebate));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,userId,email,username,createdAt,totalRebate);
+
+@override
+String toString() {
+  return 'Sub2ApiAffiliateInvitee(userId: $userId, email: $email, username: $username, createdAt: $createdAt, totalRebate: $totalRebate)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $Sub2ApiAffiliateInviteeCopyWith<$Res>  {
+  factory $Sub2ApiAffiliateInviteeCopyWith(Sub2ApiAffiliateInvitee value, $Res Function(Sub2ApiAffiliateInvitee) _then) = _$Sub2ApiAffiliateInviteeCopyWithImpl;
+@useResult
+$Res call({
+ int userId, String email, String username, DateTime? createdAt, Sub2ApiDecimal totalRebate
+});
+
+
+
+
+}
+/// @nodoc
+class _$Sub2ApiAffiliateInviteeCopyWithImpl<$Res>
+    implements $Sub2ApiAffiliateInviteeCopyWith<$Res> {
+  _$Sub2ApiAffiliateInviteeCopyWithImpl(this._self, this._then);
+
+  final Sub2ApiAffiliateInvitee _self;
+  final $Res Function(Sub2ApiAffiliateInvitee) _then;
+
+/// Create a copy of Sub2ApiAffiliateInvitee
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? userId = null,Object? email = null,Object? username = null,Object? createdAt = freezed,Object? totalRebate = null,}) {
+  return _then(_self.copyWith(
+userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,totalRebate: null == totalRebate ? _self.totalRebate : totalRebate // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [Sub2ApiAffiliateInvitee].
+extension Sub2ApiAffiliateInviteePatterns on Sub2ApiAffiliateInvitee {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Sub2ApiAffiliateInvitee value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateInvitee() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Sub2ApiAffiliateInvitee value)  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateInvitee():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Sub2ApiAffiliateInvitee value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateInvitee() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int userId,  String email,  String username,  DateTime? createdAt,  Sub2ApiDecimal totalRebate)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateInvitee() when $default != null:
+return $default(_that.userId,_that.email,_that.username,_that.createdAt,_that.totalRebate);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int userId,  String email,  String username,  DateTime? createdAt,  Sub2ApiDecimal totalRebate)  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateInvitee():
+return $default(_that.userId,_that.email,_that.username,_that.createdAt,_that.totalRebate);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int userId,  String email,  String username,  DateTime? createdAt,  Sub2ApiDecimal totalRebate)?  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateInvitee() when $default != null:
+return $default(_that.userId,_that.email,_that.username,_that.createdAt,_that.totalRebate);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _Sub2ApiAffiliateInvitee implements Sub2ApiAffiliateInvitee {
+  const _Sub2ApiAffiliateInvitee({required this.userId, required this.email, required this.username, this.createdAt, required this.totalRebate});
+
+
+@override final  int userId;
+@override final  String email;
+@override final  String username;
+@override final  DateTime? createdAt;
+@override final  Sub2ApiDecimal totalRebate;
+
+/// Create a copy of Sub2ApiAffiliateInvitee
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$Sub2ApiAffiliateInviteeCopyWith<_Sub2ApiAffiliateInvitee> get copyWith => __$Sub2ApiAffiliateInviteeCopyWithImpl<_Sub2ApiAffiliateInvitee>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiAffiliateInvitee&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.email, email) || other.email == email)&&(identical(other.username, username) || other.username == username)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.totalRebate, totalRebate) || other.totalRebate == totalRebate));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,userId,email,username,createdAt,totalRebate);
+
+@override
+String toString() {
+  return 'Sub2ApiAffiliateInvitee(userId: $userId, email: $email, username: $username, createdAt: $createdAt, totalRebate: $totalRebate)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$Sub2ApiAffiliateInviteeCopyWith<$Res> implements $Sub2ApiAffiliateInviteeCopyWith<$Res> {
+  factory _$Sub2ApiAffiliateInviteeCopyWith(_Sub2ApiAffiliateInvitee value, $Res Function(_Sub2ApiAffiliateInvitee) _then) = __$Sub2ApiAffiliateInviteeCopyWithImpl;
+@override @useResult
+$Res call({
+ int userId, String email, String username, DateTime? createdAt, Sub2ApiDecimal totalRebate
+});
+
+
+
+
+}
+/// @nodoc
+class __$Sub2ApiAffiliateInviteeCopyWithImpl<$Res>
+    implements _$Sub2ApiAffiliateInviteeCopyWith<$Res> {
+  __$Sub2ApiAffiliateInviteeCopyWithImpl(this._self, this._then);
+
+  final _Sub2ApiAffiliateInvitee _self;
+  final $Res Function(_Sub2ApiAffiliateInvitee) _then;
+
+/// Create a copy of Sub2ApiAffiliateInvitee
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? userId = null,Object? email = null,Object? username = null,Object? createdAt = freezed,Object? totalRebate = null,}) {
+  return _then(_Sub2ApiAffiliateInvitee(
+userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,totalRebate: null == totalRebate ? _self.totalRebate : totalRebate // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,
+  ));
+}
+
+
+}
+
+/// @nodoc
+mixin _$Sub2ApiAffiliateDetail {
+
+ int get userId; String get affiliateCode; int? get inviterId; int get affiliateCount; Sub2ApiDecimal get availableQuota; Sub2ApiDecimal get frozenQuota; Sub2ApiDecimal get historicalQuota; Sub2ApiDecimal get effectiveRebateRatePercent; List<Sub2ApiAffiliateInvitee> get invitees;
+/// Create a copy of Sub2ApiAffiliateDetail
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$Sub2ApiAffiliateDetailCopyWith<Sub2ApiAffiliateDetail> get copyWith => _$Sub2ApiAffiliateDetailCopyWithImpl<Sub2ApiAffiliateDetail>(this as Sub2ApiAffiliateDetail, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiAffiliateDetail&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.affiliateCode, affiliateCode) || other.affiliateCode == affiliateCode)&&(identical(other.inviterId, inviterId) || other.inviterId == inviterId)&&(identical(other.affiliateCount, affiliateCount) || other.affiliateCount == affiliateCount)&&(identical(other.availableQuota, availableQuota) || other.availableQuota == availableQuota)&&(identical(other.frozenQuota, frozenQuota) || other.frozenQuota == frozenQuota)&&(identical(other.historicalQuota, historicalQuota) || other.historicalQuota == historicalQuota)&&(identical(other.effectiveRebateRatePercent, effectiveRebateRatePercent) || other.effectiveRebateRatePercent == effectiveRebateRatePercent)&&const DeepCollectionEquality().equals(other.invitees, invitees));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,userId,affiliateCode,inviterId,affiliateCount,availableQuota,frozenQuota,historicalQuota,effectiveRebateRatePercent,const DeepCollectionEquality().hash(invitees));
+
+@override
+String toString() {
+  return 'Sub2ApiAffiliateDetail(userId: $userId, affiliateCode: $affiliateCode, inviterId: $inviterId, affiliateCount: $affiliateCount, availableQuota: $availableQuota, frozenQuota: $frozenQuota, historicalQuota: $historicalQuota, effectiveRebateRatePercent: $effectiveRebateRatePercent, invitees: $invitees)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $Sub2ApiAffiliateDetailCopyWith<$Res>  {
+  factory $Sub2ApiAffiliateDetailCopyWith(Sub2ApiAffiliateDetail value, $Res Function(Sub2ApiAffiliateDetail) _then) = _$Sub2ApiAffiliateDetailCopyWithImpl;
+@useResult
+$Res call({
+ int userId, String affiliateCode, int? inviterId, int affiliateCount, Sub2ApiDecimal availableQuota, Sub2ApiDecimal frozenQuota, Sub2ApiDecimal historicalQuota, Sub2ApiDecimal effectiveRebateRatePercent, List<Sub2ApiAffiliateInvitee> invitees
+});
+
+
+
+
+}
+/// @nodoc
+class _$Sub2ApiAffiliateDetailCopyWithImpl<$Res>
+    implements $Sub2ApiAffiliateDetailCopyWith<$Res> {
+  _$Sub2ApiAffiliateDetailCopyWithImpl(this._self, this._then);
+
+  final Sub2ApiAffiliateDetail _self;
+  final $Res Function(Sub2ApiAffiliateDetail) _then;
+
+/// Create a copy of Sub2ApiAffiliateDetail
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? userId = null,Object? affiliateCode = null,Object? inviterId = freezed,Object? affiliateCount = null,Object? availableQuota = null,Object? frozenQuota = null,Object? historicalQuota = null,Object? effectiveRebateRatePercent = null,Object? invitees = null,}) {
+  return _then(_self.copyWith(
+userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int,affiliateCode: null == affiliateCode ? _self.affiliateCode : affiliateCode // ignore: cast_nullable_to_non_nullable
+as String,inviterId: freezed == inviterId ? _self.inviterId : inviterId // ignore: cast_nullable_to_non_nullable
+as int?,affiliateCount: null == affiliateCount ? _self.affiliateCount : affiliateCount // ignore: cast_nullable_to_non_nullable
+as int,availableQuota: null == availableQuota ? _self.availableQuota : availableQuota // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,frozenQuota: null == frozenQuota ? _self.frozenQuota : frozenQuota // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,historicalQuota: null == historicalQuota ? _self.historicalQuota : historicalQuota // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,effectiveRebateRatePercent: null == effectiveRebateRatePercent ? _self.effectiveRebateRatePercent : effectiveRebateRatePercent // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,invitees: null == invitees ? _self.invitees : invitees // ignore: cast_nullable_to_non_nullable
+as List<Sub2ApiAffiliateInvitee>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [Sub2ApiAffiliateDetail].
+extension Sub2ApiAffiliateDetailPatterns on Sub2ApiAffiliateDetail {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Sub2ApiAffiliateDetail value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateDetail() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Sub2ApiAffiliateDetail value)  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateDetail():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Sub2ApiAffiliateDetail value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateDetail() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int userId,  String affiliateCode,  int? inviterId,  int affiliateCount,  Sub2ApiDecimal availableQuota,  Sub2ApiDecimal frozenQuota,  Sub2ApiDecimal historicalQuota,  Sub2ApiDecimal effectiveRebateRatePercent,  List<Sub2ApiAffiliateInvitee> invitees)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateDetail() when $default != null:
+return $default(_that.userId,_that.affiliateCode,_that.inviterId,_that.affiliateCount,_that.availableQuota,_that.frozenQuota,_that.historicalQuota,_that.effectiveRebateRatePercent,_that.invitees);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int userId,  String affiliateCode,  int? inviterId,  int affiliateCount,  Sub2ApiDecimal availableQuota,  Sub2ApiDecimal frozenQuota,  Sub2ApiDecimal historicalQuota,  Sub2ApiDecimal effectiveRebateRatePercent,  List<Sub2ApiAffiliateInvitee> invitees)  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateDetail():
+return $default(_that.userId,_that.affiliateCode,_that.inviterId,_that.affiliateCount,_that.availableQuota,_that.frozenQuota,_that.historicalQuota,_that.effectiveRebateRatePercent,_that.invitees);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int userId,  String affiliateCode,  int? inviterId,  int affiliateCount,  Sub2ApiDecimal availableQuota,  Sub2ApiDecimal frozenQuota,  Sub2ApiDecimal historicalQuota,  Sub2ApiDecimal effectiveRebateRatePercent,  List<Sub2ApiAffiliateInvitee> invitees)?  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateDetail() when $default != null:
+return $default(_that.userId,_that.affiliateCode,_that.inviterId,_that.affiliateCount,_that.availableQuota,_that.frozenQuota,_that.historicalQuota,_that.effectiveRebateRatePercent,_that.invitees);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _Sub2ApiAffiliateDetail implements Sub2ApiAffiliateDetail {
+  const _Sub2ApiAffiliateDetail({required this.userId, required this.affiliateCode, this.inviterId, required this.affiliateCount, required this.availableQuota, required this.frozenQuota, required this.historicalQuota, required this.effectiveRebateRatePercent, required final  List<Sub2ApiAffiliateInvitee> invitees}): _invitees = invitees;
+
+
+@override final  int userId;
+@override final  String affiliateCode;
+@override final  int? inviterId;
+@override final  int affiliateCount;
+@override final  Sub2ApiDecimal availableQuota;
+@override final  Sub2ApiDecimal frozenQuota;
+@override final  Sub2ApiDecimal historicalQuota;
+@override final  Sub2ApiDecimal effectiveRebateRatePercent;
+ final  List<Sub2ApiAffiliateInvitee> _invitees;
+@override List<Sub2ApiAffiliateInvitee> get invitees {
+  if (_invitees is EqualUnmodifiableListView) return _invitees;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_invitees);
+}
+
+
+/// Create a copy of Sub2ApiAffiliateDetail
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$Sub2ApiAffiliateDetailCopyWith<_Sub2ApiAffiliateDetail> get copyWith => __$Sub2ApiAffiliateDetailCopyWithImpl<_Sub2ApiAffiliateDetail>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiAffiliateDetail&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.affiliateCode, affiliateCode) || other.affiliateCode == affiliateCode)&&(identical(other.inviterId, inviterId) || other.inviterId == inviterId)&&(identical(other.affiliateCount, affiliateCount) || other.affiliateCount == affiliateCount)&&(identical(other.availableQuota, availableQuota) || other.availableQuota == availableQuota)&&(identical(other.frozenQuota, frozenQuota) || other.frozenQuota == frozenQuota)&&(identical(other.historicalQuota, historicalQuota) || other.historicalQuota == historicalQuota)&&(identical(other.effectiveRebateRatePercent, effectiveRebateRatePercent) || other.effectiveRebateRatePercent == effectiveRebateRatePercent)&&const DeepCollectionEquality().equals(other._invitees, _invitees));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,userId,affiliateCode,inviterId,affiliateCount,availableQuota,frozenQuota,historicalQuota,effectiveRebateRatePercent,const DeepCollectionEquality().hash(_invitees));
+
+@override
+String toString() {
+  return 'Sub2ApiAffiliateDetail(userId: $userId, affiliateCode: $affiliateCode, inviterId: $inviterId, affiliateCount: $affiliateCount, availableQuota: $availableQuota, frozenQuota: $frozenQuota, historicalQuota: $historicalQuota, effectiveRebateRatePercent: $effectiveRebateRatePercent, invitees: $invitees)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$Sub2ApiAffiliateDetailCopyWith<$Res> implements $Sub2ApiAffiliateDetailCopyWith<$Res> {
+  factory _$Sub2ApiAffiliateDetailCopyWith(_Sub2ApiAffiliateDetail value, $Res Function(_Sub2ApiAffiliateDetail) _then) = __$Sub2ApiAffiliateDetailCopyWithImpl;
+@override @useResult
+$Res call({
+ int userId, String affiliateCode, int? inviterId, int affiliateCount, Sub2ApiDecimal availableQuota, Sub2ApiDecimal frozenQuota, Sub2ApiDecimal historicalQuota, Sub2ApiDecimal effectiveRebateRatePercent, List<Sub2ApiAffiliateInvitee> invitees
+});
+
+
+
+
+}
+/// @nodoc
+class __$Sub2ApiAffiliateDetailCopyWithImpl<$Res>
+    implements _$Sub2ApiAffiliateDetailCopyWith<$Res> {
+  __$Sub2ApiAffiliateDetailCopyWithImpl(this._self, this._then);
+
+  final _Sub2ApiAffiliateDetail _self;
+  final $Res Function(_Sub2ApiAffiliateDetail) _then;
+
+/// Create a copy of Sub2ApiAffiliateDetail
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? userId = null,Object? affiliateCode = null,Object? inviterId = freezed,Object? affiliateCount = null,Object? availableQuota = null,Object? frozenQuota = null,Object? historicalQuota = null,Object? effectiveRebateRatePercent = null,Object? invitees = null,}) {
+  return _then(_Sub2ApiAffiliateDetail(
+userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int,affiliateCode: null == affiliateCode ? _self.affiliateCode : affiliateCode // ignore: cast_nullable_to_non_nullable
+as String,inviterId: freezed == inviterId ? _self.inviterId : inviterId // ignore: cast_nullable_to_non_nullable
+as int?,affiliateCount: null == affiliateCount ? _self.affiliateCount : affiliateCount // ignore: cast_nullable_to_non_nullable
+as int,availableQuota: null == availableQuota ? _self.availableQuota : availableQuota // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,frozenQuota: null == frozenQuota ? _self.frozenQuota : frozenQuota // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,historicalQuota: null == historicalQuota ? _self.historicalQuota : historicalQuota // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,effectiveRebateRatePercent: null == effectiveRebateRatePercent ? _self.effectiveRebateRatePercent : effectiveRebateRatePercent // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,invitees: null == invitees ? _self._invitees : invitees // ignore: cast_nullable_to_non_nullable
+as List<Sub2ApiAffiliateInvitee>,
+  ));
+}
+
+
+}
+
+/// @nodoc
+mixin _$Sub2ApiAffiliateTransfer {
+
+ Sub2ApiDecimal get transferredQuota; Sub2ApiDecimal get balance;
+/// Create a copy of Sub2ApiAffiliateTransfer
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$Sub2ApiAffiliateTransferCopyWith<Sub2ApiAffiliateTransfer> get copyWith => _$Sub2ApiAffiliateTransferCopyWithImpl<Sub2ApiAffiliateTransfer>(this as Sub2ApiAffiliateTransfer, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiAffiliateTransfer&&(identical(other.transferredQuota, transferredQuota) || other.transferredQuota == transferredQuota)&&(identical(other.balance, balance) || other.balance == balance));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,transferredQuota,balance);
+
+@override
+String toString() {
+  return 'Sub2ApiAffiliateTransfer(transferredQuota: $transferredQuota, balance: $balance)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $Sub2ApiAffiliateTransferCopyWith<$Res>  {
+  factory $Sub2ApiAffiliateTransferCopyWith(Sub2ApiAffiliateTransfer value, $Res Function(Sub2ApiAffiliateTransfer) _then) = _$Sub2ApiAffiliateTransferCopyWithImpl;
+@useResult
+$Res call({
+ Sub2ApiDecimal transferredQuota, Sub2ApiDecimal balance
+});
+
+
+
+
+}
+/// @nodoc
+class _$Sub2ApiAffiliateTransferCopyWithImpl<$Res>
+    implements $Sub2ApiAffiliateTransferCopyWith<$Res> {
+  _$Sub2ApiAffiliateTransferCopyWithImpl(this._self, this._then);
+
+  final Sub2ApiAffiliateTransfer _self;
+  final $Res Function(Sub2ApiAffiliateTransfer) _then;
+
+/// Create a copy of Sub2ApiAffiliateTransfer
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? transferredQuota = null,Object? balance = null,}) {
+  return _then(_self.copyWith(
+transferredQuota: null == transferredQuota ? _self.transferredQuota : transferredQuota // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,balance: null == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [Sub2ApiAffiliateTransfer].
+extension Sub2ApiAffiliateTransferPatterns on Sub2ApiAffiliateTransfer {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Sub2ApiAffiliateTransfer value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateTransfer() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Sub2ApiAffiliateTransfer value)  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateTransfer():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Sub2ApiAffiliateTransfer value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateTransfer() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Sub2ApiDecimal transferredQuota,  Sub2ApiDecimal balance)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateTransfer() when $default != null:
+return $default(_that.transferredQuota,_that.balance);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Sub2ApiDecimal transferredQuota,  Sub2ApiDecimal balance)  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateTransfer():
+return $default(_that.transferredQuota,_that.balance);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Sub2ApiDecimal transferredQuota,  Sub2ApiDecimal balance)?  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiAffiliateTransfer() when $default != null:
+return $default(_that.transferredQuota,_that.balance);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _Sub2ApiAffiliateTransfer implements Sub2ApiAffiliateTransfer {
+  const _Sub2ApiAffiliateTransfer({required this.transferredQuota, required this.balance});
+
+
+@override final  Sub2ApiDecimal transferredQuota;
+@override final  Sub2ApiDecimal balance;
+
+/// Create a copy of Sub2ApiAffiliateTransfer
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$Sub2ApiAffiliateTransferCopyWith<_Sub2ApiAffiliateTransfer> get copyWith => __$Sub2ApiAffiliateTransferCopyWithImpl<_Sub2ApiAffiliateTransfer>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiAffiliateTransfer&&(identical(other.transferredQuota, transferredQuota) || other.transferredQuota == transferredQuota)&&(identical(other.balance, balance) || other.balance == balance));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,transferredQuota,balance);
+
+@override
+String toString() {
+  return 'Sub2ApiAffiliateTransfer(transferredQuota: $transferredQuota, balance: $balance)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$Sub2ApiAffiliateTransferCopyWith<$Res> implements $Sub2ApiAffiliateTransferCopyWith<$Res> {
+  factory _$Sub2ApiAffiliateTransferCopyWith(_Sub2ApiAffiliateTransfer value, $Res Function(_Sub2ApiAffiliateTransfer) _then) = __$Sub2ApiAffiliateTransferCopyWithImpl;
+@override @useResult
+$Res call({
+ Sub2ApiDecimal transferredQuota, Sub2ApiDecimal balance
+});
+
+
+
+
+}
+/// @nodoc
+class __$Sub2ApiAffiliateTransferCopyWithImpl<$Res>
+    implements _$Sub2ApiAffiliateTransferCopyWith<$Res> {
+  __$Sub2ApiAffiliateTransferCopyWithImpl(this._self, this._then);
+
+  final _Sub2ApiAffiliateTransfer _self;
+  final $Res Function(_Sub2ApiAffiliateTransfer) _then;
+
+/// Create a copy of Sub2ApiAffiliateTransfer
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? transferredQuota = null,Object? balance = null,}) {
+  return _then(_Sub2ApiAffiliateTransfer(
+transferredQuota: null == transferredQuota ? _self.transferredQuota : transferredQuota // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,balance: null == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,
   ));
 }
 

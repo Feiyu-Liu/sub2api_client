@@ -1,0 +1,23 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "platform_quotas": [
+      {
+        "platform": "openai",
+        "daily_usage_usd": 1.25,
+        "daily_limit_usd": 10.5,
+        "daily_window_resets_at": "2026-08-28T00:00:00Z",
+        "daily_window_start": "2026-08-27T00:00:00Z",
+        "weekly_usage_usd": 4,
+        "weekly_limit_usd": null,
+        "weekly_window_resets_at": "2026-08-31T00:00:00Z",
+        "weekly_window_start": "2026-08-24T00:00:00Z",
+        "monthly_usage_usd": 12.75,
+        "monthly_limit_usd": 100,
+        "monthly_window_resets_at": "2026-09-20T00:00:00Z",
+        "monthly_window_start": "2026-08-21T00:00:00Z"
+      }
+    ]
+  }
+}

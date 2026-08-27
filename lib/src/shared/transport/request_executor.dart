@@ -19,6 +19,23 @@ abstract interface class Sub2ApiRequestExecutor {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  /// Sends a public endpoint whose fixed contract permits envelope or raw 200.
+  Future<T> publicRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Uses the current JWT when present, otherwise sends an anonymous request.
+  ///
+  /// An authenticated 401 follows the normal refresh policy and never silently
+  /// downgrades to anonymous visibility.
+  Future<T> optionalAuthenticatedRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<T> protectedRequest<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
@@ -29,6 +46,12 @@ abstract interface class Sub2ApiRequestExecutor {
   Future<T> protectedNonReplayableRequest<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Sends an authenticated non-replayable operation returning empty HTTP 204.
+  Future<void> protectedNonReplayableNoContentRequest({
+    required Sub2ApiWireCall send,
     Sub2ApiRequestOptions? requestOptions,
   });
 }

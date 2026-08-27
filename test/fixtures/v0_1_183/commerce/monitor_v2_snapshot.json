@@ -1,0 +1,85 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "config": {
+      "version": 3,
+      "enabled": true,
+      "refresh_interval_seconds": 60,
+      "platforms": [{"platform": "openai", "enabled": true, "models": ["gpt-5.6"]}],
+      "group_ids": [7],
+      "health_thresholds": {
+        "minimum_sample": 10,
+        "warning_error_rate": 0.05,
+        "critical_error_rate": 0.2,
+        "target_ttft_ms": 500,
+        "warning_ttft_ms": 1000,
+        "critical_ttft_ms": 2500,
+        "warning_cache_rate": 0.2,
+        "critical_cache_rate": 0.05,
+        "error_weight": 0.5,
+        "ttft_weight": 0.3,
+        "cache_weight": 0.2
+      },
+      "ignored_error_categories": ["client_cancelled"],
+      "updated_at": "2026-08-27T05:00:00Z",
+      "updated_by": 1
+    },
+    "coverage": {
+      "requested_start": "2026-08-26T06:00:00Z",
+      "requested_end": "2026-08-27T06:00:00Z",
+      "coverage_start": "2026-08-26T06:00:00Z",
+      "data_through": "2026-08-27T05:59:00Z",
+      "computed_at": "2026-08-27T06:00:00Z",
+      "aggregation_lag_seconds": 60,
+      "coverage_complete": true,
+      "bucket_seconds": 300
+    },
+    "metrics": {
+      "success_requests": 98,
+      "error_requests": 2,
+      "request_count": 100,
+      "input_tokens": 10000,
+      "output_tokens": 2500,
+      "cache_creation_tokens": 100,
+      "cache_read_tokens": 1000,
+      "token_count": 13600,
+      "rpm": 1.5,
+      "tpm": 204,
+      "error_rate": 0.02,
+      "success_rate": 0.98,
+      "cache_rate": 0.1,
+      "cache_rate_numerator": 1000,
+      "cache_rate_denominator": 10000,
+      "ttft": {"sample_count": 98, "p50_ms": 300, "p90_ms": 600, "p95_ms": 700, "avg_ms": 350.5},
+      "duration": {"sample_count": 100, "p50_ms": 900, "p90_ms": 1500, "p95_ms": 1800, "avg_ms": 975.5},
+      "upstream_affected_requests": 2,
+      "upstream_attempt_count": 102
+    },
+    "health": {
+      "overall": "healthy",
+      "error_rate": "healthy",
+      "ttft": "healthy",
+      "cache": "warning",
+      "score": 91.5,
+      "error_rate_score": 96,
+      "ttft_score": 100,
+      "cache_score": 50,
+      "minimum_sample": 10,
+      "thresholds": {
+        "minimum_sample": 10,
+        "warning_error_rate": 0.05,
+        "critical_error_rate": 0.2,
+        "target_ttft_ms": 500,
+        "warning_ttft_ms": 1000,
+        "critical_ttft_ms": 2500,
+        "warning_cache_rate": 0.2,
+        "critical_cache_rate": 0.05,
+        "error_weight": 0.5,
+        "ttft_weight": 0.3,
+        "cache_weight": 0.2
+      }
+    },
+    "trend": []
+  }
+}

@@ -230,7 +230,7 @@ return $default(_that.enabled,_that.minAmount,_that.maxAmount,_that.dailyLimit,_
 
 class _Sub2ApiPaymentConfig implements Sub2ApiPaymentConfig {
   const _Sub2ApiPaymentConfig({required this.enabled, required this.minAmount, required this.maxAmount, required this.dailyLimit, required this.orderTimeoutMinutes, required this.maxPendingOrders, required final  List<String> enabledPaymentTypes, required this.balanceDisabled, required this.balanceRechargeMultiplier, required this.subscriptionUsdToCnyRate, required this.rechargeFeeRate, required this.loadBalanceStrategy, required this.productNamePrefix, required this.productNameSuffix, required this.helpImageUrl, required this.helpText, this.stripePublishableKey, required this.cancelRateLimitEnabled, required this.cancelRateLimitMax, required this.cancelRateLimitWindow, required this.cancelRateLimitUnit, required this.cancelRateLimitMode, required this.alipayForceQrCode, required this.alipayMobilePrecreateDeepLink}): _enabledPaymentTypes = enabledPaymentTypes;
-  
+
 
 @override final  bool enabled;
 @override final  Sub2ApiDecimal minAmount;
@@ -545,7 +545,7 @@ return $default(_that.paymentType,_that.displayName,_that.currency,_that.feeRate
 
 class _Sub2ApiPaymentMethodLimits implements Sub2ApiPaymentMethodLimits {
   const _Sub2ApiPaymentMethodLimits({required this.paymentType, required this.displayName, required this.currency, required this.feeRate, required this.dailyLimit, required this.singleMin, required this.singleMax});
-  
+
 
 @override final  String paymentType;
 @override final  String displayName;
@@ -816,7 +816,7 @@ return $default(_that.methods,_that.globalMin,_that.globalMax);case _:
 
 class _Sub2ApiPaymentLimits implements Sub2ApiPaymentLimits {
   const _Sub2ApiPaymentLimits({required final  Map<String, Sub2ApiPaymentMethodLimits> methods, required this.globalMin, required this.globalMax}): _methods = methods;
-  
+
 
  final  Map<String, Sub2ApiPaymentMethodLimits> _methods;
 @override Map<String, Sub2ApiPaymentMethodLimits> get methods {
@@ -1106,7 +1106,7 @@ return $default(_that.id,_that.groupId,_that.groupPlatform,_that.groupName,_that
 
 class _Sub2ApiSubscriptionPlan implements Sub2ApiSubscriptionPlan {
   const _Sub2ApiSubscriptionPlan({required this.id, required this.groupId, required this.groupPlatform, required this.groupName, required this.rateMultiplier, required this.peakRateEnabled, required this.peakStart, required this.peakEnd, required this.peakRateMultiplier, required this.name, required this.description, required this.price, this.originalPrice, this.currency, required this.validityDays, required this.validityUnit, required final  List<String> features, required this.productName, this.forSale, this.sortOrder, this.dailyLimitUsd, this.weeklyLimitUsd, this.monthlyLimitUsd, final  List<String>? supportedModelScopes}): _features = features,_supportedModelScopes = supportedModelScopes;
-  
+
 
 @override final  int id;
 @override final  int groupId;
@@ -1299,7 +1299,7 @@ as bool,
 @override
 @pragma('vm:prefer-inline')
 $Sub2ApiPaymentLimitsCopyWith<$Res> get limits {
-  
+
   return $Sub2ApiPaymentLimitsCopyWith<$Res>(_self.limits, (value) {
     return _then(_self.copyWith(limits: value));
   });
@@ -1442,7 +1442,7 @@ return $default(_that.limits,_that.plans,_that.balanceDisabled,_that.balanceRech
 
 class _Sub2ApiCheckoutInfo implements Sub2ApiCheckoutInfo {
   const _Sub2ApiCheckoutInfo({required this.limits, required final  List<Sub2ApiSubscriptionPlan> plans, required this.balanceDisabled, required this.balanceRechargeMultiplier, required this.subscriptionUsdToCnyRate, required this.rechargeFeeRate, required this.helpText, required this.helpImageUrl, this.stripePublishableKey, required this.alipayForceQrCode, required this.alipayMobilePrecreateDeepLink}): _plans = plans;
-  
+
 
 @override final  Sub2ApiPaymentLimits limits;
  final  List<Sub2ApiSubscriptionPlan> _plans;
@@ -1531,7 +1531,7 @@ as bool,
 @override
 @pragma('vm:prefer-inline')
 $Sub2ApiPaymentLimitsCopyWith<$Res> get limits {
-  
+
   return $Sub2ApiPaymentLimitsCopyWith<$Res>(_self.limits, (value) {
     return _then(_self.copyWith(limits: value));
   });
@@ -1754,7 +1754,7 @@ return $default(_that.id,_that.userId,_that.amount,_that.payAmount,_that.feeRate
 
 class _Sub2ApiPaymentOrder implements Sub2ApiPaymentOrder {
   const _Sub2ApiPaymentOrder({required this.id, required this.userId, required this.amount, required this.payAmount, required this.feeRate, required this.currency, required this.paymentType, required this.outTradeNo, required this.status, required this.orderType, required this.createdAt, required this.expiresAt, this.paidAt, this.completedAt, required this.refundAmount, this.refundReason, this.refundRequestedAt, this.refundRequestedBy, this.refundRequestReason, this.planId, this.providerInstanceId});
-  
+
 
 @override final  int id;
 @override final  int userId;
@@ -1849,6 +1849,592 @@ as String?,refundRequestReason: freezed == refundRequestReason ? _self.refundReq
 as String?,planId: freezed == planId ? _self.planId : planId // ignore: cast_nullable_to_non_nullable
 as int?,providerInstanceId: freezed == providerInstanceId ? _self.providerInstanceId : providerInstanceId // ignore: cast_nullable_to_non_nullable
 as String?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+mixin _$Sub2ApiPublicOrderVerification {
+
+ String get outTradeNo; String get status; bool get paid; DateTime get createdAt; DateTime get expiresAt; DateTime? get paidAt; DateTime? get completedAt;
+/// Create a copy of Sub2ApiPublicOrderVerification
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$Sub2ApiPublicOrderVerificationCopyWith<Sub2ApiPublicOrderVerification> get copyWith => _$Sub2ApiPublicOrderVerificationCopyWithImpl<Sub2ApiPublicOrderVerification>(this as Sub2ApiPublicOrderVerification, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiPublicOrderVerification&&(identical(other.outTradeNo, outTradeNo) || other.outTradeNo == outTradeNo)&&(identical(other.status, status) || other.status == status)&&(identical(other.paid, paid) || other.paid == paid)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt)&&(identical(other.paidAt, paidAt) || other.paidAt == paidAt)&&(identical(other.completedAt, completedAt) || other.completedAt == completedAt));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,outTradeNo,status,paid,createdAt,expiresAt,paidAt,completedAt);
+
+@override
+String toString() {
+  return 'Sub2ApiPublicOrderVerification(outTradeNo: $outTradeNo, status: $status, paid: $paid, createdAt: $createdAt, expiresAt: $expiresAt, paidAt: $paidAt, completedAt: $completedAt)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $Sub2ApiPublicOrderVerificationCopyWith<$Res>  {
+  factory $Sub2ApiPublicOrderVerificationCopyWith(Sub2ApiPublicOrderVerification value, $Res Function(Sub2ApiPublicOrderVerification) _then) = _$Sub2ApiPublicOrderVerificationCopyWithImpl;
+@useResult
+$Res call({
+ String outTradeNo, String status, bool paid, DateTime createdAt, DateTime expiresAt, DateTime? paidAt, DateTime? completedAt
+});
+
+
+
+
+}
+/// @nodoc
+class _$Sub2ApiPublicOrderVerificationCopyWithImpl<$Res>
+    implements $Sub2ApiPublicOrderVerificationCopyWith<$Res> {
+  _$Sub2ApiPublicOrderVerificationCopyWithImpl(this._self, this._then);
+
+  final Sub2ApiPublicOrderVerification _self;
+  final $Res Function(Sub2ApiPublicOrderVerification) _then;
+
+/// Create a copy of Sub2ApiPublicOrderVerification
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? outTradeNo = null,Object? status = null,Object? paid = null,Object? createdAt = null,Object? expiresAt = null,Object? paidAt = freezed,Object? completedAt = freezed,}) {
+  return _then(_self.copyWith(
+outTradeNo: null == outTradeNo ? _self.outTradeNo : outTradeNo // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,paid: null == paid ? _self.paid : paid // ignore: cast_nullable_to_non_nullable
+as bool,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,expiresAt: null == expiresAt ? _self.expiresAt : expiresAt // ignore: cast_nullable_to_non_nullable
+as DateTime,paidAt: freezed == paidAt ? _self.paidAt : paidAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,completedAt: freezed == completedAt ? _self.completedAt : completedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [Sub2ApiPublicOrderVerification].
+extension Sub2ApiPublicOrderVerificationPatterns on Sub2ApiPublicOrderVerification {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Sub2ApiPublicOrderVerification value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Sub2ApiPublicOrderVerification() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Sub2ApiPublicOrderVerification value)  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiPublicOrderVerification():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Sub2ApiPublicOrderVerification value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiPublicOrderVerification() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String outTradeNo,  String status,  bool paid,  DateTime createdAt,  DateTime expiresAt,  DateTime? paidAt,  DateTime? completedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Sub2ApiPublicOrderVerification() when $default != null:
+return $default(_that.outTradeNo,_that.status,_that.paid,_that.createdAt,_that.expiresAt,_that.paidAt,_that.completedAt);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String outTradeNo,  String status,  bool paid,  DateTime createdAt,  DateTime expiresAt,  DateTime? paidAt,  DateTime? completedAt)  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiPublicOrderVerification():
+return $default(_that.outTradeNo,_that.status,_that.paid,_that.createdAt,_that.expiresAt,_that.paidAt,_that.completedAt);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String outTradeNo,  String status,  bool paid,  DateTime createdAt,  DateTime expiresAt,  DateTime? paidAt,  DateTime? completedAt)?  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiPublicOrderVerification() when $default != null:
+return $default(_that.outTradeNo,_that.status,_that.paid,_that.createdAt,_that.expiresAt,_that.paidAt,_that.completedAt);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _Sub2ApiPublicOrderVerification implements Sub2ApiPublicOrderVerification {
+  const _Sub2ApiPublicOrderVerification({required this.outTradeNo, required this.status, required this.paid, required this.createdAt, required this.expiresAt, this.paidAt, this.completedAt});
+
+
+@override final  String outTradeNo;
+@override final  String status;
+@override final  bool paid;
+@override final  DateTime createdAt;
+@override final  DateTime expiresAt;
+@override final  DateTime? paidAt;
+@override final  DateTime? completedAt;
+
+/// Create a copy of Sub2ApiPublicOrderVerification
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$Sub2ApiPublicOrderVerificationCopyWith<_Sub2ApiPublicOrderVerification> get copyWith => __$Sub2ApiPublicOrderVerificationCopyWithImpl<_Sub2ApiPublicOrderVerification>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiPublicOrderVerification&&(identical(other.outTradeNo, outTradeNo) || other.outTradeNo == outTradeNo)&&(identical(other.status, status) || other.status == status)&&(identical(other.paid, paid) || other.paid == paid)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt)&&(identical(other.paidAt, paidAt) || other.paidAt == paidAt)&&(identical(other.completedAt, completedAt) || other.completedAt == completedAt));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,outTradeNo,status,paid,createdAt,expiresAt,paidAt,completedAt);
+
+@override
+String toString() {
+  return 'Sub2ApiPublicOrderVerification(outTradeNo: $outTradeNo, status: $status, paid: $paid, createdAt: $createdAt, expiresAt: $expiresAt, paidAt: $paidAt, completedAt: $completedAt)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$Sub2ApiPublicOrderVerificationCopyWith<$Res> implements $Sub2ApiPublicOrderVerificationCopyWith<$Res> {
+  factory _$Sub2ApiPublicOrderVerificationCopyWith(_Sub2ApiPublicOrderVerification value, $Res Function(_Sub2ApiPublicOrderVerification) _then) = __$Sub2ApiPublicOrderVerificationCopyWithImpl;
+@override @useResult
+$Res call({
+ String outTradeNo, String status, bool paid, DateTime createdAt, DateTime expiresAt, DateTime? paidAt, DateTime? completedAt
+});
+
+
+
+
+}
+/// @nodoc
+class __$Sub2ApiPublicOrderVerificationCopyWithImpl<$Res>
+    implements _$Sub2ApiPublicOrderVerificationCopyWith<$Res> {
+  __$Sub2ApiPublicOrderVerificationCopyWithImpl(this._self, this._then);
+
+  final _Sub2ApiPublicOrderVerification _self;
+  final $Res Function(_Sub2ApiPublicOrderVerification) _then;
+
+/// Create a copy of Sub2ApiPublicOrderVerification
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? outTradeNo = null,Object? status = null,Object? paid = null,Object? createdAt = null,Object? expiresAt = null,Object? paidAt = freezed,Object? completedAt = freezed,}) {
+  return _then(_Sub2ApiPublicOrderVerification(
+outTradeNo: null == outTradeNo ? _self.outTradeNo : outTradeNo // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,paid: null == paid ? _self.paid : paid // ignore: cast_nullable_to_non_nullable
+as bool,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,expiresAt: null == expiresAt ? _self.expiresAt : expiresAt // ignore: cast_nullable_to_non_nullable
+as DateTime,paidAt: freezed == paidAt ? _self.paidAt : paidAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,completedAt: freezed == completedAt ? _self.completedAt : completedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+mixin _$Sub2ApiPublicPaymentOrder {
+
+ int get id; String get outTradeNo; Sub2ApiDecimal get amount; Sub2ApiDecimal get payAmount; Sub2ApiDecimal get feeRate; String get currency; String get paymentType; String get orderType; String get status; DateTime get createdAt; DateTime get expiresAt; DateTime? get paidAt; DateTime? get completedAt; Sub2ApiDecimal get refundAmount; String? get refundReason; DateTime? get refundRequestedAt; String? get refundRequestedBy; String? get refundRequestReason; int? get planId;
+/// Create a copy of Sub2ApiPublicPaymentOrder
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$Sub2ApiPublicPaymentOrderCopyWith<Sub2ApiPublicPaymentOrder> get copyWith => _$Sub2ApiPublicPaymentOrderCopyWithImpl<Sub2ApiPublicPaymentOrder>(this as Sub2ApiPublicPaymentOrder, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiPublicPaymentOrder&&(identical(other.id, id) || other.id == id)&&(identical(other.outTradeNo, outTradeNo) || other.outTradeNo == outTradeNo)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.payAmount, payAmount) || other.payAmount == payAmount)&&(identical(other.feeRate, feeRate) || other.feeRate == feeRate)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.paymentType, paymentType) || other.paymentType == paymentType)&&(identical(other.orderType, orderType) || other.orderType == orderType)&&(identical(other.status, status) || other.status == status)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt)&&(identical(other.paidAt, paidAt) || other.paidAt == paidAt)&&(identical(other.completedAt, completedAt) || other.completedAt == completedAt)&&(identical(other.refundAmount, refundAmount) || other.refundAmount == refundAmount)&&(identical(other.refundReason, refundReason) || other.refundReason == refundReason)&&(identical(other.refundRequestedAt, refundRequestedAt) || other.refundRequestedAt == refundRequestedAt)&&(identical(other.refundRequestedBy, refundRequestedBy) || other.refundRequestedBy == refundRequestedBy)&&(identical(other.refundRequestReason, refundRequestReason) || other.refundRequestReason == refundRequestReason)&&(identical(other.planId, planId) || other.planId == planId));
+}
+
+
+@override
+int get hashCode => Object.hashAll([runtimeType,id,outTradeNo,amount,payAmount,feeRate,currency,paymentType,orderType,status,createdAt,expiresAt,paidAt,completedAt,refundAmount,refundReason,refundRequestedAt,refundRequestedBy,refundRequestReason,planId]);
+
+@override
+String toString() {
+  return 'Sub2ApiPublicPaymentOrder(id: $id, outTradeNo: $outTradeNo, amount: $amount, payAmount: $payAmount, feeRate: $feeRate, currency: $currency, paymentType: $paymentType, orderType: $orderType, status: $status, createdAt: $createdAt, expiresAt: $expiresAt, paidAt: $paidAt, completedAt: $completedAt, refundAmount: $refundAmount, refundReason: $refundReason, refundRequestedAt: $refundRequestedAt, refundRequestedBy: $refundRequestedBy, refundRequestReason: $refundRequestReason, planId: $planId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $Sub2ApiPublicPaymentOrderCopyWith<$Res>  {
+  factory $Sub2ApiPublicPaymentOrderCopyWith(Sub2ApiPublicPaymentOrder value, $Res Function(Sub2ApiPublicPaymentOrder) _then) = _$Sub2ApiPublicPaymentOrderCopyWithImpl;
+@useResult
+$Res call({
+ int id, String outTradeNo, Sub2ApiDecimal amount, Sub2ApiDecimal payAmount, Sub2ApiDecimal feeRate, String currency, String paymentType, String orderType, String status, DateTime createdAt, DateTime expiresAt, DateTime? paidAt, DateTime? completedAt, Sub2ApiDecimal refundAmount, String? refundReason, DateTime? refundRequestedAt, String? refundRequestedBy, String? refundRequestReason, int? planId
+});
+
+
+
+
+}
+/// @nodoc
+class _$Sub2ApiPublicPaymentOrderCopyWithImpl<$Res>
+    implements $Sub2ApiPublicPaymentOrderCopyWith<$Res> {
+  _$Sub2ApiPublicPaymentOrderCopyWithImpl(this._self, this._then);
+
+  final Sub2ApiPublicPaymentOrder _self;
+  final $Res Function(Sub2ApiPublicPaymentOrder) _then;
+
+/// Create a copy of Sub2ApiPublicPaymentOrder
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? outTradeNo = null,Object? amount = null,Object? payAmount = null,Object? feeRate = null,Object? currency = null,Object? paymentType = null,Object? orderType = null,Object? status = null,Object? createdAt = null,Object? expiresAt = null,Object? paidAt = freezed,Object? completedAt = freezed,Object? refundAmount = null,Object? refundReason = freezed,Object? refundRequestedAt = freezed,Object? refundRequestedBy = freezed,Object? refundRequestReason = freezed,Object? planId = freezed,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,outTradeNo: null == outTradeNo ? _self.outTradeNo : outTradeNo // ignore: cast_nullable_to_non_nullable
+as String,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,payAmount: null == payAmount ? _self.payAmount : payAmount // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,feeRate: null == feeRate ? _self.feeRate : feeRate // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,currency: null == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
+as String,paymentType: null == paymentType ? _self.paymentType : paymentType // ignore: cast_nullable_to_non_nullable
+as String,orderType: null == orderType ? _self.orderType : orderType // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,expiresAt: null == expiresAt ? _self.expiresAt : expiresAt // ignore: cast_nullable_to_non_nullable
+as DateTime,paidAt: freezed == paidAt ? _self.paidAt : paidAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,completedAt: freezed == completedAt ? _self.completedAt : completedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,refundAmount: null == refundAmount ? _self.refundAmount : refundAmount // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,refundReason: freezed == refundReason ? _self.refundReason : refundReason // ignore: cast_nullable_to_non_nullable
+as String?,refundRequestedAt: freezed == refundRequestedAt ? _self.refundRequestedAt : refundRequestedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,refundRequestedBy: freezed == refundRequestedBy ? _self.refundRequestedBy : refundRequestedBy // ignore: cast_nullable_to_non_nullable
+as String?,refundRequestReason: freezed == refundRequestReason ? _self.refundRequestReason : refundRequestReason // ignore: cast_nullable_to_non_nullable
+as String?,planId: freezed == planId ? _self.planId : planId // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [Sub2ApiPublicPaymentOrder].
+extension Sub2ApiPublicPaymentOrderPatterns on Sub2ApiPublicPaymentOrder {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Sub2ApiPublicPaymentOrder value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Sub2ApiPublicPaymentOrder() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Sub2ApiPublicPaymentOrder value)  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiPublicPaymentOrder():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Sub2ApiPublicPaymentOrder value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiPublicPaymentOrder() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String outTradeNo,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String currency,  String paymentType,  String orderType,  String status,  DateTime createdAt,  DateTime expiresAt,  DateTime? paidAt,  DateTime? completedAt,  Sub2ApiDecimal refundAmount,  String? refundReason,  DateTime? refundRequestedAt,  String? refundRequestedBy,  String? refundRequestReason,  int? planId)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Sub2ApiPublicPaymentOrder() when $default != null:
+return $default(_that.id,_that.outTradeNo,_that.amount,_that.payAmount,_that.feeRate,_that.currency,_that.paymentType,_that.orderType,_that.status,_that.createdAt,_that.expiresAt,_that.paidAt,_that.completedAt,_that.refundAmount,_that.refundReason,_that.refundRequestedAt,_that.refundRequestedBy,_that.refundRequestReason,_that.planId);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String outTradeNo,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String currency,  String paymentType,  String orderType,  String status,  DateTime createdAt,  DateTime expiresAt,  DateTime? paidAt,  DateTime? completedAt,  Sub2ApiDecimal refundAmount,  String? refundReason,  DateTime? refundRequestedAt,  String? refundRequestedBy,  String? refundRequestReason,  int? planId)  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiPublicPaymentOrder():
+return $default(_that.id,_that.outTradeNo,_that.amount,_that.payAmount,_that.feeRate,_that.currency,_that.paymentType,_that.orderType,_that.status,_that.createdAt,_that.expiresAt,_that.paidAt,_that.completedAt,_that.refundAmount,_that.refundReason,_that.refundRequestedAt,_that.refundRequestedBy,_that.refundRequestReason,_that.planId);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String outTradeNo,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String currency,  String paymentType,  String orderType,  String status,  DateTime createdAt,  DateTime expiresAt,  DateTime? paidAt,  DateTime? completedAt,  Sub2ApiDecimal refundAmount,  String? refundReason,  DateTime? refundRequestedAt,  String? refundRequestedBy,  String? refundRequestReason,  int? planId)?  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiPublicPaymentOrder() when $default != null:
+return $default(_that.id,_that.outTradeNo,_that.amount,_that.payAmount,_that.feeRate,_that.currency,_that.paymentType,_that.orderType,_that.status,_that.createdAt,_that.expiresAt,_that.paidAt,_that.completedAt,_that.refundAmount,_that.refundReason,_that.refundRequestedAt,_that.refundRequestedBy,_that.refundRequestReason,_that.planId);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _Sub2ApiPublicPaymentOrder implements Sub2ApiPublicPaymentOrder {
+  const _Sub2ApiPublicPaymentOrder({required this.id, required this.outTradeNo, required this.amount, required this.payAmount, required this.feeRate, required this.currency, required this.paymentType, required this.orderType, required this.status, required this.createdAt, required this.expiresAt, this.paidAt, this.completedAt, required this.refundAmount, this.refundReason, this.refundRequestedAt, this.refundRequestedBy, this.refundRequestReason, this.planId});
+
+
+@override final  int id;
+@override final  String outTradeNo;
+@override final  Sub2ApiDecimal amount;
+@override final  Sub2ApiDecimal payAmount;
+@override final  Sub2ApiDecimal feeRate;
+@override final  String currency;
+@override final  String paymentType;
+@override final  String orderType;
+@override final  String status;
+@override final  DateTime createdAt;
+@override final  DateTime expiresAt;
+@override final  DateTime? paidAt;
+@override final  DateTime? completedAt;
+@override final  Sub2ApiDecimal refundAmount;
+@override final  String? refundReason;
+@override final  DateTime? refundRequestedAt;
+@override final  String? refundRequestedBy;
+@override final  String? refundRequestReason;
+@override final  int? planId;
+
+/// Create a copy of Sub2ApiPublicPaymentOrder
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$Sub2ApiPublicPaymentOrderCopyWith<_Sub2ApiPublicPaymentOrder> get copyWith => __$Sub2ApiPublicPaymentOrderCopyWithImpl<_Sub2ApiPublicPaymentOrder>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiPublicPaymentOrder&&(identical(other.id, id) || other.id == id)&&(identical(other.outTradeNo, outTradeNo) || other.outTradeNo == outTradeNo)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.payAmount, payAmount) || other.payAmount == payAmount)&&(identical(other.feeRate, feeRate) || other.feeRate == feeRate)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.paymentType, paymentType) || other.paymentType == paymentType)&&(identical(other.orderType, orderType) || other.orderType == orderType)&&(identical(other.status, status) || other.status == status)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt)&&(identical(other.paidAt, paidAt) || other.paidAt == paidAt)&&(identical(other.completedAt, completedAt) || other.completedAt == completedAt)&&(identical(other.refundAmount, refundAmount) || other.refundAmount == refundAmount)&&(identical(other.refundReason, refundReason) || other.refundReason == refundReason)&&(identical(other.refundRequestedAt, refundRequestedAt) || other.refundRequestedAt == refundRequestedAt)&&(identical(other.refundRequestedBy, refundRequestedBy) || other.refundRequestedBy == refundRequestedBy)&&(identical(other.refundRequestReason, refundRequestReason) || other.refundRequestReason == refundRequestReason)&&(identical(other.planId, planId) || other.planId == planId));
+}
+
+
+@override
+int get hashCode => Object.hashAll([runtimeType,id,outTradeNo,amount,payAmount,feeRate,currency,paymentType,orderType,status,createdAt,expiresAt,paidAt,completedAt,refundAmount,refundReason,refundRequestedAt,refundRequestedBy,refundRequestReason,planId]);
+
+@override
+String toString() {
+  return 'Sub2ApiPublicPaymentOrder(id: $id, outTradeNo: $outTradeNo, amount: $amount, payAmount: $payAmount, feeRate: $feeRate, currency: $currency, paymentType: $paymentType, orderType: $orderType, status: $status, createdAt: $createdAt, expiresAt: $expiresAt, paidAt: $paidAt, completedAt: $completedAt, refundAmount: $refundAmount, refundReason: $refundReason, refundRequestedAt: $refundRequestedAt, refundRequestedBy: $refundRequestedBy, refundRequestReason: $refundRequestReason, planId: $planId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$Sub2ApiPublicPaymentOrderCopyWith<$Res> implements $Sub2ApiPublicPaymentOrderCopyWith<$Res> {
+  factory _$Sub2ApiPublicPaymentOrderCopyWith(_Sub2ApiPublicPaymentOrder value, $Res Function(_Sub2ApiPublicPaymentOrder) _then) = __$Sub2ApiPublicPaymentOrderCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, String outTradeNo, Sub2ApiDecimal amount, Sub2ApiDecimal payAmount, Sub2ApiDecimal feeRate, String currency, String paymentType, String orderType, String status, DateTime createdAt, DateTime expiresAt, DateTime? paidAt, DateTime? completedAt, Sub2ApiDecimal refundAmount, String? refundReason, DateTime? refundRequestedAt, String? refundRequestedBy, String? refundRequestReason, int? planId
+});
+
+
+
+
+}
+/// @nodoc
+class __$Sub2ApiPublicPaymentOrderCopyWithImpl<$Res>
+    implements _$Sub2ApiPublicPaymentOrderCopyWith<$Res> {
+  __$Sub2ApiPublicPaymentOrderCopyWithImpl(this._self, this._then);
+
+  final _Sub2ApiPublicPaymentOrder _self;
+  final $Res Function(_Sub2ApiPublicPaymentOrder) _then;
+
+/// Create a copy of Sub2ApiPublicPaymentOrder
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? outTradeNo = null,Object? amount = null,Object? payAmount = null,Object? feeRate = null,Object? currency = null,Object? paymentType = null,Object? orderType = null,Object? status = null,Object? createdAt = null,Object? expiresAt = null,Object? paidAt = freezed,Object? completedAt = freezed,Object? refundAmount = null,Object? refundReason = freezed,Object? refundRequestedAt = freezed,Object? refundRequestedBy = freezed,Object? refundRequestReason = freezed,Object? planId = freezed,}) {
+  return _then(_Sub2ApiPublicPaymentOrder(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,outTradeNo: null == outTradeNo ? _self.outTradeNo : outTradeNo // ignore: cast_nullable_to_non_nullable
+as String,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,payAmount: null == payAmount ? _self.payAmount : payAmount // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,feeRate: null == feeRate ? _self.feeRate : feeRate // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,currency: null == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
+as String,paymentType: null == paymentType ? _self.paymentType : paymentType // ignore: cast_nullable_to_non_nullable
+as String,orderType: null == orderType ? _self.orderType : orderType // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,expiresAt: null == expiresAt ? _self.expiresAt : expiresAt // ignore: cast_nullable_to_non_nullable
+as DateTime,paidAt: freezed == paidAt ? _self.paidAt : paidAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,completedAt: freezed == completedAt ? _self.completedAt : completedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,refundAmount: null == refundAmount ? _self.refundAmount : refundAmount // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal,refundReason: freezed == refundReason ? _self.refundReason : refundReason // ignore: cast_nullable_to_non_nullable
+as String?,refundRequestedAt: freezed == refundRequestedAt ? _self.refundRequestedAt : refundRequestedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,refundRequestedBy: freezed == refundRequestedBy ? _self.refundRequestedBy : refundRequestedBy // ignore: cast_nullable_to_non_nullable
+as String?,refundRequestReason: freezed == refundRequestReason ? _self.refundRequestReason : refundRequestReason // ignore: cast_nullable_to_non_nullable
+as String?,planId: freezed == planId ? _self.planId : planId // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -2055,7 +2641,7 @@ return $default(_that.page,_that.pageSize,_that.status,_that.orderType,_that.pay
 
 class _Sub2ApiPaymentOrderQuery implements Sub2ApiPaymentOrderQuery {
   const _Sub2ApiPaymentOrderQuery({this.page = 1, this.pageSize = 20, this.status, this.orderType, this.paymentType});
-  
+
 
 @override@JsonKey() final  int page;
 @override@JsonKey() final  int pageSize;
@@ -2326,7 +2912,7 @@ return $default(_that.amount,_that.paymentType,_that.openId,_that.wechatResumeTo
 
 class _Sub2ApiCreateBalanceOrderRequest implements Sub2ApiCreateBalanceOrderRequest {
   const _Sub2ApiCreateBalanceOrderRequest({required this.amount, required this.paymentType, this.openId, this.wechatResumeToken, this.returnUrl, this.paymentSource, this.isMobile});
-  
+
 
 @override final  Sub2ApiDecimal amount;
 @override final  String paymentType;
@@ -2601,7 +3187,7 @@ return $default(_that.planId,_that.paymentType,_that.openId,_that.wechatResumeTo
 
 class _Sub2ApiCreateSubscriptionOrderRequest implements Sub2ApiCreateSubscriptionOrderRequest {
   const _Sub2ApiCreateSubscriptionOrderRequest({required this.planId, required this.paymentType, this.openId, this.wechatResumeToken, this.returnUrl, this.paymentSource, this.isMobile});
-  
+
 
 @override final  int planId;
 @override final  String paymentType;
@@ -2873,7 +3459,7 @@ return $default(_that.authorizeUrl,_that.appId,_that.scope,_that.redirectUrl);ca
 
 class _Sub2ApiWechatOAuthInstructions implements Sub2ApiWechatOAuthInstructions {
   const _Sub2ApiWechatOAuthInstructions({required this.authorizeUrl, required this.appId, required this.scope, required this.redirectUrl});
-  
+
 
 @override final  String authorizeUrl;
 @override final  String appId;
@@ -3141,7 +3727,7 @@ return $default(_that.appId,_that.timeStamp,_that.nonceStr,_that.packageValue,_t
 
 class _Sub2ApiWechatJsApiInstructions implements Sub2ApiWechatJsApiInstructions {
   const _Sub2ApiWechatJsApiInstructions({required this.appId, required this.timeStamp, required this.nonceStr, required this.packageValue, required this.signType, required this.paySign});
-  
+
 
 @override final  String appId;
 @override final  String timeStamp;
@@ -3417,7 +4003,7 @@ return jsapiReady(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that
 
 class Sub2ApiOrderCreated implements Sub2ApiCreateOrderResult {
   const Sub2ApiOrderCreated({required this.orderId, required this.amount, required this.payAmount, required this.feeRate, required this.status, required this.paymentType, required this.outTradeNo, required this.currency, required this.expiresAt, this.payUrl, this.qrCode, this.clientSecret, this.intentId, this.countryCode, this.paymentEnvironment, this.paymentMode, this.resumeToken, this.alipayMobilePrecreateDeepLink = false});
-  
+
 
  final  int orderId;
 @override final  Sub2ApiDecimal amount;
@@ -3517,7 +4103,7 @@ as bool,
 
 class Sub2ApiOrderOAuthRequired implements Sub2ApiCreateOrderResult {
   const Sub2ApiOrderOAuthRequired({required this.amount, required this.payAmount, required this.feeRate, required this.paymentType, required this.oauth});
-  
+
 
 @override final  Sub2ApiDecimal amount;
 @override final  Sub2ApiDecimal payAmount;
@@ -3588,7 +4174,7 @@ as Sub2ApiWechatOAuthInstructions,
 @override
 @pragma('vm:prefer-inline')
 $Sub2ApiWechatOAuthInstructionsCopyWith<$Res> get oauth {
-  
+
   return $Sub2ApiWechatOAuthInstructionsCopyWith<$Res>(_self.oauth, (value) {
     return _then(_self.copyWith(oauth: value));
   });
@@ -3600,7 +4186,7 @@ $Sub2ApiWechatOAuthInstructionsCopyWith<$Res> get oauth {
 
 class Sub2ApiOrderJsapiReady implements Sub2ApiCreateOrderResult {
   const Sub2ApiOrderJsapiReady({required this.orderId, required this.amount, required this.payAmount, required this.feeRate, required this.status, required this.paymentType, required this.outTradeNo, required this.currency, required this.expiresAt, required this.jsapi, this.resumeToken});
-  
+
 
  final  int orderId;
 @override final  Sub2ApiDecimal amount;
@@ -3683,7 +4269,7 @@ as Sub2ApiCheckoutSecret?,
 @override
 @pragma('vm:prefer-inline')
 $Sub2ApiWechatJsApiInstructionsCopyWith<$Res> get jsapi {
-  
+
   return $Sub2ApiWechatJsApiInstructionsCopyWith<$Res>(_self.jsapi, (value) {
     return _then(_self.copyWith(jsapi: value));
   });

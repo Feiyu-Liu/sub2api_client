@@ -1,0 +1,8 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "auth_result": "bind_success",
+    "redirect": "/profile"
+  }
+}

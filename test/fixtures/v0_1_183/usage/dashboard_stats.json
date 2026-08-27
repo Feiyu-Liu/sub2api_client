@@ -1,0 +1,34 @@
+{
+  "total_api_keys": 4,
+  "active_api_keys": 3,
+  "total_requests": 120,
+  "total_input_tokens": 10000,
+  "total_output_tokens": 2500,
+  "total_cache_creation_tokens": 400,
+  "total_cache_read_tokens": 800,
+  "total_tokens": 13700,
+  "total_cost": 12.345,
+  "total_actual_cost": 9.876,
+  "today_requests": 12,
+  "today_input_tokens": 1000,
+  "today_output_tokens": 250,
+  "today_cache_creation_tokens": 40,
+  "today_cache_read_tokens": 80,
+  "today_tokens": 1370,
+  "today_cost": 1.2345,
+  "today_actual_cost": 0.9876,
+  "average_duration_ms": 234.5,
+  "rpm": 7,
+  "tpm": 913,
+  "by_platform": [
+    {
+      "platform": "openai",
+      "total_requests": 100,
+      "total_tokens": 12000,
+      "total_actual_cost": 8.5,
+      "today_requests": 10,
+      "today_tokens": 1200,
+      "today_actual_cost": 0.85
+    }
+  ]
+}

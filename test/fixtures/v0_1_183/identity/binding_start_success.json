@@ -1,0 +1,10 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "provider": "linuxdo",
+    "authorize_url": "/api/v1/auth/oauth/linuxdo/bind/start?redirect=%2Fsecurity&intent=bind_current_user",
+    "method": "GET",
+    "use_browser_redirect": true
+  }
+}

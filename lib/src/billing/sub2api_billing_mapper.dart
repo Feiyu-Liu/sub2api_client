@@ -254,6 +254,81 @@ Sub2ApiWechatJsApiInstructions _mapJsApi(Sub2ApiWechatJsApiDto source) =>
       paySign: Sub2ApiCheckoutSecret(source.paySign),
     );
 
+Sub2ApiPaymentMutationResult mapPaymentMutationResult(Object? data) {
+  final message = _requireString(_requireMap(data)['message']);
+  if (message.isEmpty) throw _protocolFailure();
+  return Sub2ApiPaymentMutationResult(message: message);
+}
+
+List<String> mapRefundEligibleProviders(Object? data) {
+  final ids = _requireMap(data)['provider_instance_ids'];
+  if (ids is! List<Object?> || ids.any((id) => id is! String)) {
+    throw _protocolFailure();
+  }
+  return List<String>.unmodifiable(ids.cast<String>());
+}
+
+Sub2ApiPublicOrderVerification mapPublicOrderVerification(Object? data) {
+  try {
+    final source = Sub2ApiPublicOrderVerificationDto.fromJson(
+      _requireMap(data),
+    );
+    if (source.outTradeNo.isEmpty || source.status.isEmpty) {
+      throw _protocolFailure();
+    }
+    return Sub2ApiPublicOrderVerification(
+      outTradeNo: source.outTradeNo,
+      status: source.status,
+      paid: source.paid,
+      createdAt: source.createdAt,
+      expiresAt: source.expiresAt,
+      paidAt: source.paidAt,
+      completedAt: source.completedAt,
+    );
+  } on Sub2ApiException {
+    rethrow;
+  } on Object {
+    throw _protocolFailure();
+  }
+}
+
+Sub2ApiPublicPaymentOrder mapPublicPaymentOrder(Object? data) {
+  try {
+    final source = Sub2ApiPublicPaymentOrderDto.fromJson(_requireMap(data));
+    if (source.id <= 0 ||
+        source.outTradeNo.isEmpty ||
+        source.status.isEmpty ||
+        source.currency.isEmpty) {
+      throw _protocolFailure();
+    }
+    return Sub2ApiPublicPaymentOrder(
+      id: source.id,
+      outTradeNo: source.outTradeNo,
+      amount: _decimal(source.amount),
+      payAmount: _decimal(source.payAmount),
+      feeRate: _decimal(source.feeRate),
+      currency: source.currency,
+      paymentType: source.paymentType,
+      orderType: source.orderType,
+      status: source.status,
+      createdAt: source.createdAt,
+      expiresAt: source.expiresAt,
+      paidAt: source.paidAt,
+      completedAt: source.completedAt,
+      refundAmount: _decimal(source.refundAmount),
+      refundReason: source.refundReason,
+      refundRequestedAt: source.refundRequestedAt,
+      refundRequestedBy: source.refundRequestedBy,
+      refundRequestReason: source.refundRequestReason,
+      planId: source.planId,
+    );
+  } on Sub2ApiException {
+    rethrow;
+  } on Object {
+    throw _protocolFailure();
+  }
+}
+
 List<String> _features(Object? value) {
   if (value is String) {
     return value

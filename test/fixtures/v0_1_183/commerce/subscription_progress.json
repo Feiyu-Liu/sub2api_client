@@ -1,0 +1,39 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      "subscription": {
+        "id": 41,
+        "user_id": 7,
+        "group_id": 7,
+        "starts_at": "2026-08-20T05:00:00Z",
+        "expires_at": "2026-09-20T05:00:00Z",
+        "status": "active",
+        "daily_window_start": "2026-08-27T00:00:00Z",
+        "weekly_window_start": "2026-08-20T05:00:00Z",
+        "monthly_window_start": "2026-08-20T05:00:00Z",
+        "daily_usage_usd": 1.25,
+        "weekly_usage_usd": 4.5,
+        "monthly_usage_usd": 8.75,
+        "created_at": "2026-08-20T05:00:00Z",
+        "updated_at": "2026-08-27T05:00:00Z"
+      },
+      "progress": {
+        "id": 41,
+        "group_name": "Pro",
+        "expires_at": "2026-09-20T05:00:00Z",
+        "expires_in_days": 25,
+        "daily": {
+          "limit_usd": 10,
+          "used_usd": 1.25,
+          "remaining_usd": 8.75,
+          "percentage": 12.5,
+          "window_start": "2026-08-27T00:00:00Z",
+          "resets_at": "2026-08-28T00:00:00Z",
+          "resets_in_seconds": 43200
+        }
+      }
+    }
+  ]
+}

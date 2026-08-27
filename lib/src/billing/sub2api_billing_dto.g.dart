@@ -207,3 +207,57 @@ Sub2ApiVerifyOrderDto _$Sub2ApiVerifyOrderDtoFromJson(
 Map<String, dynamic> _$Sub2ApiVerifyOrderDtoToJson(
   Sub2ApiVerifyOrderDto instance,
 ) => <String, dynamic>{'out_trade_no': instance.outTradeNo};
+
+Map<String, dynamic> _$Sub2ApiRefundRequestDtoToJson(
+  Sub2ApiRefundRequestDto instance,
+) => <String, dynamic>{'reason': instance.reason};
+
+Map<String, dynamic> _$Sub2ApiResolveOrderDtoToJson(
+  Sub2ApiResolveOrderDto instance,
+) => <String, dynamic>{'resume_token': instance.resumeToken};
+
+Sub2ApiPublicOrderVerificationDto _$Sub2ApiPublicOrderVerificationDtoFromJson(
+  Map<String, dynamic> json,
+) => Sub2ApiPublicOrderVerificationDto(
+  outTradeNo: json['out_trade_no'] as String,
+  status: json['status'] as String,
+  paid: json['paid'] as bool,
+  createdAt: DateTime.parse(json['created_at'] as String),
+  expiresAt: DateTime.parse(json['expires_at'] as String),
+  paidAt: json['paid_at'] == null
+      ? null
+      : DateTime.parse(json['paid_at'] as String),
+  completedAt: json['completed_at'] == null
+      ? null
+      : DateTime.parse(json['completed_at'] as String),
+);
+
+Sub2ApiPublicPaymentOrderDto _$Sub2ApiPublicPaymentOrderDtoFromJson(
+  Map<String, dynamic> json,
+) => Sub2ApiPublicPaymentOrderDto(
+  id: (json['id'] as num).toInt(),
+  outTradeNo: json['out_trade_no'] as String,
+  amount: json['amount'] as num,
+  payAmount: json['pay_amount'] as num,
+  feeRate: json['fee_rate'] as num,
+  currency: json['currency'] as String,
+  paymentType: json['payment_type'] as String,
+  orderType: json['order_type'] as String,
+  status: json['status'] as String,
+  createdAt: DateTime.parse(json['created_at'] as String),
+  expiresAt: DateTime.parse(json['expires_at'] as String),
+  refundAmount: json['refund_amount'] as num,
+  paidAt: json['paid_at'] == null
+      ? null
+      : DateTime.parse(json['paid_at'] as String),
+  completedAt: json['completed_at'] == null
+      ? null
+      : DateTime.parse(json['completed_at'] as String),
+  refundReason: json['refund_reason'] as String?,
+  refundRequestedAt: json['refund_requested_at'] == null
+      ? null
+      : DateTime.parse(json['refund_requested_at'] as String),
+  refundRequestedBy: json['refund_requested_by'] as String?,
+  refundRequestReason: json['refund_request_reason'] as String?,
+  planId: (json['plan_id'] as num?)?.toInt(),
+);

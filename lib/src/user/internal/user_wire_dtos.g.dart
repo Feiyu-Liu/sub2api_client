@@ -34,3 +34,38 @@ UserProfileWireDto _$UserProfileWireDtoFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['last_active_at'] as String),
       avatarUrl: json['avatar_url'] as String?,
     );
+
+AffiliateInviteeWireDto _$AffiliateInviteeWireDtoFromJson(
+  Map<String, dynamic> json,
+) => AffiliateInviteeWireDto(
+  userId: (json['user_id'] as num).toInt(),
+  email: json['email'] as String,
+  username: json['username'] as String,
+  totalRebate: json['total_rebate'] as num,
+  createdAt: json['created_at'] == null
+      ? null
+      : DateTime.parse(json['created_at'] as String),
+);
+
+AffiliateDetailWireDto _$AffiliateDetailWireDtoFromJson(
+  Map<String, dynamic> json,
+) => AffiliateDetailWireDto(
+  userId: (json['user_id'] as num).toInt(),
+  affCode: json['aff_code'] as String,
+  affCount: (json['aff_count'] as num).toInt(),
+  affQuota: json['aff_quota'] as num,
+  affFrozenQuota: json['aff_frozen_quota'] as num,
+  affHistoryQuota: json['aff_history_quota'] as num,
+  effectiveRebateRatePercent: json['effective_rebate_rate_percent'] as num,
+  invitees: (json['invitees'] as List<dynamic>)
+      .map((e) => AffiliateInviteeWireDto.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  inviterId: (json['inviter_id'] as num?)?.toInt(),
+);
+
+AffiliateTransferWireDto _$AffiliateTransferWireDtoFromJson(
+  Map<String, dynamic> json,
+) => AffiliateTransferWireDto(
+  transferredQuota: json['transferred_quota'] as num,
+  balance: json['balance'] as num,
+);

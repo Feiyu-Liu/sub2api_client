@@ -1,6 +1,6 @@
 # sub2api_client
 
-A typed, pure-Dart client for the Sub2API user API. Version `0.1.0-dev.3`
+A typed, pure-Dart client for the Sub2API management APIs. Version `0.1.0-dev.4`
 targets Sub2API `v0.1.183` at commit
 `e8cb019fabf8b55199436229044cbf9aa7a82564`.
 
@@ -15,14 +15,53 @@ plugin, browser launcher, or native dependency.
   code delivery, invitation-code validation, and password reset requests,
   including Turnstile, Tencent, and Aliyun captcha proofs advertised by the
   server.
+- Full current-user/role/identity bootstrap and fail-secure revocation of every
+  user session.
+- Typed Passkey login and registration ceremonies, credential listing,
+  renaming, and password-gated deletion. The host supplies the browser or
+  platform WebAuthn adapter; this package owns only protocol facts.
+- TOTP status, identity-proof policy, setup, enable/disable, verification-code
+  delivery, and session-bound step-up grants.
+- Typed local-email and third-party identity binding instructions plus
+  notification-email verification, toggle, and removal operations.
+- Typed OAuth POST starts, cookie-bound pending account/login completion,
+  provider compatibility routes, browser GET navigation builders, and stable
+  pending-session errors. Browser callbacks remain server ingress.
 - User profile read/update and password change.
 - API/Installation Key list, detail, create, update, and delete.
-- Usage list, detail, and aggregate statistics.
+- User-visible groups, rates, channels, platform quotas, and per-key daily
+  usage.
+- Usage list/detail/statistics, failed-request views, and all user Dashboard
+  aggregates.
+- Announcements, redemption history, subscriptions, model plaza, affiliate
+  quota, and both channel-monitor generations.
 - Payment configuration, limits, plans, checkout information, balance or
-  subscription order creation, own-order lookup, and verification.
+  subscription order creation, own-order lookup, cancellation, refund request,
+  eligible-provider lookup, and signed or legacy public order recovery.
 
-Admin/Ops endpoints, refund actions, payment UI, and local secure storage are
-deliberately outside this package.
+All 127 fixed user-management target routes are typed and transport-tested.
+The isolated `Sub2ApiAdminClient` and `Sub2ApiOpsClient` entrypoints, Admin JWT
+role bootstrap, redacted Admin API Key provider, credential non-fallback, and
+typed Admin Dashboard and initial Admin user-resource operations are
+implemented. The remaining 403 Admin resource
+routes are still unsupported, so the package does not yet claim complete
+Admin/Ops coverage. Payment UI and local secure storage remain caller-owned.
+
+The pinned route inventory lives in
+`doc/contract/v0_1_183_route_manifest.json`. It currently distinguishes 552
+target management routes from 14 server-ingress exclusions and records the
+implementation/test state of every target route.
+
+Privileged clients use separate imports:
+
+```dart
+import 'package:sub2api_client/sub2api_admin_client.dart';
+import 'package:sub2api_client/sub2api_ops_client.dart';
+```
+
+The user client never exposes `.admin` or `.ops`. The Admin client uses only a
+JWT session and verifies `role == admin`; the Ops client uses only `x-api-key`
+and never reads, refreshes, or falls back to a JWT session.
 
 ## Usage
 

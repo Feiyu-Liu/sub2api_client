@@ -1,0 +1,23 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "user_id": 7,
+    "aff_code": "AFF-7",
+    "inviter_id": 3,
+    "aff_count": 1,
+    "aff_quota": 2.75,
+    "aff_frozen_quota": 0.5,
+    "aff_history_quota": 8.25,
+    "effective_rebate_rate_percent": 12.5,
+    "invitees": [
+      {
+        "user_id": 9,
+        "email": "invitee@example.test",
+        "username": "invitee",
+        "created_at": "2026-08-20T01:02:03Z",
+        "total_rebate": 1.25
+      }
+    ]
+  }
+}

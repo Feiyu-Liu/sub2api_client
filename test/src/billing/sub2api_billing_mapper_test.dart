@@ -145,6 +145,13 @@ class _EnvelopeExecutor implements Sub2ApiRequestExecutor {
   int nonReplayableCalls = 0;
 
   @override
+  Future<T> optionalAuthenticatedRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _execute(send: send, decode: decode);
+
+  @override
   Future<T> protectedNonReplayableRequest<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
@@ -153,6 +160,12 @@ class _EnvelopeExecutor implements Sub2ApiRequestExecutor {
     nonReplayableCalls += 1;
     return _execute(send: send, decode: decode);
   }
+
+  @override
+  Future<void> protectedNonReplayableNoContentRequest({
+    required Sub2ApiWireCall send,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => throw UnimplementedError();
 
   @override
   Future<T> protectedRequest<T>({
@@ -166,6 +179,13 @@ class _EnvelopeExecutor implements Sub2ApiRequestExecutor {
 
   @override
   Future<T> publicRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _execute(send: send, decode: decode);
+
+  @override
+  Future<T> publicRequestAllowingRawSuccess<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
     Sub2ApiRequestOptions? requestOptions,
@@ -186,6 +206,13 @@ final class _RecordingExecutor implements Sub2ApiRequestExecutor {
   int nonReplayableCalls = 0;
 
   @override
+  Future<T> optionalAuthenticatedRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => throw UnimplementedError();
+
+  @override
   Future<T> protectedNonReplayableRequest<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
@@ -194,6 +221,12 @@ final class _RecordingExecutor implements Sub2ApiRequestExecutor {
     nonReplayableCalls += 1;
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> protectedNonReplayableNoContentRequest({
+    required Sub2ApiWireCall send,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => throw UnimplementedError();
 
   @override
   Future<T> protectedRequest<T>({
@@ -207,6 +240,13 @@ final class _RecordingExecutor implements Sub2ApiRequestExecutor {
 
   @override
   Future<T> publicRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => throw UnimplementedError();
+
+  @override
+  Future<T> publicRequestAllowingRawSuccess<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
     Sub2ApiRequestOptions? requestOptions,

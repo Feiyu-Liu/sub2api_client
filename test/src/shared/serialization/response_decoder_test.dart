@@ -51,6 +51,50 @@ void main() {
     );
   });
 
+  test('endpoint policy can decode a raw 200 pending-OAuth payload', () {
+    final response = _response(
+      statusCode: 200,
+      data: {
+        'auth_result': 'pending_session',
+        'step': 'choose_account_action_required',
+      },
+    );
+
+    final step = decoder.decodeSuccessOrRaw<String>(response, (data) {
+      final map = data! as Map<String, Object?>;
+      return map['step']! as String;
+    });
+
+    expect(step, 'choose_account_action_required');
+  });
+
+  test('no-content policy accepts only an empty HTTP 204', () {
+    decoder.decodeNoContent(_response(statusCode: 204, data: null));
+
+    expect(
+      () => decoder.decodeNoContent(_response(statusCode: 200, data: null)),
+      throwsA(
+        isA<Sub2ApiException>().having(
+          (error) => error.code,
+          'code',
+          'protocol.unexpected_success_status',
+        ),
+      ),
+    );
+    expect(
+      () => decoder.decodeNoContent(
+        _response(statusCode: 204, data: <String, Object?>{}),
+      ),
+      throwsA(
+        isA<Sub2ApiException>().having(
+          (error) => error.code,
+          'code',
+          'protocol.unexpected_response_body',
+        ),
+      ),
+    );
+  });
+
   test('decodes integer handler errors without exposing the message', () {
     final fixture = readFixture('errors/handler_integer.json');
     final error = decoder.decodeDioException(
@@ -90,6 +134,86 @@ void main() {
 
     expect(error.code, 'auth.token_revoked');
     expect(decoder.isSessionInvalid(error), isTrue);
+  });
+
+  test('maps TOTP and step-up failures to package-owned codes', () {
+    final invalidCode = decoder.decodeDioException(
+      _dioError(
+        statusCode: 400,
+        data: {
+          'code': 400,
+          'message': 'must not escape',
+          'reason': 'TOTP_INVALID_CODE',
+        },
+      ),
+    );
+    final stepUpRequired = decoder.decodeDioException(
+      _dioError(
+        statusCode: 403,
+        data: {'code': 'STEP_UP_REQUIRED', 'message': 'must not escape'},
+      ),
+    );
+
+    expect(invalidCode.code, 'totp.invalid_code');
+    expect(invalidCode.kind, Sub2ApiFailureKind.validation);
+    expect(stepUpRequired.code, 'auth.step_up_required');
+    expect(stepUpRequired.kind, Sub2ApiFailureKind.forbidden);
+    expect(stepUpRequired.toString(), isNot(contains('must not escape')));
+  });
+
+  test('maps identity and notification-email failures to stable codes', () {
+    final lastMethod = decoder.decodeDioException(
+      _dioError(
+        statusCode: 409,
+        data: {
+          'code': 409,
+          'message': 'must not escape',
+          'reason': 'IDENTITY_UNBIND_LAST_METHOD',
+        },
+      ),
+    );
+    final tooManyEmails = decoder.decodeDioException(
+      _dioError(
+        statusCode: 400,
+        data: {
+          'code': 400,
+          'message': 'must not escape',
+          'reason': 'TOO_MANY_NOTIFY_EMAILS',
+        },
+      ),
+    );
+
+    expect(lastMethod.code, 'identity.unbind_last_method');
+    expect(lastMethod.kind, Sub2ApiFailureKind.conflict);
+    expect(tooManyEmails.code, 'identity.too_many_notification_emails');
+    expect(tooManyEmails.kind, Sub2ApiFailureKind.validation);
+  });
+
+  test('maps browser-bound OAuth failures to package-owned codes', () {
+    final browserMismatch = decoder.decodeDioException(
+      _dioError(
+        statusCode: 401,
+        data: {
+          'code': 401,
+          'message': 'must not escape',
+          'reason': 'PENDING_AUTH_BROWSER_MISMATCH',
+        },
+      ),
+    );
+    final invitationRequired = decoder.decodeDioException(
+      _dioError(
+        statusCode: 403,
+        data: {
+          'code': 'OAUTH_INVITATION_REQUIRED',
+          'message': 'must not escape',
+        },
+      ),
+    );
+
+    expect(browserMismatch.code, 'oauth.pending_browser_mismatch');
+    expect(browserMismatch.kind, Sub2ApiFailureKind.unauthorized);
+    expect(invitationRequired.code, 'oauth.invitation_required');
+    expect(invitationRequired.kind, Sub2ApiFailureKind.forbidden);
   });
 
   test('fails closed for a malformed non-JSON error response', () {

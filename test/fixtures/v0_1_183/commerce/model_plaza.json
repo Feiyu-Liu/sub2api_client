@@ -1,0 +1,74 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "description": "Use exact per-token prices.",
+    "groups": [
+      {
+        "id": 7,
+        "name": "Pro",
+        "description": "Production models",
+        "platform": "openai",
+        "subscription_type": "standard",
+        "rate_multiplier": 0.8,
+        "user_rate_multiplier": 0.75,
+        "peak_rate_enabled": true,
+        "peak_start": "18:00",
+        "peak_end": "22:00",
+        "peak_rate_multiplier": 1.2,
+        "is_exclusive": false,
+        "image_rate_independent": false,
+        "image_rate_multiplier": 1,
+        "long_context_pricing_enabled": true,
+        "models": [
+          {
+            "name": "gpt-5.6",
+            "platform": "openai",
+            "pricing": {
+              "billing_mode": "token",
+              "input_price": 0.00000125,
+              "output_price": 0.00001,
+              "cache_write_price": 0.0000015,
+              "cache_read_price": 0.000000125,
+              "image_input_price": null,
+              "image_output_price": null,
+              "per_request_price": null,
+              "intervals": []
+            },
+            "official_pricing": {
+              "input_price": 0.0000015,
+              "output_price": 0.000012,
+              "cache_write_price": 0.0000018,
+              "cache_write_1h_price": 0.000003,
+              "cache_read_price": 0.00000015,
+              "intervals": [
+                {
+                  "min_tokens": 0,
+                  "max_tokens": 200000,
+                  "tier_label": "base",
+                  "input_price": 0.0000015,
+                  "output_price": 0.000012,
+                  "cache_write_price": 0.0000018,
+                  "cache_read_price": 0.00000015,
+                  "per_request_price": null
+                }
+              ]
+            },
+            "long_context_basis": "whole_request",
+            "time_pricing": {
+              "timezone": "Asia/Shanghai",
+              "weekdays_only": true,
+              "periods": [
+                {
+                  "start_time": "18:00",
+                  "end_time": "22:00",
+                  "multiplier": 1.2
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

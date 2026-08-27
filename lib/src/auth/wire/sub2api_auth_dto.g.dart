@@ -173,6 +173,23 @@ Sub2ApiInvitationCodeValidationDto _$Sub2ApiInvitationCodeValidationDtoFromJson(
   fieldKeyMap: const {'errorCode': 'error_code'},
 );
 
+Sub2ApiPromoCodeValidationDto _$Sub2ApiPromoCodeValidationDtoFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate(
+  'Sub2ApiPromoCodeValidationDto',
+  json,
+  ($checkedConvert) {
+    final val = Sub2ApiPromoCodeValidationDto(
+      valid: $checkedConvert('valid', (v) => v as bool),
+      bonusAmount: $checkedConvert('bonus_amount', (v) => v as num?),
+      errorCode: $checkedConvert('error_code', (v) => v as String?),
+      message: $checkedConvert('message', (v) => v as String?),
+    );
+    return val;
+  },
+  fieldKeyMap: const {'bonusAmount': 'bonus_amount', 'errorCode': 'error_code'},
+);
+
 Sub2ApiAuthMessageDto _$Sub2ApiAuthMessageDtoFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('Sub2ApiAuthMessageDto', json, ($checkedConvert) {

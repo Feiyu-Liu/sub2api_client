@@ -49,3 +49,65 @@ final class UserProfileWireDto {
   final String username;
   final String? avatarUrl;
 }
+
+@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
+final class AffiliateInviteeWireDto {
+  const AffiliateInviteeWireDto({
+    required this.userId,
+    required this.email,
+    required this.username,
+    required this.totalRebate,
+    this.createdAt,
+  });
+
+  factory AffiliateInviteeWireDto.fromJson(Map<String, Object?> json) =>
+      _$AffiliateInviteeWireDtoFromJson(json);
+
+  final int userId;
+  final String email;
+  final String username;
+  final DateTime? createdAt;
+  final num totalRebate;
+}
+
+@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
+final class AffiliateDetailWireDto {
+  const AffiliateDetailWireDto({
+    required this.userId,
+    required this.affCode,
+    required this.affCount,
+    required this.affQuota,
+    required this.affFrozenQuota,
+    required this.affHistoryQuota,
+    required this.effectiveRebateRatePercent,
+    required this.invitees,
+    this.inviterId,
+  });
+
+  factory AffiliateDetailWireDto.fromJson(Map<String, Object?> json) =>
+      _$AffiliateDetailWireDtoFromJson(json);
+
+  final int userId;
+  final String affCode;
+  final int? inviterId;
+  final int affCount;
+  final num affQuota;
+  final num affFrozenQuota;
+  final num affHistoryQuota;
+  final num effectiveRebateRatePercent;
+  final List<AffiliateInviteeWireDto> invitees;
+}
+
+@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
+final class AffiliateTransferWireDto {
+  const AffiliateTransferWireDto({
+    required this.transferredQuota,
+    required this.balance,
+  });
+
+  factory AffiliateTransferWireDto.fromJson(Map<String, Object?> json) =>
+      _$AffiliateTransferWireDtoFromJson(json);
+
+  final num transferredQuota;
+  final num balance;
+}

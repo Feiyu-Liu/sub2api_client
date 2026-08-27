@@ -1,0 +1,8 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "transferred_quota": 2.75,
+    "balance": 19.5
+  }
+}

@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../../shared/errors/sub2api_exception.dart';
 import '../../shared/models/sensitive_value.dart';
+import '../../shared/models/sub2api_decimal.dart';
 import '../../shared/session/sub2api_session.dart';
 import '../models/sub2api_auth_models.dart';
 
@@ -440,6 +441,42 @@ final class Sub2ApiInvitationCodeValidationDto {
   }
 }
 
+/// Internal response DTO for promo-code validation.
+@JsonSerializable(createToJson: false, checked: true)
+final class Sub2ApiPromoCodeValidationDto {
+  const Sub2ApiPromoCodeValidationDto({
+    required this.valid,
+    this.bonusAmount,
+    this.errorCode,
+    this.message,
+  });
+
+  factory Sub2ApiPromoCodeValidationDto.fromJson(Map<String, Object?> json) =>
+      _$Sub2ApiPromoCodeValidationDtoFromJson(json);
+
+  @JsonKey(name: 'bonus_amount')
+  final num? bonusAmount;
+  @JsonKey(name: 'error_code')
+  final String? errorCode;
+  final String? message;
+  final bool valid;
+
+  Sub2ApiPromoCodeValidation toPublicModel() {
+    if (valid && bonusAmount == null) throw _invalidPromoCodeResponse();
+    if (!valid && (errorCode == null || errorCode!.isEmpty)) {
+      throw _invalidPromoCodeResponse();
+    }
+    return Sub2ApiPromoCodeValidation(
+      isValid: valid,
+      bonusAmount: bonusAmount == null
+          ? null
+          : Sub2ApiDecimal.fromJson(bonusAmount!),
+      errorCode: errorCode,
+      message: message,
+    );
+  }
+}
+
 /// Internal response DTO shared by the password-reset endpoints.
 @JsonSerializable(createToJson: false, checked: true)
 final class Sub2ApiAuthMessageDto {
@@ -482,6 +519,12 @@ Sub2ApiException _invalidInvitationCodeValidationResponse() =>
       code: 'protocol.invalid_invitation_code_validation_response',
       retryable: false,
     );
+
+Sub2ApiException _invalidPromoCodeResponse() => const Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_promo_code_validation_response',
+  retryable: false,
+);
 
 Sub2ApiException _invalidForgotPasswordResponse() => const Sub2ApiException(
   kind: Sub2ApiFailureKind.protocol,

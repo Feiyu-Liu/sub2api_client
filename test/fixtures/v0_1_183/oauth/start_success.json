@@ -1,0 +1,7 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "authorize_url": "https://github.example.test/oauth/authorize?client_id=client&state=state-sentinel"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "user_rpm_used": 7,
+    "user_rpm_limit": 30,
+    "per_group": [
+      {
+        "group_id": 9,
+        "group_name": "priority",
+        "used": 4,
+        "limit": 20,
+        "source": "override"
+      }
+    ]
+  }
+}

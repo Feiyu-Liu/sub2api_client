@@ -138,6 +138,61 @@ abstract class Sub2ApiPaymentOrder with _$Sub2ApiPaymentOrder {
   }) = _Sub2ApiPaymentOrder;
 }
 
+/// Acknowledgement for user order cancellation or refund request.
+final class Sub2ApiPaymentMutationResult {
+  const Sub2ApiPaymentMutationResult({required this.message});
+
+  final String message;
+}
+
+/// User-supplied reason for requesting a refund.
+final class Sub2ApiRefundRequest {
+  const Sub2ApiRefundRequest({required this.reason});
+
+  final String reason;
+}
+
+/// Minimal legacy anonymous order verification result.
+@freezed
+abstract class Sub2ApiPublicOrderVerification
+    with _$Sub2ApiPublicOrderVerification {
+  const factory Sub2ApiPublicOrderVerification({
+    required String outTradeNo,
+    required String status,
+    required bool paid,
+    required DateTime createdAt,
+    required DateTime expiresAt,
+    DateTime? paidAt,
+    DateTime? completedAt,
+  }) = _Sub2ApiPublicOrderVerification;
+}
+
+/// Public order snapshot resolved only through a signed resume token.
+@freezed
+abstract class Sub2ApiPublicPaymentOrder with _$Sub2ApiPublicPaymentOrder {
+  const factory Sub2ApiPublicPaymentOrder({
+    required int id,
+    required String outTradeNo,
+    required Sub2ApiDecimal amount,
+    required Sub2ApiDecimal payAmount,
+    required Sub2ApiDecimal feeRate,
+    required String currency,
+    required String paymentType,
+    required String orderType,
+    required String status,
+    required DateTime createdAt,
+    required DateTime expiresAt,
+    DateTime? paidAt,
+    DateTime? completedAt,
+    required Sub2ApiDecimal refundAmount,
+    String? refundReason,
+    DateTime? refundRequestedAt,
+    String? refundRequestedBy,
+    String? refundRequestReason,
+    int? planId,
+  }) = _Sub2ApiPublicPaymentOrder;
+}
+
 /// Filters supported by the user's own order list.
 @freezed
 abstract class Sub2ApiPaymentOrderQuery with _$Sub2ApiPaymentOrderQuery {

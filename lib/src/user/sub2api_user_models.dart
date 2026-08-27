@@ -64,3 +64,40 @@ final class Sub2ApiChangePasswordRequest {
   @override
   String toString() => 'Sub2ApiChangePasswordRequest(<redacted>)';
 }
+
+/// One user invited by the current affiliate account.
+@freezed
+abstract class Sub2ApiAffiliateInvitee with _$Sub2ApiAffiliateInvitee {
+  const factory Sub2ApiAffiliateInvitee({
+    required int userId,
+    required String email,
+    required String username,
+    DateTime? createdAt,
+    required Sub2ApiDecimal totalRebate,
+  }) = _Sub2ApiAffiliateInvitee;
+}
+
+/// Current user's affiliate code, quota, rate, and invitee facts.
+@freezed
+abstract class Sub2ApiAffiliateDetail with _$Sub2ApiAffiliateDetail {
+  const factory Sub2ApiAffiliateDetail({
+    required int userId,
+    required String affiliateCode,
+    int? inviterId,
+    required int affiliateCount,
+    required Sub2ApiDecimal availableQuota,
+    required Sub2ApiDecimal frozenQuota,
+    required Sub2ApiDecimal historicalQuota,
+    required Sub2ApiDecimal effectiveRebateRatePercent,
+    required List<Sub2ApiAffiliateInvitee> invitees,
+  }) = _Sub2ApiAffiliateDetail;
+}
+
+/// Result after transferring all available affiliate quota into balance.
+@freezed
+abstract class Sub2ApiAffiliateTransfer with _$Sub2ApiAffiliateTransfer {
+  const factory Sub2ApiAffiliateTransfer({
+    required Sub2ApiDecimal transferredQuota,
+    required Sub2ApiDecimal balance,
+  }) = _Sub2ApiAffiliateTransfer;
+}

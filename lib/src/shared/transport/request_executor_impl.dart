@@ -47,6 +47,48 @@ final class Sub2ApiRequestExecutorImpl implements Sub2ApiRequestExecutor {
   }
 
   @override
+  Future<T> publicRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    return _attempt(
+      control,
+      send,
+      decode,
+      authorization: null,
+      allowRawSuccess: true,
+    );
+  }
+
+  @override
+  Future<T> optionalAuthenticatedRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) {
+      return _attempt(control, send, decode, authorization: null);
+    }
+    return protectedRequest(
+      send: send,
+      decode: decode,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
   Future<T> protectedRequest<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
@@ -143,6 +185,39 @@ final class Sub2ApiRequestExecutorImpl implements Sub2ApiRequestExecutor {
     );
   }
 
+  @override
+  Future<void> protectedNonReplayableNoContentRequest({
+    required Sub2ApiWireCall send,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) {
+      throw _notAuthenticated;
+    }
+    try {
+      final response = await control.execute(
+        (cancelToken, options) =>
+            send(cancelToken, options, _authorization(snapshot.session)),
+      );
+      _decoder.decodeNoContent(response);
+    } on DioException catch (error) {
+      throw _decoder.decodeDioException(error);
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw const Sub2ApiException(
+        kind: Sub2ApiFailureKind.unknown,
+        code: 'unknown.client',
+        retryable: false,
+      );
+    }
+  }
+
   void close() {
     _closed = true;
   }
@@ -152,12 +227,15 @@ final class Sub2ApiRequestExecutorImpl implements Sub2ApiRequestExecutor {
     Sub2ApiWireCall send,
     T Function(Object? data) decode, {
     required String? authorization,
+    bool allowRawSuccess = false,
   }) async {
     try {
       final response = await control.execute(
         (cancelToken, options) => send(cancelToken, options, authorization),
       );
-      return _decoder.decodeSuccess(response, decode);
+      return allowRawSuccess
+          ? _decoder.decodeSuccessOrRaw(response, decode)
+          : _decoder.decodeSuccess(response, decode);
     } on DioException catch (error) {
       throw _decoder.decodeDioException(error);
     } on Sub2ApiException {

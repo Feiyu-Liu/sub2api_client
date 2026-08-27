@@ -1,0 +1,25 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "id": 77,
+    "out_trade_no": "trade-public-1",
+    "amount": 10,
+    "pay_amount": 10.3,
+    "fee_rate": 0.03,
+    "currency": "USD",
+    "payment_type": "stripe",
+    "order_type": "balance",
+    "status": "paid",
+    "created_at": "2026-08-26T01:00:00Z",
+    "expires_at": "2026-08-26T01:30:00Z",
+    "paid_at": "2026-08-26T01:05:00Z",
+    "completed_at": null,
+    "refund_amount": 0,
+    "refund_reason": null,
+    "refund_requested_at": null,
+    "refund_requested_by": null,
+    "refund_request_reason": null,
+    "plan_id": null
+  }
+}

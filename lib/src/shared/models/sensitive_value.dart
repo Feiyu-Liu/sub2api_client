@@ -25,6 +25,12 @@ final class Sub2ApiApiKeySecret extends _SensitiveValue {
   const Sub2ApiApiKeySecret(super.value);
 }
 
+/// Admin API Key used only by [Sub2ApiOpsClient]-style automation entrypoints.
+/// Stringification is always redacted.
+final class Sub2ApiAdminApiKey extends _SensitiveValue {
+  const Sub2ApiAdminApiKey(super.value);
+}
+
 /// Checkout value that may itself grant payment authority.
 final class Sub2ApiCheckoutSecret extends _SensitiveValue {
   const Sub2ApiCheckoutSecret(super.value);
@@ -51,4 +57,34 @@ final class Sub2ApiTwoFactorTemporaryToken extends _SensitiveValue {
 /// A single-use token from a password-reset link.
 final class Sub2ApiPasswordResetToken extends _SensitiveValue {
   const Sub2ApiPasswordResetToken(super.value);
+}
+
+/// One-time token binding a WebAuthn ceremony to its server-side state.
+final class Sub2ApiPasskeySessionToken extends _SensitiveValue {
+  const Sub2ApiPasskeySessionToken(super.value);
+}
+
+/// Base32 TOTP seed used to enroll an authenticator.
+final class Sub2ApiTotpSecret extends _SensitiveValue {
+  const Sub2ApiTotpSecret(super.value);
+}
+
+/// `otpauth://` enrollment URI containing the TOTP seed.
+final class Sub2ApiTotpQrCodeUri extends _SensitiveValue {
+  const Sub2ApiTotpQrCodeUri(super.value);
+}
+
+/// One-time token binding a TOTP setup attempt to its server-side state.
+final class Sub2ApiTotpSetupToken extends _SensitiveValue {
+  const Sub2ApiTotpSetupToken(super.value);
+}
+
+/// Legacy short-lived token used by an OAuth pending-account flow.
+final class Sub2ApiOAuthPendingToken extends _SensitiveValue {
+  const Sub2ApiOAuthPendingToken(super.value);
+}
+
+/// Signed token carried by a notification-email unsubscribe link.
+final class Sub2ApiNotificationUnsubscribeToken extends _SensitiveValue {
+  const Sub2ApiNotificationUnsubscribeToken(super.value);
 }

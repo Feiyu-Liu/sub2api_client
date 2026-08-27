@@ -1,0 +1,18 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "trend": [
+      {
+        "date": "2026-08-20",
+        "api_key_id": 11,
+        "key_name": "desktop",
+        "requests": 40,
+        "tokens": 5000
+      }
+    ],
+    "start_date": "2026-08-20",
+    "end_date": "2026-08-27",
+    "granularity": "day"
+  }
+}

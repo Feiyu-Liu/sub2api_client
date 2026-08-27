@@ -210,7 +210,7 @@ return $default(_that.id,_that.email,_that.role,_that.username);case _:
 
 class _Sub2ApiAuthenticatedUser implements Sub2ApiAuthenticatedUser {
   const _Sub2ApiAuthenticatedUser({required this.id, required this.email, required this.role, required this.username});
-  
+
 
 @override final  int id;
 @override final  String email;
@@ -275,6 +275,284 @@ as String,
 }
 
 
+}
+
+/// @nodoc
+mixin _$Sub2ApiCurrentUser {
+
+ Sub2ApiUserAccountSnapshot get account; String get runMode;
+/// Create a copy of Sub2ApiCurrentUser
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$Sub2ApiCurrentUserCopyWith<Sub2ApiCurrentUser> get copyWith => _$Sub2ApiCurrentUserCopyWithImpl<Sub2ApiCurrentUser>(this as Sub2ApiCurrentUser, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiCurrentUser&&(identical(other.account, account) || other.account == account)&&(identical(other.runMode, runMode) || other.runMode == runMode));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,account,runMode);
+
+@override
+String toString() {
+  return 'Sub2ApiCurrentUser(account: $account, runMode: $runMode)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $Sub2ApiCurrentUserCopyWith<$Res>  {
+  factory $Sub2ApiCurrentUserCopyWith(Sub2ApiCurrentUser value, $Res Function(Sub2ApiCurrentUser) _then) = _$Sub2ApiCurrentUserCopyWithImpl;
+@useResult
+$Res call({
+ Sub2ApiUserAccountSnapshot account, String runMode
+});
+
+
+$Sub2ApiUserAccountSnapshotCopyWith<$Res> get account;
+
+}
+/// @nodoc
+class _$Sub2ApiCurrentUserCopyWithImpl<$Res>
+    implements $Sub2ApiCurrentUserCopyWith<$Res> {
+  _$Sub2ApiCurrentUserCopyWithImpl(this._self, this._then);
+
+  final Sub2ApiCurrentUser _self;
+  final $Res Function(Sub2ApiCurrentUser) _then;
+
+/// Create a copy of Sub2ApiCurrentUser
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? account = null,Object? runMode = null,}) {
+  return _then(_self.copyWith(
+account: null == account ? _self.account : account // ignore: cast_nullable_to_non_nullable
+as Sub2ApiUserAccountSnapshot,runMode: null == runMode ? _self.runMode : runMode // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+/// Create a copy of Sub2ApiCurrentUser
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$Sub2ApiUserAccountSnapshotCopyWith<$Res> get account {
+
+  return $Sub2ApiUserAccountSnapshotCopyWith<$Res>(_self.account, (value) {
+    return _then(_self.copyWith(account: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [Sub2ApiCurrentUser].
+extension Sub2ApiCurrentUserPatterns on Sub2ApiCurrentUser {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Sub2ApiCurrentUser value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Sub2ApiCurrentUser() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Sub2ApiCurrentUser value)  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiCurrentUser():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Sub2ApiCurrentUser value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Sub2ApiCurrentUser() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Sub2ApiUserAccountSnapshot account,  String runMode)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Sub2ApiCurrentUser() when $default != null:
+return $default(_that.account,_that.runMode);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Sub2ApiUserAccountSnapshot account,  String runMode)  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiCurrentUser():
+return $default(_that.account,_that.runMode);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Sub2ApiUserAccountSnapshot account,  String runMode)?  $default,) {final _that = this;
+switch (_that) {
+case _Sub2ApiCurrentUser() when $default != null:
+return $default(_that.account,_that.runMode);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _Sub2ApiCurrentUser extends Sub2ApiCurrentUser {
+  const _Sub2ApiCurrentUser({required this.account, required this.runMode}): super._();
+
+
+@override final  Sub2ApiUserAccountSnapshot account;
+@override final  String runMode;
+
+/// Create a copy of Sub2ApiCurrentUser
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$Sub2ApiCurrentUserCopyWith<_Sub2ApiCurrentUser> get copyWith => __$Sub2ApiCurrentUserCopyWithImpl<_Sub2ApiCurrentUser>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiCurrentUser&&(identical(other.account, account) || other.account == account)&&(identical(other.runMode, runMode) || other.runMode == runMode));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,account,runMode);
+
+@override
+String toString() {
+  return 'Sub2ApiCurrentUser(account: $account, runMode: $runMode)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$Sub2ApiCurrentUserCopyWith<$Res> implements $Sub2ApiCurrentUserCopyWith<$Res> {
+  factory _$Sub2ApiCurrentUserCopyWith(_Sub2ApiCurrentUser value, $Res Function(_Sub2ApiCurrentUser) _then) = __$Sub2ApiCurrentUserCopyWithImpl;
+@override @useResult
+$Res call({
+ Sub2ApiUserAccountSnapshot account, String runMode
+});
+
+
+@override $Sub2ApiUserAccountSnapshotCopyWith<$Res> get account;
+
+}
+/// @nodoc
+class __$Sub2ApiCurrentUserCopyWithImpl<$Res>
+    implements _$Sub2ApiCurrentUserCopyWith<$Res> {
+  __$Sub2ApiCurrentUserCopyWithImpl(this._self, this._then);
+
+  final _Sub2ApiCurrentUser _self;
+  final $Res Function(_Sub2ApiCurrentUser) _then;
+
+/// Create a copy of Sub2ApiCurrentUser
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? account = null,Object? runMode = null,}) {
+  return _then(_Sub2ApiCurrentUser(
+account: null == account ? _self.account : account // ignore: cast_nullable_to_non_nullable
+as Sub2ApiUserAccountSnapshot,runMode: null == runMode ? _self.runMode : runMode // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+/// Create a copy of Sub2ApiCurrentUser
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$Sub2ApiUserAccountSnapshotCopyWith<$Res> get account {
+
+  return $Sub2ApiUserAccountSnapshotCopyWith<$Res>(_self.account, (value) {
+    return _then(_self.copyWith(account: value));
+  });
+}
 }
 
 /// @nodoc
@@ -442,7 +720,7 @@ return twoFactorRequired(_that.temporaryToken,_that.userEmailMasked);case _:
 
 class Sub2ApiAuthenticated implements Sub2ApiLoginResult {
   const Sub2ApiAuthenticated({required this.user, required this.session});
-  
+
 
  final  Sub2ApiAuthenticatedUser user;
  final  Sub2ApiSession session;
@@ -507,7 +785,7 @@ as Sub2ApiSession,
 @override
 @pragma('vm:prefer-inline')
 $Sub2ApiAuthenticatedUserCopyWith<$Res> get user {
-  
+
   return $Sub2ApiAuthenticatedUserCopyWith<$Res>(_self.user, (value) {
     return _then(_self.copyWith(user: value));
   });
@@ -519,7 +797,7 @@ $Sub2ApiAuthenticatedUserCopyWith<$Res> get user {
 
 class Sub2ApiTwoFactorRequired implements Sub2ApiLoginResult {
   const Sub2ApiTwoFactorRequired({required this.temporaryToken, required this.userEmailMasked});
-  
+
 
  final  Sub2ApiTwoFactorTemporaryToken temporaryToken;
  final  String userEmailMasked;

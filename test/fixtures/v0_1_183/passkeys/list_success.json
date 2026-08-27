@@ -1,0 +1,19 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      "id": 3,
+      "name": "Laptop",
+      "created_at": "2026-08-27T03:04:05Z",
+      "last_used_at": "2026-08-27T04:05:06Z",
+      "backup": true
+    },
+    {
+      "id": 4,
+      "name": "Security Key",
+      "created_at": "2026-08-27T05:06:07Z",
+      "backup": false
+    }
+  ]
+}

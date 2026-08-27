@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../shared/errors/sub2api_exception.dart';
+import '../shared/models/sensitive_value.dart';
 import '../shared/models/sub2api_decimal.dart';
 import '../shared/models/sub2api_page.dart';
 import '../shared/request/sub2api_request_options.dart';
@@ -55,6 +56,36 @@ abstract interface class Sub2ApiBillingClient {
   /// Verifies an owned order by provider trade number.
   Future<Sub2ApiPaymentOrder> verifyOrder(
     String outTradeNo, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Cancels a pending owned order without automatic replay.
+  Future<Sub2ApiPaymentMutationResult> cancelOrder(
+    int id, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Requests a refund for a completed owned order without automatic replay.
+  Future<Sub2ApiPaymentMutationResult> requestRefund(
+    int id,
+    Sub2ApiRefundRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Lists provider instance IDs that accept user refund requests.
+  Future<List<String>> getRefundEligibleProviders({
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Uses the legacy anonymous trade-number lookup contract.
+  Future<Sub2ApiPublicOrderVerification> verifyPublicOrder(
+    String outTradeNo, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Resolves a full public order snapshot from a signed resume token.
+  Future<Sub2ApiPublicPaymentOrder> resolvePublicOrder(
+    Sub2ApiCheckoutSecret resumeToken, {
     Sub2ApiRequestOptions? requestOptions,
   });
 }
@@ -198,6 +229,91 @@ final class _Sub2ApiBillingClient implements Sub2ApiBillingClient {
     requestOptions: requestOptions,
   );
 
+  @override
+  Future<Sub2ApiPaymentMutationResult> cancelOrder(
+    int id, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateOrderId(id);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, authorization) =>
+          _service.cancelOrder(id, cancelToken, options, authorization),
+      decode: mapPaymentMutationResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiPaymentMutationResult> requestRefund(
+    int id,
+    Sub2ApiRefundRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateOrderId(id);
+    final reason = request.reason.trim();
+    if (reason.isEmpty) throw _invalidRefundReason;
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, authorization) => _service.requestRefund(
+        id,
+        Sub2ApiRefundRequestDto(reason: reason),
+        cancelToken,
+        options,
+        authorization,
+      ),
+      decode: mapPaymentMutationResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<List<String>> getRefundEligibleProviders({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.protectedRequest(
+    send: (cancelToken, options, authorization) =>
+        _service.refundEligibleProviders(cancelToken, options, authorization),
+    decode: mapRefundEligibleProviders,
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiPublicOrderVerification> verifyPublicOrder(
+    String outTradeNo, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final tradeNumber = outTradeNo.trim();
+    if (tradeNumber.isEmpty) throw _invalidTradeNumber;
+    return _requestExecutor.publicRequest(
+      send: (cancelToken, options, authorization) => _service.verifyPublicOrder(
+        Sub2ApiVerifyOrderDto(outTradeNo: tradeNumber),
+        cancelToken,
+        options,
+        authorization,
+      ),
+      decode: mapPublicOrderVerification,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiPublicPaymentOrder> resolvePublicOrder(
+    Sub2ApiCheckoutSecret resumeToken, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final token = resumeToken.reveal().trim();
+    if (token.isEmpty) throw _invalidResumeToken;
+    return _requestExecutor.publicRequest(
+      send: (cancelToken, options, authorization) =>
+          _service.resolvePublicOrder(
+            Sub2ApiResolveOrderDto(resumeToken: token),
+            cancelToken,
+            options,
+            authorization,
+          ),
+      decode: mapPublicPaymentOrder,
+      requestOptions: requestOptions,
+    );
+  }
+
   Future<Sub2ApiCreateOrderResult> _createOrder(
     Sub2ApiCreateOrderDto body, {
     Sub2ApiRequestOptions? requestOptions,
@@ -230,9 +346,37 @@ final class _Sub2ApiBillingClient implements Sub2ApiBillingClient {
     return value;
   }
 
+  static void _validateOrderId(int id) {
+    if (id <= 0) throw _invalidOrderId;
+  }
+
   static const _amountNotRepresentable = Sub2ApiException(
     kind: Sub2ApiFailureKind.validation,
     code: 'billing.amount_not_representable',
+    retryable: false,
+  );
+
+  static const _invalidOrderId = Sub2ApiException(
+    kind: Sub2ApiFailureKind.validation,
+    code: 'billing.invalid_order_id',
+    retryable: false,
+  );
+
+  static const _invalidRefundReason = Sub2ApiException(
+    kind: Sub2ApiFailureKind.validation,
+    code: 'billing.invalid_refund_reason',
+    retryable: false,
+  );
+
+  static const _invalidTradeNumber = Sub2ApiException(
+    kind: Sub2ApiFailureKind.validation,
+    code: 'billing.invalid_trade_number',
+    retryable: false,
+  );
+
+  static const _invalidResumeToken = Sub2ApiException(
+    kind: Sub2ApiFailureKind.validation,
+    code: 'billing.invalid_resume_token',
     retryable: false,
   );
 }

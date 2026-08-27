@@ -1,0 +1,6 @@
+{
+  "access_token": "oauth-created-access-sentinel",
+  "refresh_token": "oauth-created-refresh-sentinel",
+  "expires_in": 3600,
+  "token_type": "Bearer"
+}

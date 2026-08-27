@@ -1,0 +1,23 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "active_count": 1,
+    "total_used_usd": 8.75,
+    "subscriptions": [
+      {
+        "id": 41,
+        "group_id": 7,
+        "group_name": "Pro",
+        "status": "active",
+        "daily_used_usd": 1.25,
+        "daily_limit_usd": 10,
+        "weekly_used_usd": 4.5,
+        "weekly_limit_usd": 50,
+        "monthly_used_usd": 8.75,
+        "monthly_limit_usd": 100,
+        "expires_at": "2026-09-20T05:00:00Z"
+      }
+    ]
+  }
+}
