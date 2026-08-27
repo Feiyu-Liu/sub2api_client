@@ -670,6 +670,53 @@ final class Sub2ApiAdminAccountActionResult {
   final String message;
 }
 
+final class Sub2ApiAdminAccountBatchUsage {
+  Sub2ApiAdminAccountBatchUsage({
+    required Map<int, Sub2ApiAdminAccountUsage> usage,
+    required Map<int, String> errors,
+  }) : usage = Map.unmodifiable(usage),
+       errors = Map.unmodifiable(errors);
+
+  final Map<int, Sub2ApiAdminAccountUsage> usage;
+  final Map<int, String> errors;
+}
+
+final class Sub2ApiAdminAccountBatchTodayStats {
+  Sub2ApiAdminAccountBatchTodayStats(
+    Map<int, Sub2ApiAdminAccountTodayStats> stats,
+  ) : stats = Map.unmodifiable(stats);
+
+  final Map<int, Sub2ApiAdminAccountTodayStats> stats;
+}
+
+final class Sub2ApiAdminMixedChannelRiskDetails {
+  const Sub2ApiAdminMixedChannelRiskDetails({
+    required this.groupId,
+    required this.groupName,
+    required this.currentPlatform,
+    required this.otherPlatform,
+  });
+
+  final int groupId;
+  final String groupName;
+  final String currentPlatform;
+  final String otherPlatform;
+}
+
+final class Sub2ApiAdminMixedChannelCheck {
+  const Sub2ApiAdminMixedChannelCheck({
+    required this.hasRisk,
+    required this.error,
+    required this.message,
+    this.details,
+  });
+
+  final bool hasRisk;
+  final String error;
+  final String message;
+  final Sub2ApiAdminMixedChannelRiskDetails? details;
+}
+
 final class Sub2ApiAdminUpstreamBillingProbeData {
   const Sub2ApiAdminUpstreamBillingProbeData({
     required this.object,

@@ -29,6 +29,74 @@ Sub2ApiAdminAccountActionResult mapAdminAccountActionResult(Object? data) =>
       );
     });
 
+Sub2ApiAdminAccountBatchUsage mapAdminAccountBatchUsage(Object? data) =>
+    _map(() {
+      final source = _object(data);
+      return Sub2ApiAdminAccountBatchUsage(
+        usage: _intKeyedMap(
+          source['usage'],
+          (value) => mapAdminAccountUsage(value),
+        ),
+        errors: _intKeyedMap(source['errors'], (value) {
+          if (value is! String || value.trim().isEmpty) {
+            throw const FormatException();
+          }
+          return value;
+        }),
+      );
+    });
+
+Sub2ApiAdminAccountBatchTodayStats mapAdminAccountBatchTodayStats(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  return Sub2ApiAdminAccountBatchTodayStats(
+    _intKeyedMap(source['stats'], (value) => _todayStats(_object(value))),
+  );
+});
+
+Sub2ApiAdminMixedChannelCheck mapAdminMixedChannelCheck(Object? data) =>
+    _map(() {
+      final source = _object(data);
+      final hasRisk = _boolean(source, 'has_risk');
+      final error = _optionalString(source, 'error');
+      final message = _optionalString(source, 'message');
+      final details = source['details'] == null
+          ? null
+          : _mixedChannelDetails(_object(source['details']));
+      if (hasRisk) {
+        if (error != 'mixed_channel_warning' ||
+            message.trim().isEmpty ||
+            details == null) {
+          throw const FormatException();
+        }
+      } else if (error.isNotEmpty || message.isNotEmpty || details != null) {
+        throw const FormatException();
+      }
+      return Sub2ApiAdminMixedChannelCheck(
+        hasRisk: hasRisk,
+        error: error,
+        message: message,
+        details: details,
+      );
+    });
+
+List<String> mapAdminSyncedUpstreamModels(Object? data) => _map(() {
+  final source = _object(data);
+  final models = _list(source, 'models')
+      .map((value) {
+        if (value is! String || value.trim().isEmpty) {
+          throw const FormatException();
+        }
+        return value;
+      })
+      .toList(growable: false);
+  if (models.isEmpty || models.toSet().length != models.length) {
+    throw const FormatException();
+  }
+  return List.unmodifiable(models);
+});
+
 Sub2ApiAdminUpstreamBillingProbeSettings mapAdminUpstreamBillingProbeSettings(
   Object? data,
 ) => _map(() {
@@ -418,6 +486,15 @@ Sub2ApiAdminOllamaCloudUsageWindow _ollamaWindow(Map<String, Object?> source) =>
       resetText: _optionalString(source, 'reset_text'),
     );
 
+Sub2ApiAdminMixedChannelRiskDetails _mixedChannelDetails(
+  Map<String, Object?> source,
+) => Sub2ApiAdminMixedChannelRiskDetails(
+  groupId: _positiveInteger(source, 'group_id'),
+  groupName: _nonEmptyString(source, 'group_name'),
+  currentPlatform: _nonEmptyString(source, 'current_platform'),
+  otherPlatform: _nonEmptyString(source, 'other_platform'),
+);
+
 Sub2ApiAdminUpstreamBillingProbeResult _upstreamBillingProbeResult(
   Map<String, Object?> source,
 ) {
@@ -658,6 +735,19 @@ Map<String, Object?> _object(Object? value) {
     result[entry.key as String] = entry.value;
   }
   return result;
+}
+
+Map<int, T> _intKeyedMap<T>(Object? value, T Function(Object? value) decode) {
+  final source = _object(value);
+  final result = <int, T>{};
+  for (final entry in source.entries) {
+    final id = int.tryParse(entry.key);
+    if (id == null || id <= 0 || id.toString() != entry.key) {
+      throw const FormatException();
+    }
+    result[id] = decode(entry.value);
+  }
+  return Map.unmodifiable(result);
 }
 
 List<Object?> _array(Object? value) {

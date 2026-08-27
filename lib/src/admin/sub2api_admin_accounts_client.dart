@@ -127,6 +127,29 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminAccountBatchUsage> getBatchUsage(
+    List<int> accountIds, {
+    bool force = false,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccountBatchTodayStats> getBatchTodayStats(
+    List<int> accountIds, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminMixedChannelCheck> checkMixedChannel({
+    required Sub2ApiAdminAccountPlatform platform,
+    required List<int> groupIds,
+    int? accountId,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<List<String>> syncUpstreamModels(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminAccountStats> getStats(
     int accountId, {
     int days = 30,
@@ -632,6 +655,94 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
   );
 
   @override
+  Future<Sub2ApiAdminAccountBatchUsage> getBatchUsage(
+    List<int> accountIds, {
+    bool force = false,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final normalizedIds = _normalizeAccountIds(accountIds);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.batchAccountUsage(
+        <String, Object?>{'account_ids': normalizedIds, 'force': force},
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminAccountBatchUsage,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccountBatchTodayStats> getBatchTodayStats(
+    List<int> accountIds, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final normalizedIds = _normalizeAccountIds(accountIds);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.batchAccountTodayStats(
+            <String, Object?>{'account_ids': normalizedIds},
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminAccountBatchTodayStats,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminMixedChannelCheck> checkMixedChannel({
+    required Sub2ApiAdminAccountPlatform platform,
+    required List<int> groupIds,
+    int? accountId,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (accountId != null) _validateAccountId(accountId);
+    final normalizedGroupIds = _normalizePositiveIds(
+      groupIds,
+      code: 'admin.accounts.invalid_group_id',
+    );
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.checkMixedChannel(
+        <String, Object?>{
+          'platform': _wirePlatform(platform),
+          'group_ids': normalizedGroupIds,
+          'account_id': ?accountId,
+        },
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminMixedChannelCheck,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<List<String>> syncUpstreamModels(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.syncUpstreamModels(
+        accountId,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminSyncedUpstreamModels,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
   Future<Sub2ApiAdminAccountStats> getStats(
     int accountId, {
     int days = 30,
@@ -820,6 +931,16 @@ List<int> _validateProbeBatch(List<int> accountIds) {
     throw _validation('admin.accounts.invalid_account_id');
   }
   return <int>{...accountIds}.toList(growable: false);
+}
+
+List<int> _normalizeAccountIds(List<int> accountIds) => _normalizePositiveIds(
+  accountIds,
+  code: 'admin.accounts.invalid_account_id',
+);
+
+List<int> _normalizePositiveIds(List<int> ids, {required String code}) {
+  if (ids.any((id) => id <= 0)) throw _validation(code);
+  return <int>{...ids}.toList(growable: false);
 }
 
 void _validateOllamaCloudUsageSettings(

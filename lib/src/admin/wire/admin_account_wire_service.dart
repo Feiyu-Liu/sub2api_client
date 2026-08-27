@@ -208,6 +208,42 @@ abstract class AdminAccountWireService {
     @Header('x-api-key') String? apiKey,
   );
 
+  @POST('/api/v1/admin/accounts/usage/batch')
+  Future<HttpResponse<Object?>> batchAccountUsage(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/today-stats/batch')
+  Future<HttpResponse<Object?>> batchAccountTodayStats(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/check-mixed-channel')
+  Future<HttpResponse<Object?>> checkMixedChannel(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/{id}/models/sync-upstream')
+  Future<HttpResponse<Object?>> syncUpstreamModels(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
   @GET('/api/v1/admin/accounts/{id}/stats')
   Future<HttpResponse<Object?>> accountStats(
     @Path('id') int accountId,
