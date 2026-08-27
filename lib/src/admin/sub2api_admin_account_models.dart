@@ -510,6 +510,18 @@ final class Sub2ApiAdminBulkUpdateAccountsResult {
   final int longContextInheritedCount;
 }
 
+final class Sub2ApiAdminApplyOAuthCredentialsRequest {
+  const Sub2ApiAdminApplyOAuthCredentialsRequest({
+    required this.type,
+    required this.credentials,
+    this.extra = const Sub2ApiAdminJsonObject({}),
+  });
+
+  final Sub2ApiAdminAccountType type;
+  final Sub2ApiAdminCredentialSet credentials;
+  final Sub2ApiAdminJsonObject extra;
+}
+
 final class Sub2ApiAdminAccountListQuery {
   const Sub2ApiAdminAccountListQuery({
     this.page,

@@ -50,6 +50,12 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminAccount> applyOAuthCredentials(
+    int accountId,
+    Sub2ApiAdminApplyOAuthCredentialsRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminAccount> duplicate(
     int accountId,
     Sub2ApiAdminDuplicateAccountRequest request, {
@@ -523,6 +529,46 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         _apiKey(credential),
       ),
       decode: mapAdminBulkUpdateAccountsResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccount> applyOAuthCredentials(
+    int accountId,
+    Sub2ApiAdminApplyOAuthCredentialsRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    if (request.type != Sub2ApiAdminAccountType.oauth &&
+        request.type != Sub2ApiAdminAccountType.setupToken) {
+      throw _validation('admin.accounts.invalid_oauth_account_type');
+    }
+    final credentials = _credentialSetBody(request.credentials);
+    if (credentials.isEmpty) {
+      throw _validation('admin.accounts.credentials_required');
+    }
+    final extra = request.extra.values.map(
+      (key, value) => MapEntry(key, value.toWire()),
+    );
+    if (extra.keys.any(_managedAccountExtraKeys.contains)) {
+      throw _validation('admin.accounts.managed_extra_not_writable');
+    }
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.applyOAuthCredentials(
+            accountId,
+            <String, Object?>{
+              'type': _wireType(request.type),
+              'credentials': credentials,
+              if (extra.isNotEmpty) 'extra': extra,
+            },
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminAccount,
       requestOptions: requestOptions,
     );
   }

@@ -74,6 +74,16 @@ abstract class AdminAccountWireService {
     @Header('x-api-key') String? apiKey,
   );
 
+  @POST('/api/v1/admin/accounts/{id}/apply-oauth-credentials')
+  Future<HttpResponse<Object?>> applyOAuthCredentials(
+    @Path('id') int accountId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
   @POST('/api/v1/admin/accounts/{id}/duplicate')
   Future<HttpResponse<Object?>> duplicateAccount(
     @Path('id') int accountId,
