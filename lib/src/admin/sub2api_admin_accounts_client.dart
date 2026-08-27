@@ -45,6 +45,11 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminBulkUpdateAccountsResult> bulkUpdate(
+    Sub2ApiAdminBulkUpdateAccountsRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminAccount> duplicate(
     int accountId,
     Sub2ApiAdminDuplicateAccountRequest request, {
@@ -499,6 +504,25 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
             _apiKey(credential),
           ),
       decode: mapAdminBatchAccountMutationResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminBulkUpdateAccountsResult> bulkUpdate(
+    Sub2ApiAdminBulkUpdateAccountsRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final body = _bulkUpdateAccountBody(request);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.bulkUpdateAccounts(
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminBulkUpdateAccountsResult,
       requestOptions: requestOptions,
     );
   }
@@ -1810,6 +1834,157 @@ Map<String, Object?> _updateAccountBody(
   }
   if (request.confirmMixedChannelRisk) {
     body['confirm_mixed_channel_risk'] = true;
+  }
+  return body;
+}
+
+Map<String, Object?> _bulkUpdateAccountBody(
+  Sub2ApiAdminBulkUpdateAccountsRequest request,
+) {
+  final body = <String, Object?>{};
+  switch (request.selector) {
+    case Sub2ApiAdminBulkAccountIdsSelector(:final accountIds):
+      body['account_ids'] = _requiredAccountIds(accountIds);
+    case Sub2ApiAdminBulkAccountFiltersSelector(:final filters):
+      final filterBody = _bulkFilterBody(filters);
+      if (filterBody.isEmpty) {
+        throw _validation('admin.accounts.bulk_filters_required');
+      }
+      body['filters'] = filterBody;
+    case Sub2ApiAdminBulkAllAccountsSelector():
+      body['filters'] = <String, Object?>{};
+  }
+  var hasUpdates = false;
+  if (request.name != null) {
+    final name = request.name!.trim();
+    if (name.isEmpty || name.runes.length > 100) {
+      throw _validation('admin.accounts.invalid_name');
+    }
+    body['name'] = name;
+    hasUpdates = true;
+  }
+  switch (request.proxy) {
+    case Sub2ApiAdminProxyUnchanged():
+      break;
+    case Sub2ApiAdminProxyClear():
+      body['proxy_id'] = 0;
+      hasUpdates = true;
+    case Sub2ApiAdminProxySet(:final proxyId):
+      if (proxyId <= 0) throw _validation('admin.accounts.invalid_proxy_id');
+      body['proxy_id'] = proxyId;
+      hasUpdates = true;
+  }
+  if (request.concurrency != null) {
+    if (request.concurrency! < 0) {
+      throw _validation('admin.accounts.invalid_concurrency');
+    }
+    body['concurrency'] = request.concurrency;
+    hasUpdates = true;
+  }
+  if (request.priority != null) {
+    if (request.priority! < 0) {
+      throw _validation('admin.accounts.invalid_priority');
+    }
+    body['priority'] = request.priority;
+    hasUpdates = true;
+  }
+  if (request.rateMultiplier != null) {
+    body['rate_multiplier'] = _nonNegativeDecimalDouble(
+      request.rateMultiplier!,
+      code: 'admin.accounts.invalid_rate_multiplier',
+    );
+    hasUpdates = true;
+  }
+  switch (request.loadFactor) {
+    case Sub2ApiAdminLoadFactorUnchanged():
+      break;
+    case Sub2ApiAdminLoadFactorClear():
+      body['load_factor'] = 0;
+      hasUpdates = true;
+    case Sub2ApiAdminLoadFactorSet(:final loadFactor):
+      if (loadFactor <= 0 || loadFactor > 10000) {
+        throw _validation('admin.accounts.invalid_load_factor');
+      }
+      body['load_factor'] = loadFactor;
+      hasUpdates = true;
+  }
+  if (request.status != null) {
+    body['status'] = request.status!.name;
+    hasUpdates = true;
+  }
+  if (request.schedulable != null) {
+    body['schedulable'] = request.schedulable;
+    hasUpdates = true;
+  }
+  if (request.groupIds != null) {
+    body['group_ids'] = _normalizePositiveIds(
+      request.groupIds!,
+      code: 'admin.accounts.invalid_group_id',
+    );
+    hasUpdates = true;
+  }
+  if (request.credentials != null) {
+    final credentials = _credentialSetBody(request.credentials!);
+    if (credentials.isEmpty) {
+      throw _validation('admin.accounts.credentials_required');
+    }
+    body['credentials'] = credentials;
+    hasUpdates = true;
+  }
+  if (request.extra != null) {
+    final extra = request.extra!.values.map(
+      (key, value) => MapEntry(key, value.toWire()),
+    );
+    if (extra.isEmpty) {
+      throw _validation('admin.accounts.bulk_extra_required');
+    }
+    if (extra.keys.any(_managedAccountExtraKeys.contains)) {
+      throw _validation('admin.accounts.managed_extra_not_writable');
+    }
+    body['extra'] = extra;
+    hasUpdates = true;
+  }
+  if (request.upstreamBillingProbeEnabled != null) {
+    body['upstream_billing_probe_enabled'] =
+        request.upstreamBillingProbeEnabled;
+    hasUpdates = true;
+  }
+  if (!hasUpdates) throw _validation('admin.accounts.empty_bulk_update');
+  if (request.confirmMixedChannelRisk) {
+    body['confirm_mixed_channel_risk'] = true;
+  }
+  return body;
+}
+
+Map<String, Object?> _bulkFilterBody(Sub2ApiAdminBulkAccountFilters filters) {
+  final body = <String, Object?>{};
+  if (filters.platform != null) {
+    body['platform'] = _wirePlatform(filters.platform!);
+  }
+  if (filters.type != null) body['type'] = _wireType(filters.type!);
+  if (filters.status != null) body['status'] = filters.status!.name;
+  switch (filters.group) {
+    case Sub2ApiAdminBulkAnyGroupFilter():
+      break;
+    case Sub2ApiAdminBulkUngroupedFilter():
+      body['group'] = 'ungrouped';
+    case Sub2ApiAdminBulkGroupIdFilter(:final groupId):
+      if (groupId <= 0) throw _validation('admin.accounts.invalid_group_id');
+      body['group'] = groupId.toString();
+  }
+  if (filters.search != null) {
+    final search = filters.search!.trim();
+    if (search.isEmpty || search.runes.length > 100) {
+      throw _validation('admin.accounts.invalid_search');
+    }
+    body['search'] = search;
+  }
+  if (filters.privacyMode != null) {
+    final privacyMode = filters.privacyMode!.trim();
+    if (privacyMode.isEmpty) {
+      throw _validation('admin.accounts.invalid_privacy_mode');
+    }
+    body['privacy_mode'] = privacyMode;
   }
   return body;
 }

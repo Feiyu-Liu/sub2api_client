@@ -265,6 +265,24 @@ Sub2ApiAdminBatchAccountMutationResult mapAdminBatchAccountMutationResult(
   );
 });
 
+Sub2ApiAdminBulkUpdateAccountsResult mapAdminBulkUpdateAccountsResult(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  final base = mapAdminBatchAccountMutationResult(source);
+  return Sub2ApiAdminBulkUpdateAccountsResult(
+    success: base.success,
+    failed: base.failed,
+    successIds: base.successIds,
+    failedIds: base.failedIds,
+    results: base.results,
+    longContextInheritedCount: _optionalNonNegativeInteger(
+      source,
+      'long_context_inherited_count',
+    ),
+  );
+});
+
 Sub2ApiAdminAccountBatchMaintenanceResult mapAdminAccountBatchMaintenanceResult(
   Object? data,
 ) =>

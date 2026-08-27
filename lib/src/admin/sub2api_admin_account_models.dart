@@ -380,6 +380,136 @@ final class Sub2ApiAdminBatchAccountMutationResult {
   final List<Sub2ApiAdminBatchAccountMutationItem> results;
 }
 
+sealed class Sub2ApiAdminBulkAccountSelector {
+  const Sub2ApiAdminBulkAccountSelector();
+
+  factory Sub2ApiAdminBulkAccountSelector.ids(List<int> accountIds) =
+      Sub2ApiAdminBulkAccountIdsSelector;
+  const factory Sub2ApiAdminBulkAccountSelector.filters(
+    Sub2ApiAdminBulkAccountFilters filters,
+  ) = Sub2ApiAdminBulkAccountFiltersSelector;
+  const factory Sub2ApiAdminBulkAccountSelector.allAccounts() =
+      Sub2ApiAdminBulkAllAccountsSelector;
+}
+
+final class Sub2ApiAdminBulkAccountIdsSelector
+    extends Sub2ApiAdminBulkAccountSelector {
+  Sub2ApiAdminBulkAccountIdsSelector(List<int> accountIds)
+    : accountIds = List.unmodifiable(accountIds);
+
+  final List<int> accountIds;
+}
+
+final class Sub2ApiAdminBulkAccountFiltersSelector
+    extends Sub2ApiAdminBulkAccountSelector {
+  const Sub2ApiAdminBulkAccountFiltersSelector(this.filters);
+
+  final Sub2ApiAdminBulkAccountFilters filters;
+}
+
+final class Sub2ApiAdminBulkAllAccountsSelector
+    extends Sub2ApiAdminBulkAccountSelector {
+  const Sub2ApiAdminBulkAllAccountsSelector();
+}
+
+sealed class Sub2ApiAdminBulkGroupFilter {
+  const Sub2ApiAdminBulkGroupFilter();
+
+  const factory Sub2ApiAdminBulkGroupFilter.any() =
+      Sub2ApiAdminBulkAnyGroupFilter;
+  const factory Sub2ApiAdminBulkGroupFilter.ungrouped() =
+      Sub2ApiAdminBulkUngroupedFilter;
+  const factory Sub2ApiAdminBulkGroupFilter.id(int groupId) =
+      Sub2ApiAdminBulkGroupIdFilter;
+}
+
+final class Sub2ApiAdminBulkAnyGroupFilter extends Sub2ApiAdminBulkGroupFilter {
+  const Sub2ApiAdminBulkAnyGroupFilter();
+}
+
+final class Sub2ApiAdminBulkUngroupedFilter
+    extends Sub2ApiAdminBulkGroupFilter {
+  const Sub2ApiAdminBulkUngroupedFilter();
+}
+
+final class Sub2ApiAdminBulkGroupIdFilter extends Sub2ApiAdminBulkGroupFilter {
+  const Sub2ApiAdminBulkGroupIdFilter(this.groupId);
+
+  final int groupId;
+}
+
+final class Sub2ApiAdminBulkAccountFilters {
+  const Sub2ApiAdminBulkAccountFilters({
+    this.platform,
+    this.type,
+    this.status,
+    this.group = const Sub2ApiAdminBulkGroupFilter.any(),
+    this.search,
+    this.privacyMode,
+  });
+
+  final Sub2ApiAdminAccountPlatform? platform;
+  final Sub2ApiAdminAccountType? type;
+  final Sub2ApiAdminAccountStatus? status;
+  final Sub2ApiAdminBulkGroupFilter group;
+  final String? search;
+  final String? privacyMode;
+}
+
+final class Sub2ApiAdminBulkUpdateAccountsRequest {
+  Sub2ApiAdminBulkUpdateAccountsRequest({
+    required this.selector,
+    this.name,
+    this.proxy = const Sub2ApiAdminProxyUpdate.unchanged(),
+    this.concurrency,
+    this.priority,
+    this.rateMultiplier,
+    this.loadFactor = const Sub2ApiAdminLoadFactorUpdate.unchanged(),
+    this.status,
+    this.schedulable,
+    List<int>? groupIds,
+    this.credentials,
+    this.extra,
+    this.upstreamBillingProbeEnabled,
+    this.confirmMixedChannelRisk = false,
+  }) : groupIds = groupIds == null ? null : List.unmodifiable(groupIds);
+
+  final Sub2ApiAdminBulkAccountSelector selector;
+  final String? name;
+  final Sub2ApiAdminProxyUpdate proxy;
+  final int? concurrency;
+  final int? priority;
+  final Sub2ApiDecimal? rateMultiplier;
+  final Sub2ApiAdminLoadFactorUpdate loadFactor;
+  final Sub2ApiAdminAccountStatus? status;
+  final bool? schedulable;
+  final List<int>? groupIds;
+  final Sub2ApiAdminCredentialSet? credentials;
+  final Sub2ApiAdminJsonObject? extra;
+  final bool? upstreamBillingProbeEnabled;
+  final bool confirmMixedChannelRisk;
+}
+
+final class Sub2ApiAdminBulkUpdateAccountsResult {
+  Sub2ApiAdminBulkUpdateAccountsResult({
+    required this.success,
+    required this.failed,
+    required List<int> successIds,
+    required List<int> failedIds,
+    required List<Sub2ApiAdminBatchAccountMutationItem> results,
+    required this.longContextInheritedCount,
+  }) : successIds = List.unmodifiable(successIds),
+       failedIds = List.unmodifiable(failedIds),
+       results = List.unmodifiable(results);
+
+  final int success;
+  final int failed;
+  final List<int> successIds;
+  final List<int> failedIds;
+  final List<Sub2ApiAdminBatchAccountMutationItem> results;
+  final int longContextInheritedCount;
+}
+
 final class Sub2ApiAdminAccountListQuery {
   const Sub2ApiAdminAccountListQuery({
     this.page,
