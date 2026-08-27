@@ -11,6 +11,9 @@ export 'src/admin/sub2api_admin_group_models.dart';
 export 'src/admin/sub2api_admin_groups_client.dart'
     show Sub2ApiAdminGroupsClient;
 export 'src/admin/sub2api_admin_models.dart';
+export 'src/admin/sub2api_admin_proxies_client.dart'
+    show Sub2ApiAdminProxiesClient;
+export 'src/admin/sub2api_admin_proxy_models.dart';
 export 'src/admin/sub2api_admin_subscription_models.dart';
 export 'src/admin/sub2api_admin_user_models.dart';
 export 'src/admin/sub2api_admin_users_client.dart' show Sub2ApiAdminUsersClient;
@@ -24,6 +27,7 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminOAuthSessionId,
         Sub2ApiAdminAccountDataArchive,
         Sub2ApiAdminCodexSessionPayload,
+        Sub2ApiAdminProxyPassword,
         Sub2ApiAdminCredentialSecret,
         Sub2ApiApiKeySecret,
         Sub2ApiOAuthAuthorizationCode,

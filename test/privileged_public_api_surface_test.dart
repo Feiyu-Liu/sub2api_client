@@ -29,6 +29,8 @@ void main() {
     final Sub2ApiAdminUsersClient opsUsers = ops.users;
     final Sub2ApiAdminAccountsClient adminAccounts = admin.accounts;
     final Sub2ApiAdminAccountsClient opsAccounts = ops.accounts;
+    final Sub2ApiAdminProxiesClient adminProxies = admin.proxies;
+    final Sub2ApiAdminProxiesClient opsProxies = ops.proxies;
     final Future<Sub2ApiAdminIdentity> Function({
       Sub2ApiRequestOptions? requestOptions,
     })
@@ -68,6 +70,8 @@ void main() {
       exportAccountData,
       importAccountData,
       importCodexSessions,
+      adminProxies,
+      opsProxies,
     ], everyElement(isNotNull));
   });
 

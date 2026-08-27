@@ -11,6 +11,7 @@ import 'sub2api_admin_credential_mode.dart';
 import 'sub2api_admin_dashboard_client.dart';
 import 'sub2api_admin_groups_client.dart';
 import 'sub2api_admin_models.dart';
+import 'sub2api_admin_proxies_client.dart';
 import 'sub2api_admin_role_executor.dart';
 import 'sub2api_admin_users_client.dart';
 
@@ -33,6 +34,7 @@ final class Sub2ApiAdminClient {
     required this.accounts,
     required this.dashboard,
     required this.groups,
+    required this.proxies,
     required this.users,
     required Sub2ApiAdminRoleExecutor adminExecutor,
     required Dio dio,
@@ -48,6 +50,7 @@ final class Sub2ApiAdminClient {
   final Sub2ApiAdminAccountsClient accounts;
   final Sub2ApiAdminDashboardClient dashboard;
   final Sub2ApiAdminGroupsClient groups;
+  final Sub2ApiAdminProxiesClient proxies;
   final Sub2ApiAdminUsersClient users;
   final Sub2ApiAdminRoleExecutor _adminExecutor;
   final Dio _dio;
@@ -106,6 +109,11 @@ Sub2ApiAdminClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
     ),
     groups: createSub2ApiAdminGroupsClient(
+      dio: dio,
+      requestExecutor: adminExecutor,
+      credentialMode: Sub2ApiAdminCredentialMode.jwt,
+    ),
+    proxies: createSub2ApiAdminProxiesClient(
       dio: dio,
       requestExecutor: adminExecutor,
       credentialMode: Sub2ApiAdminCredentialMode.jwt,

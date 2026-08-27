@@ -119,6 +119,11 @@ final class Sub2ApiAdminCodexSessionPayload extends _SensitiveValue {
   const Sub2ApiAdminCodexSessionPayload(super.value);
 }
 
+/// Password carried by an administrator proxy-management response or request.
+final class Sub2ApiAdminProxyPassword extends _SensitiveValue {
+  const Sub2ApiAdminProxyPassword(super.value);
+}
+
 /// Signed token carried by a notification-email unsubscribe link.
 final class Sub2ApiNotificationUnsubscribeToken extends _SensitiveValue {
   const Sub2ApiNotificationUnsubscribeToken(super.value);
