@@ -706,6 +706,33 @@ final class Sub2ApiAdminAccountBatchDeleteResult {
   final List<Sub2ApiAdminAccountBatchError> errors;
 }
 
+final class Sub2ApiAdminAccountBatchWarning {
+  const Sub2ApiAdminAccountBatchWarning({
+    required this.accountId,
+    required this.warning,
+  });
+
+  final int accountId;
+  final String warning;
+}
+
+final class Sub2ApiAdminAccountBatchMaintenanceResult {
+  Sub2ApiAdminAccountBatchMaintenanceResult({
+    required this.total,
+    required this.success,
+    required this.failed,
+    required List<Sub2ApiAdminAccountBatchError> errors,
+    required List<Sub2ApiAdminAccountBatchWarning> warnings,
+  }) : errors = List.unmodifiable(errors),
+       warnings = List.unmodifiable(warnings);
+
+  final int total;
+  final int success;
+  final int failed;
+  final List<Sub2ApiAdminAccountBatchError> errors;
+  final List<Sub2ApiAdminAccountBatchWarning> warnings;
+}
+
 final class Sub2ApiAdminAccountBatchUsage {
   Sub2ApiAdminAccountBatchUsage({
     required Map<int, Sub2ApiAdminAccountUsage> usage,

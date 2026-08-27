@@ -54,6 +54,33 @@ abstract class AdminAccountWireService {
     @Header('x-api-key') String? apiKey,
   );
 
+  @POST('/api/v1/admin/accounts/batch-clear-error')
+  Future<HttpResponse<Object?>> batchClearAccountErrors(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/batch-refresh')
+  Future<HttpResponse<Object?>> batchRefreshAccountCredentials(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/batch-refresh-tier')
+  Future<HttpResponse<Object?>> batchRefreshAccountTiers(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
   @GET('/api/v1/admin/accounts/upstream-billing-probe/settings')
   Future<HttpResponse<Object?>> upstreamBillingProbeSettings(
     @CancelRequest() CancelToken cancelToken,

@@ -38,6 +38,21 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminAccountBatchMaintenanceResult> batchClearErrors(
+    List<int> accountIds, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccountBatchMaintenanceResult> batchRefreshCredentials(
+    List<int> accountIds, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccountBatchMaintenanceResult> batchRefreshGoogleOneTiers({
+    List<int> accountIds = const [],
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminUpstreamBillingProbeSettings>
   getUpstreamBillingProbeSettings({Sub2ApiRequestOptions? requestOptions});
 
@@ -355,6 +370,66 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         _apiKey(credential),
       ),
       decode: mapAdminAccountBatchDeleteResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccountBatchMaintenanceResult> batchClearErrors(
+    List<int> accountIds, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final normalizedIds = _requiredAccountIds(accountIds);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.batchClearAccountErrors(
+            <String, Object?>{'account_ids': normalizedIds},
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminAccountBatchMaintenanceResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccountBatchMaintenanceResult> batchRefreshCredentials(
+    List<int> accountIds, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final normalizedIds = _requiredAccountIds(accountIds);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.batchRefreshAccountCredentials(
+            <String, Object?>{'account_ids': normalizedIds},
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminAccountBatchRefreshResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccountBatchMaintenanceResult> batchRefreshGoogleOneTiers({
+    List<int> accountIds = const [],
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final normalizedIds = _normalizeAccountIds(accountIds);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.batchRefreshAccountTiers(
+            <String, Object?>{'account_ids': normalizedIds},
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminAccountBatchMaintenanceResult,
       requestOptions: requestOptions,
     );
   }
@@ -1019,6 +1094,14 @@ List<int> _normalizeAccountIds(List<int> accountIds) => _normalizePositiveIds(
   accountIds,
   code: 'admin.accounts.invalid_account_id',
 );
+
+List<int> _requiredAccountIds(List<int> accountIds) {
+  final normalizedIds = _normalizeAccountIds(accountIds);
+  if (normalizedIds.isEmpty) {
+    throw _validation('admin.accounts.account_ids_required');
+  }
+  return normalizedIds;
+}
 
 List<int> _normalizePositiveIds(List<int> ids, {required String code}) {
   if (ids.any((id) => id <= 0)) throw _validation(code);

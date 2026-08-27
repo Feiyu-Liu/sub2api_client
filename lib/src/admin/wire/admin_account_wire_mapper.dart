@@ -72,6 +72,15 @@ Sub2ApiAdminAccountBatchDeleteResult mapAdminAccountBatchDeleteResult(
   );
 });
 
+Sub2ApiAdminAccountBatchMaintenanceResult mapAdminAccountBatchMaintenanceResult(
+  Object? data,
+) =>
+    _map(() => _accountBatchMaintenance(_object(data), includeWarnings: false));
+
+Sub2ApiAdminAccountBatchMaintenanceResult mapAdminAccountBatchRefreshResult(
+  Object? data,
+) => _map(() => _accountBatchMaintenance(_object(data), includeWarnings: true));
+
 Sub2ApiAdminAccountBatchUsage mapAdminAccountBatchUsage(Object? data) =>
     _map(() {
       final source = _object(data);
@@ -421,6 +430,52 @@ Sub2ApiAdminAccount _account(Map<String, Object?> source) {
     currentWindowCost: _nullableDecimal(source, 'current_window_cost'),
     activeSessions: _nullableNonNegativeInteger(source, 'active_sessions'),
     currentRpm: _nullableNonNegativeInteger(source, 'current_rpm'),
+  );
+}
+
+Sub2ApiAdminAccountBatchMaintenanceResult _accountBatchMaintenance(
+  Map<String, Object?> source, {
+  required bool includeWarnings,
+}) {
+  final total = _nonNegativeInteger(source, 'total');
+  final success = _nonNegativeInteger(source, 'success');
+  final failed = _nonNegativeInteger(source, 'failed');
+  final errors = _nullableRequiredList(source, 'errors')
+      .map(_object)
+      .map((error) {
+        return Sub2ApiAdminAccountBatchError(
+          accountId: _positiveInteger(error, 'account_id'),
+          error: _nonEmptyString(error, 'error'),
+        );
+      })
+      .toList(growable: false);
+  final warnings = includeWarnings
+      ? _nullableRequiredList(source, 'warnings')
+            .map(_object)
+            .map((warning) {
+              return Sub2ApiAdminAccountBatchWarning(
+                accountId: _positiveInteger(warning, 'account_id'),
+                warning: _nonEmptyString(warning, 'warning'),
+              );
+            })
+            .toList(growable: false)
+      : const <Sub2ApiAdminAccountBatchWarning>[];
+  final errorIds = errors.map((error) => error.accountId).toSet();
+  final warningIds = warnings.map((warning) => warning.accountId).toSet();
+  if (success + failed != total ||
+      errors.length != failed ||
+      errorIds.length != errors.length ||
+      warnings.length > success ||
+      warningIds.length != warnings.length ||
+      warningIds.intersection(errorIds).isNotEmpty) {
+    throw const FormatException();
+  }
+  return Sub2ApiAdminAccountBatchMaintenanceResult(
+    total: total,
+    success: success,
+    failed: failed,
+    errors: errors,
+    warnings: warnings,
   );
 }
 
@@ -804,6 +859,12 @@ List<Object?> _list(Map<String, Object?> source, String key) {
 }
 
 List<Object?> _optionalList(Map<String, Object?> source, String key) {
+  final value = source[key];
+  return value == null ? const [] : _array(value);
+}
+
+List<Object?> _nullableRequiredList(Map<String, Object?> source, String key) {
+  if (!source.containsKey(key)) throw const FormatException();
   final value = source[key];
   return value == null ? const [] : _array(value);
 }
