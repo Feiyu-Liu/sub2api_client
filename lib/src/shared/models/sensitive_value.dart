@@ -89,6 +89,16 @@ final class Sub2ApiAdminOAuthSessionId extends _SensitiveValue {
   const Sub2ApiAdminOAuthSessionId(super.value);
 }
 
+/// Single-use authorization code returned by an OAuth provider.
+final class Sub2ApiOAuthAuthorizationCode extends _SensitiveValue {
+  const Sub2ApiOAuthAuthorizationCode(super.value);
+}
+
+/// Browser session key used for cookie-assisted OAuth authorization.
+final class Sub2ApiOAuthCookieSessionKey extends _SensitiveValue {
+  const Sub2ApiOAuthCookieSessionKey(super.value);
+}
+
 /// Signed token carried by a notification-email unsubscribe link.
 final class Sub2ApiNotificationUnsubscribeToken extends _SensitiveValue {
   const Sub2ApiNotificationUnsubscribeToken(super.value);

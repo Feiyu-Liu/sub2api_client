@@ -107,6 +107,24 @@ Sub2ApiAdminOAuthAuthorization mapAdminOAuthAuthorization(Object? data) =>
       );
     });
 
+Sub2ApiAdminOAuthTokenInfo mapAdminOAuthTokenInfo(Object? data) => _map(() {
+  final source = _object(data);
+  final refreshToken = _optionalString(source, 'refresh_token').trim();
+  return Sub2ApiAdminOAuthTokenInfo(
+    accessToken: Sub2ApiAccessToken(_nonEmptyString(source, 'access_token')),
+    tokenType: _nonEmptyString(source, 'token_type'),
+    expiresIn: Duration(seconds: _positiveInteger(source, 'expires_in')),
+    expiresAt: _unixDateTime(source, 'expires_at'),
+    refreshToken: refreshToken.isEmpty
+        ? null
+        : Sub2ApiRefreshToken(refreshToken),
+    scope: _optionalString(source, 'scope'),
+    organizationUuid: _optionalString(source, 'org_uuid'),
+    accountUuid: _optionalString(source, 'account_uuid'),
+    emailAddress: _optionalString(source, 'email_address'),
+  );
+});
+
 Sub2ApiAdminAccountActionResult mapAdminAccountActionResult(Object? data) =>
     _map(() {
       final source = _object(data);

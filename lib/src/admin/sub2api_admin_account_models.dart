@@ -903,6 +903,52 @@ final class Sub2ApiAdminOAuthAuthorization {
   final Sub2ApiAdminOAuthSessionId sessionId;
 }
 
+final class Sub2ApiAdminOAuthCodeExchangeRequest {
+  const Sub2ApiAdminOAuthCodeExchangeRequest({
+    required this.sessionId,
+    required this.code,
+    this.proxyId,
+  });
+
+  final Sub2ApiAdminOAuthSessionId sessionId;
+  final Sub2ApiOAuthAuthorizationCode code;
+  final int? proxyId;
+}
+
+final class Sub2ApiAdminOAuthCookieExchangeRequest {
+  const Sub2ApiAdminOAuthCookieExchangeRequest({
+    required this.sessionKey,
+    this.proxyId,
+  });
+
+  final Sub2ApiOAuthCookieSessionKey sessionKey;
+  final int? proxyId;
+}
+
+final class Sub2ApiAdminOAuthTokenInfo {
+  const Sub2ApiAdminOAuthTokenInfo({
+    required this.accessToken,
+    required this.tokenType,
+    required this.expiresIn,
+    required this.expiresAt,
+    required this.scope,
+    required this.organizationUuid,
+    required this.accountUuid,
+    required this.emailAddress,
+    this.refreshToken,
+  });
+
+  final Sub2ApiAccessToken accessToken;
+  final String tokenType;
+  final Duration expiresIn;
+  final DateTime expiresAt;
+  final Sub2ApiRefreshToken? refreshToken;
+  final String scope;
+  final String organizationUuid;
+  final String accountUuid;
+  final String emailAddress;
+}
+
 final class Sub2ApiAdminAccountBatchUsage {
   Sub2ApiAdminAccountBatchUsage({
     required Map<int, Sub2ApiAdminAccountUsage> usage,

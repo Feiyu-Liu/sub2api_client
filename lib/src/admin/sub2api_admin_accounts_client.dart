@@ -95,6 +95,26 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminOAuthTokenInfo> exchangeOAuthCode(
+    Sub2ApiAdminOAuthCodeExchangeRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminOAuthTokenInfo> exchangeSetupTokenCode(
+    Sub2ApiAdminOAuthCodeExchangeRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminOAuthTokenInfo> authenticateOAuthCookie(
+    Sub2ApiAdminOAuthCookieExchangeRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminOAuthTokenInfo> authenticateSetupTokenCookie(
+    Sub2ApiAdminOAuthCookieExchangeRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminUpstreamBillingProbeSettings>
   getUpstreamBillingProbeSettings({Sub2ApiRequestOptions? requestOptions});
 
@@ -700,6 +720,72 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
       requestOptions: requestOptions,
     );
   }
+
+  @override
+  Future<Sub2ApiAdminOAuthTokenInfo> exchangeOAuthCode(
+    Sub2ApiAdminOAuthCodeExchangeRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.protectedNonReplayableRequest(
+    send: (cancelToken, options, credential) => _service.exchangeOAuthCode(
+      _oauthCodeExchangeBody(request),
+      cancelToken,
+      options,
+      _authorization(credential),
+      _apiKey(credential),
+    ),
+    decode: mapAdminOAuthTokenInfo,
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminOAuthTokenInfo> exchangeSetupTokenCode(
+    Sub2ApiAdminOAuthCodeExchangeRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.protectedNonReplayableRequest(
+    send: (cancelToken, options, credential) => _service.exchangeSetupTokenCode(
+      _oauthCodeExchangeBody(request),
+      cancelToken,
+      options,
+      _authorization(credential),
+      _apiKey(credential),
+    ),
+    decode: mapAdminOAuthTokenInfo,
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminOAuthTokenInfo> authenticateOAuthCookie(
+    Sub2ApiAdminOAuthCookieExchangeRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.protectedNonReplayableRequest(
+    send: (cancelToken, options, credential) =>
+        _service.authenticateOAuthCookie(
+          _oauthCookieExchangeBody(request),
+          cancelToken,
+          options,
+          _authorization(credential),
+          _apiKey(credential),
+        ),
+    decode: mapAdminOAuthTokenInfo,
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminOAuthTokenInfo> authenticateSetupTokenCookie(
+    Sub2ApiAdminOAuthCookieExchangeRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.protectedNonReplayableRequest(
+    send: (cancelToken, options, credential) =>
+        _service.authenticateSetupTokenCookie(
+          _oauthCookieExchangeBody(request),
+          cancelToken,
+          options,
+          _authorization(credential),
+          _apiKey(credential),
+        ),
+    decode: mapAdminOAuthTokenInfo,
+    requestOptions: requestOptions,
+  );
 
   @override
   Future<Sub2ApiAdminUpstreamBillingProbeSettings>
@@ -1415,6 +1501,42 @@ List<String>? _normalizeCrsAccountIds(List<String>? ids) {
     if (seen.add(id)) normalized.add(id);
   }
   return List.unmodifiable(normalized);
+}
+
+Map<String, Object?> _oauthCodeExchangeBody(
+  Sub2ApiAdminOAuthCodeExchangeRequest request,
+) {
+  final sessionId = request.sessionId.reveal().trim();
+  if (sessionId.isEmpty) {
+    throw _validation('admin.accounts.oauth_session_id_required');
+  }
+  final code = request.code.reveal().trim();
+  if (code.isEmpty) {
+    throw _validation('admin.accounts.oauth_code_required');
+  }
+  _validateOptionalProxyId(request.proxyId);
+  return <String, Object?>{
+    'session_id': sessionId,
+    'code': code,
+    'proxy_id': ?request.proxyId,
+  };
+}
+
+Map<String, Object?> _oauthCookieExchangeBody(
+  Sub2ApiAdminOAuthCookieExchangeRequest request,
+) {
+  final sessionKey = request.sessionKey.reveal().trim();
+  if (sessionKey.isEmpty) {
+    throw _validation('admin.accounts.oauth_cookie_session_required');
+  }
+  _validateOptionalProxyId(request.proxyId);
+  return <String, Object?>{'code': sessionKey, 'proxy_id': ?request.proxyId};
+}
+
+void _validateOptionalProxyId(int? proxyId) {
+  if (proxyId != null && proxyId <= 0) {
+    throw _validation('admin.accounts.invalid_proxy_id');
+  }
 }
 
 void _validateOllamaCloudUsageSettings(

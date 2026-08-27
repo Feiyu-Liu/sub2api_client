@@ -25,6 +25,8 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminApiKey,
         Sub2ApiAdminOAuthSessionId,
         Sub2ApiApiKeySecret,
+        Sub2ApiOAuthAuthorizationCode,
+        Sub2ApiOAuthCookieSessionKey,
         Sub2ApiOllamaCloudSession,
         Sub2ApiPassword;
 export 'src/shared/models/sub2api_decimal.dart';
