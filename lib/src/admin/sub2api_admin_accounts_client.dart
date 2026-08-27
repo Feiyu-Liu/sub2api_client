@@ -68,6 +68,12 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminAccount> createShadow(
+    int parentAccountId,
+    Sub2ApiAdminCreateShadowRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminUpstreamBillingProbeSettings>
   getUpstreamBillingProbeSettings({Sub2ApiRequestOptions? requestOptions});
 
@@ -521,6 +527,46 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
             _apiKey(credential),
           ),
       decode: mapAdminSyncedUpstreamModels,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccount> createShadow(
+    int parentAccountId,
+    Sub2ApiAdminCreateShadowRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(parentAccountId);
+    final name = request.name?.trim();
+    if (name != null && name.runes.length > 100) {
+      throw _validation('admin.accounts.shadow_name_too_long');
+    }
+    if (request.priority != null && request.priority! <= 0) {
+      throw _validation('admin.accounts.invalid_shadow_priority');
+    }
+    if (request.concurrency != null && request.concurrency! <= 0) {
+      throw _validation('admin.accounts.invalid_shadow_concurrency');
+    }
+    final groupIds = _normalizePositiveIds(
+      request.groupIds,
+      code: 'admin.accounts.invalid_group_id',
+    );
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.createShadow(
+        parentAccountId,
+        <String, Object?>{
+          if (name != null && name.isNotEmpty) 'name': name,
+          if (request.priority != null) 'priority': request.priority,
+          if (request.concurrency != null) 'concurrency': request.concurrency,
+          if (groupIds.isNotEmpty) 'group_ids': groupIds,
+        },
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: (data) => mapAdminShadowAccount(data, parentAccountId),
       requestOptions: requestOptions,
     );
   }

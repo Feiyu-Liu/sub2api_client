@@ -21,6 +21,20 @@ Sub2ApiAdminAccountPage mapAdminAccountPage(Object? data) => _map(() {
 Sub2ApiAdminAccount mapAdminAccount(Object? data) =>
     _map(() => _account(_object(data)));
 
+Sub2ApiAdminAccount mapAdminShadowAccount(Object? data, int parentAccountId) =>
+    _map(() {
+      final account = _account(_object(data));
+      if (account.platform != Sub2ApiAdminAccountPlatform.openAi ||
+          account.type != Sub2ApiAdminAccountType.oauth ||
+          account.parentAccountId != parentAccountId ||
+          account.quotaDimension != 'spark' ||
+          account.credentials.values.keys.length != 1 ||
+          !account.credentials.values.containsKey('model_mapping')) {
+        throw const FormatException();
+      }
+      return account;
+    });
+
 Sub2ApiAdminAccountActionResult mapAdminAccountActionResult(Object? data) =>
     _map(() {
       final source = _object(data);

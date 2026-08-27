@@ -786,6 +786,20 @@ final class Sub2ApiAdminUpstreamModelPreviewRequest {
   final Sub2ApiApiKeySecret apiKey;
 }
 
+final class Sub2ApiAdminCreateShadowRequest {
+  Sub2ApiAdminCreateShadowRequest({
+    this.name,
+    this.priority,
+    this.concurrency,
+    List<int> groupIds = const [],
+  }) : groupIds = List.unmodifiable(groupIds);
+
+  final String? name;
+  final int? priority;
+  final int? concurrency;
+  final List<int> groupIds;
+}
+
 final class Sub2ApiAdminAccountBatchUsage {
   Sub2ApiAdminAccountBatchUsage({
     required Map<int, Sub2ApiAdminAccountUsage> usage,
