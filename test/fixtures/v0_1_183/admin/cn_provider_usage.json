@@ -1,0 +1,30 @@
+{
+  "quota": {
+    "provider": "zhipu",
+    "source": "coding_plan",
+    "success": true,
+    "credential_valid": true,
+    "tiers": [
+      {"window": "5h", "used_percent": 12.5, "reset_at": "2026-08-27T12:00:00Z"},
+      {"window": "weekly", "used_percent": 45, "reset_at": "2026-09-01T00:00:00Z"}
+    ],
+    "plan_level": "pro",
+    "status_code": 200,
+    "fetched_at": 1787828400,
+    "persisted": true
+  },
+  "balance": {
+    "provider": "deepseek",
+    "success": true,
+    "balance": 20.75,
+    "currency": "CNY",
+    "balances": [
+      {"currency": "CNY", "balance": 20.75},
+      {"currency": "USD", "balance": 2.9}
+    ],
+    "available": true,
+    "status_code": 200,
+    "fetched_at": 1787828400,
+    "persisted": true
+  }
+}

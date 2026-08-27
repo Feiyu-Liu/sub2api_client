@@ -4,6 +4,7 @@ import '../shared/configuration/sub2api_configuration.dart';
 import 'sub2api_admin_accounts_client.dart';
 import 'sub2api_admin_antigravity_oauth_client.dart';
 import 'sub2api_admin_audit_logs_client.dart';
+import 'sub2api_admin_cn_providers_client.dart';
 import 'sub2api_admin_compliance_client.dart';
 import 'sub2api_admin_credential_mode.dart';
 import 'sub2api_admin_dashboard_client.dart';
@@ -47,6 +48,7 @@ final class Sub2ApiOpsClient {
     required this.accounts,
     required this.antigravityOAuth,
     required this.auditLogs,
+    required this.cnProviders,
     required this.compliance,
     required this.dashboard,
     required this.geminiOAuth,
@@ -63,6 +65,7 @@ final class Sub2ApiOpsClient {
   final Sub2ApiAdminAccountsClient accounts;
   final Sub2ApiAdminAntigravityOAuthClient antigravityOAuth;
   final Sub2ApiAdminAuditLogsClient auditLogs;
+  final Sub2ApiAdminCNProvidersClient cnProviders;
   final Sub2ApiAdminComplianceClient compliance;
   final Sub2ApiAdminDashboardClient dashboard;
   final Sub2ApiAdminGeminiOAuthClient geminiOAuth;
@@ -105,6 +108,11 @@ Sub2ApiOpsClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
     ),
     auditLogs: createSub2ApiAdminAuditLogsClient(
+      dio: dio,
+      requestExecutor: executor,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
+    cnProviders: createSub2ApiAdminCNProvidersClient(
       dio: dio,
       requestExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,

@@ -10,6 +10,9 @@ export 'src/admin/sub2api_admin_antigravity_oauth_models.dart';
 export 'src/admin/sub2api_admin_audit_log_models.dart';
 export 'src/admin/sub2api_admin_audit_logs_client.dart'
     show Sub2ApiAdminAuditLogsClient;
+export 'src/admin/sub2api_admin_cn_provider_models.dart';
+export 'src/admin/sub2api_admin_cn_providers_client.dart'
+    show Sub2ApiAdminCNProvidersClient;
 export 'src/admin/sub2api_admin_compliance_client.dart'
     show Sub2ApiAdminComplianceClient;
 export 'src/admin/sub2api_admin_compliance_models.dart';

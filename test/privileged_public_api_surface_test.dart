@@ -35,6 +35,8 @@ void main() {
         ops.antigravityOAuth;
     final Sub2ApiAdminAuditLogsClient adminAuditLogs = admin.auditLogs;
     final Sub2ApiAdminAuditLogsClient opsAuditLogs = ops.auditLogs;
+    final Sub2ApiAdminCNProvidersClient adminCNProviders = admin.cnProviders;
+    final Sub2ApiAdminCNProvidersClient opsCNProviders = ops.cnProviders;
     final Sub2ApiAdminComplianceClient adminCompliance = admin.compliance;
     final Sub2ApiAdminComplianceClient opsCompliance = ops.compliance;
     final Sub2ApiAdminGeminiOAuthClient adminGeminiOAuth = admin.geminiOAuth;
@@ -102,6 +104,8 @@ void main() {
       opsAntigravityOAuth,
       adminAuditLogs,
       opsAuditLogs,
+      adminCNProviders,
+      opsCNProviders,
       exportAccountData,
       importAccountData,
       importCodexSessions,
