@@ -50,6 +50,8 @@ void main() {
         ops.errorPassthrough;
     final Sub2ApiAdminProxiesClient adminProxies = admin.proxies;
     final Sub2ApiAdminProxiesClient opsProxies = ops.proxies;
+    final Sub2ApiAdminPromoCodesClient adminPromoCodes = admin.promoCodes;
+    final Sub2ApiAdminPromoCodesClient opsPromoCodes = ops.promoCodes;
     final Sub2ApiAdminScheduledTestsClient adminScheduledTests =
         admin.scheduledTests;
     final Sub2ApiAdminScheduledTestsClient opsScheduledTests =
@@ -128,6 +130,8 @@ void main() {
       importCodexSessions,
       adminProxies,
       opsProxies,
+      adminPromoCodes,
+      opsPromoCodes,
       adminScheduledTests,
       opsScheduledTests,
       adminTLSFingerprints,

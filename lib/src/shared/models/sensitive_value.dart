@@ -49,6 +49,11 @@ final class Sub2ApiVerificationCode extends _SensitiveValue {
   const Sub2ApiVerificationCode(super.value);
 }
 
+/// Registration promo code that grants account balance authority.
+final class Sub2ApiPromoCode extends _SensitiveValue {
+  const Sub2ApiPromoCode(super.value);
+}
+
 /// Short-lived token used to complete a two-factor authentication challenge.
 final class Sub2ApiTwoFactorTemporaryToken extends _SensitiveValue {
   const Sub2ApiTwoFactorTemporaryToken(super.value);

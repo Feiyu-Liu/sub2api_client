@@ -31,6 +31,9 @@ export 'src/admin/sub2api_admin_group_models.dart';
 export 'src/admin/sub2api_admin_groups_client.dart'
     show Sub2ApiAdminGroupsClient;
 export 'src/admin/sub2api_admin_models.dart';
+export 'src/admin/sub2api_admin_promo_code_models.dart';
+export 'src/admin/sub2api_admin_promo_codes_client.dart'
+    show Sub2ApiAdminPromoCodesClient;
 export 'src/admin/sub2api_admin_proxies_client.dart'
     show Sub2ApiAdminProxiesClient;
 export 'src/admin/sub2api_admin_proxy_models.dart';
@@ -65,6 +68,7 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiOAuthCookieSessionKey,
         Sub2ApiOllamaCloudSession,
         Sub2ApiPassword,
+        Sub2ApiPromoCode,
         Sub2ApiRefreshToken,
         Sub2ApiVerificationCode;
 export 'src/shared/models/sub2api_decimal.dart';

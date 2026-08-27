@@ -12,6 +12,7 @@ import 'sub2api_admin_dashboard_client.dart';
 import 'sub2api_admin_error_passthrough_client.dart';
 import 'sub2api_admin_gemini_oauth_client.dart';
 import 'sub2api_admin_groups_client.dart';
+import 'sub2api_admin_promo_codes_client.dart';
 import 'sub2api_admin_proxies_client.dart';
 import 'sub2api_admin_scheduled_tests_client.dart';
 import 'sub2api_admin_tls_fingerprints_client.dart';
@@ -60,6 +61,7 @@ final class Sub2ApiOpsClient {
     required this.geminiOAuth,
     required this.groups,
     required this.proxies,
+    required this.promoCodes,
     required this.scheduledTests,
     required this.tlsFingerprints,
     required this.users,
@@ -81,6 +83,7 @@ final class Sub2ApiOpsClient {
   final Sub2ApiAdminGeminiOAuthClient geminiOAuth;
   final Sub2ApiAdminGroupsClient groups;
   final Sub2ApiAdminProxiesClient proxies;
+  final Sub2ApiAdminPromoCodesClient promoCodes;
   final Sub2ApiAdminScheduledTestsClient scheduledTests;
   final Sub2ApiAdminTLSFingerprintsClient tlsFingerprints;
   final Sub2ApiAdminUsersClient users;
@@ -160,6 +163,11 @@ Sub2ApiOpsClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
     ),
     proxies: createSub2ApiAdminProxiesClient(
+      dio: dio,
+      requestExecutor: executor,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
+    promoCodes: createSub2ApiAdminPromoCodesClient(
       dio: dio,
       requestExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
