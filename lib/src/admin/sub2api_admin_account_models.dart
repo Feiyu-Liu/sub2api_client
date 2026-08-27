@@ -653,3 +653,93 @@ final class Sub2ApiAdminScheduledTestPlan {
   final DateTime createdAt;
   final DateTime updatedAt;
 }
+
+final class Sub2ApiAdminAccountProbeToggleResult {
+  const Sub2ApiAdminAccountProbeToggleResult({
+    required this.accountId,
+    required this.enabled,
+  });
+
+  final int accountId;
+  final bool enabled;
+}
+
+final class Sub2ApiAdminUpstreamBillingProbeData {
+  const Sub2ApiAdminUpstreamBillingProbeData({
+    required this.object,
+    required this.schemaVersion,
+    required this.billingScope,
+    required this.observedAt,
+    this.groupRateMultiplier,
+    this.userRateMultiplier,
+    this.resolvedRateMultiplier,
+    this.peakRateEnabled,
+    this.peakStart,
+    this.peakEnd,
+    this.peakRateMultiplier,
+    this.appliedPeakMultiplier,
+    this.effectiveRateMultiplier,
+    this.timezone,
+  });
+
+  final String object;
+  final int schemaVersion;
+  final String billingScope;
+  final Sub2ApiDecimal? groupRateMultiplier;
+  final Sub2ApiDecimal? userRateMultiplier;
+  final Sub2ApiDecimal? resolvedRateMultiplier;
+  final bool? peakRateEnabled;
+  final String? peakStart;
+  final String? peakEnd;
+  final Sub2ApiDecimal? peakRateMultiplier;
+  final Sub2ApiDecimal? appliedPeakMultiplier;
+  final Sub2ApiDecimal? effectiveRateMultiplier;
+  final String? timezone;
+  final DateTime observedAt;
+}
+
+final class Sub2ApiAdminUpstreamBillingProbeSnapshot {
+  const Sub2ApiAdminUpstreamBillingProbeSnapshot({
+    required this.status,
+    required this.lastAttemptAt,
+    required this.nextProbeAt,
+    required this.failureCount,
+    required this.httpStatus,
+    required this.lastError,
+    this.data,
+    this.receivedAt,
+    this.freshUntil,
+    this.syncedRateMultiplier,
+  });
+
+  final String status;
+  final Sub2ApiAdminUpstreamBillingProbeData? data;
+  final DateTime? receivedAt;
+  final DateTime? freshUntil;
+  final DateTime lastAttemptAt;
+  final DateTime nextProbeAt;
+  final int failureCount;
+  final int httpStatus;
+  final String lastError;
+  final Sub2ApiDecimal? syncedRateMultiplier;
+}
+
+final class Sub2ApiAdminUpstreamBillingProbeResult {
+  const Sub2ApiAdminUpstreamBillingProbeResult({
+    required this.accountId,
+    required this.error,
+    this.snapshot,
+  });
+
+  final int accountId;
+  final Sub2ApiAdminUpstreamBillingProbeSnapshot? snapshot;
+  final String error;
+}
+
+final class Sub2ApiAdminUpstreamBillingProbeBatchResult {
+  Sub2ApiAdminUpstreamBillingProbeBatchResult(
+    List<Sub2ApiAdminUpstreamBillingProbeResult> results,
+  ) : results = List.unmodifiable(results);
+
+  final List<Sub2ApiAdminUpstreamBillingProbeResult> results;
+}

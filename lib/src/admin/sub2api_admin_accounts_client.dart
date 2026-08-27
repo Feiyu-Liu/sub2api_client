@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 
 import '../shared/errors/sub2api_exception.dart';
+import '../shared/models/sensitive_value.dart';
 import '../shared/request/sub2api_request_options.dart';
 import '../shared/transport/request_executor.dart';
 import 'sub2api_admin_account_models.dart';
@@ -22,11 +25,63 @@ abstract interface class Sub2ApiAdminAccountsClient {
   Future<Sub2ApiAdminUpstreamBillingProbeSettings>
   getUpstreamBillingProbeSettings({Sub2ApiRequestOptions? requestOptions});
 
+  Future<Sub2ApiAdminUpstreamBillingProbeSettings>
+  updateUpstreamBillingProbeSettings({
+    required bool enabled,
+    required int intervalMinutes,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminUpstreamBillingProbeBatchResult> probeUpstreamBillingBatch(
+    List<int> accountIds, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccountProbeToggleResult> setUpstreamBillingProbeEnabled(
+    int accountId, {
+    required bool enabled,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminUpstreamBillingProbeResult> probeUpstreamBilling(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminOllamaCloudUsageSettings> getOllamaCloudUsageSettings({
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminOllamaCloudUsageSettings> updateOllamaCloudUsageSettings({
+    required bool enabled,
+    required int intervalMinutes,
+    required int debounceMinutes,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminOllamaCloudUsageState> getOllamaCloudUsage(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminOllamaCloudUsageState> saveOllamaCloudUsageSession(
+    int accountId,
+    Sub2ApiOllamaCloudSession session, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminOllamaCloudUsageState> deleteOllamaCloudUsageSession(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminOllamaCloudUsageState> setOllamaCloudUsageAutoRefresh(
+    int accountId, {
+    required bool enabled,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminOllamaCloudUsageState> refreshOllamaCloudUsage(
     int accountId, {
     Sub2ApiRequestOptions? requestOptions,
   });
@@ -174,6 +229,92 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
       );
 
   @override
+  Future<Sub2ApiAdminUpstreamBillingProbeSettings>
+  updateUpstreamBillingProbeSettings({
+    required bool enabled,
+    required int intervalMinutes,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateUpstreamBillingProbeInterval(intervalMinutes);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.updateUpstreamBillingProbeSettings(
+            <String, Object?>{
+              'enabled': enabled,
+              'interval_minutes': intervalMinutes,
+            },
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminUpstreamBillingProbeSettings,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminUpstreamBillingProbeBatchResult> probeUpstreamBillingBatch(
+    List<int> accountIds, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final normalizedIds = _validateProbeBatch(accountIds);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.probeUpstreamBillingBatch(
+            <String, Object?>{'account_ids': normalizedIds},
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminUpstreamBillingProbeBatchResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccountProbeToggleResult> setUpstreamBillingProbeEnabled(
+    int accountId, {
+    required bool enabled,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.setUpstreamBillingProbeEnabled(
+            accountId,
+            <String, Object?>{'enabled': enabled},
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminAccountProbeToggleResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminUpstreamBillingProbeResult> probeUpstreamBilling(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.probeUpstreamBilling(
+        accountId,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminUpstreamBillingProbeResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
   Future<Sub2ApiAdminOllamaCloudUsageSettings> getOllamaCloudUsageSettings({
     Sub2ApiRequestOptions? requestOptions,
   }) => _requestExecutor.protectedRequest(
@@ -189,6 +330,32 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
   );
 
   @override
+  Future<Sub2ApiAdminOllamaCloudUsageSettings> updateOllamaCloudUsageSettings({
+    required bool enabled,
+    required int intervalMinutes,
+    required int debounceMinutes,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateOllamaCloudUsageSettings(intervalMinutes, debounceMinutes);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.updateOllamaCloudUsageSettings(
+            <String, Object?>{
+              'enabled': enabled,
+              'interval_minutes': intervalMinutes,
+              'debounce_minutes': debounceMinutes,
+            },
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminOllamaCloudUsageSettings,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
   Future<Sub2ApiAdminOllamaCloudUsageState> getOllamaCloudUsage(
     int accountId, {
     Sub2ApiRequestOptions? requestOptions,
@@ -202,6 +369,91 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         _authorization(credential),
         _apiKey(credential),
       ),
+      decode: mapAdminOllamaCloudUsageState,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminOllamaCloudUsageState> saveOllamaCloudUsageSession(
+    int accountId,
+    Sub2ApiOllamaCloudSession session, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    final normalizedSession = _validateOllamaCloudSession(session.reveal());
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.saveOllamaCloudUsageSession(
+            accountId,
+            <String, Object?>{'session': normalizedSession},
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminOllamaCloudUsageState,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminOllamaCloudUsageState> deleteOllamaCloudUsageSession(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.deleteOllamaCloudUsageSession(
+            accountId,
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminOllamaCloudUsageState,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminOllamaCloudUsageState> setOllamaCloudUsageAutoRefresh(
+    int accountId, {
+    required bool enabled,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.setOllamaCloudUsageAutoRefresh(
+            accountId,
+            <String, Object?>{'enabled': enabled},
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminOllamaCloudUsageState,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminOllamaCloudUsageState> refreshOllamaCloudUsage(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.refreshOllamaCloudUsage(
+            accountId,
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
       decode: mapAdminOllamaCloudUsageState,
       requestOptions: requestOptions,
     );
@@ -356,6 +608,86 @@ void _validateAccountId(int accountId) {
   if (accountId <= 0) throw _validation('admin.accounts.invalid_account_id');
 }
 
+void _validateUpstreamBillingProbeInterval(int intervalMinutes) {
+  if (intervalMinutes < 5 || intervalMinutes > 1440) {
+    throw _validation('admin.accounts.invalid_upstream_probe_interval');
+  }
+}
+
+List<int> _validateProbeBatch(List<int> accountIds) {
+  if (accountIds.isEmpty || accountIds.length > 20) {
+    throw _validation('admin.accounts.invalid_probe_batch_size');
+  }
+  if (accountIds.any((accountId) => accountId <= 0)) {
+    throw _validation('admin.accounts.invalid_account_id');
+  }
+  return <int>{...accountIds}.toList(growable: false);
+}
+
+void _validateOllamaCloudUsageSettings(
+  int intervalMinutes,
+  int debounceMinutes,
+) {
+  if (intervalMinutes < 15 || intervalMinutes > 1440) {
+    throw _validation('admin.accounts.invalid_ollama_usage_interval');
+  }
+  if (debounceMinutes < 1 || debounceMinutes > 60) {
+    throw _validation('admin.accounts.invalid_ollama_usage_debounce');
+  }
+  if (debounceMinutes >= intervalMinutes) {
+    throw _validation('admin.accounts.ollama_usage_debounce_not_less');
+  }
+}
+
+String _validateOllamaCloudSession(String value) {
+  if (utf8.encode(value).length > 16 * 1024) {
+    throw _validation('admin.accounts.ollama_session_too_large');
+  }
+  if (value.contains('\r') || value.contains('\n')) {
+    throw _validation('admin.accounts.invalid_ollama_session_header');
+  }
+  final raw = value.trim();
+  if (raw.isEmpty) {
+    throw _validation('admin.accounts.ollama_session_required');
+  }
+  final normalized = <String>[];
+  final seen = <String>{};
+  for (final rawPart in raw.split(';')) {
+    final part = rawPart.trim();
+    final separator = part.indexOf('=');
+    if (separator <= 0 || separator == part.length - 1) {
+      throw _validation('admin.accounts.invalid_ollama_session_cookie');
+    }
+    final name = part.substring(0, separator).trim();
+    final cookieValue = part.substring(separator + 1).trim();
+    if (!_cookieNamePattern.hasMatch(name) ||
+        name.startsWith(r'$') ||
+        cookieValue.isEmpty ||
+        cookieValue.contains(';') ||
+        cookieValue.contains('\r') ||
+        cookieValue.contains('\n')) {
+      throw _validation('admin.accounts.invalid_ollama_session_cookie');
+    }
+    final lowerName = name.toLowerCase();
+    if (_setCookieAttributes.contains(lowerName)) {
+      throw _validation('admin.accounts.ollama_session_set_cookie_attribute');
+    }
+    if (!seen.add(lowerName)) {
+      throw _validation('admin.accounts.ollama_session_duplicate_cookie');
+    }
+    if (!_isAllowedOllamaSessionCookie(name)) {
+      throw _validation('admin.accounts.ollama_session_cookie_not_allowed');
+    }
+    normalized.add('$name=$cookieValue');
+  }
+  return normalized.join('; ');
+}
+
+bool _isAllowedOllamaSessionCookie(String name) {
+  if (_allowedOllamaSessionCookieNames.contains(name)) return true;
+  return _allowedOllamaSessionShardPattern.hasMatch(name);
+}
+
 void _validatePage(int? page, int? pageSize) {
   if (page != null && page <= 0) {
     throw _validation('admin.accounts.invalid_page');
@@ -392,3 +724,29 @@ Sub2ApiException _validation(String code) => Sub2ApiException(
   code: code,
   retryable: false,
 );
+
+final _cookieNamePattern = RegExp(r"^[!#$%&'*+.^_`|~0-9A-Za-z-]+$");
+final _allowedOllamaSessionShardPattern = RegExp(
+  r'^(?:next-auth\.session-token|__Secure-next-auth\.session-token|authjs\.session-token|__Secure-authjs\.session-token)\.\d+$',
+);
+const _allowedOllamaSessionCookieNames = <String>{
+  'wos-session',
+  '__Secure-session',
+  'session',
+  'ollama_session',
+  '__Host-ollama_session',
+  'next-auth.session-token',
+  '__Secure-next-auth.session-token',
+  'authjs.session-token',
+  '__Secure-authjs.session-token',
+};
+const _setCookieAttributes = <String>{
+  'domain',
+  'path',
+  'expires',
+  'max-age',
+  'samesite',
+  'secure',
+  'httponly',
+  'partitioned',
+};

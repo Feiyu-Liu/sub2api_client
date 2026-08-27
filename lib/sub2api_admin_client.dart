@@ -20,7 +20,7 @@ export 'src/keys/sub2api_key_models.dart'
 export 'src/shared/configuration/sub2api_configuration.dart';
 export 'src/shared/errors/sub2api_exception.dart';
 export 'src/shared/models/sensitive_value.dart'
-    show Sub2ApiApiKeySecret, Sub2ApiPassword;
+    show Sub2ApiApiKeySecret, Sub2ApiOllamaCloudSession, Sub2ApiPassword;
 export 'src/shared/models/sub2api_decimal.dart';
 export 'src/shared/models/sub2api_page.dart';
 export 'src/shared/models/sub2api_user_account.dart'

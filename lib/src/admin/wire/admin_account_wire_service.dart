@@ -34,6 +34,24 @@ abstract class AdminAccountWireService {
     @Header('x-api-key') String? apiKey,
   );
 
+  @PUT('/api/v1/admin/accounts/upstream-billing-probe/settings')
+  Future<HttpResponse<Object?>> updateUpstreamBillingProbeSettings(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/upstream-billing-probe/batch')
+  Future<HttpResponse<Object?>> probeUpstreamBillingBatch(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
   @GET('/api/v1/admin/accounts/ollama-cloud-usage/settings')
   Future<HttpResponse<Object?>> ollamaCloudUsageSettings(
     @CancelRequest() CancelToken cancelToken,
@@ -42,8 +60,74 @@ abstract class AdminAccountWireService {
     @Header('x-api-key') String? apiKey,
   );
 
+  @PUT('/api/v1/admin/accounts/ollama-cloud-usage/settings')
+  Future<HttpResponse<Object?>> updateOllamaCloudUsageSettings(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
   @GET('/api/v1/admin/accounts/{id}/ollama-cloud-usage')
   Future<HttpResponse<Object?>> ollamaCloudUsage(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @PUT('/api/v1/admin/accounts/{id}/upstream-billing-probe')
+  Future<HttpResponse<Object?>> setUpstreamBillingProbeEnabled(
+    @Path('id') int accountId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/{id}/upstream-billing-probe')
+  Future<HttpResponse<Object?>> probeUpstreamBilling(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @PUT('/api/v1/admin/accounts/{id}/ollama-cloud-usage/session')
+  Future<HttpResponse<Object?>> saveOllamaCloudUsageSession(
+    @Path('id') int accountId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @DELETE('/api/v1/admin/accounts/{id}/ollama-cloud-usage/session')
+  Future<HttpResponse<Object?>> deleteOllamaCloudUsageSession(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @PUT('/api/v1/admin/accounts/{id}/ollama-cloud-usage/auto-refresh')
+  Future<HttpResponse<Object?>> setOllamaCloudUsageAutoRefresh(
+    @Path('id') int accountId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/{id}/ollama-cloud-usage/refresh')
+  Future<HttpResponse<Object?>> refreshOllamaCloudUsage(
     @Path('id') int accountId,
     @CancelRequest() CancelToken cancelToken,
     @DioOptions() Options options,

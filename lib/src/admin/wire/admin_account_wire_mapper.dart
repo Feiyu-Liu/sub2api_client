@@ -31,6 +31,31 @@ Sub2ApiAdminUpstreamBillingProbeSettings mapAdminUpstreamBillingProbeSettings(
   );
 });
 
+Sub2ApiAdminAccountProbeToggleResult mapAdminAccountProbeToggleResult(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  return Sub2ApiAdminAccountProbeToggleResult(
+    accountId: _positiveInteger(source, 'account_id'),
+    enabled: _boolean(source, 'enabled'),
+  );
+});
+
+Sub2ApiAdminUpstreamBillingProbeResult mapAdminUpstreamBillingProbeResult(
+  Object? data,
+) => _map(() => _upstreamBillingProbeResult(_object(data)));
+
+Sub2ApiAdminUpstreamBillingProbeBatchResult
+mapAdminUpstreamBillingProbeBatchResult(Object? data) => _map(() {
+  final source = _object(data);
+  return Sub2ApiAdminUpstreamBillingProbeBatchResult(
+    _list(
+      source,
+      'results',
+    ).map(_object).map(_upstreamBillingProbeResult).toList(growable: false),
+  );
+});
+
 Sub2ApiAdminOllamaCloudUsageSettings mapAdminOllamaCloudUsageSettings(
   Object? data,
 ) => _map(() {
@@ -384,6 +409,62 @@ Sub2ApiAdminOllamaCloudUsageWindow _ollamaWindow(Map<String, Object?> source) =>
       resetAt: _nullableDateTime(source, 'reset_at'),
       resetText: _optionalString(source, 'reset_text'),
     );
+
+Sub2ApiAdminUpstreamBillingProbeResult _upstreamBillingProbeResult(
+  Map<String, Object?> source,
+) {
+  final snapshot = source['snapshot'] == null
+      ? null
+      : _upstreamBillingProbeSnapshot(_object(source['snapshot']));
+  final error = _optionalString(source, 'error');
+  if ((snapshot == null) == error.trim().isEmpty) {
+    throw const FormatException();
+  }
+  return Sub2ApiAdminUpstreamBillingProbeResult(
+    accountId: _positiveInteger(source, 'account_id'),
+    snapshot: snapshot,
+    error: error,
+  );
+}
+
+Sub2ApiAdminUpstreamBillingProbeSnapshot _upstreamBillingProbeSnapshot(
+  Map<String, Object?> source,
+) => Sub2ApiAdminUpstreamBillingProbeSnapshot(
+  status: _nonEmptyString(source, 'status'),
+  data: source['data'] == null
+      ? null
+      : _upstreamBillingProbeData(_object(source['data'])),
+  receivedAt: _nullableDateTime(source, 'received_at'),
+  freshUntil: _nullableDateTime(source, 'fresh_until'),
+  lastAttemptAt: _dateTime(source, 'last_attempt_at'),
+  nextProbeAt: _dateTime(source, 'next_probe_at'),
+  failureCount: _optionalNonNegativeInteger(source, 'failure_count'),
+  httpStatus: _optionalNonNegativeInteger(source, 'http_status'),
+  lastError: _optionalString(source, 'last_error'),
+  syncedRateMultiplier: _nullableDecimal(source, 'synced_rate_multiplier'),
+);
+
+Sub2ApiAdminUpstreamBillingProbeData _upstreamBillingProbeData(
+  Map<String, Object?> source,
+) => Sub2ApiAdminUpstreamBillingProbeData(
+  object: _nonEmptyString(source, 'object'),
+  schemaVersion: _positiveInteger(source, 'schema_version'),
+  billingScope: _nonEmptyString(source, 'billing_scope'),
+  groupRateMultiplier: _nullableDecimal(source, 'group_rate_multiplier'),
+  userRateMultiplier: _nullableDecimal(source, 'user_rate_multiplier'),
+  resolvedRateMultiplier: _nullableDecimal(source, 'resolved_rate_multiplier'),
+  peakRateEnabled: _nullableBoolean(source, 'peak_rate_enabled'),
+  peakStart: _nullableString(source, 'peak_start'),
+  peakEnd: _nullableString(source, 'peak_end'),
+  peakRateMultiplier: _nullableDecimal(source, 'peak_rate_multiplier'),
+  appliedPeakMultiplier: _nullableDecimal(source, 'applied_peak_multiplier'),
+  effectiveRateMultiplier: _nullableDecimal(
+    source,
+    'effective_rate_multiplier',
+  ),
+  timezone: _nullableString(source, 'timezone'),
+  observedAt: _dateTime(source, 'observed_at'),
+);
 
 Sub2ApiAdminAccountUsageHistory _usageHistory(Map<String, Object?> source) =>
     Sub2ApiAdminAccountUsageHistory(

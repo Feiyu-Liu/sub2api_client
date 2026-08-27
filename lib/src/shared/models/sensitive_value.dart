@@ -88,3 +88,9 @@ final class Sub2ApiOAuthPendingToken extends _SensitiveValue {
 final class Sub2ApiNotificationUnsubscribeToken extends _SensitiveValue {
   const Sub2ApiNotificationUnsubscribeToken(super.value);
 }
+
+/// Browser Cookie header used to configure the optional Ollama Cloud usage
+/// probe. Stringification is always redacted.
+final class Sub2ApiOllamaCloudSession extends _SensitiveValue {
+  const Sub2ApiOllamaCloudSession(super.value);
+}
