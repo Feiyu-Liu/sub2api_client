@@ -1,0 +1,14 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "access_token": "test-access-token-not-a-real-secret",
+    "token_type": "Bearer",
+    "user": {
+      "id": 7,
+      "email": "user@example.test",
+      "role": "user",
+      "username": "user"
+    }
+  }
+}

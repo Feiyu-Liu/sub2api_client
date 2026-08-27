@@ -173,21 +173,38 @@ final class _Sub2ApiKeyClient implements Sub2ApiKeyClient {
   static Map<String, Object?> _createRequestBody(
     Sub2ApiCreateKeyRequest request,
   ) {
+    if (request.expiresInDays case final days? when days <= 0) {
+      throw const Sub2ApiException(
+        kind: Sub2ApiFailureKind.validation,
+        code: 'keys.invalid_expires_in_days',
+        retryable: false,
+      );
+    }
     return <String, Object?>{
       'name': request.name,
       if (request.groupId != null) 'group_id': request.groupId,
       if (request.customKey != null) 'custom_key': request.customKey!.reveal(),
       if (request.ipWhitelist != null) 'ip_whitelist': request.ipWhitelist,
       if (request.ipBlacklist != null) 'ip_blacklist': request.ipBlacklist,
-      if (request.quota != null) 'quota': num.parse(request.quota!.toJson()),
+      if (request.quota != null)
+        'quota': _nonNegativeDecimal(request.quota!, 'keys.invalid_quota'),
       if (request.expiresInDays != null)
         'expires_in_days': request.expiresInDays,
       if (request.rateLimit5h != null)
-        'rate_limit_5h': num.parse(request.rateLimit5h!.toJson()),
+        'rate_limit_5h': _nonNegativeDecimal(
+          request.rateLimit5h!,
+          'keys.invalid_rate_limit_5h',
+        ),
       if (request.rateLimit1d != null)
-        'rate_limit_1d': num.parse(request.rateLimit1d!.toJson()),
+        'rate_limit_1d': _nonNegativeDecimal(
+          request.rateLimit1d!,
+          'keys.invalid_rate_limit_1d',
+        ),
       if (request.rateLimit7d != null)
-        'rate_limit_7d': num.parse(request.rateLimit7d!.toJson()),
+        'rate_limit_7d': _nonNegativeDecimal(
+          request.rateLimit7d!,
+          'keys.invalid_rate_limit_7d',
+        ),
     };
   }
 
@@ -319,19 +336,40 @@ final class _Sub2ApiKeyClient implements Sub2ApiKeyClient {
       if (request.status != null) 'status': request.status,
       if (request.ipWhitelist != null) 'ip_whitelist': request.ipWhitelist,
       if (request.ipBlacklist != null) 'ip_blacklist': request.ipBlacklist,
-      if (request.quota != null) 'quota': num.parse(request.quota!.toJson()),
+      if (request.quota != null)
+        'quota': _nonNegativeDecimal(request.quota!, 'keys.invalid_quota'),
       if (request.expiresAt != null)
         'expires_at': request.expiresAt!.toUtc().toIso8601String(),
       if (request.clearExpiration) 'expires_at': '',
       if (request.resetQuota != null) 'reset_quota': request.resetQuota,
       if (request.rateLimit5h != null)
-        'rate_limit_5h': num.parse(request.rateLimit5h!.toJson()),
+        'rate_limit_5h': _nonNegativeDecimal(
+          request.rateLimit5h!,
+          'keys.invalid_rate_limit_5h',
+        ),
       if (request.rateLimit1d != null)
-        'rate_limit_1d': num.parse(request.rateLimit1d!.toJson()),
+        'rate_limit_1d': _nonNegativeDecimal(
+          request.rateLimit1d!,
+          'keys.invalid_rate_limit_1d',
+        ),
       if (request.rateLimit7d != null)
-        'rate_limit_7d': num.parse(request.rateLimit7d!.toJson()),
+        'rate_limit_7d': _nonNegativeDecimal(
+          request.rateLimit7d!,
+          'keys.invalid_rate_limit_7d',
+        ),
       if (request.resetRateLimitUsage != null)
         'reset_rate_limit_usage': request.resetRateLimitUsage,
     };
+  }
+
+  static num _nonNegativeDecimal(Sub2ApiDecimal value, String code) {
+    if (value.compareTo(Sub2ApiDecimal.zero()) < 0) {
+      throw Sub2ApiException(
+        kind: Sub2ApiFailureKind.validation,
+        code: code,
+        retryable: false,
+      );
+    }
+    return num.parse(value.toJson());
   }
 }

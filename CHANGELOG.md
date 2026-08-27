@@ -1,3 +1,17 @@
+## 0.1.0-dev.3
+
+- Upgrade the immutable Sub2API contract baseline from `v0.1.155` to
+  `v0.1.183` at commit `e8cb019fabf8b55199436229044cbf9aa7a82564`.
+- Add v0.1.183 captcha and Passkey capability flags, Tencent captcha request
+  fields for verification-code and password-reset flows, and a generalized
+  captcha challenge token compatible with Turnstile and Aliyun.
+- Add subscription-plan currency and Alipay mobile precreate/deep-link facts
+  to the typed Billing contract.
+- Enforce v0.1.183 API Key non-negative limit and positive expiry-day rules
+  before network I/O while preserving omitted-versus-empty list updates.
+- Keep the v0.1.155 fixtures as historical evidence and add a separate active
+  v0.1.183 fixture set.
+
 ## 0.1.0-dev.2
 
 - Add typed public Auth operations for email verification-code delivery,

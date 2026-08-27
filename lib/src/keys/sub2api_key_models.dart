@@ -57,7 +57,7 @@ abstract class Sub2ApiKeyDetails with _$Sub2ApiKeyDetails {
 /// Query options for paginating API key summaries.
 @freezed
 abstract class Sub2ApiKeyListRequest with _$Sub2ApiKeyListRequest {
-  /// Creates API key list filters accepted by the v0.1.155 endpoint.
+  /// Creates API key list filters accepted by the v0.1.183 endpoint.
   const factory Sub2ApiKeyListRequest({
     int? page,
     int? pageSize,

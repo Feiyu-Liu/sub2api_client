@@ -24,7 +24,7 @@ final class Sub2ApiLoginRequestDto {
         password: request.password.reveal(),
         tencentCaptchaRandstr: request.captcha.tencentCaptchaRandstr,
         tencentCaptchaTicket: request.captcha.tencentCaptchaTicket,
-        turnstileToken: request.captcha.turnstileToken,
+        turnstileToken: request.captcha.wireChallengeToken,
       );
 
   final String email;
@@ -88,7 +88,7 @@ final class Sub2ApiRegistrationRequestDto {
     promoCode: request.promoCode,
     tencentCaptchaRandstr: request.captcha.tencentCaptchaRandstr,
     tencentCaptchaTicket: request.captcha.tencentCaptchaTicket,
-    turnstileToken: request.captcha.turnstileToken,
+    turnstileToken: request.captcha.wireChallengeToken,
     verifyCode: request.verificationCode?.reveal(),
   );
 
@@ -117,6 +117,8 @@ final class Sub2ApiRegistrationRequestDto {
 final class Sub2ApiEmailVerificationCodeRequestDto {
   const Sub2ApiEmailVerificationCodeRequestDto({
     required this.email,
+    this.tencentCaptchaRandstr,
+    this.tencentCaptchaTicket,
     this.turnstileToken,
   });
 
@@ -124,10 +126,16 @@ final class Sub2ApiEmailVerificationCodeRequestDto {
     Sub2ApiEmailVerificationCodeRequest request,
   ) => Sub2ApiEmailVerificationCodeRequestDto(
     email: request.email,
-    turnstileToken: request.captcha.turnstileToken,
+    tencentCaptchaRandstr: request.captcha.tencentCaptchaRandstr,
+    tencentCaptchaTicket: request.captcha.tencentCaptchaTicket,
+    turnstileToken: request.captcha.wireChallengeToken,
   );
 
   final String email;
+  @JsonKey(name: 'tencent_captcha_randstr', includeIfNull: false)
+  final String? tencentCaptchaRandstr;
+  @JsonKey(name: 'tencent_captcha_ticket', includeIfNull: false)
+  final String? tencentCaptchaTicket;
   @JsonKey(name: 'turnstile_token', includeIfNull: false)
   final String? turnstileToken;
 
@@ -155,6 +163,8 @@ final class Sub2ApiInvitationCodeValidationRequestDto {
 final class Sub2ApiForgotPasswordRequestDto {
   const Sub2ApiForgotPasswordRequestDto({
     required this.email,
+    this.tencentCaptchaRandstr,
+    this.tencentCaptchaTicket,
     this.turnstileToken,
   });
 
@@ -162,10 +172,16 @@ final class Sub2ApiForgotPasswordRequestDto {
     Sub2ApiForgotPasswordRequest request,
   ) => Sub2ApiForgotPasswordRequestDto(
     email: request.email,
-    turnstileToken: request.captcha.turnstileToken,
+    tencentCaptchaRandstr: request.captcha.tencentCaptchaRandstr,
+    tencentCaptchaTicket: request.captcha.tencentCaptchaTicket,
+    turnstileToken: request.captcha.wireChallengeToken,
   );
 
   final String email;
+  @JsonKey(name: 'tencent_captcha_randstr', includeIfNull: false)
+  final String? tencentCaptchaRandstr;
+  @JsonKey(name: 'tencent_captcha_ticket', includeIfNull: false)
+  final String? tencentCaptchaTicket;
   @JsonKey(name: 'turnstile_token', includeIfNull: false)
   final String? turnstileToken;
 

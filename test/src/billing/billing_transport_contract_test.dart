@@ -21,7 +21,7 @@ void main() {
     scope: 'https://sub2api.test',
   );
 
-  test('Billing endpoints use the complete v0.1.155 API routes', () async {
+  test('Billing endpoints use the complete v0.1.183 API routes', () async {
     final order = _fixture('billing/order.json');
     final adapter = JsonResponseAdapter((request) {
       final data = switch ((request.method, request.path)) {
@@ -89,7 +89,7 @@ void main() {
 }
 
 Object? _fixture(String relativePath) =>
-    jsonDecode(File('test/fixtures/v0_1_155/$relativePath').readAsStringSync());
+    jsonDecode(File('test/fixtures/v0_1_183/$relativePath').readAsStringSync());
 
 Map<String, Object?> _success(Object? data) => <String, Object?>{
   'code': 0,

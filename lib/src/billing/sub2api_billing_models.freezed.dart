@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Sub2ApiPaymentConfig {
 
- bool get enabled; Sub2ApiDecimal get minAmount; Sub2ApiDecimal get maxAmount; Sub2ApiDecimal get dailyLimit; int get orderTimeoutMinutes; int get maxPendingOrders; List<String> get enabledPaymentTypes; bool get balanceDisabled; Sub2ApiDecimal get balanceRechargeMultiplier; Sub2ApiDecimal get subscriptionUsdToCnyRate; Sub2ApiDecimal get rechargeFeeRate; String get loadBalanceStrategy; String get productNamePrefix; String get productNameSuffix; String get helpImageUrl; String get helpText; String? get stripePublishableKey; bool get cancelRateLimitEnabled; int get cancelRateLimitMax; int get cancelRateLimitWindow; String get cancelRateLimitUnit; String get cancelRateLimitMode; bool get alipayForceQrCode;
+ bool get enabled; Sub2ApiDecimal get minAmount; Sub2ApiDecimal get maxAmount; Sub2ApiDecimal get dailyLimit; int get orderTimeoutMinutes; int get maxPendingOrders; List<String> get enabledPaymentTypes; bool get balanceDisabled; Sub2ApiDecimal get balanceRechargeMultiplier; Sub2ApiDecimal get subscriptionUsdToCnyRate; Sub2ApiDecimal get rechargeFeeRate; String get loadBalanceStrategy; String get productNamePrefix; String get productNameSuffix; String get helpImageUrl; String get helpText; String? get stripePublishableKey; bool get cancelRateLimitEnabled; int get cancelRateLimitMax; int get cancelRateLimitWindow; String get cancelRateLimitUnit; String get cancelRateLimitMode; bool get alipayForceQrCode; bool get alipayMobilePrecreateDeepLink;
 /// Create a copy of Sub2ApiPaymentConfig
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $Sub2ApiPaymentConfigCopyWith<Sub2ApiPaymentConfig> get copyWith => _$Sub2ApiPay
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiPaymentConfig&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.minAmount, minAmount) || other.minAmount == minAmount)&&(identical(other.maxAmount, maxAmount) || other.maxAmount == maxAmount)&&(identical(other.dailyLimit, dailyLimit) || other.dailyLimit == dailyLimit)&&(identical(other.orderTimeoutMinutes, orderTimeoutMinutes) || other.orderTimeoutMinutes == orderTimeoutMinutes)&&(identical(other.maxPendingOrders, maxPendingOrders) || other.maxPendingOrders == maxPendingOrders)&&const DeepCollectionEquality().equals(other.enabledPaymentTypes, enabledPaymentTypes)&&(identical(other.balanceDisabled, balanceDisabled) || other.balanceDisabled == balanceDisabled)&&(identical(other.balanceRechargeMultiplier, balanceRechargeMultiplier) || other.balanceRechargeMultiplier == balanceRechargeMultiplier)&&(identical(other.subscriptionUsdToCnyRate, subscriptionUsdToCnyRate) || other.subscriptionUsdToCnyRate == subscriptionUsdToCnyRate)&&(identical(other.rechargeFeeRate, rechargeFeeRate) || other.rechargeFeeRate == rechargeFeeRate)&&(identical(other.loadBalanceStrategy, loadBalanceStrategy) || other.loadBalanceStrategy == loadBalanceStrategy)&&(identical(other.productNamePrefix, productNamePrefix) || other.productNamePrefix == productNamePrefix)&&(identical(other.productNameSuffix, productNameSuffix) || other.productNameSuffix == productNameSuffix)&&(identical(other.helpImageUrl, helpImageUrl) || other.helpImageUrl == helpImageUrl)&&(identical(other.helpText, helpText) || other.helpText == helpText)&&(identical(other.stripePublishableKey, stripePublishableKey) || other.stripePublishableKey == stripePublishableKey)&&(identical(other.cancelRateLimitEnabled, cancelRateLimitEnabled) || other.cancelRateLimitEnabled == cancelRateLimitEnabled)&&(identical(other.cancelRateLimitMax, cancelRateLimitMax) || other.cancelRateLimitMax == cancelRateLimitMax)&&(identical(other.cancelRateLimitWindow, cancelRateLimitWindow) || other.cancelRateLimitWindow == cancelRateLimitWindow)&&(identical(other.cancelRateLimitUnit, cancelRateLimitUnit) || other.cancelRateLimitUnit == cancelRateLimitUnit)&&(identical(other.cancelRateLimitMode, cancelRateLimitMode) || other.cancelRateLimitMode == cancelRateLimitMode)&&(identical(other.alipayForceQrCode, alipayForceQrCode) || other.alipayForceQrCode == alipayForceQrCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiPaymentConfig&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.minAmount, minAmount) || other.minAmount == minAmount)&&(identical(other.maxAmount, maxAmount) || other.maxAmount == maxAmount)&&(identical(other.dailyLimit, dailyLimit) || other.dailyLimit == dailyLimit)&&(identical(other.orderTimeoutMinutes, orderTimeoutMinutes) || other.orderTimeoutMinutes == orderTimeoutMinutes)&&(identical(other.maxPendingOrders, maxPendingOrders) || other.maxPendingOrders == maxPendingOrders)&&const DeepCollectionEquality().equals(other.enabledPaymentTypes, enabledPaymentTypes)&&(identical(other.balanceDisabled, balanceDisabled) || other.balanceDisabled == balanceDisabled)&&(identical(other.balanceRechargeMultiplier, balanceRechargeMultiplier) || other.balanceRechargeMultiplier == balanceRechargeMultiplier)&&(identical(other.subscriptionUsdToCnyRate, subscriptionUsdToCnyRate) || other.subscriptionUsdToCnyRate == subscriptionUsdToCnyRate)&&(identical(other.rechargeFeeRate, rechargeFeeRate) || other.rechargeFeeRate == rechargeFeeRate)&&(identical(other.loadBalanceStrategy, loadBalanceStrategy) || other.loadBalanceStrategy == loadBalanceStrategy)&&(identical(other.productNamePrefix, productNamePrefix) || other.productNamePrefix == productNamePrefix)&&(identical(other.productNameSuffix, productNameSuffix) || other.productNameSuffix == productNameSuffix)&&(identical(other.helpImageUrl, helpImageUrl) || other.helpImageUrl == helpImageUrl)&&(identical(other.helpText, helpText) || other.helpText == helpText)&&(identical(other.stripePublishableKey, stripePublishableKey) || other.stripePublishableKey == stripePublishableKey)&&(identical(other.cancelRateLimitEnabled, cancelRateLimitEnabled) || other.cancelRateLimitEnabled == cancelRateLimitEnabled)&&(identical(other.cancelRateLimitMax, cancelRateLimitMax) || other.cancelRateLimitMax == cancelRateLimitMax)&&(identical(other.cancelRateLimitWindow, cancelRateLimitWindow) || other.cancelRateLimitWindow == cancelRateLimitWindow)&&(identical(other.cancelRateLimitUnit, cancelRateLimitUnit) || other.cancelRateLimitUnit == cancelRateLimitUnit)&&(identical(other.cancelRateLimitMode, cancelRateLimitMode) || other.cancelRateLimitMode == cancelRateLimitMode)&&(identical(other.alipayForceQrCode, alipayForceQrCode) || other.alipayForceQrCode == alipayForceQrCode)&&(identical(other.alipayMobilePrecreateDeepLink, alipayMobilePrecreateDeepLink) || other.alipayMobilePrecreateDeepLink == alipayMobilePrecreateDeepLink));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,enabled,minAmount,maxAmount,dailyLimit,orderTimeoutMinutes,maxPendingOrders,const DeepCollectionEquality().hash(enabledPaymentTypes),balanceDisabled,balanceRechargeMultiplier,subscriptionUsdToCnyRate,rechargeFeeRate,loadBalanceStrategy,productNamePrefix,productNameSuffix,helpImageUrl,helpText,stripePublishableKey,cancelRateLimitEnabled,cancelRateLimitMax,cancelRateLimitWindow,cancelRateLimitUnit,cancelRateLimitMode,alipayForceQrCode]);
+int get hashCode => Object.hashAll([runtimeType,enabled,minAmount,maxAmount,dailyLimit,orderTimeoutMinutes,maxPendingOrders,const DeepCollectionEquality().hash(enabledPaymentTypes),balanceDisabled,balanceRechargeMultiplier,subscriptionUsdToCnyRate,rechargeFeeRate,loadBalanceStrategy,productNamePrefix,productNameSuffix,helpImageUrl,helpText,stripePublishableKey,cancelRateLimitEnabled,cancelRateLimitMax,cancelRateLimitWindow,cancelRateLimitUnit,cancelRateLimitMode,alipayForceQrCode,alipayMobilePrecreateDeepLink]);
 
 @override
 String toString() {
-  return 'Sub2ApiPaymentConfig(enabled: $enabled, minAmount: $minAmount, maxAmount: $maxAmount, dailyLimit: $dailyLimit, orderTimeoutMinutes: $orderTimeoutMinutes, maxPendingOrders: $maxPendingOrders, enabledPaymentTypes: $enabledPaymentTypes, balanceDisabled: $balanceDisabled, balanceRechargeMultiplier: $balanceRechargeMultiplier, subscriptionUsdToCnyRate: $subscriptionUsdToCnyRate, rechargeFeeRate: $rechargeFeeRate, loadBalanceStrategy: $loadBalanceStrategy, productNamePrefix: $productNamePrefix, productNameSuffix: $productNameSuffix, helpImageUrl: $helpImageUrl, helpText: $helpText, stripePublishableKey: $stripePublishableKey, cancelRateLimitEnabled: $cancelRateLimitEnabled, cancelRateLimitMax: $cancelRateLimitMax, cancelRateLimitWindow: $cancelRateLimitWindow, cancelRateLimitUnit: $cancelRateLimitUnit, cancelRateLimitMode: $cancelRateLimitMode, alipayForceQrCode: $alipayForceQrCode)';
+  return 'Sub2ApiPaymentConfig(enabled: $enabled, minAmount: $minAmount, maxAmount: $maxAmount, dailyLimit: $dailyLimit, orderTimeoutMinutes: $orderTimeoutMinutes, maxPendingOrders: $maxPendingOrders, enabledPaymentTypes: $enabledPaymentTypes, balanceDisabled: $balanceDisabled, balanceRechargeMultiplier: $balanceRechargeMultiplier, subscriptionUsdToCnyRate: $subscriptionUsdToCnyRate, rechargeFeeRate: $rechargeFeeRate, loadBalanceStrategy: $loadBalanceStrategy, productNamePrefix: $productNamePrefix, productNameSuffix: $productNameSuffix, helpImageUrl: $helpImageUrl, helpText: $helpText, stripePublishableKey: $stripePublishableKey, cancelRateLimitEnabled: $cancelRateLimitEnabled, cancelRateLimitMax: $cancelRateLimitMax, cancelRateLimitWindow: $cancelRateLimitWindow, cancelRateLimitUnit: $cancelRateLimitUnit, cancelRateLimitMode: $cancelRateLimitMode, alipayForceQrCode: $alipayForceQrCode, alipayMobilePrecreateDeepLink: $alipayMobilePrecreateDeepLink)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $Sub2ApiPaymentConfigCopyWith<$Res>  {
   factory $Sub2ApiPaymentConfigCopyWith(Sub2ApiPaymentConfig value, $Res Function(Sub2ApiPaymentConfig) _then) = _$Sub2ApiPaymentConfigCopyWithImpl;
 @useResult
 $Res call({
- bool enabled, Sub2ApiDecimal minAmount, Sub2ApiDecimal maxAmount, Sub2ApiDecimal dailyLimit, int orderTimeoutMinutes, int maxPendingOrders, List<String> enabledPaymentTypes, bool balanceDisabled, Sub2ApiDecimal balanceRechargeMultiplier, Sub2ApiDecimal subscriptionUsdToCnyRate, Sub2ApiDecimal rechargeFeeRate, String loadBalanceStrategy, String productNamePrefix, String productNameSuffix, String helpImageUrl, String helpText, String? stripePublishableKey, bool cancelRateLimitEnabled, int cancelRateLimitMax, int cancelRateLimitWindow, String cancelRateLimitUnit, String cancelRateLimitMode, bool alipayForceQrCode
+ bool enabled, Sub2ApiDecimal minAmount, Sub2ApiDecimal maxAmount, Sub2ApiDecimal dailyLimit, int orderTimeoutMinutes, int maxPendingOrders, List<String> enabledPaymentTypes, bool balanceDisabled, Sub2ApiDecimal balanceRechargeMultiplier, Sub2ApiDecimal subscriptionUsdToCnyRate, Sub2ApiDecimal rechargeFeeRate, String loadBalanceStrategy, String productNamePrefix, String productNameSuffix, String helpImageUrl, String helpText, String? stripePublishableKey, bool cancelRateLimitEnabled, int cancelRateLimitMax, int cancelRateLimitWindow, String cancelRateLimitUnit, String cancelRateLimitMode, bool alipayForceQrCode, bool alipayMobilePrecreateDeepLink
 });
 
 
@@ -62,7 +62,7 @@ class _$Sub2ApiPaymentConfigCopyWithImpl<$Res>
 
 /// Create a copy of Sub2ApiPaymentConfig
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? enabled = null,Object? minAmount = null,Object? maxAmount = null,Object? dailyLimit = null,Object? orderTimeoutMinutes = null,Object? maxPendingOrders = null,Object? enabledPaymentTypes = null,Object? balanceDisabled = null,Object? balanceRechargeMultiplier = null,Object? subscriptionUsdToCnyRate = null,Object? rechargeFeeRate = null,Object? loadBalanceStrategy = null,Object? productNamePrefix = null,Object? productNameSuffix = null,Object? helpImageUrl = null,Object? helpText = null,Object? stripePublishableKey = freezed,Object? cancelRateLimitEnabled = null,Object? cancelRateLimitMax = null,Object? cancelRateLimitWindow = null,Object? cancelRateLimitUnit = null,Object? cancelRateLimitMode = null,Object? alipayForceQrCode = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? enabled = null,Object? minAmount = null,Object? maxAmount = null,Object? dailyLimit = null,Object? orderTimeoutMinutes = null,Object? maxPendingOrders = null,Object? enabledPaymentTypes = null,Object? balanceDisabled = null,Object? balanceRechargeMultiplier = null,Object? subscriptionUsdToCnyRate = null,Object? rechargeFeeRate = null,Object? loadBalanceStrategy = null,Object? productNamePrefix = null,Object? productNameSuffix = null,Object? helpImageUrl = null,Object? helpText = null,Object? stripePublishableKey = freezed,Object? cancelRateLimitEnabled = null,Object? cancelRateLimitMax = null,Object? cancelRateLimitWindow = null,Object? cancelRateLimitUnit = null,Object? cancelRateLimitMode = null,Object? alipayForceQrCode = null,Object? alipayMobilePrecreateDeepLink = null,}) {
   return _then(_self.copyWith(
 enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
 as bool,minAmount: null == minAmount ? _self.minAmount : minAmount // ignore: cast_nullable_to_non_nullable
@@ -87,6 +87,7 @@ as int,cancelRateLimitWindow: null == cancelRateLimitWindow ? _self.cancelRateLi
 as int,cancelRateLimitUnit: null == cancelRateLimitUnit ? _self.cancelRateLimitUnit : cancelRateLimitUnit // ignore: cast_nullable_to_non_nullable
 as String,cancelRateLimitMode: null == cancelRateLimitMode ? _self.cancelRateLimitMode : cancelRateLimitMode // ignore: cast_nullable_to_non_nullable
 as String,alipayForceQrCode: null == alipayForceQrCode ? _self.alipayForceQrCode : alipayForceQrCode // ignore: cast_nullable_to_non_nullable
+as bool,alipayMobilePrecreateDeepLink: null == alipayMobilePrecreateDeepLink ? _self.alipayMobilePrecreateDeepLink : alipayMobilePrecreateDeepLink // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -172,10 +173,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enabled,  Sub2ApiDecimal minAmount,  Sub2ApiDecimal maxAmount,  Sub2ApiDecimal dailyLimit,  int orderTimeoutMinutes,  int maxPendingOrders,  List<String> enabledPaymentTypes,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String loadBalanceStrategy,  String productNamePrefix,  String productNameSuffix,  String helpImageUrl,  String helpText,  String? stripePublishableKey,  bool cancelRateLimitEnabled,  int cancelRateLimitMax,  int cancelRateLimitWindow,  String cancelRateLimitUnit,  String cancelRateLimitMode,  bool alipayForceQrCode)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enabled,  Sub2ApiDecimal minAmount,  Sub2ApiDecimal maxAmount,  Sub2ApiDecimal dailyLimit,  int orderTimeoutMinutes,  int maxPendingOrders,  List<String> enabledPaymentTypes,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String loadBalanceStrategy,  String productNamePrefix,  String productNameSuffix,  String helpImageUrl,  String helpText,  String? stripePublishableKey,  bool cancelRateLimitEnabled,  int cancelRateLimitMax,  int cancelRateLimitWindow,  String cancelRateLimitUnit,  String cancelRateLimitMode,  bool alipayForceQrCode,  bool alipayMobilePrecreateDeepLink)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Sub2ApiPaymentConfig() when $default != null:
-return $default(_that.enabled,_that.minAmount,_that.maxAmount,_that.dailyLimit,_that.orderTimeoutMinutes,_that.maxPendingOrders,_that.enabledPaymentTypes,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.loadBalanceStrategy,_that.productNamePrefix,_that.productNameSuffix,_that.helpImageUrl,_that.helpText,_that.stripePublishableKey,_that.cancelRateLimitEnabled,_that.cancelRateLimitMax,_that.cancelRateLimitWindow,_that.cancelRateLimitUnit,_that.cancelRateLimitMode,_that.alipayForceQrCode);case _:
+return $default(_that.enabled,_that.minAmount,_that.maxAmount,_that.dailyLimit,_that.orderTimeoutMinutes,_that.maxPendingOrders,_that.enabledPaymentTypes,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.loadBalanceStrategy,_that.productNamePrefix,_that.productNameSuffix,_that.helpImageUrl,_that.helpText,_that.stripePublishableKey,_that.cancelRateLimitEnabled,_that.cancelRateLimitMax,_that.cancelRateLimitWindow,_that.cancelRateLimitUnit,_that.cancelRateLimitMode,_that.alipayForceQrCode,_that.alipayMobilePrecreateDeepLink);case _:
   return orElse();
 
 }
@@ -193,10 +194,10 @@ return $default(_that.enabled,_that.minAmount,_that.maxAmount,_that.dailyLimit,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enabled,  Sub2ApiDecimal minAmount,  Sub2ApiDecimal maxAmount,  Sub2ApiDecimal dailyLimit,  int orderTimeoutMinutes,  int maxPendingOrders,  List<String> enabledPaymentTypes,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String loadBalanceStrategy,  String productNamePrefix,  String productNameSuffix,  String helpImageUrl,  String helpText,  String? stripePublishableKey,  bool cancelRateLimitEnabled,  int cancelRateLimitMax,  int cancelRateLimitWindow,  String cancelRateLimitUnit,  String cancelRateLimitMode,  bool alipayForceQrCode)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enabled,  Sub2ApiDecimal minAmount,  Sub2ApiDecimal maxAmount,  Sub2ApiDecimal dailyLimit,  int orderTimeoutMinutes,  int maxPendingOrders,  List<String> enabledPaymentTypes,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String loadBalanceStrategy,  String productNamePrefix,  String productNameSuffix,  String helpImageUrl,  String helpText,  String? stripePublishableKey,  bool cancelRateLimitEnabled,  int cancelRateLimitMax,  int cancelRateLimitWindow,  String cancelRateLimitUnit,  String cancelRateLimitMode,  bool alipayForceQrCode,  bool alipayMobilePrecreateDeepLink)  $default,) {final _that = this;
 switch (_that) {
 case _Sub2ApiPaymentConfig():
-return $default(_that.enabled,_that.minAmount,_that.maxAmount,_that.dailyLimit,_that.orderTimeoutMinutes,_that.maxPendingOrders,_that.enabledPaymentTypes,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.loadBalanceStrategy,_that.productNamePrefix,_that.productNameSuffix,_that.helpImageUrl,_that.helpText,_that.stripePublishableKey,_that.cancelRateLimitEnabled,_that.cancelRateLimitMax,_that.cancelRateLimitWindow,_that.cancelRateLimitUnit,_that.cancelRateLimitMode,_that.alipayForceQrCode);case _:
+return $default(_that.enabled,_that.minAmount,_that.maxAmount,_that.dailyLimit,_that.orderTimeoutMinutes,_that.maxPendingOrders,_that.enabledPaymentTypes,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.loadBalanceStrategy,_that.productNamePrefix,_that.productNameSuffix,_that.helpImageUrl,_that.helpText,_that.stripePublishableKey,_that.cancelRateLimitEnabled,_that.cancelRateLimitMax,_that.cancelRateLimitWindow,_that.cancelRateLimitUnit,_that.cancelRateLimitMode,_that.alipayForceQrCode,_that.alipayMobilePrecreateDeepLink);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -213,10 +214,10 @@ return $default(_that.enabled,_that.minAmount,_that.maxAmount,_that.dailyLimit,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enabled,  Sub2ApiDecimal minAmount,  Sub2ApiDecimal maxAmount,  Sub2ApiDecimal dailyLimit,  int orderTimeoutMinutes,  int maxPendingOrders,  List<String> enabledPaymentTypes,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String loadBalanceStrategy,  String productNamePrefix,  String productNameSuffix,  String helpImageUrl,  String helpText,  String? stripePublishableKey,  bool cancelRateLimitEnabled,  int cancelRateLimitMax,  int cancelRateLimitWindow,  String cancelRateLimitUnit,  String cancelRateLimitMode,  bool alipayForceQrCode)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enabled,  Sub2ApiDecimal minAmount,  Sub2ApiDecimal maxAmount,  Sub2ApiDecimal dailyLimit,  int orderTimeoutMinutes,  int maxPendingOrders,  List<String> enabledPaymentTypes,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String loadBalanceStrategy,  String productNamePrefix,  String productNameSuffix,  String helpImageUrl,  String helpText,  String? stripePublishableKey,  bool cancelRateLimitEnabled,  int cancelRateLimitMax,  int cancelRateLimitWindow,  String cancelRateLimitUnit,  String cancelRateLimitMode,  bool alipayForceQrCode,  bool alipayMobilePrecreateDeepLink)?  $default,) {final _that = this;
 switch (_that) {
 case _Sub2ApiPaymentConfig() when $default != null:
-return $default(_that.enabled,_that.minAmount,_that.maxAmount,_that.dailyLimit,_that.orderTimeoutMinutes,_that.maxPendingOrders,_that.enabledPaymentTypes,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.loadBalanceStrategy,_that.productNamePrefix,_that.productNameSuffix,_that.helpImageUrl,_that.helpText,_that.stripePublishableKey,_that.cancelRateLimitEnabled,_that.cancelRateLimitMax,_that.cancelRateLimitWindow,_that.cancelRateLimitUnit,_that.cancelRateLimitMode,_that.alipayForceQrCode);case _:
+return $default(_that.enabled,_that.minAmount,_that.maxAmount,_that.dailyLimit,_that.orderTimeoutMinutes,_that.maxPendingOrders,_that.enabledPaymentTypes,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.loadBalanceStrategy,_that.productNamePrefix,_that.productNameSuffix,_that.helpImageUrl,_that.helpText,_that.stripePublishableKey,_that.cancelRateLimitEnabled,_that.cancelRateLimitMax,_that.cancelRateLimitWindow,_that.cancelRateLimitUnit,_that.cancelRateLimitMode,_that.alipayForceQrCode,_that.alipayMobilePrecreateDeepLink);case _:
   return null;
 
 }
@@ -228,7 +229,7 @@ return $default(_that.enabled,_that.minAmount,_that.maxAmount,_that.dailyLimit,_
 
 
 class _Sub2ApiPaymentConfig implements Sub2ApiPaymentConfig {
-  const _Sub2ApiPaymentConfig({required this.enabled, required this.minAmount, required this.maxAmount, required this.dailyLimit, required this.orderTimeoutMinutes, required this.maxPendingOrders, required final  List<String> enabledPaymentTypes, required this.balanceDisabled, required this.balanceRechargeMultiplier, required this.subscriptionUsdToCnyRate, required this.rechargeFeeRate, required this.loadBalanceStrategy, required this.productNamePrefix, required this.productNameSuffix, required this.helpImageUrl, required this.helpText, this.stripePublishableKey, required this.cancelRateLimitEnabled, required this.cancelRateLimitMax, required this.cancelRateLimitWindow, required this.cancelRateLimitUnit, required this.cancelRateLimitMode, required this.alipayForceQrCode}): _enabledPaymentTypes = enabledPaymentTypes;
+  const _Sub2ApiPaymentConfig({required this.enabled, required this.minAmount, required this.maxAmount, required this.dailyLimit, required this.orderTimeoutMinutes, required this.maxPendingOrders, required final  List<String> enabledPaymentTypes, required this.balanceDisabled, required this.balanceRechargeMultiplier, required this.subscriptionUsdToCnyRate, required this.rechargeFeeRate, required this.loadBalanceStrategy, required this.productNamePrefix, required this.productNameSuffix, required this.helpImageUrl, required this.helpText, this.stripePublishableKey, required this.cancelRateLimitEnabled, required this.cancelRateLimitMax, required this.cancelRateLimitWindow, required this.cancelRateLimitUnit, required this.cancelRateLimitMode, required this.alipayForceQrCode, required this.alipayMobilePrecreateDeepLink}): _enabledPaymentTypes = enabledPaymentTypes;
   
 
 @override final  bool enabled;
@@ -260,6 +261,7 @@ class _Sub2ApiPaymentConfig implements Sub2ApiPaymentConfig {
 @override final  String cancelRateLimitUnit;
 @override final  String cancelRateLimitMode;
 @override final  bool alipayForceQrCode;
+@override final  bool alipayMobilePrecreateDeepLink;
 
 /// Create a copy of Sub2ApiPaymentConfig
 /// with the given fields replaced by the non-null parameter values.
@@ -271,16 +273,16 @@ _$Sub2ApiPaymentConfigCopyWith<_Sub2ApiPaymentConfig> get copyWith => __$Sub2Api
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiPaymentConfig&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.minAmount, minAmount) || other.minAmount == minAmount)&&(identical(other.maxAmount, maxAmount) || other.maxAmount == maxAmount)&&(identical(other.dailyLimit, dailyLimit) || other.dailyLimit == dailyLimit)&&(identical(other.orderTimeoutMinutes, orderTimeoutMinutes) || other.orderTimeoutMinutes == orderTimeoutMinutes)&&(identical(other.maxPendingOrders, maxPendingOrders) || other.maxPendingOrders == maxPendingOrders)&&const DeepCollectionEquality().equals(other._enabledPaymentTypes, _enabledPaymentTypes)&&(identical(other.balanceDisabled, balanceDisabled) || other.balanceDisabled == balanceDisabled)&&(identical(other.balanceRechargeMultiplier, balanceRechargeMultiplier) || other.balanceRechargeMultiplier == balanceRechargeMultiplier)&&(identical(other.subscriptionUsdToCnyRate, subscriptionUsdToCnyRate) || other.subscriptionUsdToCnyRate == subscriptionUsdToCnyRate)&&(identical(other.rechargeFeeRate, rechargeFeeRate) || other.rechargeFeeRate == rechargeFeeRate)&&(identical(other.loadBalanceStrategy, loadBalanceStrategy) || other.loadBalanceStrategy == loadBalanceStrategy)&&(identical(other.productNamePrefix, productNamePrefix) || other.productNamePrefix == productNamePrefix)&&(identical(other.productNameSuffix, productNameSuffix) || other.productNameSuffix == productNameSuffix)&&(identical(other.helpImageUrl, helpImageUrl) || other.helpImageUrl == helpImageUrl)&&(identical(other.helpText, helpText) || other.helpText == helpText)&&(identical(other.stripePublishableKey, stripePublishableKey) || other.stripePublishableKey == stripePublishableKey)&&(identical(other.cancelRateLimitEnabled, cancelRateLimitEnabled) || other.cancelRateLimitEnabled == cancelRateLimitEnabled)&&(identical(other.cancelRateLimitMax, cancelRateLimitMax) || other.cancelRateLimitMax == cancelRateLimitMax)&&(identical(other.cancelRateLimitWindow, cancelRateLimitWindow) || other.cancelRateLimitWindow == cancelRateLimitWindow)&&(identical(other.cancelRateLimitUnit, cancelRateLimitUnit) || other.cancelRateLimitUnit == cancelRateLimitUnit)&&(identical(other.cancelRateLimitMode, cancelRateLimitMode) || other.cancelRateLimitMode == cancelRateLimitMode)&&(identical(other.alipayForceQrCode, alipayForceQrCode) || other.alipayForceQrCode == alipayForceQrCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiPaymentConfig&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.minAmount, minAmount) || other.minAmount == minAmount)&&(identical(other.maxAmount, maxAmount) || other.maxAmount == maxAmount)&&(identical(other.dailyLimit, dailyLimit) || other.dailyLimit == dailyLimit)&&(identical(other.orderTimeoutMinutes, orderTimeoutMinutes) || other.orderTimeoutMinutes == orderTimeoutMinutes)&&(identical(other.maxPendingOrders, maxPendingOrders) || other.maxPendingOrders == maxPendingOrders)&&const DeepCollectionEquality().equals(other._enabledPaymentTypes, _enabledPaymentTypes)&&(identical(other.balanceDisabled, balanceDisabled) || other.balanceDisabled == balanceDisabled)&&(identical(other.balanceRechargeMultiplier, balanceRechargeMultiplier) || other.balanceRechargeMultiplier == balanceRechargeMultiplier)&&(identical(other.subscriptionUsdToCnyRate, subscriptionUsdToCnyRate) || other.subscriptionUsdToCnyRate == subscriptionUsdToCnyRate)&&(identical(other.rechargeFeeRate, rechargeFeeRate) || other.rechargeFeeRate == rechargeFeeRate)&&(identical(other.loadBalanceStrategy, loadBalanceStrategy) || other.loadBalanceStrategy == loadBalanceStrategy)&&(identical(other.productNamePrefix, productNamePrefix) || other.productNamePrefix == productNamePrefix)&&(identical(other.productNameSuffix, productNameSuffix) || other.productNameSuffix == productNameSuffix)&&(identical(other.helpImageUrl, helpImageUrl) || other.helpImageUrl == helpImageUrl)&&(identical(other.helpText, helpText) || other.helpText == helpText)&&(identical(other.stripePublishableKey, stripePublishableKey) || other.stripePublishableKey == stripePublishableKey)&&(identical(other.cancelRateLimitEnabled, cancelRateLimitEnabled) || other.cancelRateLimitEnabled == cancelRateLimitEnabled)&&(identical(other.cancelRateLimitMax, cancelRateLimitMax) || other.cancelRateLimitMax == cancelRateLimitMax)&&(identical(other.cancelRateLimitWindow, cancelRateLimitWindow) || other.cancelRateLimitWindow == cancelRateLimitWindow)&&(identical(other.cancelRateLimitUnit, cancelRateLimitUnit) || other.cancelRateLimitUnit == cancelRateLimitUnit)&&(identical(other.cancelRateLimitMode, cancelRateLimitMode) || other.cancelRateLimitMode == cancelRateLimitMode)&&(identical(other.alipayForceQrCode, alipayForceQrCode) || other.alipayForceQrCode == alipayForceQrCode)&&(identical(other.alipayMobilePrecreateDeepLink, alipayMobilePrecreateDeepLink) || other.alipayMobilePrecreateDeepLink == alipayMobilePrecreateDeepLink));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,enabled,minAmount,maxAmount,dailyLimit,orderTimeoutMinutes,maxPendingOrders,const DeepCollectionEquality().hash(_enabledPaymentTypes),balanceDisabled,balanceRechargeMultiplier,subscriptionUsdToCnyRate,rechargeFeeRate,loadBalanceStrategy,productNamePrefix,productNameSuffix,helpImageUrl,helpText,stripePublishableKey,cancelRateLimitEnabled,cancelRateLimitMax,cancelRateLimitWindow,cancelRateLimitUnit,cancelRateLimitMode,alipayForceQrCode]);
+int get hashCode => Object.hashAll([runtimeType,enabled,minAmount,maxAmount,dailyLimit,orderTimeoutMinutes,maxPendingOrders,const DeepCollectionEquality().hash(_enabledPaymentTypes),balanceDisabled,balanceRechargeMultiplier,subscriptionUsdToCnyRate,rechargeFeeRate,loadBalanceStrategy,productNamePrefix,productNameSuffix,helpImageUrl,helpText,stripePublishableKey,cancelRateLimitEnabled,cancelRateLimitMax,cancelRateLimitWindow,cancelRateLimitUnit,cancelRateLimitMode,alipayForceQrCode,alipayMobilePrecreateDeepLink]);
 
 @override
 String toString() {
-  return 'Sub2ApiPaymentConfig(enabled: $enabled, minAmount: $minAmount, maxAmount: $maxAmount, dailyLimit: $dailyLimit, orderTimeoutMinutes: $orderTimeoutMinutes, maxPendingOrders: $maxPendingOrders, enabledPaymentTypes: $enabledPaymentTypes, balanceDisabled: $balanceDisabled, balanceRechargeMultiplier: $balanceRechargeMultiplier, subscriptionUsdToCnyRate: $subscriptionUsdToCnyRate, rechargeFeeRate: $rechargeFeeRate, loadBalanceStrategy: $loadBalanceStrategy, productNamePrefix: $productNamePrefix, productNameSuffix: $productNameSuffix, helpImageUrl: $helpImageUrl, helpText: $helpText, stripePublishableKey: $stripePublishableKey, cancelRateLimitEnabled: $cancelRateLimitEnabled, cancelRateLimitMax: $cancelRateLimitMax, cancelRateLimitWindow: $cancelRateLimitWindow, cancelRateLimitUnit: $cancelRateLimitUnit, cancelRateLimitMode: $cancelRateLimitMode, alipayForceQrCode: $alipayForceQrCode)';
+  return 'Sub2ApiPaymentConfig(enabled: $enabled, minAmount: $minAmount, maxAmount: $maxAmount, dailyLimit: $dailyLimit, orderTimeoutMinutes: $orderTimeoutMinutes, maxPendingOrders: $maxPendingOrders, enabledPaymentTypes: $enabledPaymentTypes, balanceDisabled: $balanceDisabled, balanceRechargeMultiplier: $balanceRechargeMultiplier, subscriptionUsdToCnyRate: $subscriptionUsdToCnyRate, rechargeFeeRate: $rechargeFeeRate, loadBalanceStrategy: $loadBalanceStrategy, productNamePrefix: $productNamePrefix, productNameSuffix: $productNameSuffix, helpImageUrl: $helpImageUrl, helpText: $helpText, stripePublishableKey: $stripePublishableKey, cancelRateLimitEnabled: $cancelRateLimitEnabled, cancelRateLimitMax: $cancelRateLimitMax, cancelRateLimitWindow: $cancelRateLimitWindow, cancelRateLimitUnit: $cancelRateLimitUnit, cancelRateLimitMode: $cancelRateLimitMode, alipayForceQrCode: $alipayForceQrCode, alipayMobilePrecreateDeepLink: $alipayMobilePrecreateDeepLink)';
 }
 
 
@@ -291,7 +293,7 @@ abstract mixin class _$Sub2ApiPaymentConfigCopyWith<$Res> implements $Sub2ApiPay
   factory _$Sub2ApiPaymentConfigCopyWith(_Sub2ApiPaymentConfig value, $Res Function(_Sub2ApiPaymentConfig) _then) = __$Sub2ApiPaymentConfigCopyWithImpl;
 @override @useResult
 $Res call({
- bool enabled, Sub2ApiDecimal minAmount, Sub2ApiDecimal maxAmount, Sub2ApiDecimal dailyLimit, int orderTimeoutMinutes, int maxPendingOrders, List<String> enabledPaymentTypes, bool balanceDisabled, Sub2ApiDecimal balanceRechargeMultiplier, Sub2ApiDecimal subscriptionUsdToCnyRate, Sub2ApiDecimal rechargeFeeRate, String loadBalanceStrategy, String productNamePrefix, String productNameSuffix, String helpImageUrl, String helpText, String? stripePublishableKey, bool cancelRateLimitEnabled, int cancelRateLimitMax, int cancelRateLimitWindow, String cancelRateLimitUnit, String cancelRateLimitMode, bool alipayForceQrCode
+ bool enabled, Sub2ApiDecimal minAmount, Sub2ApiDecimal maxAmount, Sub2ApiDecimal dailyLimit, int orderTimeoutMinutes, int maxPendingOrders, List<String> enabledPaymentTypes, bool balanceDisabled, Sub2ApiDecimal balanceRechargeMultiplier, Sub2ApiDecimal subscriptionUsdToCnyRate, Sub2ApiDecimal rechargeFeeRate, String loadBalanceStrategy, String productNamePrefix, String productNameSuffix, String helpImageUrl, String helpText, String? stripePublishableKey, bool cancelRateLimitEnabled, int cancelRateLimitMax, int cancelRateLimitWindow, String cancelRateLimitUnit, String cancelRateLimitMode, bool alipayForceQrCode, bool alipayMobilePrecreateDeepLink
 });
 
 
@@ -308,7 +310,7 @@ class __$Sub2ApiPaymentConfigCopyWithImpl<$Res>
 
 /// Create a copy of Sub2ApiPaymentConfig
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? enabled = null,Object? minAmount = null,Object? maxAmount = null,Object? dailyLimit = null,Object? orderTimeoutMinutes = null,Object? maxPendingOrders = null,Object? enabledPaymentTypes = null,Object? balanceDisabled = null,Object? balanceRechargeMultiplier = null,Object? subscriptionUsdToCnyRate = null,Object? rechargeFeeRate = null,Object? loadBalanceStrategy = null,Object? productNamePrefix = null,Object? productNameSuffix = null,Object? helpImageUrl = null,Object? helpText = null,Object? stripePublishableKey = freezed,Object? cancelRateLimitEnabled = null,Object? cancelRateLimitMax = null,Object? cancelRateLimitWindow = null,Object? cancelRateLimitUnit = null,Object? cancelRateLimitMode = null,Object? alipayForceQrCode = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? enabled = null,Object? minAmount = null,Object? maxAmount = null,Object? dailyLimit = null,Object? orderTimeoutMinutes = null,Object? maxPendingOrders = null,Object? enabledPaymentTypes = null,Object? balanceDisabled = null,Object? balanceRechargeMultiplier = null,Object? subscriptionUsdToCnyRate = null,Object? rechargeFeeRate = null,Object? loadBalanceStrategy = null,Object? productNamePrefix = null,Object? productNameSuffix = null,Object? helpImageUrl = null,Object? helpText = null,Object? stripePublishableKey = freezed,Object? cancelRateLimitEnabled = null,Object? cancelRateLimitMax = null,Object? cancelRateLimitWindow = null,Object? cancelRateLimitUnit = null,Object? cancelRateLimitMode = null,Object? alipayForceQrCode = null,Object? alipayMobilePrecreateDeepLink = null,}) {
   return _then(_Sub2ApiPaymentConfig(
 enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
 as bool,minAmount: null == minAmount ? _self.minAmount : minAmount // ignore: cast_nullable_to_non_nullable
@@ -333,6 +335,7 @@ as int,cancelRateLimitWindow: null == cancelRateLimitWindow ? _self.cancelRateLi
 as int,cancelRateLimitUnit: null == cancelRateLimitUnit ? _self.cancelRateLimitUnit : cancelRateLimitUnit // ignore: cast_nullable_to_non_nullable
 as String,cancelRateLimitMode: null == cancelRateLimitMode ? _self.cancelRateLimitMode : cancelRateLimitMode // ignore: cast_nullable_to_non_nullable
 as String,alipayForceQrCode: null == alipayForceQrCode ? _self.alipayForceQrCode : alipayForceQrCode // ignore: cast_nullable_to_non_nullable
+as bool,alipayMobilePrecreateDeepLink: null == alipayMobilePrecreateDeepLink ? _self.alipayMobilePrecreateDeepLink : alipayMobilePrecreateDeepLink // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -887,7 +890,7 @@ as Sub2ApiDecimal,
 /// @nodoc
 mixin _$Sub2ApiSubscriptionPlan {
 
- int get id; int get groupId; String get groupPlatform; String get groupName; Sub2ApiDecimal get rateMultiplier; bool get peakRateEnabled; String get peakStart; String get peakEnd; Sub2ApiDecimal get peakRateMultiplier; String get name; String get description; Sub2ApiDecimal get price; Sub2ApiDecimal? get originalPrice; int get validityDays; String get validityUnit; List<String> get features; String get productName; bool? get forSale; int? get sortOrder; Sub2ApiDecimal? get dailyLimitUsd; Sub2ApiDecimal? get weeklyLimitUsd; Sub2ApiDecimal? get monthlyLimitUsd; List<String>? get supportedModelScopes;
+ int get id; int get groupId; String get groupPlatform; String get groupName; Sub2ApiDecimal get rateMultiplier; bool get peakRateEnabled; String get peakStart; String get peakEnd; Sub2ApiDecimal get peakRateMultiplier; String get name; String get description; Sub2ApiDecimal get price; Sub2ApiDecimal? get originalPrice; String? get currency; int get validityDays; String get validityUnit; List<String> get features; String get productName; bool? get forSale; int? get sortOrder; Sub2ApiDecimal? get dailyLimitUsd; Sub2ApiDecimal? get weeklyLimitUsd; Sub2ApiDecimal? get monthlyLimitUsd; List<String>? get supportedModelScopes;
 /// Create a copy of Sub2ApiSubscriptionPlan
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -898,16 +901,16 @@ $Sub2ApiSubscriptionPlanCopyWith<Sub2ApiSubscriptionPlan> get copyWith => _$Sub2
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiSubscriptionPlan&&(identical(other.id, id) || other.id == id)&&(identical(other.groupId, groupId) || other.groupId == groupId)&&(identical(other.groupPlatform, groupPlatform) || other.groupPlatform == groupPlatform)&&(identical(other.groupName, groupName) || other.groupName == groupName)&&(identical(other.rateMultiplier, rateMultiplier) || other.rateMultiplier == rateMultiplier)&&(identical(other.peakRateEnabled, peakRateEnabled) || other.peakRateEnabled == peakRateEnabled)&&(identical(other.peakStart, peakStart) || other.peakStart == peakStart)&&(identical(other.peakEnd, peakEnd) || other.peakEnd == peakEnd)&&(identical(other.peakRateMultiplier, peakRateMultiplier) || other.peakRateMultiplier == peakRateMultiplier)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.originalPrice, originalPrice) || other.originalPrice == originalPrice)&&(identical(other.validityDays, validityDays) || other.validityDays == validityDays)&&(identical(other.validityUnit, validityUnit) || other.validityUnit == validityUnit)&&const DeepCollectionEquality().equals(other.features, features)&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.forSale, forSale) || other.forSale == forSale)&&(identical(other.sortOrder, sortOrder) || other.sortOrder == sortOrder)&&(identical(other.dailyLimitUsd, dailyLimitUsd) || other.dailyLimitUsd == dailyLimitUsd)&&(identical(other.weeklyLimitUsd, weeklyLimitUsd) || other.weeklyLimitUsd == weeklyLimitUsd)&&(identical(other.monthlyLimitUsd, monthlyLimitUsd) || other.monthlyLimitUsd == monthlyLimitUsd)&&const DeepCollectionEquality().equals(other.supportedModelScopes, supportedModelScopes));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiSubscriptionPlan&&(identical(other.id, id) || other.id == id)&&(identical(other.groupId, groupId) || other.groupId == groupId)&&(identical(other.groupPlatform, groupPlatform) || other.groupPlatform == groupPlatform)&&(identical(other.groupName, groupName) || other.groupName == groupName)&&(identical(other.rateMultiplier, rateMultiplier) || other.rateMultiplier == rateMultiplier)&&(identical(other.peakRateEnabled, peakRateEnabled) || other.peakRateEnabled == peakRateEnabled)&&(identical(other.peakStart, peakStart) || other.peakStart == peakStart)&&(identical(other.peakEnd, peakEnd) || other.peakEnd == peakEnd)&&(identical(other.peakRateMultiplier, peakRateMultiplier) || other.peakRateMultiplier == peakRateMultiplier)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.originalPrice, originalPrice) || other.originalPrice == originalPrice)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.validityDays, validityDays) || other.validityDays == validityDays)&&(identical(other.validityUnit, validityUnit) || other.validityUnit == validityUnit)&&const DeepCollectionEquality().equals(other.features, features)&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.forSale, forSale) || other.forSale == forSale)&&(identical(other.sortOrder, sortOrder) || other.sortOrder == sortOrder)&&(identical(other.dailyLimitUsd, dailyLimitUsd) || other.dailyLimitUsd == dailyLimitUsd)&&(identical(other.weeklyLimitUsd, weeklyLimitUsd) || other.weeklyLimitUsd == weeklyLimitUsd)&&(identical(other.monthlyLimitUsd, monthlyLimitUsd) || other.monthlyLimitUsd == monthlyLimitUsd)&&const DeepCollectionEquality().equals(other.supportedModelScopes, supportedModelScopes));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,id,groupId,groupPlatform,groupName,rateMultiplier,peakRateEnabled,peakStart,peakEnd,peakRateMultiplier,name,description,price,originalPrice,validityDays,validityUnit,const DeepCollectionEquality().hash(features),productName,forSale,sortOrder,dailyLimitUsd,weeklyLimitUsd,monthlyLimitUsd,const DeepCollectionEquality().hash(supportedModelScopes)]);
+int get hashCode => Object.hashAll([runtimeType,id,groupId,groupPlatform,groupName,rateMultiplier,peakRateEnabled,peakStart,peakEnd,peakRateMultiplier,name,description,price,originalPrice,currency,validityDays,validityUnit,const DeepCollectionEquality().hash(features),productName,forSale,sortOrder,dailyLimitUsd,weeklyLimitUsd,monthlyLimitUsd,const DeepCollectionEquality().hash(supportedModelScopes)]);
 
 @override
 String toString() {
-  return 'Sub2ApiSubscriptionPlan(id: $id, groupId: $groupId, groupPlatform: $groupPlatform, groupName: $groupName, rateMultiplier: $rateMultiplier, peakRateEnabled: $peakRateEnabled, peakStart: $peakStart, peakEnd: $peakEnd, peakRateMultiplier: $peakRateMultiplier, name: $name, description: $description, price: $price, originalPrice: $originalPrice, validityDays: $validityDays, validityUnit: $validityUnit, features: $features, productName: $productName, forSale: $forSale, sortOrder: $sortOrder, dailyLimitUsd: $dailyLimitUsd, weeklyLimitUsd: $weeklyLimitUsd, monthlyLimitUsd: $monthlyLimitUsd, supportedModelScopes: $supportedModelScopes)';
+  return 'Sub2ApiSubscriptionPlan(id: $id, groupId: $groupId, groupPlatform: $groupPlatform, groupName: $groupName, rateMultiplier: $rateMultiplier, peakRateEnabled: $peakRateEnabled, peakStart: $peakStart, peakEnd: $peakEnd, peakRateMultiplier: $peakRateMultiplier, name: $name, description: $description, price: $price, originalPrice: $originalPrice, currency: $currency, validityDays: $validityDays, validityUnit: $validityUnit, features: $features, productName: $productName, forSale: $forSale, sortOrder: $sortOrder, dailyLimitUsd: $dailyLimitUsd, weeklyLimitUsd: $weeklyLimitUsd, monthlyLimitUsd: $monthlyLimitUsd, supportedModelScopes: $supportedModelScopes)';
 }
 
 
@@ -918,7 +921,7 @@ abstract mixin class $Sub2ApiSubscriptionPlanCopyWith<$Res>  {
   factory $Sub2ApiSubscriptionPlanCopyWith(Sub2ApiSubscriptionPlan value, $Res Function(Sub2ApiSubscriptionPlan) _then) = _$Sub2ApiSubscriptionPlanCopyWithImpl;
 @useResult
 $Res call({
- int id, int groupId, String groupPlatform, String groupName, Sub2ApiDecimal rateMultiplier, bool peakRateEnabled, String peakStart, String peakEnd, Sub2ApiDecimal peakRateMultiplier, String name, String description, Sub2ApiDecimal price, Sub2ApiDecimal? originalPrice, int validityDays, String validityUnit, List<String> features, String productName, bool? forSale, int? sortOrder, Sub2ApiDecimal? dailyLimitUsd, Sub2ApiDecimal? weeklyLimitUsd, Sub2ApiDecimal? monthlyLimitUsd, List<String>? supportedModelScopes
+ int id, int groupId, String groupPlatform, String groupName, Sub2ApiDecimal rateMultiplier, bool peakRateEnabled, String peakStart, String peakEnd, Sub2ApiDecimal peakRateMultiplier, String name, String description, Sub2ApiDecimal price, Sub2ApiDecimal? originalPrice, String? currency, int validityDays, String validityUnit, List<String> features, String productName, bool? forSale, int? sortOrder, Sub2ApiDecimal? dailyLimitUsd, Sub2ApiDecimal? weeklyLimitUsd, Sub2ApiDecimal? monthlyLimitUsd, List<String>? supportedModelScopes
 });
 
 
@@ -935,7 +938,7 @@ class _$Sub2ApiSubscriptionPlanCopyWithImpl<$Res>
 
 /// Create a copy of Sub2ApiSubscriptionPlan
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? groupId = null,Object? groupPlatform = null,Object? groupName = null,Object? rateMultiplier = null,Object? peakRateEnabled = null,Object? peakStart = null,Object? peakEnd = null,Object? peakRateMultiplier = null,Object? name = null,Object? description = null,Object? price = null,Object? originalPrice = freezed,Object? validityDays = null,Object? validityUnit = null,Object? features = null,Object? productName = null,Object? forSale = freezed,Object? sortOrder = freezed,Object? dailyLimitUsd = freezed,Object? weeklyLimitUsd = freezed,Object? monthlyLimitUsd = freezed,Object? supportedModelScopes = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? groupId = null,Object? groupPlatform = null,Object? groupName = null,Object? rateMultiplier = null,Object? peakRateEnabled = null,Object? peakStart = null,Object? peakEnd = null,Object? peakRateMultiplier = null,Object? name = null,Object? description = null,Object? price = null,Object? originalPrice = freezed,Object? currency = freezed,Object? validityDays = null,Object? validityUnit = null,Object? features = null,Object? productName = null,Object? forSale = freezed,Object? sortOrder = freezed,Object? dailyLimitUsd = freezed,Object? weeklyLimitUsd = freezed,Object? monthlyLimitUsd = freezed,Object? supportedModelScopes = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,groupId: null == groupId ? _self.groupId : groupId // ignore: cast_nullable_to_non_nullable
@@ -950,7 +953,8 @@ as Sub2ApiDecimal,name: null == name ? _self.name : name // ignore: cast_nullabl
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as Sub2ApiDecimal,originalPrice: freezed == originalPrice ? _self.originalPrice : originalPrice // ignore: cast_nullable_to_non_nullable
-as Sub2ApiDecimal?,validityDays: null == validityDays ? _self.validityDays : validityDays // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal?,currency: freezed == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
+as String?,validityDays: null == validityDays ? _self.validityDays : validityDays // ignore: cast_nullable_to_non_nullable
 as int,validityUnit: null == validityUnit ? _self.validityUnit : validityUnit // ignore: cast_nullable_to_non_nullable
 as String,features: null == features ? _self.features : features // ignore: cast_nullable_to_non_nullable
 as List<String>,productName: null == productName ? _self.productName : productName // ignore: cast_nullable_to_non_nullable
@@ -1045,10 +1049,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int groupId,  String groupPlatform,  String groupName,  Sub2ApiDecimal rateMultiplier,  bool peakRateEnabled,  String peakStart,  String peakEnd,  Sub2ApiDecimal peakRateMultiplier,  String name,  String description,  Sub2ApiDecimal price,  Sub2ApiDecimal? originalPrice,  int validityDays,  String validityUnit,  List<String> features,  String productName,  bool? forSale,  int? sortOrder,  Sub2ApiDecimal? dailyLimitUsd,  Sub2ApiDecimal? weeklyLimitUsd,  Sub2ApiDecimal? monthlyLimitUsd,  List<String>? supportedModelScopes)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int groupId,  String groupPlatform,  String groupName,  Sub2ApiDecimal rateMultiplier,  bool peakRateEnabled,  String peakStart,  String peakEnd,  Sub2ApiDecimal peakRateMultiplier,  String name,  String description,  Sub2ApiDecimal price,  Sub2ApiDecimal? originalPrice,  String? currency,  int validityDays,  String validityUnit,  List<String> features,  String productName,  bool? forSale,  int? sortOrder,  Sub2ApiDecimal? dailyLimitUsd,  Sub2ApiDecimal? weeklyLimitUsd,  Sub2ApiDecimal? monthlyLimitUsd,  List<String>? supportedModelScopes)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Sub2ApiSubscriptionPlan() when $default != null:
-return $default(_that.id,_that.groupId,_that.groupPlatform,_that.groupName,_that.rateMultiplier,_that.peakRateEnabled,_that.peakStart,_that.peakEnd,_that.peakRateMultiplier,_that.name,_that.description,_that.price,_that.originalPrice,_that.validityDays,_that.validityUnit,_that.features,_that.productName,_that.forSale,_that.sortOrder,_that.dailyLimitUsd,_that.weeklyLimitUsd,_that.monthlyLimitUsd,_that.supportedModelScopes);case _:
+return $default(_that.id,_that.groupId,_that.groupPlatform,_that.groupName,_that.rateMultiplier,_that.peakRateEnabled,_that.peakStart,_that.peakEnd,_that.peakRateMultiplier,_that.name,_that.description,_that.price,_that.originalPrice,_that.currency,_that.validityDays,_that.validityUnit,_that.features,_that.productName,_that.forSale,_that.sortOrder,_that.dailyLimitUsd,_that.weeklyLimitUsd,_that.monthlyLimitUsd,_that.supportedModelScopes);case _:
   return orElse();
 
 }
@@ -1066,10 +1070,10 @@ return $default(_that.id,_that.groupId,_that.groupPlatform,_that.groupName,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int groupId,  String groupPlatform,  String groupName,  Sub2ApiDecimal rateMultiplier,  bool peakRateEnabled,  String peakStart,  String peakEnd,  Sub2ApiDecimal peakRateMultiplier,  String name,  String description,  Sub2ApiDecimal price,  Sub2ApiDecimal? originalPrice,  int validityDays,  String validityUnit,  List<String> features,  String productName,  bool? forSale,  int? sortOrder,  Sub2ApiDecimal? dailyLimitUsd,  Sub2ApiDecimal? weeklyLimitUsd,  Sub2ApiDecimal? monthlyLimitUsd,  List<String>? supportedModelScopes)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int groupId,  String groupPlatform,  String groupName,  Sub2ApiDecimal rateMultiplier,  bool peakRateEnabled,  String peakStart,  String peakEnd,  Sub2ApiDecimal peakRateMultiplier,  String name,  String description,  Sub2ApiDecimal price,  Sub2ApiDecimal? originalPrice,  String? currency,  int validityDays,  String validityUnit,  List<String> features,  String productName,  bool? forSale,  int? sortOrder,  Sub2ApiDecimal? dailyLimitUsd,  Sub2ApiDecimal? weeklyLimitUsd,  Sub2ApiDecimal? monthlyLimitUsd,  List<String>? supportedModelScopes)  $default,) {final _that = this;
 switch (_that) {
 case _Sub2ApiSubscriptionPlan():
-return $default(_that.id,_that.groupId,_that.groupPlatform,_that.groupName,_that.rateMultiplier,_that.peakRateEnabled,_that.peakStart,_that.peakEnd,_that.peakRateMultiplier,_that.name,_that.description,_that.price,_that.originalPrice,_that.validityDays,_that.validityUnit,_that.features,_that.productName,_that.forSale,_that.sortOrder,_that.dailyLimitUsd,_that.weeklyLimitUsd,_that.monthlyLimitUsd,_that.supportedModelScopes);case _:
+return $default(_that.id,_that.groupId,_that.groupPlatform,_that.groupName,_that.rateMultiplier,_that.peakRateEnabled,_that.peakStart,_that.peakEnd,_that.peakRateMultiplier,_that.name,_that.description,_that.price,_that.originalPrice,_that.currency,_that.validityDays,_that.validityUnit,_that.features,_that.productName,_that.forSale,_that.sortOrder,_that.dailyLimitUsd,_that.weeklyLimitUsd,_that.monthlyLimitUsd,_that.supportedModelScopes);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1086,10 +1090,10 @@ return $default(_that.id,_that.groupId,_that.groupPlatform,_that.groupName,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int groupId,  String groupPlatform,  String groupName,  Sub2ApiDecimal rateMultiplier,  bool peakRateEnabled,  String peakStart,  String peakEnd,  Sub2ApiDecimal peakRateMultiplier,  String name,  String description,  Sub2ApiDecimal price,  Sub2ApiDecimal? originalPrice,  int validityDays,  String validityUnit,  List<String> features,  String productName,  bool? forSale,  int? sortOrder,  Sub2ApiDecimal? dailyLimitUsd,  Sub2ApiDecimal? weeklyLimitUsd,  Sub2ApiDecimal? monthlyLimitUsd,  List<String>? supportedModelScopes)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int groupId,  String groupPlatform,  String groupName,  Sub2ApiDecimal rateMultiplier,  bool peakRateEnabled,  String peakStart,  String peakEnd,  Sub2ApiDecimal peakRateMultiplier,  String name,  String description,  Sub2ApiDecimal price,  Sub2ApiDecimal? originalPrice,  String? currency,  int validityDays,  String validityUnit,  List<String> features,  String productName,  bool? forSale,  int? sortOrder,  Sub2ApiDecimal? dailyLimitUsd,  Sub2ApiDecimal? weeklyLimitUsd,  Sub2ApiDecimal? monthlyLimitUsd,  List<String>? supportedModelScopes)?  $default,) {final _that = this;
 switch (_that) {
 case _Sub2ApiSubscriptionPlan() when $default != null:
-return $default(_that.id,_that.groupId,_that.groupPlatform,_that.groupName,_that.rateMultiplier,_that.peakRateEnabled,_that.peakStart,_that.peakEnd,_that.peakRateMultiplier,_that.name,_that.description,_that.price,_that.originalPrice,_that.validityDays,_that.validityUnit,_that.features,_that.productName,_that.forSale,_that.sortOrder,_that.dailyLimitUsd,_that.weeklyLimitUsd,_that.monthlyLimitUsd,_that.supportedModelScopes);case _:
+return $default(_that.id,_that.groupId,_that.groupPlatform,_that.groupName,_that.rateMultiplier,_that.peakRateEnabled,_that.peakStart,_that.peakEnd,_that.peakRateMultiplier,_that.name,_that.description,_that.price,_that.originalPrice,_that.currency,_that.validityDays,_that.validityUnit,_that.features,_that.productName,_that.forSale,_that.sortOrder,_that.dailyLimitUsd,_that.weeklyLimitUsd,_that.monthlyLimitUsd,_that.supportedModelScopes);case _:
   return null;
 
 }
@@ -1101,7 +1105,7 @@ return $default(_that.id,_that.groupId,_that.groupPlatform,_that.groupName,_that
 
 
 class _Sub2ApiSubscriptionPlan implements Sub2ApiSubscriptionPlan {
-  const _Sub2ApiSubscriptionPlan({required this.id, required this.groupId, required this.groupPlatform, required this.groupName, required this.rateMultiplier, required this.peakRateEnabled, required this.peakStart, required this.peakEnd, required this.peakRateMultiplier, required this.name, required this.description, required this.price, this.originalPrice, required this.validityDays, required this.validityUnit, required final  List<String> features, required this.productName, this.forSale, this.sortOrder, this.dailyLimitUsd, this.weeklyLimitUsd, this.monthlyLimitUsd, final  List<String>? supportedModelScopes}): _features = features,_supportedModelScopes = supportedModelScopes;
+  const _Sub2ApiSubscriptionPlan({required this.id, required this.groupId, required this.groupPlatform, required this.groupName, required this.rateMultiplier, required this.peakRateEnabled, required this.peakStart, required this.peakEnd, required this.peakRateMultiplier, required this.name, required this.description, required this.price, this.originalPrice, this.currency, required this.validityDays, required this.validityUnit, required final  List<String> features, required this.productName, this.forSale, this.sortOrder, this.dailyLimitUsd, this.weeklyLimitUsd, this.monthlyLimitUsd, final  List<String>? supportedModelScopes}): _features = features,_supportedModelScopes = supportedModelScopes;
   
 
 @override final  int id;
@@ -1117,6 +1121,7 @@ class _Sub2ApiSubscriptionPlan implements Sub2ApiSubscriptionPlan {
 @override final  String description;
 @override final  Sub2ApiDecimal price;
 @override final  Sub2ApiDecimal? originalPrice;
+@override final  String? currency;
 @override final  int validityDays;
 @override final  String validityUnit;
  final  List<String> _features;
@@ -1152,16 +1157,16 @@ _$Sub2ApiSubscriptionPlanCopyWith<_Sub2ApiSubscriptionPlan> get copyWith => __$S
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiSubscriptionPlan&&(identical(other.id, id) || other.id == id)&&(identical(other.groupId, groupId) || other.groupId == groupId)&&(identical(other.groupPlatform, groupPlatform) || other.groupPlatform == groupPlatform)&&(identical(other.groupName, groupName) || other.groupName == groupName)&&(identical(other.rateMultiplier, rateMultiplier) || other.rateMultiplier == rateMultiplier)&&(identical(other.peakRateEnabled, peakRateEnabled) || other.peakRateEnabled == peakRateEnabled)&&(identical(other.peakStart, peakStart) || other.peakStart == peakStart)&&(identical(other.peakEnd, peakEnd) || other.peakEnd == peakEnd)&&(identical(other.peakRateMultiplier, peakRateMultiplier) || other.peakRateMultiplier == peakRateMultiplier)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.originalPrice, originalPrice) || other.originalPrice == originalPrice)&&(identical(other.validityDays, validityDays) || other.validityDays == validityDays)&&(identical(other.validityUnit, validityUnit) || other.validityUnit == validityUnit)&&const DeepCollectionEquality().equals(other._features, _features)&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.forSale, forSale) || other.forSale == forSale)&&(identical(other.sortOrder, sortOrder) || other.sortOrder == sortOrder)&&(identical(other.dailyLimitUsd, dailyLimitUsd) || other.dailyLimitUsd == dailyLimitUsd)&&(identical(other.weeklyLimitUsd, weeklyLimitUsd) || other.weeklyLimitUsd == weeklyLimitUsd)&&(identical(other.monthlyLimitUsd, monthlyLimitUsd) || other.monthlyLimitUsd == monthlyLimitUsd)&&const DeepCollectionEquality().equals(other._supportedModelScopes, _supportedModelScopes));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiSubscriptionPlan&&(identical(other.id, id) || other.id == id)&&(identical(other.groupId, groupId) || other.groupId == groupId)&&(identical(other.groupPlatform, groupPlatform) || other.groupPlatform == groupPlatform)&&(identical(other.groupName, groupName) || other.groupName == groupName)&&(identical(other.rateMultiplier, rateMultiplier) || other.rateMultiplier == rateMultiplier)&&(identical(other.peakRateEnabled, peakRateEnabled) || other.peakRateEnabled == peakRateEnabled)&&(identical(other.peakStart, peakStart) || other.peakStart == peakStart)&&(identical(other.peakEnd, peakEnd) || other.peakEnd == peakEnd)&&(identical(other.peakRateMultiplier, peakRateMultiplier) || other.peakRateMultiplier == peakRateMultiplier)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.originalPrice, originalPrice) || other.originalPrice == originalPrice)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.validityDays, validityDays) || other.validityDays == validityDays)&&(identical(other.validityUnit, validityUnit) || other.validityUnit == validityUnit)&&const DeepCollectionEquality().equals(other._features, _features)&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.forSale, forSale) || other.forSale == forSale)&&(identical(other.sortOrder, sortOrder) || other.sortOrder == sortOrder)&&(identical(other.dailyLimitUsd, dailyLimitUsd) || other.dailyLimitUsd == dailyLimitUsd)&&(identical(other.weeklyLimitUsd, weeklyLimitUsd) || other.weeklyLimitUsd == weeklyLimitUsd)&&(identical(other.monthlyLimitUsd, monthlyLimitUsd) || other.monthlyLimitUsd == monthlyLimitUsd)&&const DeepCollectionEquality().equals(other._supportedModelScopes, _supportedModelScopes));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,id,groupId,groupPlatform,groupName,rateMultiplier,peakRateEnabled,peakStart,peakEnd,peakRateMultiplier,name,description,price,originalPrice,validityDays,validityUnit,const DeepCollectionEquality().hash(_features),productName,forSale,sortOrder,dailyLimitUsd,weeklyLimitUsd,monthlyLimitUsd,const DeepCollectionEquality().hash(_supportedModelScopes)]);
+int get hashCode => Object.hashAll([runtimeType,id,groupId,groupPlatform,groupName,rateMultiplier,peakRateEnabled,peakStart,peakEnd,peakRateMultiplier,name,description,price,originalPrice,currency,validityDays,validityUnit,const DeepCollectionEquality().hash(_features),productName,forSale,sortOrder,dailyLimitUsd,weeklyLimitUsd,monthlyLimitUsd,const DeepCollectionEquality().hash(_supportedModelScopes)]);
 
 @override
 String toString() {
-  return 'Sub2ApiSubscriptionPlan(id: $id, groupId: $groupId, groupPlatform: $groupPlatform, groupName: $groupName, rateMultiplier: $rateMultiplier, peakRateEnabled: $peakRateEnabled, peakStart: $peakStart, peakEnd: $peakEnd, peakRateMultiplier: $peakRateMultiplier, name: $name, description: $description, price: $price, originalPrice: $originalPrice, validityDays: $validityDays, validityUnit: $validityUnit, features: $features, productName: $productName, forSale: $forSale, sortOrder: $sortOrder, dailyLimitUsd: $dailyLimitUsd, weeklyLimitUsd: $weeklyLimitUsd, monthlyLimitUsd: $monthlyLimitUsd, supportedModelScopes: $supportedModelScopes)';
+  return 'Sub2ApiSubscriptionPlan(id: $id, groupId: $groupId, groupPlatform: $groupPlatform, groupName: $groupName, rateMultiplier: $rateMultiplier, peakRateEnabled: $peakRateEnabled, peakStart: $peakStart, peakEnd: $peakEnd, peakRateMultiplier: $peakRateMultiplier, name: $name, description: $description, price: $price, originalPrice: $originalPrice, currency: $currency, validityDays: $validityDays, validityUnit: $validityUnit, features: $features, productName: $productName, forSale: $forSale, sortOrder: $sortOrder, dailyLimitUsd: $dailyLimitUsd, weeklyLimitUsd: $weeklyLimitUsd, monthlyLimitUsd: $monthlyLimitUsd, supportedModelScopes: $supportedModelScopes)';
 }
 
 
@@ -1172,7 +1177,7 @@ abstract mixin class _$Sub2ApiSubscriptionPlanCopyWith<$Res> implements $Sub2Api
   factory _$Sub2ApiSubscriptionPlanCopyWith(_Sub2ApiSubscriptionPlan value, $Res Function(_Sub2ApiSubscriptionPlan) _then) = __$Sub2ApiSubscriptionPlanCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int groupId, String groupPlatform, String groupName, Sub2ApiDecimal rateMultiplier, bool peakRateEnabled, String peakStart, String peakEnd, Sub2ApiDecimal peakRateMultiplier, String name, String description, Sub2ApiDecimal price, Sub2ApiDecimal? originalPrice, int validityDays, String validityUnit, List<String> features, String productName, bool? forSale, int? sortOrder, Sub2ApiDecimal? dailyLimitUsd, Sub2ApiDecimal? weeklyLimitUsd, Sub2ApiDecimal? monthlyLimitUsd, List<String>? supportedModelScopes
+ int id, int groupId, String groupPlatform, String groupName, Sub2ApiDecimal rateMultiplier, bool peakRateEnabled, String peakStart, String peakEnd, Sub2ApiDecimal peakRateMultiplier, String name, String description, Sub2ApiDecimal price, Sub2ApiDecimal? originalPrice, String? currency, int validityDays, String validityUnit, List<String> features, String productName, bool? forSale, int? sortOrder, Sub2ApiDecimal? dailyLimitUsd, Sub2ApiDecimal? weeklyLimitUsd, Sub2ApiDecimal? monthlyLimitUsd, List<String>? supportedModelScopes
 });
 
 
@@ -1189,7 +1194,7 @@ class __$Sub2ApiSubscriptionPlanCopyWithImpl<$Res>
 
 /// Create a copy of Sub2ApiSubscriptionPlan
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? groupId = null,Object? groupPlatform = null,Object? groupName = null,Object? rateMultiplier = null,Object? peakRateEnabled = null,Object? peakStart = null,Object? peakEnd = null,Object? peakRateMultiplier = null,Object? name = null,Object? description = null,Object? price = null,Object? originalPrice = freezed,Object? validityDays = null,Object? validityUnit = null,Object? features = null,Object? productName = null,Object? forSale = freezed,Object? sortOrder = freezed,Object? dailyLimitUsd = freezed,Object? weeklyLimitUsd = freezed,Object? monthlyLimitUsd = freezed,Object? supportedModelScopes = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? groupId = null,Object? groupPlatform = null,Object? groupName = null,Object? rateMultiplier = null,Object? peakRateEnabled = null,Object? peakStart = null,Object? peakEnd = null,Object? peakRateMultiplier = null,Object? name = null,Object? description = null,Object? price = null,Object? originalPrice = freezed,Object? currency = freezed,Object? validityDays = null,Object? validityUnit = null,Object? features = null,Object? productName = null,Object? forSale = freezed,Object? sortOrder = freezed,Object? dailyLimitUsd = freezed,Object? weeklyLimitUsd = freezed,Object? monthlyLimitUsd = freezed,Object? supportedModelScopes = freezed,}) {
   return _then(_Sub2ApiSubscriptionPlan(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,groupId: null == groupId ? _self.groupId : groupId // ignore: cast_nullable_to_non_nullable
@@ -1204,7 +1209,8 @@ as Sub2ApiDecimal,name: null == name ? _self.name : name // ignore: cast_nullabl
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as Sub2ApiDecimal,originalPrice: freezed == originalPrice ? _self.originalPrice : originalPrice // ignore: cast_nullable_to_non_nullable
-as Sub2ApiDecimal?,validityDays: null == validityDays ? _self.validityDays : validityDays // ignore: cast_nullable_to_non_nullable
+as Sub2ApiDecimal?,currency: freezed == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
+as String?,validityDays: null == validityDays ? _self.validityDays : validityDays // ignore: cast_nullable_to_non_nullable
 as int,validityUnit: null == validityUnit ? _self.validityUnit : validityUnit // ignore: cast_nullable_to_non_nullable
 as String,features: null == features ? _self._features : features // ignore: cast_nullable_to_non_nullable
 as List<String>,productName: null == productName ? _self.productName : productName // ignore: cast_nullable_to_non_nullable
@@ -1224,7 +1230,7 @@ as List<String>?,
 /// @nodoc
 mixin _$Sub2ApiCheckoutInfo {
 
- Sub2ApiPaymentLimits get limits; List<Sub2ApiSubscriptionPlan> get plans; bool get balanceDisabled; Sub2ApiDecimal get balanceRechargeMultiplier; Sub2ApiDecimal get subscriptionUsdToCnyRate; Sub2ApiDecimal get rechargeFeeRate; String get helpText; String get helpImageUrl; String? get stripePublishableKey; bool get alipayForceQrCode;
+ Sub2ApiPaymentLimits get limits; List<Sub2ApiSubscriptionPlan> get plans; bool get balanceDisabled; Sub2ApiDecimal get balanceRechargeMultiplier; Sub2ApiDecimal get subscriptionUsdToCnyRate; Sub2ApiDecimal get rechargeFeeRate; String get helpText; String get helpImageUrl; String? get stripePublishableKey; bool get alipayForceQrCode; bool get alipayMobilePrecreateDeepLink;
 /// Create a copy of Sub2ApiCheckoutInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1235,16 +1241,16 @@ $Sub2ApiCheckoutInfoCopyWith<Sub2ApiCheckoutInfo> get copyWith => _$Sub2ApiCheck
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiCheckoutInfo&&(identical(other.limits, limits) || other.limits == limits)&&const DeepCollectionEquality().equals(other.plans, plans)&&(identical(other.balanceDisabled, balanceDisabled) || other.balanceDisabled == balanceDisabled)&&(identical(other.balanceRechargeMultiplier, balanceRechargeMultiplier) || other.balanceRechargeMultiplier == balanceRechargeMultiplier)&&(identical(other.subscriptionUsdToCnyRate, subscriptionUsdToCnyRate) || other.subscriptionUsdToCnyRate == subscriptionUsdToCnyRate)&&(identical(other.rechargeFeeRate, rechargeFeeRate) || other.rechargeFeeRate == rechargeFeeRate)&&(identical(other.helpText, helpText) || other.helpText == helpText)&&(identical(other.helpImageUrl, helpImageUrl) || other.helpImageUrl == helpImageUrl)&&(identical(other.stripePublishableKey, stripePublishableKey) || other.stripePublishableKey == stripePublishableKey)&&(identical(other.alipayForceQrCode, alipayForceQrCode) || other.alipayForceQrCode == alipayForceQrCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiCheckoutInfo&&(identical(other.limits, limits) || other.limits == limits)&&const DeepCollectionEquality().equals(other.plans, plans)&&(identical(other.balanceDisabled, balanceDisabled) || other.balanceDisabled == balanceDisabled)&&(identical(other.balanceRechargeMultiplier, balanceRechargeMultiplier) || other.balanceRechargeMultiplier == balanceRechargeMultiplier)&&(identical(other.subscriptionUsdToCnyRate, subscriptionUsdToCnyRate) || other.subscriptionUsdToCnyRate == subscriptionUsdToCnyRate)&&(identical(other.rechargeFeeRate, rechargeFeeRate) || other.rechargeFeeRate == rechargeFeeRate)&&(identical(other.helpText, helpText) || other.helpText == helpText)&&(identical(other.helpImageUrl, helpImageUrl) || other.helpImageUrl == helpImageUrl)&&(identical(other.stripePublishableKey, stripePublishableKey) || other.stripePublishableKey == stripePublishableKey)&&(identical(other.alipayForceQrCode, alipayForceQrCode) || other.alipayForceQrCode == alipayForceQrCode)&&(identical(other.alipayMobilePrecreateDeepLink, alipayMobilePrecreateDeepLink) || other.alipayMobilePrecreateDeepLink == alipayMobilePrecreateDeepLink));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,limits,const DeepCollectionEquality().hash(plans),balanceDisabled,balanceRechargeMultiplier,subscriptionUsdToCnyRate,rechargeFeeRate,helpText,helpImageUrl,stripePublishableKey,alipayForceQrCode);
+int get hashCode => Object.hash(runtimeType,limits,const DeepCollectionEquality().hash(plans),balanceDisabled,balanceRechargeMultiplier,subscriptionUsdToCnyRate,rechargeFeeRate,helpText,helpImageUrl,stripePublishableKey,alipayForceQrCode,alipayMobilePrecreateDeepLink);
 
 @override
 String toString() {
-  return 'Sub2ApiCheckoutInfo(limits: $limits, plans: $plans, balanceDisabled: $balanceDisabled, balanceRechargeMultiplier: $balanceRechargeMultiplier, subscriptionUsdToCnyRate: $subscriptionUsdToCnyRate, rechargeFeeRate: $rechargeFeeRate, helpText: $helpText, helpImageUrl: $helpImageUrl, stripePublishableKey: $stripePublishableKey, alipayForceQrCode: $alipayForceQrCode)';
+  return 'Sub2ApiCheckoutInfo(limits: $limits, plans: $plans, balanceDisabled: $balanceDisabled, balanceRechargeMultiplier: $balanceRechargeMultiplier, subscriptionUsdToCnyRate: $subscriptionUsdToCnyRate, rechargeFeeRate: $rechargeFeeRate, helpText: $helpText, helpImageUrl: $helpImageUrl, stripePublishableKey: $stripePublishableKey, alipayForceQrCode: $alipayForceQrCode, alipayMobilePrecreateDeepLink: $alipayMobilePrecreateDeepLink)';
 }
 
 
@@ -1255,7 +1261,7 @@ abstract mixin class $Sub2ApiCheckoutInfoCopyWith<$Res>  {
   factory $Sub2ApiCheckoutInfoCopyWith(Sub2ApiCheckoutInfo value, $Res Function(Sub2ApiCheckoutInfo) _then) = _$Sub2ApiCheckoutInfoCopyWithImpl;
 @useResult
 $Res call({
- Sub2ApiPaymentLimits limits, List<Sub2ApiSubscriptionPlan> plans, bool balanceDisabled, Sub2ApiDecimal balanceRechargeMultiplier, Sub2ApiDecimal subscriptionUsdToCnyRate, Sub2ApiDecimal rechargeFeeRate, String helpText, String helpImageUrl, String? stripePublishableKey, bool alipayForceQrCode
+ Sub2ApiPaymentLimits limits, List<Sub2ApiSubscriptionPlan> plans, bool balanceDisabled, Sub2ApiDecimal balanceRechargeMultiplier, Sub2ApiDecimal subscriptionUsdToCnyRate, Sub2ApiDecimal rechargeFeeRate, String helpText, String helpImageUrl, String? stripePublishableKey, bool alipayForceQrCode, bool alipayMobilePrecreateDeepLink
 });
 
 
@@ -1272,7 +1278,7 @@ class _$Sub2ApiCheckoutInfoCopyWithImpl<$Res>
 
 /// Create a copy of Sub2ApiCheckoutInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? limits = null,Object? plans = null,Object? balanceDisabled = null,Object? balanceRechargeMultiplier = null,Object? subscriptionUsdToCnyRate = null,Object? rechargeFeeRate = null,Object? helpText = null,Object? helpImageUrl = null,Object? stripePublishableKey = freezed,Object? alipayForceQrCode = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? limits = null,Object? plans = null,Object? balanceDisabled = null,Object? balanceRechargeMultiplier = null,Object? subscriptionUsdToCnyRate = null,Object? rechargeFeeRate = null,Object? helpText = null,Object? helpImageUrl = null,Object? stripePublishableKey = freezed,Object? alipayForceQrCode = null,Object? alipayMobilePrecreateDeepLink = null,}) {
   return _then(_self.copyWith(
 limits: null == limits ? _self.limits : limits // ignore: cast_nullable_to_non_nullable
 as Sub2ApiPaymentLimits,plans: null == plans ? _self.plans : plans // ignore: cast_nullable_to_non_nullable
@@ -1284,6 +1290,7 @@ as Sub2ApiDecimal,helpText: null == helpText ? _self.helpText : helpText // igno
 as String,helpImageUrl: null == helpImageUrl ? _self.helpImageUrl : helpImageUrl // ignore: cast_nullable_to_non_nullable
 as String,stripePublishableKey: freezed == stripePublishableKey ? _self.stripePublishableKey : stripePublishableKey // ignore: cast_nullable_to_non_nullable
 as String?,alipayForceQrCode: null == alipayForceQrCode ? _self.alipayForceQrCode : alipayForceQrCode // ignore: cast_nullable_to_non_nullable
+as bool,alipayMobilePrecreateDeepLink: null == alipayMobilePrecreateDeepLink ? _self.alipayMobilePrecreateDeepLink : alipayMobilePrecreateDeepLink // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -1378,10 +1385,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Sub2ApiPaymentLimits limits,  List<Sub2ApiSubscriptionPlan> plans,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String helpText,  String helpImageUrl,  String? stripePublishableKey,  bool alipayForceQrCode)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Sub2ApiPaymentLimits limits,  List<Sub2ApiSubscriptionPlan> plans,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String helpText,  String helpImageUrl,  String? stripePublishableKey,  bool alipayForceQrCode,  bool alipayMobilePrecreateDeepLink)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Sub2ApiCheckoutInfo() when $default != null:
-return $default(_that.limits,_that.plans,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.helpText,_that.helpImageUrl,_that.stripePublishableKey,_that.alipayForceQrCode);case _:
+return $default(_that.limits,_that.plans,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.helpText,_that.helpImageUrl,_that.stripePublishableKey,_that.alipayForceQrCode,_that.alipayMobilePrecreateDeepLink);case _:
   return orElse();
 
 }
@@ -1399,10 +1406,10 @@ return $default(_that.limits,_that.plans,_that.balanceDisabled,_that.balanceRech
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Sub2ApiPaymentLimits limits,  List<Sub2ApiSubscriptionPlan> plans,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String helpText,  String helpImageUrl,  String? stripePublishableKey,  bool alipayForceQrCode)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Sub2ApiPaymentLimits limits,  List<Sub2ApiSubscriptionPlan> plans,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String helpText,  String helpImageUrl,  String? stripePublishableKey,  bool alipayForceQrCode,  bool alipayMobilePrecreateDeepLink)  $default,) {final _that = this;
 switch (_that) {
 case _Sub2ApiCheckoutInfo():
-return $default(_that.limits,_that.plans,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.helpText,_that.helpImageUrl,_that.stripePublishableKey,_that.alipayForceQrCode);case _:
+return $default(_that.limits,_that.plans,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.helpText,_that.helpImageUrl,_that.stripePublishableKey,_that.alipayForceQrCode,_that.alipayMobilePrecreateDeepLink);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1419,10 +1426,10 @@ return $default(_that.limits,_that.plans,_that.balanceDisabled,_that.balanceRech
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Sub2ApiPaymentLimits limits,  List<Sub2ApiSubscriptionPlan> plans,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String helpText,  String helpImageUrl,  String? stripePublishableKey,  bool alipayForceQrCode)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Sub2ApiPaymentLimits limits,  List<Sub2ApiSubscriptionPlan> plans,  bool balanceDisabled,  Sub2ApiDecimal balanceRechargeMultiplier,  Sub2ApiDecimal subscriptionUsdToCnyRate,  Sub2ApiDecimal rechargeFeeRate,  String helpText,  String helpImageUrl,  String? stripePublishableKey,  bool alipayForceQrCode,  bool alipayMobilePrecreateDeepLink)?  $default,) {final _that = this;
 switch (_that) {
 case _Sub2ApiCheckoutInfo() when $default != null:
-return $default(_that.limits,_that.plans,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.helpText,_that.helpImageUrl,_that.stripePublishableKey,_that.alipayForceQrCode);case _:
+return $default(_that.limits,_that.plans,_that.balanceDisabled,_that.balanceRechargeMultiplier,_that.subscriptionUsdToCnyRate,_that.rechargeFeeRate,_that.helpText,_that.helpImageUrl,_that.stripePublishableKey,_that.alipayForceQrCode,_that.alipayMobilePrecreateDeepLink);case _:
   return null;
 
 }
@@ -1434,7 +1441,7 @@ return $default(_that.limits,_that.plans,_that.balanceDisabled,_that.balanceRech
 
 
 class _Sub2ApiCheckoutInfo implements Sub2ApiCheckoutInfo {
-  const _Sub2ApiCheckoutInfo({required this.limits, required final  List<Sub2ApiSubscriptionPlan> plans, required this.balanceDisabled, required this.balanceRechargeMultiplier, required this.subscriptionUsdToCnyRate, required this.rechargeFeeRate, required this.helpText, required this.helpImageUrl, this.stripePublishableKey, required this.alipayForceQrCode}): _plans = plans;
+  const _Sub2ApiCheckoutInfo({required this.limits, required final  List<Sub2ApiSubscriptionPlan> plans, required this.balanceDisabled, required this.balanceRechargeMultiplier, required this.subscriptionUsdToCnyRate, required this.rechargeFeeRate, required this.helpText, required this.helpImageUrl, this.stripePublishableKey, required this.alipayForceQrCode, required this.alipayMobilePrecreateDeepLink}): _plans = plans;
   
 
 @override final  Sub2ApiPaymentLimits limits;
@@ -1453,6 +1460,7 @@ class _Sub2ApiCheckoutInfo implements Sub2ApiCheckoutInfo {
 @override final  String helpImageUrl;
 @override final  String? stripePublishableKey;
 @override final  bool alipayForceQrCode;
+@override final  bool alipayMobilePrecreateDeepLink;
 
 /// Create a copy of Sub2ApiCheckoutInfo
 /// with the given fields replaced by the non-null parameter values.
@@ -1464,16 +1472,16 @@ _$Sub2ApiCheckoutInfoCopyWith<_Sub2ApiCheckoutInfo> get copyWith => __$Sub2ApiCh
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiCheckoutInfo&&(identical(other.limits, limits) || other.limits == limits)&&const DeepCollectionEquality().equals(other._plans, _plans)&&(identical(other.balanceDisabled, balanceDisabled) || other.balanceDisabled == balanceDisabled)&&(identical(other.balanceRechargeMultiplier, balanceRechargeMultiplier) || other.balanceRechargeMultiplier == balanceRechargeMultiplier)&&(identical(other.subscriptionUsdToCnyRate, subscriptionUsdToCnyRate) || other.subscriptionUsdToCnyRate == subscriptionUsdToCnyRate)&&(identical(other.rechargeFeeRate, rechargeFeeRate) || other.rechargeFeeRate == rechargeFeeRate)&&(identical(other.helpText, helpText) || other.helpText == helpText)&&(identical(other.helpImageUrl, helpImageUrl) || other.helpImageUrl == helpImageUrl)&&(identical(other.stripePublishableKey, stripePublishableKey) || other.stripePublishableKey == stripePublishableKey)&&(identical(other.alipayForceQrCode, alipayForceQrCode) || other.alipayForceQrCode == alipayForceQrCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Sub2ApiCheckoutInfo&&(identical(other.limits, limits) || other.limits == limits)&&const DeepCollectionEquality().equals(other._plans, _plans)&&(identical(other.balanceDisabled, balanceDisabled) || other.balanceDisabled == balanceDisabled)&&(identical(other.balanceRechargeMultiplier, balanceRechargeMultiplier) || other.balanceRechargeMultiplier == balanceRechargeMultiplier)&&(identical(other.subscriptionUsdToCnyRate, subscriptionUsdToCnyRate) || other.subscriptionUsdToCnyRate == subscriptionUsdToCnyRate)&&(identical(other.rechargeFeeRate, rechargeFeeRate) || other.rechargeFeeRate == rechargeFeeRate)&&(identical(other.helpText, helpText) || other.helpText == helpText)&&(identical(other.helpImageUrl, helpImageUrl) || other.helpImageUrl == helpImageUrl)&&(identical(other.stripePublishableKey, stripePublishableKey) || other.stripePublishableKey == stripePublishableKey)&&(identical(other.alipayForceQrCode, alipayForceQrCode) || other.alipayForceQrCode == alipayForceQrCode)&&(identical(other.alipayMobilePrecreateDeepLink, alipayMobilePrecreateDeepLink) || other.alipayMobilePrecreateDeepLink == alipayMobilePrecreateDeepLink));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,limits,const DeepCollectionEquality().hash(_plans),balanceDisabled,balanceRechargeMultiplier,subscriptionUsdToCnyRate,rechargeFeeRate,helpText,helpImageUrl,stripePublishableKey,alipayForceQrCode);
+int get hashCode => Object.hash(runtimeType,limits,const DeepCollectionEquality().hash(_plans),balanceDisabled,balanceRechargeMultiplier,subscriptionUsdToCnyRate,rechargeFeeRate,helpText,helpImageUrl,stripePublishableKey,alipayForceQrCode,alipayMobilePrecreateDeepLink);
 
 @override
 String toString() {
-  return 'Sub2ApiCheckoutInfo(limits: $limits, plans: $plans, balanceDisabled: $balanceDisabled, balanceRechargeMultiplier: $balanceRechargeMultiplier, subscriptionUsdToCnyRate: $subscriptionUsdToCnyRate, rechargeFeeRate: $rechargeFeeRate, helpText: $helpText, helpImageUrl: $helpImageUrl, stripePublishableKey: $stripePublishableKey, alipayForceQrCode: $alipayForceQrCode)';
+  return 'Sub2ApiCheckoutInfo(limits: $limits, plans: $plans, balanceDisabled: $balanceDisabled, balanceRechargeMultiplier: $balanceRechargeMultiplier, subscriptionUsdToCnyRate: $subscriptionUsdToCnyRate, rechargeFeeRate: $rechargeFeeRate, helpText: $helpText, helpImageUrl: $helpImageUrl, stripePublishableKey: $stripePublishableKey, alipayForceQrCode: $alipayForceQrCode, alipayMobilePrecreateDeepLink: $alipayMobilePrecreateDeepLink)';
 }
 
 
@@ -1484,7 +1492,7 @@ abstract mixin class _$Sub2ApiCheckoutInfoCopyWith<$Res> implements $Sub2ApiChec
   factory _$Sub2ApiCheckoutInfoCopyWith(_Sub2ApiCheckoutInfo value, $Res Function(_Sub2ApiCheckoutInfo) _then) = __$Sub2ApiCheckoutInfoCopyWithImpl;
 @override @useResult
 $Res call({
- Sub2ApiPaymentLimits limits, List<Sub2ApiSubscriptionPlan> plans, bool balanceDisabled, Sub2ApiDecimal balanceRechargeMultiplier, Sub2ApiDecimal subscriptionUsdToCnyRate, Sub2ApiDecimal rechargeFeeRate, String helpText, String helpImageUrl, String? stripePublishableKey, bool alipayForceQrCode
+ Sub2ApiPaymentLimits limits, List<Sub2ApiSubscriptionPlan> plans, bool balanceDisabled, Sub2ApiDecimal balanceRechargeMultiplier, Sub2ApiDecimal subscriptionUsdToCnyRate, Sub2ApiDecimal rechargeFeeRate, String helpText, String helpImageUrl, String? stripePublishableKey, bool alipayForceQrCode, bool alipayMobilePrecreateDeepLink
 });
 
 
@@ -1501,7 +1509,7 @@ class __$Sub2ApiCheckoutInfoCopyWithImpl<$Res>
 
 /// Create a copy of Sub2ApiCheckoutInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? limits = null,Object? plans = null,Object? balanceDisabled = null,Object? balanceRechargeMultiplier = null,Object? subscriptionUsdToCnyRate = null,Object? rechargeFeeRate = null,Object? helpText = null,Object? helpImageUrl = null,Object? stripePublishableKey = freezed,Object? alipayForceQrCode = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? limits = null,Object? plans = null,Object? balanceDisabled = null,Object? balanceRechargeMultiplier = null,Object? subscriptionUsdToCnyRate = null,Object? rechargeFeeRate = null,Object? helpText = null,Object? helpImageUrl = null,Object? stripePublishableKey = freezed,Object? alipayForceQrCode = null,Object? alipayMobilePrecreateDeepLink = null,}) {
   return _then(_Sub2ApiCheckoutInfo(
 limits: null == limits ? _self.limits : limits // ignore: cast_nullable_to_non_nullable
 as Sub2ApiPaymentLimits,plans: null == plans ? _self._plans : plans // ignore: cast_nullable_to_non_nullable
@@ -1513,6 +1521,7 @@ as Sub2ApiDecimal,helpText: null == helpText ? _self.helpText : helpText // igno
 as String,helpImageUrl: null == helpImageUrl ? _self.helpImageUrl : helpImageUrl // ignore: cast_nullable_to_non_nullable
 as String,stripePublishableKey: freezed == stripePublishableKey ? _self.stripePublishableKey : stripePublishableKey // ignore: cast_nullable_to_non_nullable
 as String?,alipayForceQrCode: null == alipayForceQrCode ? _self.alipayForceQrCode : alipayForceQrCode // ignore: cast_nullable_to_non_nullable
+as bool,alipayMobilePrecreateDeepLink: null == alipayMobilePrecreateDeepLink ? _self.alipayMobilePrecreateDeepLink : alipayMobilePrecreateDeepLink // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -3348,10 +3357,10 @@ return jsapiReady(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiCheckoutSecret? payUrl,  Sub2ApiCheckoutSecret? qrCode,  Sub2ApiCheckoutSecret? clientSecret,  String? intentId,  String? countryCode,  String? paymentEnvironment,  String? paymentMode,  Sub2ApiCheckoutSecret? resumeToken)?  orderCreated,TResult Function( Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String paymentType,  Sub2ApiWechatOAuthInstructions oauth)?  oauthRequired,TResult Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiWechatJsApiInstructions jsapi,  Sub2ApiCheckoutSecret? resumeToken)?  jsapiReady,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiCheckoutSecret? payUrl,  Sub2ApiCheckoutSecret? qrCode,  Sub2ApiCheckoutSecret? clientSecret,  String? intentId,  String? countryCode,  String? paymentEnvironment,  String? paymentMode,  Sub2ApiCheckoutSecret? resumeToken,  bool alipayMobilePrecreateDeepLink)?  orderCreated,TResult Function( Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String paymentType,  Sub2ApiWechatOAuthInstructions oauth)?  oauthRequired,TResult Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiWechatJsApiInstructions jsapi,  Sub2ApiCheckoutSecret? resumeToken)?  jsapiReady,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Sub2ApiOrderCreated() when orderCreated != null:
-return orderCreated(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that.status,_that.paymentType,_that.outTradeNo,_that.currency,_that.expiresAt,_that.payUrl,_that.qrCode,_that.clientSecret,_that.intentId,_that.countryCode,_that.paymentEnvironment,_that.paymentMode,_that.resumeToken);case Sub2ApiOrderOAuthRequired() when oauthRequired != null:
+return orderCreated(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that.status,_that.paymentType,_that.outTradeNo,_that.currency,_that.expiresAt,_that.payUrl,_that.qrCode,_that.clientSecret,_that.intentId,_that.countryCode,_that.paymentEnvironment,_that.paymentMode,_that.resumeToken,_that.alipayMobilePrecreateDeepLink);case Sub2ApiOrderOAuthRequired() when oauthRequired != null:
 return oauthRequired(_that.amount,_that.payAmount,_that.feeRate,_that.paymentType,_that.oauth);case Sub2ApiOrderJsapiReady() when jsapiReady != null:
 return jsapiReady(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that.status,_that.paymentType,_that.outTradeNo,_that.currency,_that.expiresAt,_that.jsapi,_that.resumeToken);case _:
   return orElse();
@@ -3371,10 +3380,10 @@ return jsapiReady(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiCheckoutSecret? payUrl,  Sub2ApiCheckoutSecret? qrCode,  Sub2ApiCheckoutSecret? clientSecret,  String? intentId,  String? countryCode,  String? paymentEnvironment,  String? paymentMode,  Sub2ApiCheckoutSecret? resumeToken)  orderCreated,required TResult Function( Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String paymentType,  Sub2ApiWechatOAuthInstructions oauth)  oauthRequired,required TResult Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiWechatJsApiInstructions jsapi,  Sub2ApiCheckoutSecret? resumeToken)  jsapiReady,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiCheckoutSecret? payUrl,  Sub2ApiCheckoutSecret? qrCode,  Sub2ApiCheckoutSecret? clientSecret,  String? intentId,  String? countryCode,  String? paymentEnvironment,  String? paymentMode,  Sub2ApiCheckoutSecret? resumeToken,  bool alipayMobilePrecreateDeepLink)  orderCreated,required TResult Function( Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String paymentType,  Sub2ApiWechatOAuthInstructions oauth)  oauthRequired,required TResult Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiWechatJsApiInstructions jsapi,  Sub2ApiCheckoutSecret? resumeToken)  jsapiReady,}) {final _that = this;
 switch (_that) {
 case Sub2ApiOrderCreated():
-return orderCreated(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that.status,_that.paymentType,_that.outTradeNo,_that.currency,_that.expiresAt,_that.payUrl,_that.qrCode,_that.clientSecret,_that.intentId,_that.countryCode,_that.paymentEnvironment,_that.paymentMode,_that.resumeToken);case Sub2ApiOrderOAuthRequired():
+return orderCreated(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that.status,_that.paymentType,_that.outTradeNo,_that.currency,_that.expiresAt,_that.payUrl,_that.qrCode,_that.clientSecret,_that.intentId,_that.countryCode,_that.paymentEnvironment,_that.paymentMode,_that.resumeToken,_that.alipayMobilePrecreateDeepLink);case Sub2ApiOrderOAuthRequired():
 return oauthRequired(_that.amount,_that.payAmount,_that.feeRate,_that.paymentType,_that.oauth);case Sub2ApiOrderJsapiReady():
 return jsapiReady(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that.status,_that.paymentType,_that.outTradeNo,_that.currency,_that.expiresAt,_that.jsapi,_that.resumeToken);}
 }
@@ -3390,10 +3399,10 @@ return jsapiReady(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiCheckoutSecret? payUrl,  Sub2ApiCheckoutSecret? qrCode,  Sub2ApiCheckoutSecret? clientSecret,  String? intentId,  String? countryCode,  String? paymentEnvironment,  String? paymentMode,  Sub2ApiCheckoutSecret? resumeToken)?  orderCreated,TResult? Function( Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String paymentType,  Sub2ApiWechatOAuthInstructions oauth)?  oauthRequired,TResult? Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiWechatJsApiInstructions jsapi,  Sub2ApiCheckoutSecret? resumeToken)?  jsapiReady,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiCheckoutSecret? payUrl,  Sub2ApiCheckoutSecret? qrCode,  Sub2ApiCheckoutSecret? clientSecret,  String? intentId,  String? countryCode,  String? paymentEnvironment,  String? paymentMode,  Sub2ApiCheckoutSecret? resumeToken,  bool alipayMobilePrecreateDeepLink)?  orderCreated,TResult? Function( Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String paymentType,  Sub2ApiWechatOAuthInstructions oauth)?  oauthRequired,TResult? Function( int orderId,  Sub2ApiDecimal amount,  Sub2ApiDecimal payAmount,  Sub2ApiDecimal feeRate,  String status,  String paymentType,  String outTradeNo,  String currency,  DateTime expiresAt,  Sub2ApiWechatJsApiInstructions jsapi,  Sub2ApiCheckoutSecret? resumeToken)?  jsapiReady,}) {final _that = this;
 switch (_that) {
 case Sub2ApiOrderCreated() when orderCreated != null:
-return orderCreated(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that.status,_that.paymentType,_that.outTradeNo,_that.currency,_that.expiresAt,_that.payUrl,_that.qrCode,_that.clientSecret,_that.intentId,_that.countryCode,_that.paymentEnvironment,_that.paymentMode,_that.resumeToken);case Sub2ApiOrderOAuthRequired() when oauthRequired != null:
+return orderCreated(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that.status,_that.paymentType,_that.outTradeNo,_that.currency,_that.expiresAt,_that.payUrl,_that.qrCode,_that.clientSecret,_that.intentId,_that.countryCode,_that.paymentEnvironment,_that.paymentMode,_that.resumeToken,_that.alipayMobilePrecreateDeepLink);case Sub2ApiOrderOAuthRequired() when oauthRequired != null:
 return oauthRequired(_that.amount,_that.payAmount,_that.feeRate,_that.paymentType,_that.oauth);case Sub2ApiOrderJsapiReady() when jsapiReady != null:
 return jsapiReady(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that.status,_that.paymentType,_that.outTradeNo,_that.currency,_that.expiresAt,_that.jsapi,_that.resumeToken);case _:
   return null;
@@ -3407,7 +3416,7 @@ return jsapiReady(_that.orderId,_that.amount,_that.payAmount,_that.feeRate,_that
 
 
 class Sub2ApiOrderCreated implements Sub2ApiCreateOrderResult {
-  const Sub2ApiOrderCreated({required this.orderId, required this.amount, required this.payAmount, required this.feeRate, required this.status, required this.paymentType, required this.outTradeNo, required this.currency, required this.expiresAt, this.payUrl, this.qrCode, this.clientSecret, this.intentId, this.countryCode, this.paymentEnvironment, this.paymentMode, this.resumeToken});
+  const Sub2ApiOrderCreated({required this.orderId, required this.amount, required this.payAmount, required this.feeRate, required this.status, required this.paymentType, required this.outTradeNo, required this.currency, required this.expiresAt, this.payUrl, this.qrCode, this.clientSecret, this.intentId, this.countryCode, this.paymentEnvironment, this.paymentMode, this.resumeToken, this.alipayMobilePrecreateDeepLink = false});
   
 
  final  int orderId;
@@ -3427,6 +3436,7 @@ class Sub2ApiOrderCreated implements Sub2ApiCreateOrderResult {
  final  String? paymentEnvironment;
  final  String? paymentMode;
  final  Sub2ApiCheckoutSecret? resumeToken;
+@JsonKey() final  bool alipayMobilePrecreateDeepLink;
 
 /// Create a copy of Sub2ApiCreateOrderResult
 /// with the given fields replaced by the non-null parameter values.
@@ -3438,16 +3448,16 @@ $Sub2ApiOrderCreatedCopyWith<Sub2ApiOrderCreated> get copyWith => _$Sub2ApiOrder
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiOrderCreated&&(identical(other.orderId, orderId) || other.orderId == orderId)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.payAmount, payAmount) || other.payAmount == payAmount)&&(identical(other.feeRate, feeRate) || other.feeRate == feeRate)&&(identical(other.status, status) || other.status == status)&&(identical(other.paymentType, paymentType) || other.paymentType == paymentType)&&(identical(other.outTradeNo, outTradeNo) || other.outTradeNo == outTradeNo)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt)&&(identical(other.payUrl, payUrl) || other.payUrl == payUrl)&&(identical(other.qrCode, qrCode) || other.qrCode == qrCode)&&(identical(other.clientSecret, clientSecret) || other.clientSecret == clientSecret)&&(identical(other.intentId, intentId) || other.intentId == intentId)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.paymentEnvironment, paymentEnvironment) || other.paymentEnvironment == paymentEnvironment)&&(identical(other.paymentMode, paymentMode) || other.paymentMode == paymentMode)&&(identical(other.resumeToken, resumeToken) || other.resumeToken == resumeToken));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sub2ApiOrderCreated&&(identical(other.orderId, orderId) || other.orderId == orderId)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.payAmount, payAmount) || other.payAmount == payAmount)&&(identical(other.feeRate, feeRate) || other.feeRate == feeRate)&&(identical(other.status, status) || other.status == status)&&(identical(other.paymentType, paymentType) || other.paymentType == paymentType)&&(identical(other.outTradeNo, outTradeNo) || other.outTradeNo == outTradeNo)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt)&&(identical(other.payUrl, payUrl) || other.payUrl == payUrl)&&(identical(other.qrCode, qrCode) || other.qrCode == qrCode)&&(identical(other.clientSecret, clientSecret) || other.clientSecret == clientSecret)&&(identical(other.intentId, intentId) || other.intentId == intentId)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.paymentEnvironment, paymentEnvironment) || other.paymentEnvironment == paymentEnvironment)&&(identical(other.paymentMode, paymentMode) || other.paymentMode == paymentMode)&&(identical(other.resumeToken, resumeToken) || other.resumeToken == resumeToken)&&(identical(other.alipayMobilePrecreateDeepLink, alipayMobilePrecreateDeepLink) || other.alipayMobilePrecreateDeepLink == alipayMobilePrecreateDeepLink));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,orderId,amount,payAmount,feeRate,status,paymentType,outTradeNo,currency,expiresAt,payUrl,qrCode,clientSecret,intentId,countryCode,paymentEnvironment,paymentMode,resumeToken);
+int get hashCode => Object.hash(runtimeType,orderId,amount,payAmount,feeRate,status,paymentType,outTradeNo,currency,expiresAt,payUrl,qrCode,clientSecret,intentId,countryCode,paymentEnvironment,paymentMode,resumeToken,alipayMobilePrecreateDeepLink);
 
 @override
 String toString() {
-  return 'Sub2ApiCreateOrderResult.orderCreated(orderId: $orderId, amount: $amount, payAmount: $payAmount, feeRate: $feeRate, status: $status, paymentType: $paymentType, outTradeNo: $outTradeNo, currency: $currency, expiresAt: $expiresAt, payUrl: $payUrl, qrCode: $qrCode, clientSecret: $clientSecret, intentId: $intentId, countryCode: $countryCode, paymentEnvironment: $paymentEnvironment, paymentMode: $paymentMode, resumeToken: $resumeToken)';
+  return 'Sub2ApiCreateOrderResult.orderCreated(orderId: $orderId, amount: $amount, payAmount: $payAmount, feeRate: $feeRate, status: $status, paymentType: $paymentType, outTradeNo: $outTradeNo, currency: $currency, expiresAt: $expiresAt, payUrl: $payUrl, qrCode: $qrCode, clientSecret: $clientSecret, intentId: $intentId, countryCode: $countryCode, paymentEnvironment: $paymentEnvironment, paymentMode: $paymentMode, resumeToken: $resumeToken, alipayMobilePrecreateDeepLink: $alipayMobilePrecreateDeepLink)';
 }
 
 
@@ -3458,7 +3468,7 @@ abstract mixin class $Sub2ApiOrderCreatedCopyWith<$Res> implements $Sub2ApiCreat
   factory $Sub2ApiOrderCreatedCopyWith(Sub2ApiOrderCreated value, $Res Function(Sub2ApiOrderCreated) _then) = _$Sub2ApiOrderCreatedCopyWithImpl;
 @override @useResult
 $Res call({
- int orderId, Sub2ApiDecimal amount, Sub2ApiDecimal payAmount, Sub2ApiDecimal feeRate, String status, String paymentType, String outTradeNo, String currency, DateTime expiresAt, Sub2ApiCheckoutSecret? payUrl, Sub2ApiCheckoutSecret? qrCode, Sub2ApiCheckoutSecret? clientSecret, String? intentId, String? countryCode, String? paymentEnvironment, String? paymentMode, Sub2ApiCheckoutSecret? resumeToken
+ int orderId, Sub2ApiDecimal amount, Sub2ApiDecimal payAmount, Sub2ApiDecimal feeRate, String status, String paymentType, String outTradeNo, String currency, DateTime expiresAt, Sub2ApiCheckoutSecret? payUrl, Sub2ApiCheckoutSecret? qrCode, Sub2ApiCheckoutSecret? clientSecret, String? intentId, String? countryCode, String? paymentEnvironment, String? paymentMode, Sub2ApiCheckoutSecret? resumeToken, bool alipayMobilePrecreateDeepLink
 });
 
 
@@ -3475,7 +3485,7 @@ class _$Sub2ApiOrderCreatedCopyWithImpl<$Res>
 
 /// Create a copy of Sub2ApiCreateOrderResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? orderId = null,Object? amount = null,Object? payAmount = null,Object? feeRate = null,Object? status = null,Object? paymentType = null,Object? outTradeNo = null,Object? currency = null,Object? expiresAt = null,Object? payUrl = freezed,Object? qrCode = freezed,Object? clientSecret = freezed,Object? intentId = freezed,Object? countryCode = freezed,Object? paymentEnvironment = freezed,Object? paymentMode = freezed,Object? resumeToken = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? orderId = null,Object? amount = null,Object? payAmount = null,Object? feeRate = null,Object? status = null,Object? paymentType = null,Object? outTradeNo = null,Object? currency = null,Object? expiresAt = null,Object? payUrl = freezed,Object? qrCode = freezed,Object? clientSecret = freezed,Object? intentId = freezed,Object? countryCode = freezed,Object? paymentEnvironment = freezed,Object? paymentMode = freezed,Object? resumeToken = freezed,Object? alipayMobilePrecreateDeepLink = null,}) {
   return _then(Sub2ApiOrderCreated(
 orderId: null == orderId ? _self.orderId : orderId // ignore: cast_nullable_to_non_nullable
 as int,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
@@ -3494,7 +3504,8 @@ as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode
 as String?,paymentEnvironment: freezed == paymentEnvironment ? _self.paymentEnvironment : paymentEnvironment // ignore: cast_nullable_to_non_nullable
 as String?,paymentMode: freezed == paymentMode ? _self.paymentMode : paymentMode // ignore: cast_nullable_to_non_nullable
 as String?,resumeToken: freezed == resumeToken ? _self.resumeToken : resumeToken // ignore: cast_nullable_to_non_nullable
-as Sub2ApiCheckoutSecret?,
+as Sub2ApiCheckoutSecret?,alipayMobilePrecreateDeepLink: null == alipayMobilePrecreateDeepLink ? _self.alipayMobilePrecreateDeepLink : alipayMobilePrecreateDeepLink // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

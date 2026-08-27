@@ -31,6 +31,7 @@ Sub2ApiPaymentConfig mapPaymentConfig(Object? data) {
     cancelRateLimitUnit: source.cancelRateLimitUnit,
     cancelRateLimitMode: source.cancelRateLimitMode,
     alipayForceQrCode: source.alipayForceQrCode,
+    alipayMobilePrecreateDeepLink: source.alipayMobilePrecreateDeepLink,
   );
 }
 
@@ -84,6 +85,7 @@ Sub2ApiSubscriptionPlan _mapPlan(Sub2ApiPaymentPlanDto source) =>
       originalPrice: source.originalPrice == null
           ? null
           : _decimal(source.originalPrice!),
+      currency: source.currency,
       validityDays: source.validityDays,
       validityUnit: source.validityUnit,
       features: _features(source.features),
@@ -121,6 +123,7 @@ Sub2ApiCheckoutInfo mapCheckoutInfo(Object? data) {
     helpImageUrl: source.helpImageUrl,
     stripePublishableKey: source.stripePublishableKey,
     alipayForceQrCode: source.alipayForceQrCode,
+    alipayMobilePrecreateDeepLink: source.alipayMobilePrecreateDeepLink,
   );
 }
 
@@ -225,6 +228,8 @@ Sub2ApiCreateOrderResult mapCreateOrderResult(Object? data) {
         paymentEnvironment: _stringOrNull(source['payment_env']),
         paymentMode: _stringOrNull(source['payment_mode']),
         resumeToken: _secretOrNull(source['resume_token']),
+        alipayMobilePrecreateDeepLink:
+            source['alipay_mobile_precreate_deep_link'] == true,
       );
     default:
       throw _protocolFailure();

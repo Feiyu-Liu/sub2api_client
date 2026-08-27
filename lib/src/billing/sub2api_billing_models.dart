@@ -32,6 +32,7 @@ abstract class Sub2ApiPaymentConfig with _$Sub2ApiPaymentConfig {
     required String cancelRateLimitUnit,
     required String cancelRateLimitMode,
     required bool alipayForceQrCode,
+    required bool alipayMobilePrecreateDeepLink,
   }) = _Sub2ApiPaymentConfig;
 }
 
@@ -76,6 +77,7 @@ abstract class Sub2ApiSubscriptionPlan with _$Sub2ApiSubscriptionPlan {
     required String description,
     required Sub2ApiDecimal price,
     Sub2ApiDecimal? originalPrice,
+    String? currency,
     required int validityDays,
     required String validityUnit,
     required List<String> features,
@@ -103,6 +105,7 @@ abstract class Sub2ApiCheckoutInfo with _$Sub2ApiCheckoutInfo {
     required String helpImageUrl,
     String? stripePublishableKey,
     required bool alipayForceQrCode,
+    required bool alipayMobilePrecreateDeepLink,
   }) = _Sub2ApiCheckoutInfo;
 }
 
@@ -205,7 +208,7 @@ abstract class Sub2ApiWechatJsApiInstructions
   }) = _Sub2ApiWechatJsApiInstructions;
 }
 
-/// Result of initiating an order. The three variants mirror v0.1.155's
+/// Result of initiating an order. The three variants mirror v0.1.183's
 /// `result_type` contract and do not perform UI side effects.
 @freezed
 sealed class Sub2ApiCreateOrderResult with _$Sub2ApiCreateOrderResult {
@@ -227,6 +230,7 @@ sealed class Sub2ApiCreateOrderResult with _$Sub2ApiCreateOrderResult {
     String? paymentEnvironment,
     String? paymentMode,
     Sub2ApiCheckoutSecret? resumeToken,
+    @Default(false) bool alipayMobilePrecreateDeepLink,
   }) = Sub2ApiOrderCreated;
 
   const factory Sub2ApiCreateOrderResult.oauthRequired({

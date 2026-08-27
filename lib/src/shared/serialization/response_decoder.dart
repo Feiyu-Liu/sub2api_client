@@ -3,7 +3,7 @@ import 'package:retrofit/retrofit.dart';
 
 import '../errors/sub2api_exception.dart';
 
-/// Strict decoder for the two v0.1.155 envelope families.
+/// Strict decoder for the two v0.1.183 envelope families.
 final class Sub2ApiResponseDecoder {
   const Sub2ApiResponseDecoder();
 

@@ -7,7 +7,7 @@ import 'sub2api_usage_mapper.dart';
 import 'sub2api_usage_models.dart';
 import 'sub2api_usage_service.dart';
 
-/// Typed authenticated Usage endpoints for the v0.1.155 user API.
+/// Typed authenticated Usage endpoints for the v0.1.183 user API.
 abstract interface class Sub2ApiUsageClient {
   /// Lists authenticated usage records.
   Future<Sub2ApiPage<Sub2ApiUsageRecord>> list(

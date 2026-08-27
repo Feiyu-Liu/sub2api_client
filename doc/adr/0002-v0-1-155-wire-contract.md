@@ -1,6 +1,6 @@
 # ADR-0002：固定 Sub2API v0.1.155 wire contract 与安全模型
 
-- **状态**：Accepted
+- **状态**：Superseded by ADR-0007
 - **日期**：2026-08-25
 - **决策者**：Package 主理人
 - **关联**：ADR-0001

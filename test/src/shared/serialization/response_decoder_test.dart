@@ -14,8 +14,8 @@ void main() {
     () {
       final manifest = readFixtureManifest();
 
-      expect(manifest.tag, 'v0.1.155');
-      expect(manifest.commit, '41cec0db059ffb82d0efdcfcf07a24ab51fbfe97');
+      expect(manifest.tag, 'v0.1.183');
+      expect(manifest.commit, 'e8cb019fabf8b55199436229044cbf9aa7a82564');
     },
   );
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-/// Pinned Sub2API source metadata for the checked-in v0.1.155 fixtures.
+/// Pinned Sub2API source metadata for the checked-in v0.1.183 fixtures.
 final class Sub2ApiFixtureManifest {
   const Sub2ApiFixtureManifest({required this.tag, required this.commit});
 
@@ -23,10 +23,10 @@ Sub2ApiFixtureManifest readFixtureManifest() {
   return Sub2ApiFixtureManifest(tag: tag, commit: commit);
 }
 
-/// Reads a checked-in v0.1.155 JSON fixture as a typed wire map.
+/// Reads a checked-in v0.1.183 JSON fixture as a typed wire map.
 Map<String, Object?> readFixture(String relativePath) {
   final decoded = jsonDecode(
-    File('test/fixtures/v0_1_155/$relativePath').readAsStringSync(),
+    File('test/fixtures/v0_1_183/$relativePath').readAsStringSync(),
   );
   if (decoded is! Map) {
     throw FormatException('Fixture $relativePath is not a JSON object.');

@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:sub2api_client/sub2api_client.dart';
 import 'package:test/test.dart';
 
-const _fixedCommit = '41cec0db059ffb82d0efdcfcf07a24ab51fbfe97';
+const _fixedCommit = 'e8cb019fabf8b55199436229044cbf9aa7a82564';
 
 void main() {
   test(
-    'controlled v0.1.155 deployment supports the read-only user loop',
+    'controlled v0.1.183 deployment supports the read-only user loop',
     () async {
       expect(
         Platform.environment['SUB2API_INTEGRATION_ENABLED'],

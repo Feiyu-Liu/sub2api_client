@@ -41,6 +41,8 @@ Map<String, dynamic> _$Sub2ApiEmailVerificationCodeRequestDtoToJson(
   Sub2ApiEmailVerificationCodeRequestDto instance,
 ) => <String, dynamic>{
   'email': instance.email,
+  'tencent_captcha_randstr': ?instance.tencentCaptchaRandstr,
+  'tencent_captcha_ticket': ?instance.tencentCaptchaTicket,
   'turnstile_token': ?instance.turnstileToken,
 };
 
@@ -52,6 +54,8 @@ Map<String, dynamic> _$Sub2ApiForgotPasswordRequestDtoToJson(
   Sub2ApiForgotPasswordRequestDto instance,
 ) => <String, dynamic>{
   'email': instance.email,
+  'tencent_captcha_randstr': ?instance.tencentCaptchaRandstr,
+  'tencent_captcha_ticket': ?instance.tencentCaptchaTicket,
   'turnstile_token': ?instance.turnstileToken,
 };
 

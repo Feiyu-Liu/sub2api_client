@@ -71,6 +71,28 @@ void main() {
     });
   });
 
+  test('serializes v0.1.183 Tencent and generalized captcha proofs', () {
+    final json = Sub2ApiLoginRequestDto.fromPublic(
+      const Sub2ApiLoginRequest(
+        email: 'user@example.com',
+        password: Sub2ApiPassword('password-sentinel'),
+        captcha: Sub2ApiCaptchaProof(
+          challengeToken: 'aliyun-or-turnstile-sentinel',
+          tencentCaptchaTicket: 'tencent-ticket-sentinel',
+          tencentCaptchaRandstr: '@tencent-randstr-sentinel',
+        ),
+      ),
+    ).toJson();
+
+    expect(json, {
+      'email': 'user@example.com',
+      'password': 'password-sentinel',
+      'tencent_captcha_randstr': '@tencent-randstr-sentinel',
+      'tencent_captcha_ticket': 'tencent-ticket-sentinel',
+      'turnstile_token': 'aliyun-or-turnstile-sentinel',
+    });
+  });
+
   test('maps fixed-source email verification and invitation responses', () {
     final sent = Sub2ApiEmailVerificationCodeSentDto.fromJson(
       readSuccessFixtureData('auth/send_verify_code_success.json'),

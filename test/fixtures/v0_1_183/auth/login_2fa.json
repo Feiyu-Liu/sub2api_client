@@ -1,0 +1,9 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "requires_2fa": true,
+    "temp_token": "test-2fa-token-not-a-real-secret",
+    "user_email_masked": "u***@example.test"
+  }
+}

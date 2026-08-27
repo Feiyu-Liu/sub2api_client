@@ -1,8 +1,8 @@
 # sub2api_client
 
-A typed, pure-Dart client for the Sub2API user API. Version `0.1.0-dev.2`
-targets Sub2API `v0.1.155` at commit
-`41cec0db059ffb82d0efdcfcf07a24ab51fbfe97`.
+A typed, pure-Dart client for the Sub2API user API. Version `0.1.0-dev.3`
+targets Sub2API `v0.1.183` at commit
+`e8cb019fabf8b55199436229044cbf9aa7a82564`.
 
 The package owns HTTP, JSON, error mapping, session rotation, and concurrent
 refresh consistency. It has no Flutter SDK, UI state framework, secure-storage
@@ -12,7 +12,9 @@ plugin, browser launcher, or native dependency.
 
 - Capability bootstrap.
 - Registration, login, two-factor login, refresh, logout, email verification
-  code delivery, invitation-code validation, and password reset requests.
+  code delivery, invitation-code validation, and password reset requests,
+  including Turnstile, Tencent, and Aliyun captcha proofs advertised by the
+  server.
 - User profile read/update and password change.
 - API/Installation Key list, detail, create, update, and delete.
 - Usage list, detail, and aggregate statistics.
@@ -64,7 +66,7 @@ call and are redacted by `toString()`.
 The package returns checkout facts; the host application owns browser launch,
 QR rendering, Stripe/WeChat SDK work, deep links, and UI state. A balance
 recharge uses an exact `Sub2ApiDecimal`, but is rejected before sending if its
-value cannot be represented by Sub2API v0.1.155's `float64` `amount` field.
+value cannot be represented by Sub2API v0.1.183's `float64` `amount` field.
 
 ```dart
 final checkout = await client.billing.checkoutInfo();

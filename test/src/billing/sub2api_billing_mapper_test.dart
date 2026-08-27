@@ -13,7 +13,7 @@ import 'package:sub2api_client/src/shared/transport/request_executor.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('v0.1.155 billing fixtures', () {
+  group('v0.1.183 billing fixtures', () {
     test('maps config, limits, plans and checkout information', () {
       final config = mapPaymentConfig(_fixture('billing/config.json'));
       final limits = mapPaymentLimits(_fixture('billing/limits.json'));
@@ -21,9 +21,12 @@ void main() {
       final checkout = mapCheckoutInfo(_fixture('billing/checkout_info.json'));
 
       expect(config.balanceRechargeMultiplier.toString(), '1.2');
+      expect(config.alipayMobilePrecreateDeepLink, isTrue);
       expect(limits.methods['alipay']!.singleMax.toString(), '1000');
       expect(plans.single.features, ['Priority', 'More models']);
+      expect(plans.single.currency, 'NZD');
       expect(checkout.plans.single.supportedModelScopes, ['gpt-5']);
+      expect(checkout.alipayMobilePrecreateDeepLink, isTrue);
     });
 
     test('keeps an unknown server order status as a string', () {
@@ -39,6 +42,10 @@ void main() {
       );
 
       expect(result, isA<Sub2ApiOrderCreated>());
+      expect(
+        (result as Sub2ApiOrderCreated).alipayMobilePrecreateDeepLink,
+        isTrue,
+      );
       final text = result.toString();
       expect(text, contains('<redacted>'));
       expect(text, isNot(contains('pi_secret_very_secret')));
@@ -125,7 +132,7 @@ void main() {
 }
 
 Object? _fixture(String relativePath) =>
-    jsonDecode(File('test/fixtures/v0_1_155/$relativePath').readAsStringSync());
+    jsonDecode(File('test/fixtures/v0_1_183/$relativePath').readAsStringSync());
 
 Map<String, Object?> _success(Object? data) => <String, Object?>{
   'code': 0,

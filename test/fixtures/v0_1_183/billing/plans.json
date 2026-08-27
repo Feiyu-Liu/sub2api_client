@@ -1,0 +1,24 @@
+[
+  {
+    "id": 9,
+    "group_id": 3,
+    "group_platform": "openai",
+    "group_name": "Pro",
+    "rate_multiplier": 1,
+    "peak_rate_enabled": false,
+    "peak_start": "",
+    "peak_end": "",
+    "peak_rate_multiplier": 1,
+    "name": "Pro Monthly",
+    "description": "Monthly plan",
+    "price": 9.99,
+    "original_price": 12.99,
+    "currency": "NZD",
+    "validity_days": 30,
+    "validity_unit": "day",
+    "features": "Priority\nMore models",
+    "product_name": "Pro",
+    "for_sale": true,
+    "sort_order": 1
+  }
+]

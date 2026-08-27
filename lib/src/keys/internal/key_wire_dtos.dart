@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'key_wire_dtos.g.dart';
 
-/// JSON payload used only at the fixed Sub2API v0.1.155 wire boundary.
+/// JSON payload used only at the fixed Sub2API v0.1.183 wire boundary.
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 final class ApiKeyWireDto {
   const ApiKeyWireDto({
@@ -83,7 +83,7 @@ final class ApiKeyWireDto {
   final DateTime? window7dStart;
 }
 
-/// JSON payload used only at the fixed Sub2API v0.1.155 wire boundary.
+/// JSON payload used only at the fixed Sub2API v0.1.183 wire boundary.
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 final class ApiKeyPageWireDto {
   const ApiKeyPageWireDto({

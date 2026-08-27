@@ -34,6 +34,8 @@ Sub2ApiPaymentConfigDto _$Sub2ApiPaymentConfigDtoFromJson(
   cancelRateLimitUnit: json['cancel_rate_limit_unit'] as String,
   cancelRateLimitMode: json['cancel_rate_limit_window_mode'] as String,
   alipayForceQrCode: json['alipay_force_qrcode'] as bool,
+  alipayMobilePrecreateDeepLink:
+      json['alipay_mobile_precreate_deep_link'] as bool,
 );
 
 Sub2ApiPaymentMethodLimitsDto _$Sub2ApiPaymentMethodLimitsDtoFromJson(
@@ -81,6 +83,7 @@ Sub2ApiPaymentPlanDto _$Sub2ApiPaymentPlanDtoFromJson(
   features: json['features'],
   productName: json['product_name'] as String,
   originalPrice: json['original_price'] as num?,
+  currency: json['currency'] as String?,
   forSale: json['for_sale'] as bool?,
   sortOrder: (json['sort_order'] as num?)?.toInt(),
   dailyLimitUsd: json['daily_limit_usd'] as num?,
@@ -112,6 +115,8 @@ Sub2ApiCheckoutInfoDto _$Sub2ApiCheckoutInfoDtoFromJson(
   helpText: json['help_text'] as String,
   helpImageUrl: json['help_image_url'] as String,
   alipayForceQrCode: json['alipay_force_qrcode'] as bool,
+  alipayMobilePrecreateDeepLink:
+      json['alipay_mobile_precreate_deep_link'] as bool,
   stripePublishableKey: json['stripe_publishable_key'] as String?,
 );
 

@@ -59,7 +59,7 @@ void main() {
     );
 
     test(
-      'uses the v0.1.155 profile and password routes with exact payloads',
+      'uses the v0.1.183 profile and password routes with exact payloads',
       () async {
         final profileAdapter = _FixtureAdapter(
           _fixture('profile_success.json'),
@@ -110,7 +110,7 @@ void main() {
 
 Object? _fixture(String name) {
   return jsonDecode(
-    File('test/fixtures/v0_1_155/user/$name').readAsStringSync(),
+    File('test/fixtures/v0_1_183/user/$name').readAsStringSync(),
   );
 }
 

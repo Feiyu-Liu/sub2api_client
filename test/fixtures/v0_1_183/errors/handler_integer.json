@@ -1,0 +1,6 @@
+{
+  "code": 400,
+  "message": "invalid amount",
+  "reason": "INVALID_AMOUNT",
+  "metadata": {}
+}

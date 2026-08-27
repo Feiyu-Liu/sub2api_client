@@ -13,17 +13,24 @@ void main() {
       publicSettings,
     ).toPublicModel();
 
-    expect(capabilities.version, '0.1.155');
+    expect(capabilities.version, '0.1.183');
     expect(capabilities.oauth.github, isTrue);
     expect(capabilities.oauth.linuxDo, isTrue);
     expect(capabilities.paymentEnabled, isTrue);
+    expect(capabilities.passkeyEnabled, isTrue);
+    expect(capabilities.promoCodeEnabled, isTrue);
+    expect(capabilities.registrationEmailDomainQuotaEnabled, isTrue);
+    expect(capabilities.tencentCaptchaEnabled, isTrue);
+    expect(capabilities.tencentCaptchaAppId, 'tencent-public-app-id');
+    expect(capabilities.aliyunCaptchaEnabled, isTrue);
+    expect(capabilities.aliyunCaptchaSceneId, 'aliyun-scene-id');
   });
 
   test('ignores additive fields but rejects a required field type change', () {
     final additive = {...publicSettings, 'future_setting': 'ignored'};
     expect(
       Sub2ApiPublicSettingsDto.fromJson(additive).toPublicModel().version,
-      '0.1.155',
+      '0.1.183',
     );
 
     expect(

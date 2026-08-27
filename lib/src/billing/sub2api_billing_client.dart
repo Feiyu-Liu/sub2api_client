@@ -10,7 +10,7 @@ import 'sub2api_billing_mapper.dart';
 import 'sub2api_billing_models.dart';
 import 'sub2api_billing_service.dart';
 
-/// Typed authenticated Billing endpoints for the v0.1.155 user API.
+/// Typed authenticated Billing endpoints for the v0.1.183 user API.
 abstract interface class Sub2ApiBillingClient {
   /// Reads payment configuration.
   Future<Sub2ApiPaymentConfig> config({Sub2ApiRequestOptions? requestOptions});

@@ -1,0 +1,23 @@
+{
+  "id": 99,
+  "user_id": 7,
+  "amount": 10,
+  "pay_amount": 10.25,
+  "fee_rate": 2.5,
+  "currency": "USD",
+  "payment_type": "stripe",
+  "out_trade_no": "sub2_20260825aB3kX9mQ",
+  "status": "FUTURE_STATUS",
+  "order_type": "balance",
+  "created_at": "2026-08-25T10:00:00Z",
+  "expires_at": "2026-08-25T10:30:00Z",
+  "paid_at": null,
+  "completed_at": null,
+  "refund_amount": 0,
+  "refund_reason": null,
+  "refund_requested_at": null,
+  "refund_requested_by": null,
+  "refund_request_reason": null,
+  "plan_id": null,
+  "provider_instance_id": "provider-1"
+}

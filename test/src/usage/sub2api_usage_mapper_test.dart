@@ -5,7 +5,7 @@ import 'package:sub2api_client/src/usage/sub2api_usage_mapper.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('v0.1.155 usage fixtures', () {
+  group('v0.1.183 usage fixtures', () {
     test('maps list page with exact decimal costs', () {
       final page = mapUsagePage(_fixture('usage/list.json'));
 
@@ -35,4 +35,4 @@ void main() {
 }
 
 Object? _fixture(String relativePath) =>
-    jsonDecode(File('test/fixtures/v0_1_155/$relativePath').readAsStringSync());
+    jsonDecode(File('test/fixtures/v0_1_183/$relativePath').readAsStringSync());

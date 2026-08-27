@@ -19,14 +19,29 @@ abstract class Sub2ApiAuthenticatedUser with _$Sub2ApiAuthenticatedUser {
 /// Captcha proof accepted by the fixed Sub2API authentication endpoints.
 final class Sub2ApiCaptchaProof {
   const Sub2ApiCaptchaProof({
+    this.challengeToken,
     this.tencentCaptchaRandstr,
     this.tencentCaptchaTicket,
+    @Deprecated('Use challengeToken for Turnstile or Aliyun captcha proofs.')
     this.turnstileToken,
-  });
+  }) : assert(
+         challengeToken == null || turnstileToken == null,
+         'Provide challengeToken or turnstileToken, not both.',
+       );
 
+  /// Opaque proof serialized to Sub2API's legacy `turnstile_token` wire field.
+  ///
+  /// Sub2API v0.1.183 also uses this field for Aliyun captcha verification.
+  final String? challengeToken;
   final String? tencentCaptchaRandstr;
   final String? tencentCaptchaTicket;
+
+  /// Legacy name retained for source compatibility with v0.1.155 callers.
+  @Deprecated('Use challengeToken for Turnstile or Aliyun captcha proofs.')
   final String? turnstileToken;
+
+  /// Package-internal value sent through the shared captcha wire field.
+  String? get wireChallengeToken => challengeToken ?? turnstileToken;
 
   @override
   String toString() => 'Sub2ApiCaptchaProof(<redacted>)';

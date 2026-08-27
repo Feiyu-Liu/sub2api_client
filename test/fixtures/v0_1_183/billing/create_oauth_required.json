@@ -1,0 +1,13 @@
+{
+  "amount": 10,
+  "pay_amount": 10,
+  "fee_rate": 0,
+  "result_type": "oauth_required",
+  "payment_type": "wxpay",
+  "oauth": {
+    "authorize_url": "https://open.weixin.qq.com/connect/oauth2/authorize",
+    "appid": "wx_appid",
+    "scope": "snsapi_base",
+    "redirect_url": "/auth/wechat/payment/callback"
+  }
+}

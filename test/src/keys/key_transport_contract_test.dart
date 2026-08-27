@@ -4,6 +4,7 @@ import 'package:sub2api_client/src/keys/sub2api_key_models.dart';
 import 'package:sub2api_client/src/shared/configuration/sub2api_configuration.dart';
 import 'package:sub2api_client/src/shared/errors/sub2api_exception.dart';
 import 'package:sub2api_client/src/shared/models/sensitive_value.dart';
+import 'package:sub2api_client/src/shared/models/sub2api_decimal.dart';
 import 'package:sub2api_client/src/shared/session/session_coordinator.dart';
 import 'package:sub2api_client/src/shared/session/sub2api_session.dart';
 import 'package:sub2api_client/src/shared/transport/request_executor_impl.dart';
@@ -125,6 +126,64 @@ void main() {
       );
     },
   );
+
+  test('v0.1.183 rejects invalid key limits before network I/O', () async {
+    final adapter = JsonResponseAdapter(
+      (_) => JsonResponse(body: readFixture('keys/create_success.json')),
+    );
+    final client = _client(adapter, session);
+
+    await expectLater(
+      client.create(
+        Sub2ApiCreateKeyRequest(
+          name: 'invalid',
+          idempotencyKey: 'idempotency-sentinel',
+          quota: Sub2ApiDecimal.parse('-1'),
+        ),
+      ),
+      throwsA(
+        isA<Sub2ApiException>().having(
+          (error) => error.code,
+          'code',
+          'keys.invalid_quota',
+        ),
+      ),
+    );
+    await expectLater(
+      client.create(
+        const Sub2ApiCreateKeyRequest(
+          name: 'invalid',
+          idempotencyKey: 'idempotency-sentinel',
+          expiresInDays: 0,
+        ),
+      ),
+      throwsA(
+        isA<Sub2ApiException>().having(
+          (error) => error.code,
+          'code',
+          'keys.invalid_expires_in_days',
+        ),
+      ),
+    );
+
+    expect(adapter.requests, isEmpty);
+  });
+
+  test('key update preserves omitted versus empty IP list semantics', () async {
+    final adapter = JsonResponseAdapter(
+      (_) => JsonResponse(body: readFixture('keys/detail_success.json')),
+    );
+    final client = _client(adapter, session);
+
+    await client.update(
+      99,
+      const Sub2ApiUpdateKeyRequest(ipWhitelist: <String>[]),
+    );
+
+    expect(adapter.requests.single.data, <String, Object?>{
+      'ip_whitelist': <String>[],
+    });
+  });
 }
 
 Sub2ApiKeyClient _client(JsonResponseAdapter adapter, Sub2ApiSession session) {

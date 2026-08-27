@@ -25,7 +25,10 @@ void main() {
       final sent = await client.sendEmailVerificationCode(
         const Sub2ApiEmailVerificationCodeRequest(
           email: 'user@example.test',
-          captcha: Sub2ApiCaptchaProof(turnstileToken: 'turnstile-sentinel'),
+          captcha: Sub2ApiCaptchaProof(
+            tencentCaptchaTicket: 'ticket-sentinel',
+            tencentCaptchaRandstr: '@randstr-sentinel',
+          ),
         ),
       );
 
@@ -35,7 +38,8 @@ void main() {
         path: '/api/v1/auth/send-verify-code',
         data: const {
           'email': 'user@example.test',
-          'turnstile_token': 'turnstile-sentinel',
+          'tencent_captcha_randstr': '@randstr-sentinel',
+          'tencent_captcha_ticket': 'ticket-sentinel',
         },
       );
     },
@@ -72,7 +76,9 @@ void main() {
     final result = await client.forgotPassword(
       const Sub2ApiForgotPasswordRequest(
         email: 'user@example.test',
-        captcha: Sub2ApiCaptchaProof(turnstileToken: 'turnstile-sentinel'),
+        captcha: Sub2ApiCaptchaProof(
+          challengeToken: 'aliyun-or-turnstile-sentinel',
+        ),
       ),
     );
 
@@ -82,7 +88,7 @@ void main() {
       path: '/api/v1/auth/forgot-password',
       data: const {
         'email': 'user@example.test',
-        'turnstile_token': 'turnstile-sentinel',
+        'turnstile_token': 'aliyun-or-turnstile-sentinel',
       },
     );
   });

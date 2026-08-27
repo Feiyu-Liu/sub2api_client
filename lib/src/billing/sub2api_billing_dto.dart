@@ -28,6 +28,7 @@ final class Sub2ApiPaymentConfigDto {
     required this.cancelRateLimitUnit,
     required this.cancelRateLimitMode,
     required this.alipayForceQrCode,
+    required this.alipayMobilePrecreateDeepLink,
   });
 
   factory Sub2ApiPaymentConfigDto.fromJson(Map<String, Object?> json) =>
@@ -78,6 +79,8 @@ final class Sub2ApiPaymentConfigDto {
   final String cancelRateLimitMode;
   @JsonKey(name: 'alipay_force_qrcode')
   final bool alipayForceQrCode;
+  @JsonKey(name: 'alipay_mobile_precreate_deep_link')
+  final bool alipayMobilePrecreateDeepLink;
 }
 
 @JsonSerializable(createToJson: false)
@@ -148,6 +151,7 @@ final class Sub2ApiPaymentPlanDto {
     required this.features,
     required this.productName,
     this.originalPrice,
+    this.currency,
     this.forSale,
     this.sortOrder,
     this.dailyLimitUsd,
@@ -181,6 +185,7 @@ final class Sub2ApiPaymentPlanDto {
   final num price;
   @JsonKey(name: 'original_price')
   final num? originalPrice;
+  final String? currency;
   @JsonKey(name: 'validity_days')
   final int validityDays;
   @JsonKey(name: 'validity_unit')
@@ -216,6 +221,7 @@ final class Sub2ApiCheckoutInfoDto {
     required this.helpText,
     required this.helpImageUrl,
     required this.alipayForceQrCode,
+    required this.alipayMobilePrecreateDeepLink,
     this.stripePublishableKey,
   });
 
@@ -244,6 +250,8 @@ final class Sub2ApiCheckoutInfoDto {
   final String? stripePublishableKey;
   @JsonKey(name: 'alipay_force_qrcode')
   final bool alipayForceQrCode;
+  @JsonKey(name: 'alipay_mobile_precreate_deep_link')
+  final bool alipayMobilePrecreateDeepLink;
 }
 
 @JsonSerializable(createToJson: false)

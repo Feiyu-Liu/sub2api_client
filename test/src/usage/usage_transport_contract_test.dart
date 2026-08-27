@@ -18,7 +18,7 @@ void main() {
     scope: 'https://sub2api.test',
   );
 
-  test('Usage endpoints use the complete v0.1.155 API routes', () async {
+  test('Usage endpoints use the complete v0.1.183 API routes', () async {
     final adapter = JsonResponseAdapter((request) {
       final data = switch (request.path) {
         '/api/v1/usage' => readFixture('usage/list.json'),
