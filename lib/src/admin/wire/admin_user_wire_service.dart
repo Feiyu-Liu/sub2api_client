@@ -161,4 +161,102 @@ abstract class AdminUserWireService {
     @DioOptions() Options options,
     @Header('x-api-key') String? credential,
   );
+
+  @GET('/api/v1/admin/users')
+  Future<HttpResponse<Object?>> listUsers(
+    @Queries() Map<String, dynamic> query,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @GET('/api/v1/admin/users/{id}')
+  Future<HttpResponse<Object?>> getUser(
+    @Path('id') int userId,
+    @Queries() Map<String, dynamic> query,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/users/{id}/auth-identities')
+  Future<HttpResponse<Object?>> bindIdentity(
+    @Path('id') int userId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/users')
+  Future<HttpResponse<Object?>> createUser(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @PUT('/api/v1/admin/users/{id}')
+  Future<HttpResponse<Object?>> updateUser(
+    @Path('id') int userId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @DELETE('/api/v1/admin/users/{id}')
+  Future<HttpResponse<Object?>> deleteUser(
+    @Path('id') int userId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/users/{id}/balance')
+  Future<HttpResponse<Object?>> updateBalance(
+    @Path('id') int userId,
+    @Body() Map<String, Object?> body,
+    @Header('Idempotency-Key') String idempotencyKey,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @GET('/api/v1/admin/users/{id}/api-keys')
+  Future<HttpResponse<Object?>> userApiKeys(
+    @Path('id') int userId,
+    @Queries() Map<String, dynamic> query,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @GET('/api/v1/admin/users/{id}/usage')
+  Future<HttpResponse<Object?>> userUsage(
+    @Path('id') int userId,
+    @Query('period') String period,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @GET('/api/v1/admin/users/{id}/balance-history')
+  Future<HttpResponse<Object?>> balanceHistory(
+    @Path('id') int userId,
+    @Queries() Map<String, dynamic> query,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
 }

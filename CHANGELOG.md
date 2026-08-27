@@ -22,9 +22,10 @@
   entrypoints with Admin JWT role bootstrap, a redacted Admin API Key provider,
   strict `Authorization` versus `x-api-key` separation, no credential fallback,
   stable step-up failures, and typed Admin Dashboard statistics.
-- Add the first typed Admin user-resource operations for group replacement,
-  RPM status, batch limits, platform quotas, quota-window reset, and user
-  attribute values in both privileged credential modes.
+- Complete all 19 typed Admin Users routes in both privileged credential modes,
+  including lifecycle, identity binding, balance updates, API keys, usage,
+  balance history, group replacement, RPM status, batch limits, platform
+  quotas, quota-window reset, and user attribute values.
 - Add the generated v0.1.183 management route manifest: 566 registered routes,
   552 target client routes, and explicit callback/webhook/static exclusions.
 - Accept ADR-0008 to complete the User and Admin/Ops management surfaces with

@@ -1,5 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../keys/internal/key_wire_dtos.dart';
+import '../../shared/wire/sub2api_user_account_wire_dto.dart';
+
 part 'admin_user_wire_dto.g.dart';
 
 @JsonSerializable(
@@ -253,4 +256,323 @@ final class AdminUpdateUserAttributesRequestWireDto {
 
   Map<String, Object?> toJson() =>
       _$AdminUpdateUserAttributesRequestWireDtoToJson(this);
+}
+
+@JsonSerializable(
+  createToJson: false,
+  checked: true,
+  fieldRename: FieldRename.snake,
+)
+final class AdminUserSubscriptionWireDto {
+  const AdminUserSubscriptionWireDto({
+    required this.id,
+    required this.userId,
+    required this.groupId,
+    required this.startsAt,
+    required this.expiresAt,
+    required this.status,
+    required this.dailyUsageUsd,
+    required this.weeklyUsageUsd,
+    required this.monthlyUsageUsd,
+    required this.createdAt,
+    required this.updatedAt,
+    this.dailyWindowStart,
+    this.weeklyWindowStart,
+    this.monthlyWindowStart,
+    this.revokedAt,
+  });
+
+  factory AdminUserSubscriptionWireDto.fromJson(Map<String, Object?> json) =>
+      _$AdminUserSubscriptionWireDtoFromJson(json);
+
+  final int id;
+  final int userId;
+  final int groupId;
+  final DateTime startsAt;
+  final DateTime expiresAt;
+  final String status;
+  final DateTime? dailyWindowStart;
+  final DateTime? weeklyWindowStart;
+  final DateTime? monthlyWindowStart;
+  final num dailyUsageUsd;
+  final num weeklyUsageUsd;
+  final num monthlyUsageUsd;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DateTime? revokedAt;
+}
+
+@JsonSerializable(
+  createToJson: false,
+  checked: true,
+  fieldRename: FieldRename.snake,
+)
+final class AdminUserWireDto {
+  const AdminUserWireDto({
+    required this.id,
+    required this.email,
+    required this.username,
+    required this.role,
+    required this.balance,
+    required this.frozenBalance,
+    required this.concurrency,
+    required this.rpmLimit,
+    required this.status,
+    required this.balanceNotifyEnabled,
+    required this.balanceNotifyThresholdType,
+    required this.balanceNotifyExtraEmails,
+    required this.totalRecharged,
+    required this.notes,
+    required this.createdAt,
+    required this.updatedAt,
+    this.allowedGroups,
+    this.balanceNotifyThreshold,
+    this.groupRates,
+    this.apiKeys,
+    this.subscriptions,
+    this.currentConcurrency,
+    this.lastActiveAt,
+    this.lastUsedAt,
+    this.deletedAt,
+  });
+
+  factory AdminUserWireDto.fromJson(Map<String, Object?> json) =>
+      _$AdminUserWireDtoFromJson(json);
+
+  final int id;
+  final String email;
+  final String username;
+  final String role;
+  final num balance;
+  final num frozenBalance;
+  final int concurrency;
+  final int rpmLimit;
+  final String status;
+  final List<int>? allowedGroups;
+  final bool balanceNotifyEnabled;
+  final String balanceNotifyThresholdType;
+  final num? balanceNotifyThreshold;
+  @JsonKey(defaultValue: <UserAccountNotifyEmailWireDto>[])
+  final List<UserAccountNotifyEmailWireDto> balanceNotifyExtraEmails;
+  final num totalRecharged;
+  final String notes;
+  final Map<String, num>? groupRates;
+  final List<ApiKeyWireDto>? apiKeys;
+  final List<AdminUserSubscriptionWireDto>? subscriptions;
+  final int? currentConcurrency;
+  final DateTime? lastActiveAt;
+  final DateTime? lastUsedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DateTime? deletedAt;
+}
+
+@JsonSerializable(
+  createToJson: false,
+  checked: true,
+  fieldRename: FieldRename.snake,
+)
+final class AdminUserPageWireDto {
+  const AdminUserPageWireDto({
+    required this.items,
+    required this.total,
+    required this.page,
+    required this.pageSize,
+    required this.pages,
+  });
+
+  factory AdminUserPageWireDto.fromJson(Map<String, Object?> json) =>
+      _$AdminUserPageWireDtoFromJson(json);
+
+  final List<AdminUserWireDto> items;
+  final int total;
+  final int page;
+  final int pageSize;
+  final int pages;
+}
+
+@JsonSerializable(
+  createToJson: false,
+  checked: true,
+  fieldRename: FieldRename.snake,
+)
+final class AdminBoundIdentityChannelWireDto {
+  const AdminBoundIdentityChannelWireDto({
+    required this.channel,
+    required this.channelAppId,
+    required this.channelSubject,
+    required this.createdAt,
+    required this.updatedAt,
+    this.metadata,
+  });
+
+  factory AdminBoundIdentityChannelWireDto.fromJson(
+    Map<String, Object?> json,
+  ) => _$AdminBoundIdentityChannelWireDtoFromJson(json);
+
+  final String channel;
+  final String channelAppId;
+  final String channelSubject;
+  final Map<String, Object?>? metadata;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+}
+
+@JsonSerializable(
+  createToJson: false,
+  checked: true,
+  fieldRename: FieldRename.snake,
+)
+final class AdminBoundIdentityWireDto {
+  const AdminBoundIdentityWireDto({
+    required this.userId,
+    required this.providerType,
+    required this.providerKey,
+    required this.providerSubject,
+    required this.createdAt,
+    required this.updatedAt,
+    this.verifiedAt,
+    this.issuer,
+    this.metadata,
+    this.channel,
+  });
+
+  factory AdminBoundIdentityWireDto.fromJson(Map<String, Object?> json) =>
+      _$AdminBoundIdentityWireDtoFromJson(json);
+
+  final int userId;
+  final String providerType;
+  final String providerKey;
+  final String providerSubject;
+  final DateTime? verifiedAt;
+  final String? issuer;
+  final Map<String, Object?>? metadata;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final AdminBoundIdentityChannelWireDto? channel;
+}
+
+@JsonSerializable(
+  createToJson: false,
+  checked: true,
+  fieldRename: FieldRename.snake,
+)
+final class AdminUserUsageWireDto {
+  const AdminUserUsageWireDto({
+    required this.period,
+    required this.totalRequests,
+    required this.totalCost,
+    required this.totalTokens,
+    required this.avgDurationMs,
+  });
+
+  factory AdminUserUsageWireDto.fromJson(Map<String, Object?> json) =>
+      _$AdminUserUsageWireDtoFromJson(json);
+
+  final String period;
+  final int totalRequests;
+  final num totalCost;
+  final int totalTokens;
+  final num avgDurationMs;
+}
+
+@JsonSerializable(createToJson: false, checked: true)
+final class AdminBalanceHistoryUserWireDto {
+  const AdminBalanceHistoryUserWireDto({required this.id, required this.email});
+
+  factory AdminBalanceHistoryUserWireDto.fromJson(Map<String, Object?> json) =>
+      _$AdminBalanceHistoryUserWireDtoFromJson(json);
+
+  final int id;
+  final String email;
+}
+
+@JsonSerializable(createToJson: false, checked: true)
+final class AdminBalanceHistoryGroupWireDto {
+  const AdminBalanceHistoryGroupWireDto({required this.id, required this.name});
+
+  factory AdminBalanceHistoryGroupWireDto.fromJson(Map<String, Object?> json) =>
+      _$AdminBalanceHistoryGroupWireDtoFromJson(json);
+
+  final int id;
+  final String name;
+}
+
+@JsonSerializable(
+  createToJson: false,
+  checked: true,
+  fieldRename: FieldRename.snake,
+)
+final class AdminBalanceHistoryRecordWireDto {
+  const AdminBalanceHistoryRecordWireDto({
+    required this.id,
+    required this.code,
+    required this.type,
+    required this.value,
+    required this.status,
+    required this.createdAt,
+    required this.validityDays,
+    required this.notes,
+    this.usedBy,
+    this.usedAt,
+    this.expiresAt,
+    this.groupId,
+    this.user,
+    this.group,
+  });
+
+  factory AdminBalanceHistoryRecordWireDto.fromJson(
+    Map<String, Object?> json,
+  ) => _$AdminBalanceHistoryRecordWireDtoFromJson(json);
+
+  final int id;
+  final String code;
+  final String type;
+  final num value;
+  final String status;
+  final int? usedBy;
+  final DateTime? usedAt;
+  final DateTime createdAt;
+  final DateTime? expiresAt;
+  final int? groupId;
+  final int validityDays;
+  final String notes;
+  final AdminBalanceHistoryUserWireDto? user;
+  final AdminBalanceHistoryGroupWireDto? group;
+}
+
+@JsonSerializable(
+  createToJson: false,
+  checked: true,
+  fieldRename: FieldRename.snake,
+)
+final class AdminBalanceHistoryPageWireDto {
+  const AdminBalanceHistoryPageWireDto({
+    required this.items,
+    required this.total,
+    required this.page,
+    required this.pageSize,
+    required this.pages,
+    required this.totalRecharged,
+  });
+
+  factory AdminBalanceHistoryPageWireDto.fromJson(Map<String, Object?> json) =>
+      _$AdminBalanceHistoryPageWireDtoFromJson(json);
+
+  final List<AdminBalanceHistoryRecordWireDto> items;
+  final int total;
+  final int page;
+  final int pageSize;
+  final int pages;
+  final num totalRecharged;
+}
+
+@JsonSerializable(createToJson: false, checked: true)
+final class AdminDeleteUserResultWireDto {
+  const AdminDeleteUserResultWireDto({required this.message});
+
+  factory AdminDeleteUserResultWireDto.fromJson(Map<String, Object?> json) =>
+      _$AdminDeleteUserResultWireDtoFromJson(json);
+
+  final String message;
 }

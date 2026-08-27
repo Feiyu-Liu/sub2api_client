@@ -12,6 +12,68 @@ import 'wire/admin_user_wire_service.dart';
 
 /// Shared typed Admin user-resource contract used by JWT and API-key facades.
 abstract interface class Sub2ApiAdminUsersClient {
+  Future<Sub2ApiAdminUserPage> list({
+    Sub2ApiAdminUserListQuery query = const Sub2ApiAdminUserListQuery(),
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminUser> getById(
+    int userId, {
+    bool includeDeleted = false,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminBoundIdentity> bindIdentity(
+    int userId,
+    Sub2ApiAdminBindIdentityRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminUser> create(
+    Sub2ApiAdminCreateUserRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminUser> update(
+    int userId,
+    Sub2ApiAdminUpdateUserRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminDeleteUserResult> delete(
+    int userId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminUser> updateBalance(
+    int userId,
+    Sub2ApiAdminUpdateBalanceRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminUserApiKeyPage> getApiKeys(
+    int userId, {
+    int? page,
+    int? pageSize,
+    String? sortBy,
+    String? sortOrder,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminUserUsage> getUsage(
+    int userId, {
+    Sub2ApiAdminUserUsagePeriod period = Sub2ApiAdminUserUsagePeriod.month,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminBalanceHistoryPage> getBalanceHistory(
+    int userId, {
+    int? page,
+    int? pageSize,
+    Sub2ApiAdminBalanceHistoryType? type,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminReplaceUserGroupResult> replaceGroup(
     int userId,
     Sub2ApiAdminReplaceUserGroupRequest request, {
@@ -84,6 +146,350 @@ final class _Sub2ApiAdminUsersClient implements Sub2ApiAdminUsersClient {
   final Sub2ApiAdminCredentialMode _credentialMode;
   final Sub2ApiRequestExecutor _requestExecutor;
   final AdminUserWireService _service;
+
+  @override
+  Future<Sub2ApiAdminUserPage> list({
+    Sub2ApiAdminUserListQuery query = const Sub2ApiAdminUserListQuery(),
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validatePage(query.page, query.pageSize);
+    if (query.search != null && query.search!.runes.length > 100) {
+      throw _validation('admin.users.search_too_long');
+    }
+    if (query.apiKeyGroupId != null && query.apiKeyGroupId! <= 0) {
+      throw _validation('admin.users.invalid_api_key_group_id');
+    }
+    if (query.attributes.entries.any(
+      (entry) => entry.key <= 0 || entry.value.isEmpty,
+    )) {
+      throw _validation('admin.users.invalid_attribute_filter');
+    }
+    _validateSortOrder(query.sortOrder);
+    final values = <String, dynamic>{
+      if (query.page != null) 'page': query.page,
+      if (query.pageSize != null) 'page_size': query.pageSize,
+      if (query.status != null) 'status': query.status!.name,
+      if (query.role != null) 'role': query.role!.name,
+      if (query.search != null) 'search': query.search!.trim(),
+      if (query.groupName != null) 'group_name': query.groupName!.trim(),
+      if (query.apiKeyGroupId != null) 'api_key_group_id': query.apiKeyGroupId,
+      if (query.includeSubscriptions != null)
+        'include_subscriptions': query.includeSubscriptions,
+      if (query.sortBy != null) 'sort_by': query.sortBy,
+      if (query.sortOrder != null) 'sort_order': query.sortOrder,
+      for (final entry in query.attributes.entries)
+        'attr[${entry.key}]': entry.value,
+    };
+    return _requestExecutor.protectedRequest(
+      send: (cancelToken, options, credential) => _service.listUsers(
+        values,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminUserPage,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminUser> getById(
+    int userId, {
+    bool includeDeleted = false,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateUserId(userId);
+    return _requestExecutor.protectedRequest(
+      send: (cancelToken, options, credential) => _service.getUser(
+        userId,
+        <String, dynamic>{if (includeDeleted) 'include_deleted': true},
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminUser,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminBoundIdentity> bindIdentity(
+    int userId,
+    Sub2ApiAdminBindIdentityRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateUserId(userId);
+    if (request.providerType.trim().isEmpty ||
+        request.providerKey.trim().isEmpty ||
+        request.providerSubject.trim().isEmpty) {
+      throw _validation('admin.users.invalid_identity');
+    }
+    final channel = request.channel;
+    if (channel != null &&
+        (channel.channel.trim().isEmpty ||
+            channel.channelAppId.trim().isEmpty ||
+            channel.channelSubject.trim().isEmpty)) {
+      throw _validation('admin.users.invalid_identity_channel');
+    }
+    final body = <String, Object?>{
+      'provider_type': request.providerType,
+      'provider_key': request.providerKey,
+      'provider_subject': request.providerSubject,
+      if (request.issuer != null) 'issuer': request.issuer,
+      if (request.metadata != null) 'metadata': request.metadata!.toWire(),
+      if (channel != null)
+        'channel': <String, Object?>{
+          'channel': channel.channel,
+          'channel_app_id': channel.channelAppId,
+          'channel_subject': channel.channelSubject,
+          if (channel.metadata != null) 'metadata': channel.metadata!.toWire(),
+        },
+    };
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.bindIdentity(
+        userId,
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminBoundIdentity,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminUser> create(
+    Sub2ApiAdminCreateUserRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (request.email.trim().isEmpty || request.password.reveal().length < 6) {
+      throw _validation('admin.users.invalid_create_credentials');
+    }
+    _validateLimits(request.concurrency, request.rpmLimit);
+    _validateIds(request.allowedGroups, 'admin.users.invalid_group_id');
+    final body = <String, Object?>{
+      'email': request.email.trim(),
+      'password': request.password.reveal(),
+      if (request.username != null) 'username': request.username,
+      if (request.notes != null) 'notes': request.notes,
+      if (request.role != null) 'role': request.role!.name,
+      if (request.balance != null)
+        'balance': _float64Decimal(
+          request.balance!,
+          'admin.users.balance_not_representable',
+        ),
+      'concurrency': request.concurrency,
+      'rpm_limit': request.rpmLimit,
+      'allowed_groups': request.allowedGroups,
+    };
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.createUser(
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminUser,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminUser> update(
+    int userId,
+    Sub2ApiAdminUpdateUserRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateUserId(userId);
+    if (request.password != null && request.password!.reveal().length < 6) {
+      throw _validation('admin.users.invalid_password');
+    }
+    _validateLimits(request.concurrency, request.rpmLimit);
+    if (request.allowedGroups != null) {
+      _validateIds(request.allowedGroups!, 'admin.users.invalid_group_id');
+    }
+    final groupRates = <String, Object?>{};
+    for (final entry
+        in request.groupRates?.entries ??
+            const <MapEntry<int, Sub2ApiDecimal?>>[]) {
+      if (entry.key <= 0) throw _validation('admin.users.invalid_group_id');
+      groupRates[entry.key.toString()] = entry.value == null
+          ? null
+          : _float64Decimal(
+              entry.value!,
+              'admin.users.group_rate_not_representable',
+            );
+    }
+    final body = <String, Object?>{
+      if (request.email != null) 'email': request.email!.trim(),
+      if (request.password != null) 'password': request.password!.reveal(),
+      if (request.username != null) 'username': request.username,
+      if (request.notes != null) 'notes': request.notes,
+      if (request.role != null) 'role': request.role!.name,
+      if (request.balance != null)
+        'balance': _float64Decimal(
+          request.balance!,
+          'admin.users.balance_not_representable',
+        ),
+      if (request.concurrency != null) 'concurrency': request.concurrency,
+      if (request.rpmLimit != null) 'rpm_limit': request.rpmLimit,
+      if (request.status != null) 'status': request.status!.name,
+      if (request.allowedGroups != null)
+        'allowed_groups': request.allowedGroups,
+      if (request.groupRates != null) 'group_rates': groupRates,
+    };
+    if (body.isEmpty) throw _validation('admin.users.update_required');
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.updateUser(
+        userId,
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminUser,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminDeleteUserResult> delete(
+    int userId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateUserId(userId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.deleteUser(
+        userId,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminDeleteUser,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminUser> updateBalance(
+    int userId,
+    Sub2ApiAdminUpdateBalanceRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateUserId(userId);
+    if (request.idempotencyKey.trim().isEmpty) {
+      throw _validation('admin.users.idempotency_key_required');
+    }
+    final amount = _float64Decimal(
+      request.amount,
+      'admin.users.balance_not_representable',
+      positive: true,
+    );
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.updateBalance(
+        userId,
+        <String, Object?>{
+          'balance': amount,
+          'operation': request.operation.name,
+          'notes': request.notes,
+        },
+        request.idempotencyKey,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminUser,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminUserApiKeyPage> getApiKeys(
+    int userId, {
+    int? page,
+    int? pageSize,
+    String? sortBy,
+    String? sortOrder,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateUserId(userId);
+    _validatePage(page, pageSize);
+    _validateSortOrder(sortOrder);
+    return _requestExecutor.protectedRequest(
+      send: (cancelToken, options, credential) => _service.userApiKeys(
+        userId,
+        <String, dynamic>{
+          'page': ?page,
+          'page_size': ?pageSize,
+          'sort_by': ?sortBy,
+          'sort_order': ?sortOrder,
+        },
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminUserApiKeyPage,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminUserUsage> getUsage(
+    int userId, {
+    Sub2ApiAdminUserUsagePeriod period = Sub2ApiAdminUserUsagePeriod.month,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateUserId(userId);
+    return _requestExecutor.protectedRequest(
+      send: (cancelToken, options, credential) => _service.userUsage(
+        userId,
+        period.name,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminUserUsage,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminBalanceHistoryPage> getBalanceHistory(
+    int userId, {
+    int? page,
+    int? pageSize,
+    Sub2ApiAdminBalanceHistoryType? type,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateUserId(userId);
+    _validatePage(page, pageSize);
+    return _requestExecutor.protectedRequest(
+      send: (cancelToken, options, credential) => _service.balanceHistory(
+        userId,
+        <String, dynamic>{
+          'page': ?page,
+          'page_size': ?pageSize,
+          if (type != null) 'type': _historyType(type),
+        },
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminBalanceHistory,
+      requestOptions: requestOptions,
+    );
+  }
 
   @override
   Future<Sub2ApiAdminReplaceUserGroupResult> replaceGroup(
@@ -388,6 +794,12 @@ final class _Sub2ApiAdminUsersClient implements Sub2ApiAdminUsersClient {
     Sub2ApiAdminCredentialMode.apiKey => apiKey,
   };
 
+  String? _authorization(String? credential) =>
+      _credentialMode == Sub2ApiAdminCredentialMode.jwt ? credential : null;
+
+  String? _apiKey(String? credential) =>
+      _credentialMode == Sub2ApiAdminCredentialMode.apiKey ? credential : null;
+
   static void _validateUserId(int userId) {
     if (userId <= 0) throw _validation('admin.users.invalid_user_id');
   }
@@ -404,6 +816,65 @@ final class _Sub2ApiAdminUsersClient implements Sub2ApiAdminUsersClient {
     }
     return List<int>.unmodifiable(ids);
   }
+
+  static void _validatePage(int? page, int? pageSize) {
+    if (page != null && page <= 0) {
+      throw _validation('admin.users.invalid_page');
+    }
+    if (pageSize != null && (pageSize <= 0 || pageSize > 1000)) {
+      throw _validation('admin.users.invalid_page_size');
+    }
+  }
+
+  static void _validateSortOrder(String? sortOrder) {
+    if (sortOrder != null && sortOrder != 'asc' && sortOrder != 'desc') {
+      throw _validation('admin.users.invalid_sort_order');
+    }
+  }
+
+  static void _validateLimits(int? concurrency, int? rpmLimit) {
+    if ((concurrency != null && concurrency < 0) ||
+        (rpmLimit != null && rpmLimit < 0)) {
+      throw _validation('admin.users.invalid_limit');
+    }
+  }
+
+  static void _validateIds(List<int> ids, String code) {
+    if (ids.any((id) => id <= 0)) throw _validation(code);
+  }
+
+  static double _float64Decimal(
+    Sub2ApiDecimal decimal,
+    String code, {
+    bool positive = false,
+  }) {
+    final zero = Sub2ApiDecimal.zero();
+    final comparison = decimal.compareTo(zero);
+    if (comparison < 0 || (positive && comparison == 0)) {
+      throw _validation(code);
+    }
+    final value = double.tryParse(decimal.toJson());
+    if (value == null || !value.isFinite) throw _validation(code);
+    try {
+      if (Sub2ApiDecimal.parse(value.toString()) != decimal) {
+        throw _validation(code);
+      }
+    } on Sub2ApiException catch (error) {
+      if (error.code == code) rethrow;
+      throw _validation(code);
+    } on Object {
+      throw _validation(code);
+    }
+    return value;
+  }
+
+  static String _historyType(Sub2ApiAdminBalanceHistoryType type) =>
+      switch (type) {
+        Sub2ApiAdminBalanceHistoryType.affiliateBalance => 'affiliate_balance',
+        Sub2ApiAdminBalanceHistoryType.adminBalance => 'admin_balance',
+        Sub2ApiAdminBalanceHistoryType.adminConcurrency => 'admin_concurrency',
+        _ => type.name,
+      };
 
   static double? _float64Limit(Sub2ApiDecimal? limit) {
     if (limit == null) return null;
