@@ -240,6 +240,25 @@ abstract class AdminUserWireService {
     @Header('x-api-key') String? apiKey,
   );
 
+  @PUT('/api/v1/admin/api-keys/{id}')
+  Future<HttpResponse<Object?>> updateApiKey(
+    @Path('id') int apiKeyId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @GET('/api/v1/admin/users/{id}/subscriptions')
+  Future<HttpResponse<Object?>> userSubscriptions(
+    @Path('id') int userId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
   @GET('/api/v1/admin/users/{id}/usage')
   Future<HttpResponse<Object?>> userUsage(
     @Path('id') int userId,

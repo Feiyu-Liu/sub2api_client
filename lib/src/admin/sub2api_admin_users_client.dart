@@ -5,6 +5,7 @@ import '../shared/models/sub2api_decimal.dart';
 import '../shared/request/sub2api_request_options.dart';
 import '../shared/transport/request_executor.dart';
 import 'sub2api_admin_credential_mode.dart';
+import 'sub2api_admin_subscription_models.dart';
 import 'sub2api_admin_user_models.dart';
 import 'wire/admin_user_wire_dto.dart';
 import 'wire/admin_user_wire_mapper.dart';
@@ -57,6 +58,17 @@ abstract interface class Sub2ApiAdminUsersClient {
     int? pageSize,
     String? sortBy,
     String? sortOrder,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminUpdateApiKeyResult> updateApiKey(
+    int apiKeyId,
+    Sub2ApiAdminUpdateApiKeyRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<List<Sub2ApiAdminSubscription>> getSubscriptions(
+    int userId, {
     Sub2ApiRequestOptions? requestOptions,
   });
 
@@ -438,6 +450,66 @@ final class _Sub2ApiAdminUsersClient implements Sub2ApiAdminUsersClient {
         _apiKey(credential),
       ),
       decode: mapAdminUserApiKeyPage,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminUpdateApiKeyResult> updateApiKey(
+    int apiKeyId,
+    Sub2ApiAdminUpdateApiKeyRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (apiKeyId <= 0) {
+      throw _validation('admin.users.invalid_api_key_id');
+    }
+    final body = <String, Object?>{};
+    switch (request.group) {
+      case Sub2ApiAdminApiKeyGroupUnchanged():
+        break;
+      case Sub2ApiAdminApiKeyGroupClear():
+        body['group_id'] = 0;
+      case Sub2ApiAdminApiKeyGroupSet(:final groupId):
+        if (groupId <= 0) {
+          throw _validation('admin.users.invalid_api_key_group_id');
+        }
+        body['group_id'] = groupId;
+    }
+    if (request.resetRateLimitUsage) {
+      body['reset_rate_limit_usage'] = true;
+    }
+    if (body.isEmpty) {
+      throw _validation('admin.users.api_key_update_required');
+    }
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.updateApiKey(
+        apiKeyId,
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminUpdateApiKeyResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<List<Sub2ApiAdminSubscription>> getSubscriptions(
+    int userId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateUserId(userId);
+    return _requestExecutor.protectedRequest(
+      send: (cancelToken, options, credential) => _service.userSubscriptions(
+        userId,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminUserSubscriptions,
       requestOptions: requestOptions,
     );
   }

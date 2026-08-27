@@ -5,6 +5,7 @@ import '../../shared/errors/sub2api_exception.dart';
 import '../../shared/models/sensitive_value.dart';
 import '../../shared/models/sub2api_decimal.dart';
 import '../../shared/models/sub2api_page.dart';
+import '../sub2api_admin_subscription_models.dart';
 import '../sub2api_admin_user_models.dart';
 import 'admin_user_wire_dto.dart';
 
@@ -149,6 +150,48 @@ Sub2ApiAdminUserApiKeyPage mapAdminUserApiKeyPage(Object? data) => _map(() {
   );
 });
 
+Sub2ApiAdminUpdateApiKeyResult mapAdminUpdateApiKeyResult(Object? data) =>
+    _map(() {
+      final source = _requireMap(data);
+      final autoGranted = source['auto_granted_group_access'];
+      if (autoGranted is! bool) throw _invalidAdminUser;
+      final grantedGroupId = source['granted_group_id'];
+      final grantedGroupName = source['granted_group_name'];
+      if (grantedGroupId != null &&
+          (grantedGroupId is! int || grantedGroupId <= 0)) {
+        throw _invalidAdminUser;
+      }
+      if (grantedGroupName != null && grantedGroupName is! String) {
+        throw _invalidAdminUser;
+      }
+      if (autoGranted &&
+          (grantedGroupId == null ||
+              grantedGroupName is! String ||
+              grantedGroupName.trim().isEmpty)) {
+        throw _invalidAdminUser;
+      }
+      if (!autoGranted &&
+          (grantedGroupId != null ||
+              (grantedGroupName is String && grantedGroupName.isNotEmpty))) {
+        throw _invalidAdminUser;
+      }
+      return Sub2ApiAdminUpdateApiKeyResult(
+        apiKey: _apiKey(ApiKeyWireDto.fromJson(_requireMap(source['api_key']))),
+        autoGrantedGroupAccess: autoGranted,
+        grantedGroupId: grantedGroupId as int?,
+        grantedGroupName: grantedGroupName as String? ?? '',
+      );
+    });
+
+List<Sub2ApiAdminSubscription> mapAdminUserSubscriptions(Object? data) =>
+    _map(() {
+      if (data is! List) throw _invalidAdminUser;
+      return data
+          .map(_requireMap)
+          .map(_adminSubscription)
+          .toList(growable: false);
+    });
+
 Sub2ApiAdminUserUsage mapAdminUserUsage(Object? data) => _map(() {
   final source = AdminUserUsageWireDto.fromJson(_requireMap(data));
   if (source.period.isEmpty ||
@@ -284,6 +327,88 @@ Sub2ApiAdminUser _adminUser(AdminUserWireDto source) {
     lastUsedAt: source.lastUsedAt?.toUtc(),
     deletedAt: source.deletedAt?.toUtc(),
   );
+}
+
+Sub2ApiAdminSubscription _adminSubscription(Map<String, Object?> source) {
+  final assignedByUser = source['assigned_by_user'] == null
+      ? null
+      : _requireMap(source['assigned_by_user']);
+  return Sub2ApiAdminSubscription(
+    subscription: Sub2ApiUserSubscription(
+      id: _positiveInt(source, 'id'),
+      userId: _positiveInt(source, 'user_id'),
+      groupId: _positiveInt(source, 'group_id'),
+      startsAt: _requiredDateTime(_requiredString(source, 'starts_at')),
+      expiresAt: _requiredDateTime(_requiredString(source, 'expires_at')),
+      status: _nonEmptyString(source, 'status'),
+      dailyWindowStart: _optionalDateTime(source, 'daily_window_start'),
+      weeklyWindowStart: _optionalDateTime(source, 'weekly_window_start'),
+      monthlyWindowStart: _optionalDateTime(source, 'monthly_window_start'),
+      dailyUsageUsd: _requiredDecimal(source, 'daily_usage_usd'),
+      weeklyUsageUsd: _requiredDecimal(source, 'weekly_usage_usd'),
+      monthlyUsageUsd: _requiredDecimal(source, 'monthly_usage_usd'),
+      createdAt: _requiredDateTime(_requiredString(source, 'created_at')),
+      updatedAt: _requiredDateTime(_requiredString(source, 'updated_at')),
+      revokedAt: _optionalDateTime(source, 'revoked_at'),
+    ),
+    assignedBy: _nullablePositiveInt(source, 'assigned_by'),
+    assignedAt: _requiredDateTime(_requiredString(source, 'assigned_at')),
+    notes: _string(source, 'notes'),
+    assignedByUser: assignedByUser == null
+        ? null
+        : Sub2ApiAdminSubscriptionAssigner(
+            id: _positiveInt(assignedByUser, 'id'),
+            email: _nonEmptyString(assignedByUser, 'email'),
+            username: _string(assignedByUser, 'username'),
+            role: _nonEmptyString(assignedByUser, 'role'),
+            status: _nonEmptyString(assignedByUser, 'status'),
+          ),
+  );
+}
+
+int _positiveInt(Map<String, Object?> source, String key) {
+  final value = source[key];
+  if (value is! int || value <= 0) throw _invalidAdminUser;
+  return value;
+}
+
+int? _nullablePositiveInt(Map<String, Object?> source, String key) {
+  final value = source[key];
+  if (value == null) return null;
+  if (value is! int || value <= 0) throw _invalidAdminUser;
+  return value;
+}
+
+String _requiredString(Map<String, Object?> source, String key) {
+  final value = source[key];
+  if (value is! String) throw _invalidAdminUser;
+  return value;
+}
+
+String _nonEmptyString(Map<String, Object?> source, String key) {
+  final value = _requiredString(source, key).trim();
+  if (value.isEmpty) throw _invalidAdminUser;
+  return value;
+}
+
+String _string(Map<String, Object?> source, String key) {
+  final value = source[key];
+  if (value == null) return '';
+  if (value is! String) throw _invalidAdminUser;
+  return value;
+}
+
+DateTime? _optionalDateTime(Map<String, Object?> source, String key) {
+  final value = source[key];
+  if (value == null || value == '') return null;
+  if (value is! String) throw _invalidAdminUser;
+  return _requiredDateTime(value);
+}
+
+Sub2ApiDecimal _requiredDecimal(Map<String, Object?> source, String key) {
+  final value = Sub2ApiDecimal.fromJson(source[key]);
+  if (value.compareTo(Sub2ApiDecimal.zero()) < 0) throw _invalidAdminUser;
+  return value;
 }
 
 Sub2ApiKeyDetails _apiKey(ApiKeyWireDto source) => Sub2ApiKeyDetails(

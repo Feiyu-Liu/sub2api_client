@@ -41,6 +41,17 @@ void main() {
       Sub2ApiRequestOptions? requestOptions,
     })
     importProxyData = opsProxies.importData;
+    final Future<Sub2ApiAdminUpdateApiKeyResult> Function(
+      int,
+      Sub2ApiAdminUpdateApiKeyRequest, {
+      Sub2ApiRequestOptions? requestOptions,
+    })
+    updateAdminApiKey = adminUsers.updateApiKey;
+    final Future<List<Sub2ApiAdminSubscription>> Function(
+      int, {
+      Sub2ApiRequestOptions? requestOptions,
+    })
+    getUserSubscriptions = adminUsers.getSubscriptions;
     final Future<Sub2ApiAdminIdentity> Function({
       Sub2ApiRequestOptions? requestOptions,
     })
@@ -84,6 +95,8 @@ void main() {
       opsProxies,
       exportProxyData,
       importProxyData,
+      updateAdminApiKey,
+      getUserSubscriptions,
     ], everyElement(isNotNull));
   });
 

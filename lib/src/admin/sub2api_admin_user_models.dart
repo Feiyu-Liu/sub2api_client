@@ -207,6 +207,56 @@ enum Sub2ApiAdminBalanceHistoryType {
   subscription,
 }
 
+sealed class Sub2ApiAdminApiKeyGroupUpdate {
+  const Sub2ApiAdminApiKeyGroupUpdate();
+
+  const factory Sub2ApiAdminApiKeyGroupUpdate.unchanged() =
+      Sub2ApiAdminApiKeyGroupUnchanged;
+  const factory Sub2ApiAdminApiKeyGroupUpdate.clear() =
+      Sub2ApiAdminApiKeyGroupClear;
+  const factory Sub2ApiAdminApiKeyGroupUpdate.set(int groupId) =
+      Sub2ApiAdminApiKeyGroupSet;
+}
+
+final class Sub2ApiAdminApiKeyGroupUnchanged
+    extends Sub2ApiAdminApiKeyGroupUpdate {
+  const Sub2ApiAdminApiKeyGroupUnchanged();
+}
+
+final class Sub2ApiAdminApiKeyGroupClear extends Sub2ApiAdminApiKeyGroupUpdate {
+  const Sub2ApiAdminApiKeyGroupClear();
+}
+
+final class Sub2ApiAdminApiKeyGroupSet extends Sub2ApiAdminApiKeyGroupUpdate {
+  const Sub2ApiAdminApiKeyGroupSet(this.groupId);
+
+  final int groupId;
+}
+
+final class Sub2ApiAdminUpdateApiKeyRequest {
+  const Sub2ApiAdminUpdateApiKeyRequest({
+    this.group = const Sub2ApiAdminApiKeyGroupUpdate.unchanged(),
+    this.resetRateLimitUsage = false,
+  });
+
+  final Sub2ApiAdminApiKeyGroupUpdate group;
+  final bool resetRateLimitUsage;
+}
+
+final class Sub2ApiAdminUpdateApiKeyResult {
+  const Sub2ApiAdminUpdateApiKeyResult({
+    required this.apiKey,
+    required this.autoGrantedGroupAccess,
+    required this.grantedGroupId,
+    required this.grantedGroupName,
+  });
+
+  final Sub2ApiKeyDetails apiKey;
+  final bool autoGrantedGroupAccess;
+  final int? grantedGroupId;
+  final String grantedGroupName;
+}
+
 /// Typed recursive JSON value used for provider-owned identity metadata.
 sealed class Sub2ApiAdminJsonValue {
   const Sub2ApiAdminJsonValue();
