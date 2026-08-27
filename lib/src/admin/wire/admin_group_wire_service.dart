@@ -212,4 +212,23 @@ abstract class AdminGroupWireService {
     @Header('Authorization') String? authorization,
     @Header('x-api-key') String? apiKey,
   );
+
+  @POST('/api/v1/admin/groups')
+  Future<HttpResponse<Object?>> createGroup(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @PUT('/api/v1/admin/groups/{id}')
+  Future<HttpResponse<Object?>> updateGroup(
+    @Path('id') int groupId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
 }

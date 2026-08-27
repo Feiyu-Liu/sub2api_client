@@ -596,3 +596,318 @@ final class Sub2ApiAdminGroupActionResult {
 
   final String message;
 }
+
+sealed class Sub2ApiAdminLimitUpdate {
+  const Sub2ApiAdminLimitUpdate();
+
+  const factory Sub2ApiAdminLimitUpdate.unchanged() =
+      Sub2ApiAdminLimitUnchanged;
+  const factory Sub2ApiAdminLimitUpdate.clear() = Sub2ApiAdminLimitClear;
+  const factory Sub2ApiAdminLimitUpdate.set(Sub2ApiDecimal value) =
+      Sub2ApiAdminLimitSet;
+}
+
+final class Sub2ApiAdminLimitUnchanged extends Sub2ApiAdminLimitUpdate {
+  const Sub2ApiAdminLimitUnchanged();
+}
+
+final class Sub2ApiAdminLimitClear extends Sub2ApiAdminLimitUpdate {
+  const Sub2ApiAdminLimitClear();
+}
+
+final class Sub2ApiAdminLimitSet extends Sub2ApiAdminLimitUpdate {
+  const Sub2ApiAdminLimitSet(this.value);
+
+  final Sub2ApiDecimal value;
+}
+
+final class Sub2ApiAdminCreateGroupRequest {
+  Sub2ApiAdminCreateGroupRequest({
+    required this.name,
+    this.description = '',
+    this.platform,
+    this.rateMultiplier,
+    this.isExclusive = false,
+    this.subscriptionType,
+    this.dailyLimitUsd,
+    this.weeklyLimitUsd,
+    this.monthlyLimitUsd,
+    this.longContextPricingEnabled = false,
+    List<Sub2ApiAdminModelPricing> modelPricing = const [],
+    this.allowImageGeneration = false,
+    this.allowBatchImageGeneration = false,
+    this.imageRateIndependent = false,
+    this.imageRateMultiplier,
+    this.batchImageDiscountMultiplier,
+    this.batchImageHoldMultiplier,
+    this.videoRateIndependent = false,
+    this.videoRateMultiplier,
+    this.peakRateEnabled = false,
+    this.peakStart = '',
+    this.peakEnd = '',
+    this.peakRateMultiplier,
+    this.profitControlEnabled = false,
+    this.profitMinMargin,
+    this.profitSafetyBuffer,
+    this.imagePrice1k,
+    this.imagePrice2k,
+    this.imagePrice4k,
+    this.videoPrice480p,
+    this.videoPrice720p,
+    this.videoPrice1080p,
+    Map<String, Map<String, Sub2ApiDecimal>> videoModelPrices = const {},
+    this.webSearchPricePerCall,
+    this.searchPricePer1k,
+    this.audioRealtimePricePerMin,
+    this.audioTtsPricePerMillionChars,
+    this.audioSttPricePerHour,
+    this.claudeCodeOnly = false,
+    this.fallbackGroupId,
+    this.fallbackGroupIdOnInvalidRequest,
+    Map<String, List<int>> modelRouting = const {},
+    this.modelRoutingEnabled = false,
+    this.mcpXmlInject,
+    List<String> supportedModelScopes = const [],
+    this.allowMessagesDispatch = false,
+    this.allowLive = false,
+    this.requireOAuthOnly = false,
+    this.requirePrivacySet = false,
+    this.defaultMappedModel = '',
+    Sub2ApiAdminMessagesDispatchModelConfig? messagesDispatchModelConfig,
+    Sub2ApiAdminGroupModelsListConfig? modelsListConfig,
+    this.rpmLimit = 0,
+    this.maxReasoningEffort = '',
+    List<Sub2ApiAdminReasoningEffortMapping> reasoningEffortMappings = const [],
+    List<int> copyAccountsFromGroupIds = const [],
+  }) : modelPricing = List.unmodifiable(modelPricing),
+       videoModelPrices = Map.unmodifiable(
+         videoModelPrices.map(
+           (key, value) =>
+               MapEntry(key, Map<String, Sub2ApiDecimal>.unmodifiable(value)),
+         ),
+       ),
+       modelRouting = Map.unmodifiable(
+         modelRouting.map(
+           (key, value) => MapEntry(key, List<int>.unmodifiable(value)),
+         ),
+       ),
+       supportedModelScopes = List.unmodifiable(supportedModelScopes),
+       messagesDispatchModelConfig =
+           messagesDispatchModelConfig ??
+           Sub2ApiAdminMessagesDispatchModelConfig(
+             opusMappedModel: '',
+             sonnetMappedModel: '',
+             haikuMappedModel: '',
+             exactModelMappings: const {},
+           ),
+       modelsListConfig =
+           modelsListConfig ??
+           Sub2ApiAdminGroupModelsListConfig(enabled: false, models: const []),
+       reasoningEffortMappings = List.unmodifiable(reasoningEffortMappings),
+       copyAccountsFromGroupIds = List.unmodifiable(copyAccountsFromGroupIds);
+
+  final String name;
+  final String description;
+  final Sub2ApiAdminGroupPlatform? platform;
+  final Sub2ApiDecimal? rateMultiplier;
+  final bool isExclusive;
+  final Sub2ApiAdminGroupSubscriptionType? subscriptionType;
+  final Sub2ApiDecimal? dailyLimitUsd;
+  final Sub2ApiDecimal? weeklyLimitUsd;
+  final Sub2ApiDecimal? monthlyLimitUsd;
+  final bool longContextPricingEnabled;
+  final List<Sub2ApiAdminModelPricing> modelPricing;
+  final bool allowImageGeneration;
+  final bool allowBatchImageGeneration;
+  final bool imageRateIndependent;
+  final Sub2ApiDecimal? imageRateMultiplier;
+  final Sub2ApiDecimal? batchImageDiscountMultiplier;
+  final Sub2ApiDecimal? batchImageHoldMultiplier;
+  final bool videoRateIndependent;
+  final Sub2ApiDecimal? videoRateMultiplier;
+  final bool peakRateEnabled;
+  final String peakStart;
+  final String peakEnd;
+  final Sub2ApiDecimal? peakRateMultiplier;
+  final bool profitControlEnabled;
+  final Sub2ApiDecimal? profitMinMargin;
+  final Sub2ApiDecimal? profitSafetyBuffer;
+  final Sub2ApiDecimal? imagePrice1k;
+  final Sub2ApiDecimal? imagePrice2k;
+  final Sub2ApiDecimal? imagePrice4k;
+  final Sub2ApiDecimal? videoPrice480p;
+  final Sub2ApiDecimal? videoPrice720p;
+  final Sub2ApiDecimal? videoPrice1080p;
+  final Map<String, Map<String, Sub2ApiDecimal>> videoModelPrices;
+  final Sub2ApiDecimal? webSearchPricePerCall;
+  final Sub2ApiDecimal? searchPricePer1k;
+  final Sub2ApiDecimal? audioRealtimePricePerMin;
+  final Sub2ApiDecimal? audioTtsPricePerMillionChars;
+  final Sub2ApiDecimal? audioSttPricePerHour;
+  final bool claudeCodeOnly;
+  final int? fallbackGroupId;
+  final int? fallbackGroupIdOnInvalidRequest;
+  final Map<String, List<int>> modelRouting;
+  final bool modelRoutingEnabled;
+  final bool? mcpXmlInject;
+  final List<String> supportedModelScopes;
+  final bool allowMessagesDispatch;
+  final bool allowLive;
+  final bool requireOAuthOnly;
+  final bool requirePrivacySet;
+  final String defaultMappedModel;
+  final Sub2ApiAdminMessagesDispatchModelConfig messagesDispatchModelConfig;
+  final Sub2ApiAdminGroupModelsListConfig modelsListConfig;
+  final int rpmLimit;
+  final String maxReasoningEffort;
+  final List<Sub2ApiAdminReasoningEffortMapping> reasoningEffortMappings;
+  final List<int> copyAccountsFromGroupIds;
+}
+
+final class Sub2ApiAdminUpdateGroupRequest {
+  Sub2ApiAdminUpdateGroupRequest({
+    this.name,
+    this.description,
+    this.platform,
+    this.rateMultiplier,
+    this.isExclusive,
+    this.status,
+    this.subscriptionType,
+    this.dailyLimitUsd = const Sub2ApiAdminLimitUpdate.unchanged(),
+    this.weeklyLimitUsd = const Sub2ApiAdminLimitUpdate.unchanged(),
+    this.monthlyLimitUsd = const Sub2ApiAdminLimitUpdate.unchanged(),
+    this.longContextPricingEnabled,
+    List<Sub2ApiAdminModelPricing>? modelPricing,
+    this.allowImageGeneration,
+    this.allowBatchImageGeneration,
+    this.imageRateIndependent,
+    this.imageRateMultiplier,
+    this.batchImageDiscountMultiplier,
+    this.batchImageHoldMultiplier,
+    this.videoRateIndependent,
+    this.videoRateMultiplier,
+    this.peakRateEnabled,
+    this.peakStart,
+    this.peakEnd,
+    this.peakRateMultiplier,
+    this.profitControlEnabled,
+    this.profitMinMargin,
+    this.profitSafetyBuffer,
+    this.imagePrice1k,
+    this.imagePrice2k,
+    this.imagePrice4k,
+    this.videoPrice480p,
+    this.videoPrice720p,
+    this.videoPrice1080p,
+    Map<String, Map<String, Sub2ApiDecimal>>? videoModelPrices,
+    this.webSearchPricePerCall,
+    this.searchPricePer1k,
+    this.audioRealtimePricePerMin,
+    this.audioTtsPricePerMillionChars,
+    this.audioSttPricePerHour,
+    this.claudeCodeOnly,
+    this.fallbackGroupId,
+    this.fallbackGroupIdOnInvalidRequest,
+    Map<String, List<int>>? modelRouting,
+    this.modelRoutingEnabled,
+    this.mcpXmlInject,
+    List<String>? supportedModelScopes,
+    this.allowMessagesDispatch,
+    this.allowLive,
+    this.requireOAuthOnly,
+    this.requirePrivacySet,
+    this.defaultMappedModel,
+    this.messagesDispatchModelConfig,
+    this.modelsListConfig,
+    this.rpmLimit,
+    this.maxReasoningEffort,
+    List<Sub2ApiAdminReasoningEffortMapping>? reasoningEffortMappings,
+    List<int>? copyAccountsFromGroupIds,
+  }) : modelPricing = modelPricing == null
+           ? null
+           : List.unmodifiable(modelPricing),
+       videoModelPrices = videoModelPrices == null
+           ? null
+           : Map.unmodifiable(
+               videoModelPrices.map(
+                 (key, value) => MapEntry(
+                   key,
+                   Map<String, Sub2ApiDecimal>.unmodifiable(value),
+                 ),
+               ),
+             ),
+       modelRouting = modelRouting == null
+           ? null
+           : Map.unmodifiable(
+               modelRouting.map(
+                 (key, value) => MapEntry(key, List<int>.unmodifiable(value)),
+               ),
+             ),
+       supportedModelScopes = supportedModelScopes == null
+           ? null
+           : List.unmodifiable(supportedModelScopes),
+       reasoningEffortMappings = reasoningEffortMappings == null
+           ? null
+           : List.unmodifiable(reasoningEffortMappings),
+       copyAccountsFromGroupIds = copyAccountsFromGroupIds == null
+           ? null
+           : List.unmodifiable(copyAccountsFromGroupIds);
+
+  final String? name;
+  final String? description;
+  final Sub2ApiAdminGroupPlatform? platform;
+  final Sub2ApiDecimal? rateMultiplier;
+  final bool? isExclusive;
+  final Sub2ApiAdminGroupStatus? status;
+  final Sub2ApiAdminGroupSubscriptionType? subscriptionType;
+  final Sub2ApiAdminLimitUpdate dailyLimitUsd;
+  final Sub2ApiAdminLimitUpdate weeklyLimitUsd;
+  final Sub2ApiAdminLimitUpdate monthlyLimitUsd;
+  final bool? longContextPricingEnabled;
+  final List<Sub2ApiAdminModelPricing>? modelPricing;
+  final bool? allowImageGeneration;
+  final bool? allowBatchImageGeneration;
+  final bool? imageRateIndependent;
+  final Sub2ApiDecimal? imageRateMultiplier;
+  final Sub2ApiDecimal? batchImageDiscountMultiplier;
+  final Sub2ApiDecimal? batchImageHoldMultiplier;
+  final bool? videoRateIndependent;
+  final Sub2ApiDecimal? videoRateMultiplier;
+  final bool? peakRateEnabled;
+  final String? peakStart;
+  final String? peakEnd;
+  final Sub2ApiDecimal? peakRateMultiplier;
+  final bool? profitControlEnabled;
+  final Sub2ApiDecimal? profitMinMargin;
+  final Sub2ApiDecimal? profitSafetyBuffer;
+  final Sub2ApiDecimal? imagePrice1k;
+  final Sub2ApiDecimal? imagePrice2k;
+  final Sub2ApiDecimal? imagePrice4k;
+  final Sub2ApiDecimal? videoPrice480p;
+  final Sub2ApiDecimal? videoPrice720p;
+  final Sub2ApiDecimal? videoPrice1080p;
+  final Map<String, Map<String, Sub2ApiDecimal>>? videoModelPrices;
+  final Sub2ApiDecimal? webSearchPricePerCall;
+  final Sub2ApiDecimal? searchPricePer1k;
+  final Sub2ApiDecimal? audioRealtimePricePerMin;
+  final Sub2ApiDecimal? audioTtsPricePerMillionChars;
+  final Sub2ApiDecimal? audioSttPricePerHour;
+  final bool? claudeCodeOnly;
+  final int? fallbackGroupId;
+  final int? fallbackGroupIdOnInvalidRequest;
+  final Map<String, List<int>>? modelRouting;
+  final bool? modelRoutingEnabled;
+  final bool? mcpXmlInject;
+  final List<String>? supportedModelScopes;
+  final bool? allowMessagesDispatch;
+  final bool? allowLive;
+  final bool? requireOAuthOnly;
+  final bool? requirePrivacySet;
+  final String? defaultMappedModel;
+  final Sub2ApiAdminMessagesDispatchModelConfig? messagesDispatchModelConfig;
+  final Sub2ApiAdminGroupModelsListConfig? modelsListConfig;
+  final int? rpmLimit;
+  final String? maxReasoningEffort;
+  final List<Sub2ApiAdminReasoningEffortMapping>? reasoningEffortMappings;
+  final List<int>? copyAccountsFromGroupIds;
+}
