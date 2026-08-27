@@ -81,6 +81,47 @@ Sub2ApiAdminAccountBatchMaintenanceResult mapAdminAccountBatchRefreshResult(
   Object? data,
 ) => _map(() => _accountBatchMaintenance(_object(data), includeWarnings: true));
 
+Sub2ApiAdminAccountRefreshResult mapAdminAccountRefreshResult(Object? data) =>
+    _map(() {
+      final source = _object(data);
+      if (source.containsKey('warning')) {
+        final warning = _nonEmptyString(source, 'warning');
+        if (warning != 'missing_project_id_temporary') {
+          throw const FormatException();
+        }
+        return Sub2ApiAdminAccountRefreshWarning(
+          message: _nonEmptyString(source, 'message'),
+          warning: warning,
+        );
+      }
+      return Sub2ApiAdminAccountRefreshCompleted(_account(source));
+    });
+
+Sub2ApiAdminAccountTierRefreshResult mapAdminAccountTierRefreshResult(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  final storageInfo = _jsonObject(source['storage_info']);
+  final driveStorageLimit = _nonNegativeInteger(source, 'drive_storage_limit');
+  final driveStorageUsage = _nonNegativeInteger(source, 'drive_storage_usage');
+  final updatedAt = _dateTime(source, 'updated_at');
+  final storage = storageInfo.values.map(
+    (key, value) => MapEntry(key, value.toWire()),
+  );
+  if (storage['drive_storage_limit'] != driveStorageLimit ||
+      storage['drive_storage_usage'] != driveStorageUsage ||
+      storage['drive_tier_updated_at'] != source['updated_at']) {
+    throw const FormatException();
+  }
+  return Sub2ApiAdminAccountTierRefreshResult(
+    tierId: _nonEmptyString(source, 'tier_id'),
+    storageInfo: storageInfo,
+    driveStorageLimit: driveStorageLimit,
+    driveStorageUsage: driveStorageUsage,
+    updatedAt: updatedAt,
+  );
+});
+
 Sub2ApiAdminAccountBatchUsage mapAdminAccountBatchUsage(Object? data) =>
     _map(() {
       final source = _object(data);

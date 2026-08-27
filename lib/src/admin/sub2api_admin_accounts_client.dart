@@ -53,6 +53,16 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminAccountRefreshResult> refreshCredentials(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccountTierRefreshResult> refreshGoogleOneTier(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminUpstreamBillingProbeSettings>
   getUpstreamBillingProbeSettings({Sub2ApiRequestOptions? requestOptions});
 
@@ -430,6 +440,45 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
             _apiKey(credential),
           ),
       decode: mapAdminAccountBatchMaintenanceResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccountRefreshResult> refreshCredentials(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) =>
+          _service.refreshAccountCredentials(
+            accountId,
+            cancelToken,
+            options,
+            _authorization(credential),
+            _apiKey(credential),
+          ),
+      decode: mapAdminAccountRefreshResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccountTierRefreshResult> refreshGoogleOneTier(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.refreshAccountTier(
+        accountId,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminAccountTierRefreshResult,
       requestOptions: requestOptions,
     );
   }

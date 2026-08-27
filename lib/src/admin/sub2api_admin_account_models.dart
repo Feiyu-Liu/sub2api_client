@@ -733,6 +733,44 @@ final class Sub2ApiAdminAccountBatchMaintenanceResult {
   final List<Sub2ApiAdminAccountBatchWarning> warnings;
 }
 
+sealed class Sub2ApiAdminAccountRefreshResult {
+  const Sub2ApiAdminAccountRefreshResult();
+}
+
+final class Sub2ApiAdminAccountRefreshCompleted
+    extends Sub2ApiAdminAccountRefreshResult {
+  const Sub2ApiAdminAccountRefreshCompleted(this.account);
+
+  final Sub2ApiAdminAccount account;
+}
+
+final class Sub2ApiAdminAccountRefreshWarning
+    extends Sub2ApiAdminAccountRefreshResult {
+  const Sub2ApiAdminAccountRefreshWarning({
+    required this.message,
+    required this.warning,
+  });
+
+  final String message;
+  final String warning;
+}
+
+final class Sub2ApiAdminAccountTierRefreshResult {
+  const Sub2ApiAdminAccountTierRefreshResult({
+    required this.tierId,
+    required this.storageInfo,
+    required this.driveStorageLimit,
+    required this.driveStorageUsage,
+    required this.updatedAt,
+  });
+
+  final String tierId;
+  final Sub2ApiAdminJsonObject storageInfo;
+  final int driveStorageLimit;
+  final int driveStorageUsage;
+  final DateTime updatedAt;
+}
+
 final class Sub2ApiAdminAccountBatchUsage {
   Sub2ApiAdminAccountBatchUsage({
     required Map<int, Sub2ApiAdminAccountUsage> usage,
