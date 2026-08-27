@@ -231,4 +231,14 @@ abstract class AdminGroupWireService {
     @Header('Authorization') String? authorization,
     @Header('x-api-key') String? apiKey,
   );
+
+  @GET('/api/v1/admin/groups/{id}/subscriptions')
+  Future<HttpResponse<Object?>> groupSubscriptions(
+    @Path('id') int groupId,
+    @Queries() Map<String, dynamic> query,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
 }

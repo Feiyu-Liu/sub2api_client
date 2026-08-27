@@ -43,8 +43,8 @@ All 127 fixed user-management target routes are typed and transport-tested.
 The isolated `Sub2ApiAdminClient` and `Sub2ApiOpsClient` entrypoints, Admin JWT
 role bootstrap, redacted Admin API Key provider, credential non-fallback, and
 typed Admin Dashboard and initial Admin user-resource operations are
-implemented. All 19 Admin Users routes are typed and transport-tested. The
-remaining 369 Admin resource
+implemented. All 19 Admin Users routes and all 25 Admin Groups routes are typed
+and transport-tested. The remaining 368 Admin resource
 routes are still unsupported, so the package does not yet claim complete
 Admin/Ops coverage. Payment UI and local secure storage remain caller-owned.
 

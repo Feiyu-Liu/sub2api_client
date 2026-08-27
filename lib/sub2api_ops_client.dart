@@ -7,6 +7,7 @@ export 'src/admin/sub2api_admin_group_models.dart';
 export 'src/admin/sub2api_admin_groups_client.dart'
     show Sub2ApiAdminGroupsClient;
 export 'src/admin/sub2api_admin_models.dart';
+export 'src/admin/sub2api_admin_subscription_models.dart';
 export 'src/admin/sub2api_admin_user_models.dart';
 export 'src/admin/sub2api_admin_users_client.dart' show Sub2ApiAdminUsersClient;
 export 'src/admin/sub2api_ops_client.dart' show Sub2ApiOpsClient;

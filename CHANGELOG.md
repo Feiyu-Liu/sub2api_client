@@ -35,6 +35,9 @@
 - Add complete typed Admin Group create/update requests, including nested model
   pricing and exact float64 checks, model routing, account copying, reasoning
   controls, and explicit unchanged/clear/set limit semantics.
+- Complete all 25 Admin Groups routes with the paginated group-subscription
+  view, preserving administrator assignment metadata instead of narrowing it
+  to the ordinary user subscription contract.
 - Add the generated v0.1.183 management route manifest: 566 registered routes,
   552 target client routes, and explicit callback/webhook/static exclusions.
 - Accept ADR-0008 to complete the User and Admin/Ops management surfaces with

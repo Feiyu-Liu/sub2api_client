@@ -1,3 +1,4 @@
+import '../../commerce/sub2api_commerce_models.dart';
 import '../../keys/internal/key_wire_dtos.dart';
 import '../../keys/sub2api_key_models.dart';
 import '../../shared/errors/sub2api_exception.dart';
@@ -5,6 +6,7 @@ import '../../shared/models/sensitive_value.dart';
 import '../../shared/models/sub2api_decimal.dart';
 import '../../shared/models/sub2api_page.dart';
 import '../sub2api_admin_group_models.dart';
+import '../sub2api_admin_subscription_models.dart';
 
 Sub2ApiAdminGroupPage mapAdminGroupPage(Object? data) => _map(() {
   final source = _object(data);
@@ -153,6 +155,61 @@ Sub2ApiAdminGroupApiKeyPage mapAdminGroupApiKeyPage(Object? data) => _map(() {
     pages: _integer(source, 'pages'),
   );
 });
+
+Sub2ApiAdminSubscriptionPage mapAdminGroupSubscriptions(Object? data) =>
+    _map(() {
+      final source = _object(data);
+      return Sub2ApiPage<Sub2ApiAdminSubscription>(
+        items: _list(
+          source,
+          'items',
+        ).map(_object).map(_adminSubscription).toList(growable: false),
+        total: _integer(source, 'total'),
+        page: _integer(source, 'page'),
+        pageSize: _integer(source, 'page_size'),
+        pages: _integer(source, 'pages'),
+      );
+    });
+
+Sub2ApiAdminSubscription _adminSubscription(Map<String, Object?> source) {
+  final id = _positiveInteger(source, 'id');
+  final userId = _positiveInteger(source, 'user_id');
+  final groupId = _positiveInteger(source, 'group_id');
+  final assignedByUser = source['assigned_by_user'] == null
+      ? null
+      : _object(source['assigned_by_user']);
+  return Sub2ApiAdminSubscription(
+    subscription: Sub2ApiUserSubscription(
+      id: id,
+      userId: userId,
+      groupId: groupId,
+      startsAt: _dateTime(source, 'starts_at'),
+      expiresAt: _dateTime(source, 'expires_at'),
+      status: _nonEmptyString(source, 'status'),
+      dailyWindowStart: _nullableDateTime(source, 'daily_window_start'),
+      weeklyWindowStart: _nullableDateTime(source, 'weekly_window_start'),
+      monthlyWindowStart: _nullableDateTime(source, 'monthly_window_start'),
+      dailyUsageUsd: _decimal(source, 'daily_usage_usd'),
+      weeklyUsageUsd: _decimal(source, 'weekly_usage_usd'),
+      monthlyUsageUsd: _decimal(source, 'monthly_usage_usd'),
+      createdAt: _dateTime(source, 'created_at'),
+      updatedAt: _dateTime(source, 'updated_at'),
+      revokedAt: _nullableDateTime(source, 'revoked_at'),
+    ),
+    assignedBy: _nullableInteger(source, 'assigned_by'),
+    assignedAt: _dateTime(source, 'assigned_at'),
+    notes: _string(source, 'notes'),
+    assignedByUser: assignedByUser == null
+        ? null
+        : Sub2ApiAdminSubscriptionAssigner(
+            id: _positiveInteger(assignedByUser, 'id'),
+            email: _nonEmptyString(assignedByUser, 'email'),
+            username: _string(assignedByUser, 'username'),
+            role: _nonEmptyString(assignedByUser, 'role'),
+            status: _nonEmptyString(assignedByUser, 'status'),
+          ),
+  );
+}
 
 Sub2ApiAdminGroup _group(Map<String, Object?> source) {
   final id = _positiveInteger(source, 'id');

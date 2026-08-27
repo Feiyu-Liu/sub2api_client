@@ -6,6 +6,7 @@ import '../shared/request/sub2api_request_options.dart';
 import '../shared/transport/request_executor.dart';
 import 'sub2api_admin_credential_mode.dart';
 import 'sub2api_admin_group_models.dart';
+import 'sub2api_admin_subscription_models.dart';
 import 'wire/admin_group_wire_mapper.dart';
 import 'wire/admin_group_wire_service.dart';
 
@@ -60,6 +61,13 @@ abstract interface class Sub2ApiAdminGroupsClient {
   });
 
   Future<Sub2ApiAdminGroupApiKeyPage> getApiKeys(
+    int groupId, {
+    int? page,
+    int? pageSize,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminSubscriptionPage> getSubscriptions(
     int groupId, {
     int? page,
     int? pageSize,
@@ -380,6 +388,32 @@ final class _Sub2ApiAdminGroupsClient implements Sub2ApiAdminGroupsClient {
         _apiKey(credential),
       ),
       decode: mapAdminGroupApiKeyPage,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminSubscriptionPage> getSubscriptions(
+    int groupId, {
+    int? page,
+    int? pageSize,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateGroupId(groupId);
+    _validatePage(page, pageSize);
+    final query = <String, dynamic>{};
+    if (page != null) query['page'] = page;
+    if (pageSize != null) query['page_size'] = pageSize;
+    return _requestExecutor.protectedRequest(
+      send: (cancelToken, options, credential) => _service.groupSubscriptions(
+        groupId,
+        query,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminGroupSubscriptions,
       requestOptions: requestOptions,
     );
   }

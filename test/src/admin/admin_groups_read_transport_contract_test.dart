@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:sub2api_client/src/admin/sub2api_admin_client.dart';
 import 'package:sub2api_client/src/admin/sub2api_admin_group_models.dart';
 import 'package:sub2api_client/src/admin/sub2api_admin_groups_client.dart';
+import 'package:sub2api_client/src/admin/sub2api_admin_subscription_models.dart';
 import 'package:sub2api_client/src/admin/sub2api_ops_client.dart';
 import 'package:sub2api_client/src/admin/sub2api_ops_credentials.dart';
 import 'package:sub2api_client/src/shared/configuration/sub2api_configuration.dart';
@@ -86,6 +87,13 @@ void main() {
         apiKeys.items.single.secret.reveal(),
         'admin-api-key-list-secret-sentinel',
       );
+      final subscriptions = results[11]! as Sub2ApiAdminSubscriptionPage;
+      expect(subscriptions.items.single.subscription.id, 301);
+      expect(subscriptions.items.single.notes, 'research pilot');
+      expect(
+        subscriptions.items.single.assignedByUser?.email,
+        'admin@example.test',
+      );
 
       expect(
         adapter.requests.map((request) => request.path),
@@ -118,6 +126,10 @@ void main() {
       );
       expect(adapter.requests[10].queryParameters, <String, dynamic>{
         'page': 3,
+        'page_size': 10,
+      });
+      expect(adapter.requests[11].queryParameters, <String, dynamic>{
+        'page': 2,
         'page_size': 10,
       });
     },
@@ -326,6 +338,11 @@ final _routes = <_AdminGroupReadRoute>[
     '/api/v1/admin/groups/7/api-keys',
     (groups) => groups.getApiKeys(7, page: 3, pageSize: 10),
   ),
+  _AdminGroupReadRoute(
+    'subscriptions',
+    '/api/v1/admin/groups/7/subscriptions',
+    (groups) => groups.getSubscriptions(7, page: 2, pageSize: 10),
+  ),
 ];
 
 Map<String, Object?> _fixtureForRequest(RequestOptions request) => switch ((
@@ -352,6 +369,9 @@ Map<String, Object?> _fixtureForRequest(RequestOptions request) => switch ((
   ),
   ('GET', '/api/v1/admin/groups/7/api-keys') => readFixture(
     'admin/user_api_keys.json',
+  ),
+  ('GET', '/api/v1/admin/groups/7/subscriptions') => readFixture(
+    'admin/group_subscriptions.json',
   ),
   _ => throw StateError('unexpected request ${request.method} ${request.path}'),
 };
