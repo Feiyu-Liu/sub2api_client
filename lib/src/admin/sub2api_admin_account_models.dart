@@ -186,6 +186,126 @@ final class Sub2ApiAdminBatchCreateAccountsResult {
   final List<Sub2ApiAdminBatchCreateAccountItem> results;
 }
 
+sealed class Sub2ApiAdminProxyUpdate {
+  const Sub2ApiAdminProxyUpdate();
+
+  const factory Sub2ApiAdminProxyUpdate.unchanged() =
+      Sub2ApiAdminProxyUnchanged;
+  const factory Sub2ApiAdminProxyUpdate.clear() = Sub2ApiAdminProxyClear;
+  const factory Sub2ApiAdminProxyUpdate.set(int proxyId) = Sub2ApiAdminProxySet;
+}
+
+final class Sub2ApiAdminProxyUnchanged extends Sub2ApiAdminProxyUpdate {
+  const Sub2ApiAdminProxyUnchanged();
+}
+
+final class Sub2ApiAdminProxyClear extends Sub2ApiAdminProxyUpdate {
+  const Sub2ApiAdminProxyClear();
+}
+
+final class Sub2ApiAdminProxySet extends Sub2ApiAdminProxyUpdate {
+  const Sub2ApiAdminProxySet(this.proxyId);
+
+  final int proxyId;
+}
+
+sealed class Sub2ApiAdminExpiresAtUpdate {
+  const Sub2ApiAdminExpiresAtUpdate();
+
+  const factory Sub2ApiAdminExpiresAtUpdate.unchanged() =
+      Sub2ApiAdminExpiresAtUnchanged;
+  const factory Sub2ApiAdminExpiresAtUpdate.clear() =
+      Sub2ApiAdminExpiresAtClear;
+  const factory Sub2ApiAdminExpiresAtUpdate.set(DateTime expiresAt) =
+      Sub2ApiAdminExpiresAtSet;
+}
+
+final class Sub2ApiAdminExpiresAtUnchanged extends Sub2ApiAdminExpiresAtUpdate {
+  const Sub2ApiAdminExpiresAtUnchanged();
+}
+
+final class Sub2ApiAdminExpiresAtClear extends Sub2ApiAdminExpiresAtUpdate {
+  const Sub2ApiAdminExpiresAtClear();
+}
+
+final class Sub2ApiAdminExpiresAtSet extends Sub2ApiAdminExpiresAtUpdate {
+  const Sub2ApiAdminExpiresAtSet(this.expiresAt);
+
+  final DateTime expiresAt;
+}
+
+sealed class Sub2ApiAdminLoadFactorUpdate {
+  const Sub2ApiAdminLoadFactorUpdate();
+
+  const factory Sub2ApiAdminLoadFactorUpdate.unchanged() =
+      Sub2ApiAdminLoadFactorUnchanged;
+  const factory Sub2ApiAdminLoadFactorUpdate.clear() =
+      Sub2ApiAdminLoadFactorClear;
+  const factory Sub2ApiAdminLoadFactorUpdate.set(int loadFactor) =
+      Sub2ApiAdminLoadFactorSet;
+}
+
+final class Sub2ApiAdminLoadFactorUnchanged
+    extends Sub2ApiAdminLoadFactorUpdate {
+  const Sub2ApiAdminLoadFactorUnchanged();
+}
+
+final class Sub2ApiAdminLoadFactorClear extends Sub2ApiAdminLoadFactorUpdate {
+  const Sub2ApiAdminLoadFactorClear();
+}
+
+final class Sub2ApiAdminLoadFactorSet extends Sub2ApiAdminLoadFactorUpdate {
+  const Sub2ApiAdminLoadFactorSet(this.loadFactor);
+
+  final int loadFactor;
+}
+
+final class Sub2ApiAdminUpdateAccountRequest {
+  Sub2ApiAdminUpdateAccountRequest({
+    this.name,
+    this.notes,
+    this.type,
+    this.credentials,
+    this.extra,
+    this.proxy = const Sub2ApiAdminProxyUpdate.unchanged(),
+    this.concurrency,
+    this.priority,
+    this.rateMultiplier,
+    this.loadFactor = const Sub2ApiAdminLoadFactorUpdate.unchanged(),
+    this.status,
+    List<int>? groupIds,
+    this.expiresAt = const Sub2ApiAdminExpiresAtUpdate.unchanged(),
+    this.autoPauseOnExpired,
+    this.upstreamBillingProbeEnabled,
+    this.upstreamBillingRateSyncEnabled,
+    this.confirmMixedChannelRisk = false,
+  }) : groupIds = groupIds == null ? null : List.unmodifiable(groupIds);
+
+  final String? name;
+  final String? notes;
+  final Sub2ApiAdminAccountType? type;
+  final Sub2ApiAdminCredentialSet? credentials;
+
+  /// `null` leaves extra unchanged; an empty object clears user-owned keys.
+  final Sub2ApiAdminJsonObject? extra;
+
+  final Sub2ApiAdminProxyUpdate proxy;
+  final int? concurrency;
+  final int? priority;
+  final Sub2ApiDecimal? rateMultiplier;
+  final Sub2ApiAdminLoadFactorUpdate loadFactor;
+  final Sub2ApiAdminAccountStatus? status;
+
+  /// `null` leaves bindings unchanged; an empty list clears all bindings.
+  final List<int>? groupIds;
+
+  final Sub2ApiAdminExpiresAtUpdate expiresAt;
+  final bool? autoPauseOnExpired;
+  final bool? upstreamBillingProbeEnabled;
+  final bool? upstreamBillingRateSyncEnabled;
+  final bool confirmMixedChannelRisk;
+}
+
 final class Sub2ApiAdminAccountListQuery {
   const Sub2ApiAdminAccountListQuery({
     this.page,

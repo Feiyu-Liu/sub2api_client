@@ -46,6 +46,16 @@ abstract class AdminAccountWireService {
     @Header('Idempotency-Key') String idempotencyKey,
   );
 
+  @PUT('/api/v1/admin/accounts/{id}')
+  Future<HttpResponse<Object?>> updateAccount(
+    @Path('id') int accountId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
   @POST('/api/v1/admin/accounts/{id}/duplicate')
   Future<HttpResponse<Object?>> duplicateAccount(
     @Path('id') int accountId,

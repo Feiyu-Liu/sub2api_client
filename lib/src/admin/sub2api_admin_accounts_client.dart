@@ -34,6 +34,12 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminAccount> update(
+    int accountId,
+    Sub2ApiAdminUpdateAccountRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminAccount> duplicate(
     int accountId,
     Sub2ApiAdminDuplicateAccountRequest request, {
@@ -424,6 +430,29 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         key,
       ),
       decode: mapAdminBatchCreateAccountsResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccount> update(
+    int accountId,
+    Sub2ApiAdminUpdateAccountRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    final body = _updateAccountBody(request);
+    if (body.isEmpty) throw _validation('admin.accounts.empty_update');
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.updateAccount(
+        accountId,
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminAccount,
       requestOptions: requestOptions,
     );
   }
@@ -1633,6 +1662,110 @@ Map<String, Object?> _createAccountBody(Sub2ApiAdminAccountCreateInput input) {
     'upstream_billing_probe_enabled': ?input.upstreamBillingProbeEnabled,
     if (input.confirmMixedChannelRisk) 'confirm_mixed_channel_risk': true,
   };
+}
+
+Map<String, Object?> _updateAccountBody(
+  Sub2ApiAdminUpdateAccountRequest request,
+) {
+  final body = <String, Object?>{};
+  if (request.name != null) {
+    final name = request.name!.trim();
+    if (name.isEmpty || name.runes.length > 100) {
+      throw _validation('admin.accounts.invalid_name');
+    }
+    body['name'] = name;
+  }
+  if (request.notes != null) body['notes'] = request.notes!.trim();
+  if (request.type != null) body['type'] = _wireType(request.type!);
+  if (request.credentials != null) {
+    final credentials = _credentialSetBody(request.credentials!);
+    if (credentials.isEmpty) {
+      throw _validation('admin.accounts.credentials_required');
+    }
+    body['credentials'] = credentials;
+  }
+  if (request.extra != null) {
+    final extra = request.extra!.values.map(
+      (key, value) => MapEntry(key, value.toWire()),
+    );
+    if (extra.keys.any(_managedAccountExtraKeys.contains)) {
+      throw _validation('admin.accounts.managed_extra_not_writable');
+    }
+    body['extra'] = extra;
+  }
+  switch (request.proxy) {
+    case Sub2ApiAdminProxyUnchanged():
+      break;
+    case Sub2ApiAdminProxyClear():
+      body['proxy_id'] = 0;
+    case Sub2ApiAdminProxySet(:final proxyId):
+      if (proxyId <= 0) throw _validation('admin.accounts.invalid_proxy_id');
+      body['proxy_id'] = proxyId;
+  }
+  if (request.concurrency != null) {
+    if (request.concurrency! < 0) {
+      throw _validation('admin.accounts.invalid_concurrency');
+    }
+    body['concurrency'] = request.concurrency;
+  }
+  if (request.priority != null) {
+    if (request.priority! < 0) {
+      throw _validation('admin.accounts.invalid_priority');
+    }
+    body['priority'] = request.priority;
+  }
+  if (request.rateMultiplier != null) {
+    body['rate_multiplier'] = _nonNegativeDecimalDouble(
+      request.rateMultiplier!,
+      code: 'admin.accounts.invalid_rate_multiplier',
+    );
+  }
+  switch (request.loadFactor) {
+    case Sub2ApiAdminLoadFactorUnchanged():
+      break;
+    case Sub2ApiAdminLoadFactorClear():
+      body['load_factor'] = 0;
+    case Sub2ApiAdminLoadFactorSet(:final loadFactor):
+      if (loadFactor <= 0 || loadFactor > 10000) {
+        throw _validation('admin.accounts.invalid_load_factor');
+      }
+      body['load_factor'] = loadFactor;
+  }
+  if (request.status != null) body['status'] = request.status!.name;
+  if (request.groupIds != null) {
+    body['group_ids'] = _normalizePositiveIds(
+      request.groupIds!,
+      code: 'admin.accounts.invalid_group_id',
+    );
+  }
+  switch (request.expiresAt) {
+    case Sub2ApiAdminExpiresAtUnchanged():
+      break;
+    case Sub2ApiAdminExpiresAtClear():
+      body['expires_at'] = 0;
+    case Sub2ApiAdminExpiresAtSet(:final expiresAt):
+      if (expiresAt.microsecondsSinceEpoch <= 0 ||
+          expiresAt.microsecondsSinceEpoch % Duration.microsecondsPerSecond !=
+              0) {
+        throw _validation('admin.accounts.invalid_expires_at');
+      }
+      body['expires_at'] = expiresAt.toUtc().millisecondsSinceEpoch ~/ 1000;
+  }
+  if (request.autoPauseOnExpired != null) {
+    body['auto_pause_on_expired'] = request.autoPauseOnExpired;
+  }
+  if (request.upstreamBillingProbeEnabled != null) {
+    body['upstream_billing_probe_enabled'] =
+        request.upstreamBillingProbeEnabled;
+  }
+  if (request.upstreamBillingRateSyncEnabled != null) {
+    body['upstream_billing_rate_sync_enabled'] =
+        request.upstreamBillingRateSyncEnabled;
+  }
+  if (request.confirmMixedChannelRisk) {
+    body['confirm_mixed_channel_risk'] = true;
+  }
+  return body;
 }
 
 Map<String, Object?> _credentialSetBody(Sub2ApiAdminCredentialSet set) {
