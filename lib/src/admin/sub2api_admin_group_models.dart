@@ -474,3 +474,125 @@ final class Sub2ApiAdminCompositeRoute {
   final DateTime createdAt;
   final DateTime updatedAt;
 }
+
+final class Sub2ApiAdminGroupSortOrderUpdate {
+  const Sub2ApiAdminGroupSortOrderUpdate({
+    required this.groupId,
+    required this.sortOrder,
+  });
+
+  final int groupId;
+  final int sortOrder;
+}
+
+final class Sub2ApiAdminUpdateGroupSortOrderRequest {
+  Sub2ApiAdminUpdateGroupSortOrderRequest({
+    required List<Sub2ApiAdminGroupSortOrderUpdate> updates,
+  }) : updates = List.unmodifiable(updates);
+
+  final List<Sub2ApiAdminGroupSortOrderUpdate> updates;
+}
+
+final class Sub2ApiAdminDuplicateGroupRequest {
+  const Sub2ApiAdminDuplicateGroupRequest({required this.idempotencyKey});
+
+  final String idempotencyKey;
+}
+
+final class Sub2ApiAdminCompositeRouteRequest {
+  const Sub2ApiAdminCompositeRouteRequest({
+    required this.publicModel,
+    required this.targetPlatform,
+    this.matchType = Sub2ApiAdminCompositeRouteMatchType.exact,
+    this.upstreamModel = '',
+    this.endpoint = Sub2ApiAdminCompositeRouteEndpoint.any,
+    this.priority = 0,
+    this.enabled = true,
+    this.notes = '',
+  });
+
+  final String publicModel;
+  final Sub2ApiAdminCompositeRouteMatchType matchType;
+  final Sub2ApiAdminGroupPlatform targetPlatform;
+  final String upstreamModel;
+  final Sub2ApiAdminCompositeRouteEndpoint endpoint;
+  final int priority;
+  final bool enabled;
+  final String notes;
+}
+
+final class Sub2ApiAdminCompositeRoutePreviewRequest {
+  const Sub2ApiAdminCompositeRoutePreviewRequest({
+    required this.model,
+    this.endpoint = Sub2ApiAdminCompositeRouteEndpoint.any,
+  });
+
+  final String model;
+  final Sub2ApiAdminCompositeRouteEndpoint endpoint;
+}
+
+final class Sub2ApiAdminCompositeRouteDecision {
+  const Sub2ApiAdminCompositeRouteDecision({
+    required this.matched,
+    required this.source,
+    required this.groupId,
+    required this.publicModel,
+    required this.targetPlatform,
+    required this.upstreamModel,
+    required this.endpoint,
+    required this.reason,
+    this.route,
+  });
+
+  final bool matched;
+  final String source;
+  final int groupId;
+  final String publicModel;
+  final Sub2ApiAdminGroupPlatform targetPlatform;
+  final String upstreamModel;
+  final Sub2ApiAdminCompositeRouteEndpoint endpoint;
+  final Sub2ApiAdminCompositeRoute? route;
+  final String reason;
+}
+
+final class Sub2ApiAdminGroupRateMultiplierInput {
+  const Sub2ApiAdminGroupRateMultiplierInput({
+    required this.userId,
+    required this.rateMultiplier,
+  });
+
+  final int userId;
+  final Sub2ApiDecimal rateMultiplier;
+}
+
+final class Sub2ApiAdminSetGroupRateMultipliersRequest {
+  Sub2ApiAdminSetGroupRateMultipliersRequest({
+    required List<Sub2ApiAdminGroupRateMultiplierInput> entries,
+  }) : entries = List.unmodifiable(entries);
+
+  final List<Sub2ApiAdminGroupRateMultiplierInput> entries;
+}
+
+final class Sub2ApiAdminGroupRpmOverrideInput {
+  const Sub2ApiAdminGroupRpmOverrideInput({
+    required this.userId,
+    this.rpmOverride,
+  });
+
+  final int userId;
+  final int? rpmOverride;
+}
+
+final class Sub2ApiAdminSetGroupRpmOverridesRequest {
+  Sub2ApiAdminSetGroupRpmOverridesRequest({
+    required List<Sub2ApiAdminGroupRpmOverrideInput> entries,
+  }) : entries = List.unmodifiable(entries);
+
+  final List<Sub2ApiAdminGroupRpmOverrideInput> entries;
+}
+
+final class Sub2ApiAdminGroupActionResult {
+  const Sub2ApiAdminGroupActionResult({required this.message});
+
+  final String message;
+}

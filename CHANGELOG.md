@@ -29,6 +29,9 @@
 - Add 11 typed read-only Admin Groups routes for complete group facts,
   capacity and usage summaries, Live capability, model candidates, composite
   routes, statistics, per-user rates, and group API keys.
+- Add 11 non-replayable Admin Groups actions for sort order, idempotent
+  duplication, deletion, composite-route lifecycle and preview, per-user rate
+  multipliers, and RPM overrides.
 - Add the generated v0.1.183 management route manifest: 566 registered routes,
   552 target client routes, and explicit callback/webhook/static exclusions.
 - Accept ADR-0008 to complete the User and Admin/Ops management surfaces with

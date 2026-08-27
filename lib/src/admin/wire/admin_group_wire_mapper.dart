@@ -85,6 +85,34 @@ List<Sub2ApiAdminCompositeRoute> mapAdminCompositeRoutes(Object? data) => _map(
   () => _array(data).map(_object).map(_compositeRoute).toList(growable: false),
 );
 
+Sub2ApiAdminCompositeRoute mapAdminCompositeRoute(Object? data) =>
+    _map(() => _compositeRoute(_object(data)));
+
+Sub2ApiAdminCompositeRouteDecision mapAdminCompositeRouteDecision(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  return Sub2ApiAdminCompositeRouteDecision(
+    matched: _boolean(source, 'matched'),
+    source: _string(source, 'source'),
+    groupId: _positiveInteger(source, 'group_id'),
+    publicModel: _string(source, 'public_model'),
+    targetPlatform: _platform(_nonEmptyString(source, 'target_platform')),
+    upstreamModel: _string(source, 'upstream_model'),
+    endpoint: _endpoint(_nonEmptyString(source, 'endpoint')),
+    route: source['route'] == null
+        ? null
+        : _compositeRoute(_object(source['route'])),
+    reason: _optionalString(source, 'reason'),
+  );
+});
+
+Sub2ApiAdminGroupActionResult mapAdminGroupActionResult(Object? data) =>
+    _map(() {
+      final message = _nonEmptyString(_object(data), 'message');
+      return Sub2ApiAdminGroupActionResult(message: message);
+    });
+
 Sub2ApiAdminGroupStats mapAdminGroupStats(Object? data) => _map(() {
   final source = _object(data);
   return Sub2ApiAdminGroupStats(

@@ -105,4 +105,111 @@ abstract class AdminGroupWireService {
     @Header('Authorization') String? authorization,
     @Header('x-api-key') String? apiKey,
   );
+
+  @PUT('/api/v1/admin/groups/sort-order')
+  Future<HttpResponse<Object?>> updateSortOrder(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/groups/{id}/composite-routes')
+  Future<HttpResponse<Object?>> createCompositeRoute(
+    @Path('id') int groupId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/groups/{id}/composite-routes/preview')
+  Future<HttpResponse<Object?>> previewCompositeRoute(
+    @Path('id') int groupId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @PUT('/api/v1/admin/groups/{id}/composite-routes/{route_id}')
+  Future<HttpResponse<Object?>> updateCompositeRoute(
+    @Path('id') int groupId,
+    @Path('route_id') int routeId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @DELETE('/api/v1/admin/groups/{id}/composite-routes/{route_id}')
+  Future<HttpResponse<Object?>> deleteCompositeRoute(
+    @Path('id') int groupId,
+    @Path('route_id') int routeId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/groups/{id}/duplicate')
+  Future<HttpResponse<Object?>> duplicateGroup(
+    @Path('id') int groupId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+    @Header('Idempotency-Key') String idempotencyKey,
+  );
+
+  @DELETE('/api/v1/admin/groups/{id}')
+  Future<HttpResponse<Object?>> deleteGroup(
+    @Path('id') int groupId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @PUT('/api/v1/admin/groups/{id}/rate-multipliers')
+  Future<HttpResponse<Object?>> setRateMultipliers(
+    @Path('id') int groupId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @DELETE('/api/v1/admin/groups/{id}/rate-multipliers')
+  Future<HttpResponse<Object?>> clearRateMultipliers(
+    @Path('id') int groupId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @PUT('/api/v1/admin/groups/{id}/rpm-overrides')
+  Future<HttpResponse<Object?>> setRpmOverrides(
+    @Path('id') int groupId,
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @DELETE('/api/v1/admin/groups/{id}/rpm-overrides')
+  Future<HttpResponse<Object?>> clearRpmOverrides(
+    @Path('id') int groupId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
 }
