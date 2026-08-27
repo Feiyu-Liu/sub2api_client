@@ -37,6 +37,8 @@ void main() {
     final Sub2ApiAdminAuditLogsClient opsAuditLogs = ops.auditLogs;
     final Sub2ApiAdminComplianceClient adminCompliance = admin.compliance;
     final Sub2ApiAdminComplianceClient opsCompliance = ops.compliance;
+    final Sub2ApiAdminGeminiOAuthClient adminGeminiOAuth = admin.geminiOAuth;
+    final Sub2ApiAdminGeminiOAuthClient opsGeminiOAuth = ops.geminiOAuth;
     final Sub2ApiAdminProxiesClient adminProxies = admin.proxies;
     final Sub2ApiAdminProxiesClient opsProxies = ops.proxies;
     final Future<Sub2ApiAdminProxyDataExport> Function({
@@ -111,6 +113,8 @@ void main() {
       getUserSubscriptions,
       adminCompliance,
       opsCompliance,
+      adminGeminiOAuth,
+      opsGeminiOAuth,
     ], everyElement(isNotNull));
   });
 

@@ -12,6 +12,7 @@ import 'sub2api_admin_audit_logs_client.dart';
 import 'sub2api_admin_compliance_client.dart';
 import 'sub2api_admin_credential_mode.dart';
 import 'sub2api_admin_dashboard_client.dart';
+import 'sub2api_admin_gemini_oauth_client.dart';
 import 'sub2api_admin_groups_client.dart';
 import 'sub2api_admin_models.dart';
 import 'sub2api_admin_proxies_client.dart';
@@ -39,6 +40,7 @@ final class Sub2ApiAdminClient {
     required this.auditLogs,
     required this.compliance,
     required this.dashboard,
+    required this.geminiOAuth,
     required this.groups,
     required this.proxies,
     required this.users,
@@ -58,6 +60,7 @@ final class Sub2ApiAdminClient {
   final Sub2ApiAdminAuditLogsClient auditLogs;
   final Sub2ApiAdminComplianceClient compliance;
   final Sub2ApiAdminDashboardClient dashboard;
+  final Sub2ApiAdminGeminiOAuthClient geminiOAuth;
   final Sub2ApiAdminGroupsClient groups;
   final Sub2ApiAdminProxiesClient proxies;
   final Sub2ApiAdminUsersClient users;
@@ -128,6 +131,11 @@ Sub2ApiAdminClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
     ),
     dashboard: createSub2ApiAdminDashboardClient(
+      dio: dio,
+      requestExecutor: adminExecutor,
+      credentialMode: Sub2ApiAdminCredentialMode.jwt,
+    ),
+    geminiOAuth: createSub2ApiAdminGeminiOAuthClient(
       dio: dio,
       requestExecutor: adminExecutor,
       credentialMode: Sub2ApiAdminCredentialMode.jwt,

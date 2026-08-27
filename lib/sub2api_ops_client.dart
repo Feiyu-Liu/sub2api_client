@@ -15,6 +15,9 @@ export 'src/admin/sub2api_admin_compliance_client.dart'
 export 'src/admin/sub2api_admin_compliance_models.dart';
 export 'src/admin/sub2api_admin_dashboard_client.dart'
     show Sub2ApiAdminDashboardClient;
+export 'src/admin/sub2api_admin_gemini_oauth_client.dart'
+    show Sub2ApiAdminGeminiOAuthClient;
+export 'src/admin/sub2api_admin_gemini_oauth_models.dart';
 export 'src/admin/sub2api_admin_group_models.dart';
 export 'src/admin/sub2api_admin_groups_client.dart'
     show Sub2ApiAdminGroupsClient;
