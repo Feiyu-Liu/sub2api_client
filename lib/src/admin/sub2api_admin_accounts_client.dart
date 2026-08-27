@@ -37,6 +37,11 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminCodexSessionImportResult> importCodexSessions(
+    Sub2ApiAdminCodexSessionImportRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminAccount> create(
     Sub2ApiAdminCreateAccountRequest request, {
     Sub2ApiRequestOptions? requestOptions,
@@ -470,6 +475,27 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         key,
       ),
       decode: mapAdminAccountDataImportResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminCodexSessionImportResult> importCodexSessions(
+    Sub2ApiAdminCodexSessionImportRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final key = _requiredIdempotencyKey(request.idempotencyKey);
+    final body = _codexSessionImportBody(request);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.importCodexSessions(
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+        key,
+      ),
+      decode: mapAdminCodexSessionImportResult,
       requestOptions: requestOptions,
     );
   }
@@ -2228,6 +2254,97 @@ Map<String, Object?> _accountDataImportBody(
   };
 }
 
+Map<String, Object?> _codexSessionImportBody(
+  Sub2ApiAdminCodexSessionImportRequest request,
+) {
+  if (request.payloads.isEmpty) {
+    throw _validation('admin.accounts.codex_sessions_required');
+  }
+  final payloads = request.payloads
+      .map((payload) {
+        final value = payload.reveal().trim();
+        if (value.isEmpty) {
+          throw _validation('admin.accounts.empty_codex_session');
+        }
+        return value;
+      })
+      .toList(growable: false);
+  final name = request.name?.trim();
+  if (name != null && name.runes.length > 100) {
+    throw _validation('admin.accounts.invalid_name');
+  }
+  final groupIds = _normalizePositiveIds(
+    request.groupIds,
+    code: 'admin.accounts.invalid_group_id',
+  );
+  _validateOptionalProxyId(request.proxyId);
+  if (request.concurrency != null && request.concurrency! < 0) {
+    throw _validation('admin.accounts.invalid_concurrency');
+  }
+  if (request.priority != null && request.priority! < 0) {
+    throw _validation('admin.accounts.invalid_priority');
+  }
+  if (request.loadFactor != null &&
+      (request.loadFactor! <= 0 || request.loadFactor! > 10000)) {
+    throw _validation('admin.accounts.invalid_load_factor');
+  }
+  int? expiresAt;
+  if (request.expiresAt != null) {
+    if (request.expiresAt!.microsecondsSinceEpoch <= 0 ||
+        request.expiresAt!.microsecondsSinceEpoch %
+                Duration.microsecondsPerSecond !=
+            0) {
+      throw _validation('admin.accounts.invalid_expires_at');
+    }
+    expiresAt = request.expiresAt!.toUtc().millisecondsSinceEpoch ~/ 1000;
+  }
+  final credentialExtras = request.credentialExtras.values.map(
+    (key, value) => MapEntry(key.trim(), value.toWire()),
+  );
+  if (credentialExtras.keys.any(
+    (key) =>
+        key.isEmpty ||
+        _protectedCodexCredentialExtraKeys.contains(key.toLowerCase()) ||
+        _sensitiveCredentialKeys.contains(key.toLowerCase()),
+  )) {
+    throw _validation('admin.accounts.codex_protected_credential_extra');
+  }
+  final extra = request.extra.values.map(
+    (key, value) => MapEntry(key.trim(), value.toWire()),
+  );
+  if (extra.keys.any(
+    (key) => key.isEmpty || _managedAccountExtraKeys.contains(key),
+  )) {
+    throw _validation('admin.accounts.managed_extra_not_writable');
+  }
+  final longContextBilling = extra['openai_long_context_billing_enabled'];
+  if (longContextBilling != null && longContextBilling is! bool) {
+    throw _validation('admin.accounts.invalid_long_context_billing');
+  }
+  return <String, Object?>{
+    'contents': payloads,
+    if (name != null && name.isNotEmpty) 'name': name,
+    'notes': ?request.notes?.trim(),
+    if (groupIds.isNotEmpty) 'group_ids': groupIds,
+    'proxy_id': ?request.proxyId,
+    'concurrency': ?request.concurrency,
+    'priority': ?request.priority,
+    if (request.rateMultiplier != null)
+      'rate_multiplier': _nonNegativeDecimalDouble(
+        request.rateMultiplier!,
+        code: 'admin.accounts.invalid_rate_multiplier',
+      ),
+    'load_factor': ?request.loadFactor,
+    'expires_at': ?expiresAt,
+    'auto_pause_on_expired': ?request.autoPauseOnExpired,
+    if (credentialExtras.isNotEmpty) 'credential_extras': credentialExtras,
+    if (extra.isNotEmpty) 'extra': extra,
+    'update_existing': ?request.updateExisting,
+    'skip_default_group_bind': ?request.skipDefaultGroupBind,
+    if (request.confirmMixedChannelRisk) 'confirm_mixed_channel_risk': true,
+  };
+}
+
 Map<String, Object?> _bulkFilterBody(Sub2ApiAdminBulkAccountFilters filters) {
   final body = <String, Object?>{};
   if (filters.platform != null) {
@@ -2672,4 +2789,23 @@ const _managedAccountExtraKeys = <String>{
   'ollama_cloud_usage_session',
   'ollama_cloud_usage_auto_refresh',
   'ollama_cloud_usage_snapshot',
+};
+const _protectedCodexCredentialExtraKeys = <String>{
+  'access_token',
+  'refresh_token',
+  'id_token',
+  'expires_at',
+  'email',
+  'chatgpt_account_id',
+  'chatgpt_user_id',
+  'organization_id',
+  'plan_type',
+  'client_id',
+  'auth_mode',
+  'openai_auth_mode',
+  'token_type',
+  'chatgpt_account_is_fedramp',
+  'agent_runtime_id',
+  'agent_private_key',
+  'task_id',
 };

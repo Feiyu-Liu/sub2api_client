@@ -112,6 +112,13 @@ final class Sub2ApiAdminAccountDataArchive extends _SensitiveValue {
   const Sub2ApiAdminAccountDataArchive(super.value);
 }
 
+/// Codex session, access token, JSONL bundle, or Agent Identity payload.
+///
+/// The opaque content can contain OAuth tokens or a provider private key.
+final class Sub2ApiAdminCodexSessionPayload extends _SensitiveValue {
+  const Sub2ApiAdminCodexSessionPayload(super.value);
+}
+
 /// Signed token carried by a notification-email unsubscribe link.
 final class Sub2ApiNotificationUnsubscribeToken extends _SensitiveValue {
   const Sub2ApiNotificationUnsubscribeToken(super.value);

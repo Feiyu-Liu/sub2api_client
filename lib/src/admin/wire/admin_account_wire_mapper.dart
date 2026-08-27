@@ -81,6 +81,118 @@ Sub2ApiAdminAccountDataImportResult mapAdminAccountDataImportResult(
   );
 });
 
+Sub2ApiAdminCodexSessionImportResult mapAdminCodexSessionImportResult(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  final total = _positiveInteger(source, 'total');
+  final created = _nonNegativeInteger(source, 'created');
+  final updated = _nonNegativeInteger(source, 'updated');
+  final skipped = _nonNegativeInteger(source, 'skipped');
+  final failed = _nonNegativeInteger(source, 'failed');
+  final items = _optionalList(
+    source,
+    'items',
+  ).map(_object).map(_codexImportItem).toList(growable: false);
+  final warnings = _optionalList(source, 'warnings')
+      .map(_object)
+      .map((message) => _codexImportMessage(message, total))
+      .toList(growable: false);
+  final errors = _optionalList(source, 'errors')
+      .map(_object)
+      .map((message) => _codexImportMessage(message, total))
+      .toList(growable: false);
+  if (created + updated + skipped + failed != total || items.length != total) {
+    throw const FormatException();
+  }
+  final indices = items.map((item) => item.index).toSet();
+  if (indices.length != total ||
+      indices.any((index) => index <= 0 || index > total) ||
+      items
+              .where(
+                (item) =>
+                    item.action == Sub2ApiAdminCodexSessionImportAction.created,
+              )
+              .length !=
+          created ||
+      items
+              .where(
+                (item) =>
+                    item.action == Sub2ApiAdminCodexSessionImportAction.updated,
+              )
+              .length !=
+          updated ||
+      items
+              .where(
+                (item) =>
+                    item.action == Sub2ApiAdminCodexSessionImportAction.skipped,
+              )
+              .length !=
+          skipped ||
+      items
+              .where(
+                (item) =>
+                    item.action == Sub2ApiAdminCodexSessionImportAction.failed,
+              )
+              .length !=
+          failed) {
+    throw const FormatException();
+  }
+  return Sub2ApiAdminCodexSessionImportResult(
+    total: total,
+    created: created,
+    updated: updated,
+    skipped: skipped,
+    failed: failed,
+    items: items,
+    warnings: warnings,
+    errors: errors,
+  );
+});
+
+Sub2ApiAdminCodexSessionImportItem _codexImportItem(
+  Map<String, Object?> source,
+) {
+  final action = switch (_nonEmptyString(source, 'action')) {
+    'created' => Sub2ApiAdminCodexSessionImportAction.created,
+    'updated' => Sub2ApiAdminCodexSessionImportAction.updated,
+    'skipped' => Sub2ApiAdminCodexSessionImportAction.skipped,
+    'failed' => Sub2ApiAdminCodexSessionImportAction.failed,
+    _ => throw const FormatException(),
+  };
+  final accountId = _nullablePositiveInteger(source, 'account_id');
+  if ((action == Sub2ApiAdminCodexSessionImportAction.created ||
+          action == Sub2ApiAdminCodexSessionImportAction.updated) &&
+      accountId == null) {
+    throw const FormatException();
+  }
+  if ((action == Sub2ApiAdminCodexSessionImportAction.skipped ||
+          action == Sub2ApiAdminCodexSessionImportAction.failed) &&
+      accountId != null) {
+    throw const FormatException();
+  }
+  return Sub2ApiAdminCodexSessionImportItem(
+    index: _positiveInteger(source, 'index'),
+    name: _optionalString(source, 'name'),
+    action: action,
+    accountId: accountId,
+    message: _optionalString(source, 'message'),
+  );
+}
+
+Sub2ApiAdminCodexSessionImportMessage _codexImportMessage(
+  Map<String, Object?> source,
+  int total,
+) {
+  final index = _positiveInteger(source, 'index');
+  if (index > total) throw const FormatException();
+  return Sub2ApiAdminCodexSessionImportMessage(
+    index: index,
+    name: _optionalString(source, 'name'),
+    message: _nonEmptyString(source, 'message'),
+  );
+}
+
 Sub2ApiAdminAccount mapAdminShadowAccount(Object? data, int parentAccountId) =>
     _map(() {
       final account = _account(_object(data));

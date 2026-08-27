@@ -51,6 +51,11 @@ void main() {
       Sub2ApiRequestOptions? requestOptions,
     })
     importAccountData = adminAccounts.importData;
+    final Future<Sub2ApiAdminCodexSessionImportResult> Function(
+      Sub2ApiAdminCodexSessionImportRequest, {
+      Sub2ApiRequestOptions? requestOptions,
+    })
+    importCodexSessions = adminAccounts.importCodexSessions;
 
     expect(<Object>[
       bootstrap,
@@ -62,6 +67,7 @@ void main() {
       opsAccounts,
       exportAccountData,
       importAccountData,
+      importCodexSessions,
     ], everyElement(isNotNull));
   });
 

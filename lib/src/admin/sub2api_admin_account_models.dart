@@ -503,6 +503,113 @@ final class Sub2ApiAdminAccountDataImportResult {
   final List<Sub2ApiAdminAccountDataImportError> errors;
 }
 
+final class Sub2ApiAdminCodexSessionImportRequest {
+  Sub2ApiAdminCodexSessionImportRequest({
+    required this.idempotencyKey,
+    required List<Sub2ApiAdminCodexSessionPayload> payloads,
+    this.name,
+    this.notes,
+    List<int> groupIds = const [],
+    this.proxyId,
+    this.concurrency,
+    this.priority,
+    this.rateMultiplier,
+    this.loadFactor,
+    this.expiresAt,
+    this.autoPauseOnExpired,
+    this.credentialExtras = const Sub2ApiAdminJsonObject({}),
+    this.extra = const Sub2ApiAdminJsonObject({}),
+    this.updateExisting,
+    this.skipDefaultGroupBind,
+    this.confirmMixedChannelRisk = false,
+  }) : payloads = List.unmodifiable(payloads),
+       groupIds = List.unmodifiable(groupIds);
+
+  final String idempotencyKey;
+  final List<Sub2ApiAdminCodexSessionPayload> payloads;
+  final String? name;
+  final String? notes;
+  final List<int> groupIds;
+  final int? proxyId;
+  final int? concurrency;
+  final int? priority;
+  final Sub2ApiDecimal? rateMultiplier;
+  final int? loadFactor;
+  final DateTime? expiresAt;
+  final bool? autoPauseOnExpired;
+  final Sub2ApiAdminJsonObject credentialExtras;
+  final Sub2ApiAdminJsonObject extra;
+  final bool? updateExisting;
+  final bool? skipDefaultGroupBind;
+  final bool confirmMixedChannelRisk;
+
+  @override
+  String toString() =>
+      'Sub2ApiAdminCodexSessionImportRequest(idempotencyKey: '
+      '${idempotencyKey.isEmpty ? '<empty>' : '<provided>'}, '
+      'payloads: ${payloads.length} <redacted>, name: $name, notes: $notes, '
+      'groupIds: $groupIds, proxyId: $proxyId, concurrency: $concurrency, '
+      'priority: $priority, rateMultiplier: $rateMultiplier, '
+      'loadFactor: $loadFactor, expiresAt: $expiresAt, '
+      'autoPauseOnExpired: $autoPauseOnExpired, updateExisting: '
+      '$updateExisting, skipDefaultGroupBind: $skipDefaultGroupBind, '
+      'confirmMixedChannelRisk: $confirmMixedChannelRisk)';
+}
+
+enum Sub2ApiAdminCodexSessionImportAction { created, updated, skipped, failed }
+
+final class Sub2ApiAdminCodexSessionImportItem {
+  const Sub2ApiAdminCodexSessionImportItem({
+    required this.index,
+    required this.name,
+    required this.action,
+    required this.message,
+    this.accountId,
+  });
+
+  final int index;
+  final String name;
+  final Sub2ApiAdminCodexSessionImportAction action;
+  final int? accountId;
+  final String message;
+}
+
+final class Sub2ApiAdminCodexSessionImportMessage {
+  const Sub2ApiAdminCodexSessionImportMessage({
+    required this.index,
+    required this.name,
+    required this.message,
+  });
+
+  final int index;
+  final String name;
+  final String message;
+}
+
+final class Sub2ApiAdminCodexSessionImportResult {
+  Sub2ApiAdminCodexSessionImportResult({
+    required this.total,
+    required this.created,
+    required this.updated,
+    required this.skipped,
+    required this.failed,
+    required List<Sub2ApiAdminCodexSessionImportItem> items,
+    required List<Sub2ApiAdminCodexSessionImportMessage> warnings,
+    required List<Sub2ApiAdminCodexSessionImportMessage> errors,
+  }) : items = List.unmodifiable(items),
+       warnings = List.unmodifiable(warnings),
+       errors = List.unmodifiable(errors);
+
+  final int total;
+  final int created;
+  final int updated;
+  final int skipped;
+  final int failed;
+  final List<Sub2ApiAdminCodexSessionImportItem> items;
+  final List<Sub2ApiAdminCodexSessionImportMessage> warnings;
+  final List<Sub2ApiAdminCodexSessionImportMessage> errors;
+}
+
 sealed class Sub2ApiAdminBulkGroupFilter {
   const Sub2ApiAdminBulkGroupFilter();
 

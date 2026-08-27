@@ -1,0 +1,51 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "total": 4,
+    "created": 1,
+    "updated": 1,
+    "skipped": 1,
+    "failed": 1,
+    "items": [
+      {
+        "index": 1,
+        "name": "Codex Team #1",
+        "action": "created",
+        "account_id": 101
+      },
+      {
+        "index": 2,
+        "name": "Codex Team #2",
+        "action": "updated",
+        "account_id": 102
+      },
+      {
+        "index": 3,
+        "name": "Codex Team #3",
+        "action": "skipped",
+        "message": "duplicate import entry"
+      },
+      {
+        "index": 4,
+        "name": "Codex Team #4",
+        "action": "failed",
+        "message": "access token expired"
+      }
+    ],
+    "warnings": [
+      {
+        "index": 3,
+        "name": "Codex Team #3",
+        "message": "duplicate import entry"
+      }
+    ],
+    "errors": [
+      {
+        "index": 4,
+        "name": "Codex Team #4",
+        "message": "access token expired"
+      }
+    ]
+  }
+}

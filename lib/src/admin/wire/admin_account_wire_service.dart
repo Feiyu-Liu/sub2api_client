@@ -36,6 +36,16 @@ abstract class AdminAccountWireService {
     @Header('Idempotency-Key') String idempotencyKey,
   );
 
+  @POST('/api/v1/admin/accounts/import/codex-session')
+  Future<HttpResponse<Object?>> importCodexSessions(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+    @Header('Idempotency-Key') String idempotencyKey,
+  );
+
   @GET('/api/v1/admin/accounts/{id}')
   Future<HttpResponse<Object?>> getAccount(
     @Path('id') int accountId,

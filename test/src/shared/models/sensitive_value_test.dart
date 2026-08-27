@@ -18,6 +18,8 @@ void main() {
       Sub2ApiTotpQrCodeUri(sentinel),
       Sub2ApiTotpSetupToken(sentinel),
       Sub2ApiOAuthPendingToken(sentinel),
+      Sub2ApiAdminAccountDataArchive(sentinel),
+      Sub2ApiAdminCodexSessionPayload(sentinel),
       Sub2ApiNotificationUnsubscribeToken(sentinel),
     ];
 
