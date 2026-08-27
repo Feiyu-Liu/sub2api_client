@@ -22,6 +22,22 @@ abstract interface class Sub2ApiAdminAccountsClient {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  Future<Sub2ApiAdminAccount> duplicate(
+    int accountId,
+    Sub2ApiAdminDuplicateAccountRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccountActionResult> delete(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccountBatchDeleteResult> batchDelete(
+    List<int> accountIds, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   Future<Sub2ApiAdminUpstreamBillingProbeSettings>
   getUpstreamBillingProbeSettings({Sub2ApiRequestOptions? requestOptions});
 
@@ -273,6 +289,72 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         _apiKey(credential),
       ),
       decode: mapAdminAccount,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccount> duplicate(
+    int accountId,
+    Sub2ApiAdminDuplicateAccountRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    final key = request.idempotencyKey.trim();
+    if (key.isEmpty) {
+      throw _validation('admin.accounts.idempotency_key_required');
+    }
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.duplicateAccount(
+        accountId,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+        key,
+      ),
+      decode: mapAdminAccount,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccountActionResult> delete(
+    int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    _validateAccountId(accountId);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.deleteAccount(
+        accountId,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminAccountActionResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccountBatchDeleteResult> batchDelete(
+    List<int> accountIds, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final normalizedIds = _normalizeAccountIds(accountIds);
+    if (normalizedIds.isEmpty) {
+      throw _validation('admin.accounts.account_ids_required');
+    }
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.batchDeleteAccounts(
+        <String, Object?>{'account_ids': normalizedIds},
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+      ),
+      decode: mapAdminAccountBatchDeleteResult,
       requestOptions: requestOptions,
     );
   }

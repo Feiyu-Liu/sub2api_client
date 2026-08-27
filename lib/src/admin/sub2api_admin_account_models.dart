@@ -670,6 +670,42 @@ final class Sub2ApiAdminAccountActionResult {
   final String message;
 }
 
+final class Sub2ApiAdminDuplicateAccountRequest {
+  const Sub2ApiAdminDuplicateAccountRequest({required this.idempotencyKey});
+
+  final String idempotencyKey;
+}
+
+final class Sub2ApiAdminAccountBatchError {
+  const Sub2ApiAdminAccountBatchError({
+    required this.accountId,
+    required this.error,
+  });
+
+  final int accountId;
+  final String error;
+}
+
+final class Sub2ApiAdminAccountBatchDeleteResult {
+  Sub2ApiAdminAccountBatchDeleteResult({
+    required this.total,
+    required this.success,
+    required this.failed,
+    required List<int> successIds,
+    required List<int> failedIds,
+    required List<Sub2ApiAdminAccountBatchError> errors,
+  }) : successIds = List.unmodifiable(successIds),
+       failedIds = List.unmodifiable(failedIds),
+       errors = List.unmodifiable(errors);
+
+  final int total;
+  final int success;
+  final int failed;
+  final List<int> successIds;
+  final List<int> failedIds;
+  final List<Sub2ApiAdminAccountBatchError> errors;
+}
+
 final class Sub2ApiAdminAccountBatchUsage {
   Sub2ApiAdminAccountBatchUsage({
     required Map<int, Sub2ApiAdminAccountUsage> usage,

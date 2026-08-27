@@ -26,6 +26,34 @@ abstract class AdminAccountWireService {
     @Header('x-api-key') String? apiKey,
   );
 
+  @POST('/api/v1/admin/accounts/{id}/duplicate')
+  Future<HttpResponse<Object?>> duplicateAccount(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+    @Header('Idempotency-Key') String idempotencyKey,
+  );
+
+  @DELETE('/api/v1/admin/accounts/{id}')
+  Future<HttpResponse<Object?>> deleteAccount(
+    @Path('id') int accountId,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @POST('/api/v1/admin/accounts/batch-delete')
+  Future<HttpResponse<Object?>> batchDeleteAccounts(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
   @GET('/api/v1/admin/accounts/upstream-billing-probe/settings')
   Future<HttpResponse<Object?>> upstreamBillingProbeSettings(
     @CancelRequest() CancelToken cancelToken,

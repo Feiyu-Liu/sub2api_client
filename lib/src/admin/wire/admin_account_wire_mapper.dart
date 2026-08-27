@@ -29,6 +29,49 @@ Sub2ApiAdminAccountActionResult mapAdminAccountActionResult(Object? data) =>
       );
     });
 
+Sub2ApiAdminAccountBatchDeleteResult mapAdminAccountBatchDeleteResult(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  final total = _nonNegativeInteger(source, 'total');
+  final success = _nonNegativeInteger(source, 'success');
+  final failed = _nonNegativeInteger(source, 'failed');
+  final successIds = _positiveIntegerList(source, 'success_ids');
+  final failedIds = _positiveIntegerList(source, 'failed_ids');
+  final errors = _list(source, 'errors')
+      .map(_object)
+      .map((error) {
+        return Sub2ApiAdminAccountBatchError(
+          accountId: _positiveInteger(error, 'account_id'),
+          error: _nonEmptyString(error, 'error'),
+        );
+      })
+      .toList(growable: false);
+  final successSet = successIds.toSet();
+  final failedSet = failedIds.toSet();
+  final errorIds = errors.map((error) => error.accountId).toSet();
+  if (success + failed != total ||
+      successIds.length != success ||
+      failedIds.length != failed ||
+      successSet.length != successIds.length ||
+      failedSet.length != failedIds.length ||
+      successSet.intersection(failedSet).isNotEmpty ||
+      errors.length != failed ||
+      errorIds.length != errors.length ||
+      !errorIds.containsAll(failedSet) ||
+      !failedSet.containsAll(errorIds)) {
+    throw const FormatException();
+  }
+  return Sub2ApiAdminAccountBatchDeleteResult(
+    total: total,
+    success: success,
+    failed: failed,
+    successIds: successIds,
+    failedIds: failedIds,
+    errors: errors,
+  );
+});
+
 Sub2ApiAdminAccountBatchUsage mapAdminAccountBatchUsage(Object? data) =>
     _map(() {
       final source = _object(data);
@@ -764,6 +807,14 @@ List<Object?> _optionalList(Map<String, Object?> source, String key) {
   final value = source[key];
   return value == null ? const [] : _array(value);
 }
+
+List<int> _positiveIntegerList(Map<String, Object?> source, String key) =>
+    _list(source, key)
+        .map((item) {
+          if (item is! int || item <= 0) throw const FormatException();
+          return item;
+        })
+        .toList(growable: false);
 
 List<int> _integerList(Object? value) {
   if (value == null) return const [];
