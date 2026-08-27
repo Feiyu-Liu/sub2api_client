@@ -27,6 +27,8 @@ void main() {
     final Sub2ApiAdminDashboardClient opsDashboard = ops.dashboard;
     final Sub2ApiAdminUsersClient adminUsers = admin.users;
     final Sub2ApiAdminUsersClient opsUsers = ops.users;
+    final Sub2ApiAdminAccountsClient adminAccounts = admin.accounts;
+    final Sub2ApiAdminAccountsClient opsAccounts = ops.accounts;
     final Future<Sub2ApiAdminIdentity> Function({
       Sub2ApiRequestOptions? requestOptions,
     })
@@ -46,6 +48,8 @@ void main() {
       opsStats,
       adminUsers,
       opsUsers,
+      adminAccounts,
+      opsAccounts,
     ], everyElement(isNotNull));
   });
 

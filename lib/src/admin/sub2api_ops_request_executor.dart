@@ -34,6 +34,18 @@ final class Sub2ApiOpsRequestExecutor implements Sub2ApiRequestExecutor {
   }) => _execute(send: send, decode: decode, requestOptions: requestOptions);
 
   @override
+  Future<T> protectedRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _execute(
+    send: send,
+    decode: decode,
+    requestOptions: requestOptions,
+    allowRawSuccess: true,
+  );
+
+  @override
   Future<T> protectedNonReplayableRequest<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
@@ -83,6 +95,7 @@ final class Sub2ApiOpsRequestExecutor implements Sub2ApiRequestExecutor {
     required T Function(Object? data) decode,
     required Sub2ApiRequestOptions? requestOptions,
     bool decodeNoContent = false,
+    bool allowRawSuccess = false,
   }) async {
     if (_closed) throw _closedFailure;
     final key = await _credentialProvider.load();
@@ -110,7 +123,9 @@ final class Sub2ApiOpsRequestExecutor implements Sub2ApiRequestExecutor {
         _decoder.decodeNoContent(response);
         return null as T;
       }
-      return _decoder.decodeSuccess(response, decode);
+      return allowRawSuccess
+          ? _decoder.decodeSuccessOrRaw(response, decode)
+          : _decoder.decodeSuccess(response, decode);
     } on DioException catch (error) {
       throw _decoder.decodeDioException(error);
     } on Sub2ApiException {

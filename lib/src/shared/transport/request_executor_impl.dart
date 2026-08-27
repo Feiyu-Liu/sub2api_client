@@ -163,6 +163,74 @@ final class Sub2ApiRequestExecutorImpl implements Sub2ApiRequestExecutor {
   }
 
   @override
+  Future<T> protectedRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) throw _notAuthenticated;
+    try {
+      return await _attempt(
+        control,
+        send,
+        decode,
+        authorization: _authorization(snapshot.session),
+        allowRawSuccess: true,
+      );
+    } on Sub2ApiException catch (error) {
+      if (error.kind != Sub2ApiFailureKind.unauthorized) rethrow;
+    }
+
+    if (!_sessions.isCurrent(snapshot)) throw _notAuthenticated;
+    if (!snapshot.session.isRefreshable) {
+      await _sessions.clearIfCurrent(snapshot);
+      throw const Sub2ApiException(
+        kind: Sub2ApiFailureKind.unauthorized,
+        code: 'auth.login_required',
+        retryable: false,
+      );
+    }
+
+    late final Sub2ApiSession refreshed;
+    try {
+      refreshed = await control.waitFor(
+        _sessions.refresh(snapshot, () => _refreshSession(snapshot.session)),
+      );
+    } on Sub2ApiException catch (error) {
+      if (_decoder.isSessionInvalid(error)) {
+        await _sessions.clearIfCurrent(snapshot);
+      }
+      rethrow;
+    }
+
+    final replaySnapshot = await control.waitFor(_sessions.snapshot());
+    if (replaySnapshot == null ||
+        !identical(replaySnapshot.session, refreshed)) {
+      throw _notAuthenticated;
+    }
+    try {
+      return await _attempt(
+        control,
+        send,
+        decode,
+        authorization: _authorization(refreshed),
+        allowRawSuccess: true,
+      );
+    } on Sub2ApiException catch (error) {
+      if (error.kind == Sub2ApiFailureKind.unauthorized) {
+        await _sessions.clearIfCurrent(replaySnapshot);
+      }
+      rethrow;
+    }
+  }
+
+  @override
   Future<T> protectedNonReplayableRequest<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,

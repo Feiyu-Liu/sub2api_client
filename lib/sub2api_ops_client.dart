@@ -1,6 +1,9 @@
 /// Admin API Key entrypoint for headless Sub2API operations automation.
 library;
 
+export 'src/admin/sub2api_admin_account_models.dart';
+export 'src/admin/sub2api_admin_accounts_client.dart'
+    show Sub2ApiAdminAccountsClient;
 export 'src/admin/sub2api_admin_dashboard_client.dart'
     show Sub2ApiAdminDashboardClient;
 export 'src/admin/sub2api_admin_group_models.dart';

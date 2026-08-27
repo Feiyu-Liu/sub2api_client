@@ -42,6 +42,14 @@ abstract interface class Sub2ApiRequestExecutor {
     Sub2ApiRequestOptions? requestOptions,
   });
 
+  /// Sends a protected endpoint whose fixed contract permits envelope or raw
+  /// HTTP 200 success payloads.
+  Future<T> protectedRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   /// Sends a protected operation that must never be replayed automatically.
   Future<T> protectedNonReplayableRequest<T>({
     required Sub2ApiWireCall send,

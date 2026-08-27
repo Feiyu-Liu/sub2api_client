@@ -1,0 +1,270 @@
+{
+  "account": {
+    "id": 42,
+    "name": "openai-primary",
+    "notes": "read fixture",
+    "platform": "openai",
+    "type": "oauth",
+    "credentials": {
+      "email": "operator@example.test",
+      "organization_id": "org-fixture",
+      "model_mapping": {
+        "gpt-5.6": "gpt-5.6"
+      }
+    },
+    "credentials_status": {
+      "has_access_token": true,
+      "has_refresh_token": true
+    },
+    "extra": {
+      "privacy_mode": "enabled",
+      "openai_responses_supported": true
+    },
+    "ollama_cloud_usage": null,
+    "proxy_id": 9,
+    "proxy_fallback_origin_id": null,
+    "proxy_fallback_origin_name": null,
+    "concurrency": 8,
+    "load_factor": 10,
+    "priority": 20,
+    "rate_multiplier": 0.85,
+    "status": "active",
+    "error_message": "",
+    "last_used_at": "2026-08-20T12:00:00Z",
+    "expires_at": 1798761600,
+    "auto_pause_on_expired": true,
+    "created_at": "2026-01-01T00:00:00Z",
+    "updated_at": "2026-08-20T12:30:00Z",
+    "schedulable": true,
+    "rate_limited_at": null,
+    "rate_limit_reset_at": null,
+    "overload_until": null,
+    "temp_unschedulable_until": null,
+    "temp_unschedulable_reason": "",
+    "session_window_start": null,
+    "session_window_end": null,
+    "session_window_status": "",
+    "parent_account_id": null,
+    "quota_dimension": "global",
+    "group_ids": [7],
+    "account_groups": [
+      {
+        "account_id": 42,
+        "group_id": 7,
+        "priority": 1,
+        "created_at": "2026-01-02T00:00:00Z"
+      }
+    ],
+    "groups": [
+      {
+        "id": 7,
+        "name": "research",
+        "platform": "openai",
+        "status": "active"
+      }
+    ],
+    "current_concurrency": 2,
+    "scheduler_score": {
+      "base_score": 0.72,
+      "sticky_score": 0.91,
+      "sticky_score_infinity": false,
+      "sticky_weighted_enabled": true
+    },
+    "scheduler_scores": [
+      {
+        "group_id": 7,
+        "group_name": "research",
+        "group_priority": 1,
+        "base_score": 0.72,
+        "sticky_score": 0.91,
+        "sticky_score_infinity": false,
+        "sticky_weighted_enabled": true
+      }
+    ]
+  },
+  "page": {
+    "items": [],
+    "total": 1,
+    "page": 2,
+    "page_size": 25,
+    "pages": 1
+  },
+  "upstream_billing_probe_settings": {
+    "enabled": true,
+    "interval_minutes": 30
+  },
+  "ollama_cloud_usage_settings": {
+    "enabled": true,
+    "interval_minutes": 60,
+    "debounce_minutes": 5
+  },
+  "ollama_cloud_usage": {
+    "account_id": 42,
+    "eligible": true,
+    "configured": true,
+    "auto_refresh_enabled": true,
+    "encryption_key_configured": true,
+    "snapshot": {
+      "status": "ok",
+      "data": {
+        "plan": "pro",
+        "five_hour": {
+          "used_percent": 25.5,
+          "reset_at": "2026-08-20T17:00:00Z",
+          "reset_text": "4h 30m"
+        },
+        "seven_day": {
+          "used_percent": 10,
+          "reset_at": "2026-08-27T00:00:00Z",
+          "reset_text": "6d"
+        },
+        "balance": "$18.50",
+        "models": [
+          {
+            "model": "qwen3-coder",
+            "window": "five_hour",
+            "requests": 14
+          }
+        ]
+      },
+      "fetched_at": "2026-08-20T12:00:00Z",
+      "last_attempt_at": "2026-08-20T12:00:00Z",
+      "next_refresh_at": "2026-08-20T13:00:00Z",
+      "failure_count": 0,
+      "http_status": 200,
+      "last_error": ""
+    }
+  },
+  "stats": {
+    "history": [
+      {
+        "date": "2026-08-20",
+        "label": "Aug 20",
+        "requests": 12,
+        "tokens": 3456,
+        "cost": 1.25,
+        "actual_cost": 1.1,
+        "user_cost": 1.4
+      }
+    ],
+    "summary": {
+      "days": 14,
+      "actual_days_used": 1,
+      "total_cost": 1.1,
+      "total_user_cost": 1.4,
+      "total_standard_cost": 1.25,
+      "total_requests": 12,
+      "total_tokens": 3456,
+      "avg_daily_cost": 1.1,
+      "avg_daily_user_cost": 1.4,
+      "avg_daily_requests": 12,
+      "avg_daily_tokens": 3456,
+      "avg_duration_ms": 820.5,
+      "today": null,
+      "highest_cost_day": null,
+      "highest_request_day": null
+    },
+    "models": [
+      {
+        "model": "gpt-5.6",
+        "requests": 12,
+        "input_tokens": 3000,
+        "output_tokens": 456,
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 100,
+        "total_tokens": 3456,
+        "cost": 1.25,
+        "actual_cost": 1.4,
+        "account_cost": 1.1
+      }
+    ],
+    "endpoints": [
+      {
+        "endpoint": "/v1/responses",
+        "requests": 12,
+        "total_tokens": 3456,
+        "cost": 1.25,
+        "actual_cost": 1.4
+      }
+    ],
+    "upstream_endpoints": [
+      {
+        "endpoint": "/v1/responses",
+        "requests": 12,
+        "total_tokens": 3456,
+        "cost": 1.25,
+        "actual_cost": 1.4
+      }
+    ]
+  },
+  "usage": {
+    "source": "active",
+    "updated_at": "2026-08-20T12:00:00Z",
+    "five_hour": {
+      "utilization": 32.5,
+      "resets_at": "2026-08-20T17:00:00Z",
+      "remaining_seconds": 18000,
+      "window_stats": {
+        "requests": 12,
+        "tokens": 3456,
+        "cost": 1.1,
+        "standard_cost": 1.25,
+        "user_cost": 1.4
+      },
+      "used_requests": 12,
+      "limit_requests": 100
+    },
+    "subscription_tier": "PRO",
+    "error_code": ""
+  },
+  "temp_unschedulable": {
+    "active": true,
+    "state": {
+      "until_unix": 1787241600,
+      "triggered_at_unix": 1787241000,
+      "status_code": 429,
+      "matched_keyword": "rate limit",
+      "rule_index": 0,
+      "error_message": "upstream rate limited",
+      "trigger_count": 3,
+      "trigger_threshold": 3,
+      "trigger_window_minutes": 5
+    }
+  },
+  "today_stats": {
+    "requests": 12,
+    "tokens": 3456,
+    "cost": 1.1,
+    "standard_cost": 1.25,
+    "user_cost": 1.4
+  },
+  "models": [
+    {
+      "id": "gpt-5.6",
+      "object": "model",
+      "created": 1780876800,
+      "owned_by": "openai",
+      "type": "model",
+      "display_name": "GPT-5.6"
+    }
+  ],
+  "antigravity_default_model_mapping": {
+    "claude-sonnet-4-6": "claude-sonnet-4-6",
+    "gemini-3.1-pro": "gemini-pro-agent"
+  },
+  "scheduled_test_plans": [
+    {
+      "id": 81,
+      "account_id": 42,
+      "model_id": "gpt-5.6",
+      "cron_expression": "0 */6 * * *",
+      "enabled": true,
+      "max_results": 20,
+      "auto_recover": true,
+      "last_run_at": "2026-08-20T06:00:00Z",
+      "next_run_at": "2026-08-20T12:00:00Z",
+      "created_at": "2026-08-01T00:00:00Z",
+      "updated_at": "2026-08-20T06:00:00Z"
+    }
+  ]
+}

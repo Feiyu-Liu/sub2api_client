@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../shared/configuration/sub2api_configuration.dart';
+import 'sub2api_admin_accounts_client.dart';
 import 'sub2api_admin_credential_mode.dart';
 import 'sub2api_admin_dashboard_client.dart';
 import 'sub2api_admin_groups_client.dart';
@@ -38,6 +39,7 @@ final class Sub2ApiOpsClient {
   }
 
   Sub2ApiOpsClient._({
+    required this.accounts,
     required this.dashboard,
     required this.groups,
     required this.users,
@@ -48,6 +50,7 @@ final class Sub2ApiOpsClient {
        _executor = executor,
        _ownsDio = ownsDio;
 
+  final Sub2ApiAdminAccountsClient accounts;
   final Sub2ApiAdminDashboardClient dashboard;
   final Sub2ApiAdminGroupsClient groups;
   final Sub2ApiAdminUsersClient users;
@@ -75,6 +78,11 @@ Sub2ApiOpsClient _create({
     credentialProvider: credentialProvider,
   );
   return Sub2ApiOpsClient._(
+    accounts: createSub2ApiAdminAccountsClient(
+      dio: dio,
+      requestExecutor: executor,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
     dashboard: createSub2ApiAdminDashboardClient(
       dio: dio,
       requestExecutor: executor,

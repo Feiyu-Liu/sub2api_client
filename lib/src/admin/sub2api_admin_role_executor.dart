@@ -40,6 +40,20 @@ final class Sub2ApiAdminRoleExecutor implements Sub2ApiRequestExecutor {
   }
 
   @override
+  Future<T> protectedRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    await bootstrap(requestOptions: requestOptions);
+    return _delegate.protectedRequestAllowingRawSuccess(
+      send: send,
+      decode: decode,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
   Future<T> protectedNonReplayableRequest<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,

@@ -178,6 +178,13 @@ class _EnvelopeExecutor implements Sub2ApiRequestExecutor {
   }
 
   @override
+  Future<T> protectedRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _execute(send: send, decode: decode);
+
+  @override
   Future<T> publicRequest<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
@@ -237,6 +244,13 @@ final class _RecordingExecutor implements Sub2ApiRequestExecutor {
     protectedCalls += 1;
     throw UnimplementedError();
   }
+
+  @override
+  Future<T> protectedRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => throw UnimplementedError();
 
   @override
   Future<T> publicRequest<T>({

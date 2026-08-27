@@ -1,6 +1,9 @@
 /// Administrator-JWT entrypoint for the Sub2API management plane.
 library;
 
+export 'src/admin/sub2api_admin_account_models.dart';
+export 'src/admin/sub2api_admin_accounts_client.dart'
+    show Sub2ApiAdminAccountsClient;
 export 'src/admin/sub2api_admin_client.dart' show Sub2ApiAdminClient;
 export 'src/admin/sub2api_admin_dashboard_client.dart'
     show Sub2ApiAdminDashboardClient;
