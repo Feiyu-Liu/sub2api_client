@@ -893,6 +893,16 @@ final class Sub2ApiAdminCrsSyncResult {
   final List<Sub2ApiAdminCrsSyncItem> items;
 }
 
+final class Sub2ApiAdminOAuthAuthorization {
+  const Sub2ApiAdminOAuthAuthorization({
+    required this.authorizationUrl,
+    required this.sessionId,
+  });
+
+  final Uri authorizationUrl;
+  final Sub2ApiAdminOAuthSessionId sessionId;
+}
+
 final class Sub2ApiAdminAccountBatchUsage {
   Sub2ApiAdminAccountBatchUsage({
     required Map<int, Sub2ApiAdminAccountUsage> usage,

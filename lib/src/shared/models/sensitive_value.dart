@@ -84,6 +84,11 @@ final class Sub2ApiOAuthPendingToken extends _SensitiveValue {
   const Sub2ApiOAuthPendingToken(super.value);
 }
 
+/// Short-lived server-side OAuth PKCE session identifier.
+final class Sub2ApiAdminOAuthSessionId extends _SensitiveValue {
+  const Sub2ApiAdminOAuthSessionId(super.value);
+}
+
 /// Signed token carried by a notification-email unsubscribe link.
 final class Sub2ApiNotificationUnsubscribeToken extends _SensitiveValue {
   const Sub2ApiNotificationUnsubscribeToken(super.value);

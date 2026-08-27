@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
 
 import '../shared/errors/sub2api_exception.dart';
 import '../shared/models/sensitive_value.dart';
@@ -81,6 +82,16 @@ abstract interface class Sub2ApiAdminAccountsClient {
 
   Future<Sub2ApiAdminCrsSyncResult> syncFromCrs(
     Sub2ApiAdminCrsSyncRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminOAuthAuthorization> generateOAuthAuthorization({
+    int? proxyId,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminOAuthAuthorization> generateSetupTokenAuthorization({
+    int? proxyId,
     Sub2ApiRequestOptions? requestOptions,
   });
 
@@ -626,6 +637,66 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         _apiKey(credential),
       ),
       decode: mapAdminCrsSyncResult,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminOAuthAuthorization> generateOAuthAuthorization({
+    int? proxyId,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _generateAuthorization(
+    proxyId: proxyId,
+    send: (body, cancelToken, options, credential) =>
+        _service.generateOAuthAuthorization(
+          body,
+          cancelToken,
+          options,
+          _authorization(credential),
+          _apiKey(credential),
+        ),
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminOAuthAuthorization> generateSetupTokenAuthorization({
+    int? proxyId,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _generateAuthorization(
+    proxyId: proxyId,
+    send: (body, cancelToken, options, credential) =>
+        _service.generateSetupTokenAuthorization(
+          body,
+          cancelToken,
+          options,
+          _authorization(credential),
+          _apiKey(credential),
+        ),
+    requestOptions: requestOptions,
+  );
+
+  Future<Sub2ApiAdminOAuthAuthorization> _generateAuthorization({
+    required int? proxyId,
+    required Future<HttpResponse<Object?>> Function(
+      Map<String, Object?> body,
+      CancelToken cancelToken,
+      Options options,
+      String? credential,
+    )
+    send,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (proxyId != null && proxyId <= 0) {
+      throw _validation('admin.accounts.invalid_proxy_id');
+    }
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => send(
+        <String, Object?>{'proxy_id': ?proxyId},
+        cancelToken,
+        options,
+        credential,
+      ),
+      decode: mapAdminOAuthAuthorization,
       requestOptions: requestOptions,
     );
   }

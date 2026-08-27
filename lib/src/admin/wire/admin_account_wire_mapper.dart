@@ -1,4 +1,5 @@
 import '../../shared/errors/sub2api_exception.dart';
+import '../../shared/models/sensitive_value.dart';
 import '../../shared/models/sub2api_decimal.dart';
 import '../../shared/models/sub2api_page.dart';
 import '../sub2api_admin_account_models.dart';
@@ -87,6 +88,24 @@ Sub2ApiAdminCrsSyncResult mapAdminCrsSyncResult(Object? data) => _map(() {
     items: items,
   );
 });
+
+Sub2ApiAdminOAuthAuthorization mapAdminOAuthAuthorization(Object? data) =>
+    _map(() {
+      final source = _object(data);
+      final url = Uri.parse(_nonEmptyString(source, 'auth_url'));
+      if (url.scheme != 'https' ||
+          url.host.isEmpty ||
+          url.userInfo.isNotEmpty ||
+          url.hasFragment) {
+        throw const FormatException();
+      }
+      return Sub2ApiAdminOAuthAuthorization(
+        authorizationUrl: url,
+        sessionId: Sub2ApiAdminOAuthSessionId(
+          _nonEmptyString(source, 'session_id'),
+        ),
+      );
+    });
 
 Sub2ApiAdminAccountActionResult mapAdminAccountActionResult(Object? data) =>
     _map(() {
