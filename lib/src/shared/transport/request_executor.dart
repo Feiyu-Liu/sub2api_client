@@ -11,6 +11,20 @@ typedef Sub2ApiWireCall =
       String? authorization,
     );
 
+typedef Sub2ApiWireStreamCall =
+    Future<Response<ResponseBody>> Function(
+      CancelToken cancelToken,
+      Options options,
+      String? authorization,
+    );
+
+abstract interface class Sub2ApiProtectedStreamExecutor {
+  Future<Response<ResponseBody>> protectedNonReplayableStreamRequest({
+    required Sub2ApiWireStreamCall send,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+}
+
 /// Internal execution seam that owns envelope, error, deadline, and refresh.
 abstract interface class Sub2ApiRequestExecutor {
   Future<T> publicRequest<T>({

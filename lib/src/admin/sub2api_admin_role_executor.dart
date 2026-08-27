@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 import '../auth/sub2api_authentication_client.dart';
 import '../shared/errors/sub2api_exception.dart';
 import '../shared/request/sub2api_request_options.dart';
@@ -5,7 +7,8 @@ import '../shared/transport/request_executor.dart';
 import 'sub2api_admin_models.dart';
 
 /// JWT executor wrapper that proves the current user is an administrator.
-final class Sub2ApiAdminRoleExecutor implements Sub2ApiRequestExecutor {
+final class Sub2ApiAdminRoleExecutor
+    implements Sub2ApiRequestExecutor, Sub2ApiProtectedStreamExecutor {
   Sub2ApiAdminRoleExecutor({
     required Sub2ApiAuthenticationClient authentication,
     required Sub2ApiRequestExecutor delegate,
@@ -65,6 +68,23 @@ final class Sub2ApiAdminRoleExecutor implements Sub2ApiRequestExecutor {
       decode: decode,
       requestOptions: requestOptions,
     );
+  }
+
+  @override
+  Future<Response<ResponseBody>> protectedNonReplayableStreamRequest({
+    required Sub2ApiWireStreamCall send,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    await bootstrap(requestOptions: requestOptions);
+    final delegate = _delegate;
+    if (delegate is! Sub2ApiProtectedStreamExecutor) {
+      throw UnsupportedError('Delegate does not support protected streams.');
+    }
+    return (delegate as Sub2ApiProtectedStreamExecutor)
+        .protectedNonReplayableStreamRequest(
+          send: send,
+          requestOptions: requestOptions,
+        );
   }
 
   @override

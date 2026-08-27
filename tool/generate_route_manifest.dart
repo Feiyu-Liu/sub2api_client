@@ -244,6 +244,10 @@ Set<String> _annotatedRoutes(Directory root) {
     r"@Sub2ApiBrowserRoute\(\s*'([^']+)'\s*,\s*'([^']+)'\s*\)",
     multiLine: true,
   );
+  final streamPattern = RegExp(
+    r"@Sub2ApiStreamRoute\(\s*'([^']+)'\s*,\s*'([^']+)'\s*\)",
+    multiLine: true,
+  );
   for (final entity in root.listSync(recursive: true)) {
     if (entity is! File ||
         !entity.path.endsWith('.dart') ||
@@ -256,6 +260,9 @@ Set<String> _annotatedRoutes(Directory root) {
       routes.add('${match.group(1)} ${_normalizeTemplate(match.group(2)!)}');
     }
     for (final match in browserPattern.allMatches(source)) {
+      routes.add('${match.group(1)} ${_normalizeTemplate(match.group(2)!)}');
+    }
+    for (final match in streamPattern.allMatches(source)) {
       routes.add('${match.group(1)} ${_normalizeTemplate(match.group(2)!)}');
     }
   }

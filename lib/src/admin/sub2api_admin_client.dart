@@ -97,6 +97,7 @@ Sub2ApiAdminClient _create({
     accounts: createSub2ApiAdminAccountsClient(
       dio: dio,
       requestExecutor: adminExecutor,
+      streamExecutor: adminExecutor,
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
     ),
     dashboard: createSub2ApiAdminDashboardClient(

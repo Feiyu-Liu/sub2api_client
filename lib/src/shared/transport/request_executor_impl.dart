@@ -10,11 +10,13 @@ import '../serialization/response_decoder.dart';
 import '../session/session_coordinator.dart';
 import '../session/sub2api_session.dart';
 import 'request_executor.dart';
+import 'stream_error_decoder.dart';
 
 typedef Sub2ApiRefreshSession =
     Future<Sub2ApiSession> Function(Sub2ApiSession current);
 
-final class Sub2ApiRequestExecutorImpl implements Sub2ApiRequestExecutor {
+final class Sub2ApiRequestExecutorImpl
+    implements Sub2ApiRequestExecutor, Sub2ApiProtectedStreamExecutor {
   Sub2ApiRequestExecutorImpl({
     required Sub2ApiConfiguration configuration,
     required Sub2ApiSessionCoordinator sessions,
@@ -254,6 +256,36 @@ final class Sub2ApiRequestExecutorImpl implements Sub2ApiRequestExecutor {
   }
 
   @override
+  Future<Response<ResponseBody>> protectedNonReplayableStreamRequest({
+    required Sub2ApiWireStreamCall send,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) throw _notAuthenticated;
+    try {
+      return await control.executeStream(
+        (cancelToken, options) =>
+            send(cancelToken, options, _authorization(snapshot.session)),
+      );
+    } on DioException catch (error) {
+      throw await decodeSub2ApiStreamDioException(_decoder, error);
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw const Sub2ApiException(
+        kind: Sub2ApiFailureKind.unknown,
+        code: 'unknown.client',
+        retryable: false,
+      );
+    }
+  }
+
+  @override
   Future<void> protectedNonReplayableNoContentRequest({
     required Sub2ApiWireCall send,
     Sub2ApiRequestOptions? requestOptions,
@@ -379,6 +411,38 @@ final class _RequestControl {
         Options(
           sendTimeout: _minimum(_configuration.sendTimeout, remaining),
           receiveTimeout: _minimum(_configuration.receiveTimeout, remaining),
+        ),
+      );
+    } finally {
+      timer.cancel();
+    }
+  }
+
+  Future<Response<ResponseBody>> executeStream(
+    Future<Response<ResponseBody>> Function(
+      CancelToken cancelToken,
+      Options options,
+    )
+    send,
+  ) async {
+    _throwIfUnavailable();
+    final remaining = _remaining;
+    final cancelToken = CancelToken();
+    final timer = Timer(remaining, () {
+      cancelToken.cancel(_timeoutException);
+    });
+    unawaited(
+      _cancellationToken?.whenCancelled.then((_) {
+        cancelToken.cancel(_cancelledException);
+      }),
+    );
+    try {
+      return await send(
+        cancelToken,
+        Options(
+          sendTimeout: _minimum(_configuration.sendTimeout, remaining),
+          receiveTimeout: _minimum(_configuration.receiveTimeout, remaining),
+          responseType: ResponseType.stream,
         ),
       );
     } finally {

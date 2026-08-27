@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../shared/contract/sub2api_stream_route.dart';
 import '../shared/errors/sub2api_exception.dart';
 import '../shared/models/sensitive_value.dart';
 import '../shared/models/sub2api_decimal.dart';
@@ -53,6 +54,13 @@ abstract interface class Sub2ApiAdminAccountsClient {
   Future<Sub2ApiAdminAccount> applyOAuthCredentials(
     int accountId,
     Sub2ApiAdminApplyOAuthCredentialsRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Stream<Sub2ApiAdminAccountTestEvent> testConnection(
+    int accountId, {
+    Sub2ApiAdminAccountTestRequest request =
+        const Sub2ApiAdminAccountTestRequest(),
     Sub2ApiRequestOptions? requestOptions,
   });
 
@@ -318,10 +326,12 @@ abstract interface class Sub2ApiAdminAccountsClient {
 Sub2ApiAdminAccountsClient createSub2ApiAdminAccountsClient({
   required Dio dio,
   required Sub2ApiRequestExecutor requestExecutor,
+  required Sub2ApiProtectedStreamExecutor streamExecutor,
   required Sub2ApiAdminCredentialMode credentialMode,
 }) => _Sub2ApiAdminAccountsClient(
   dio: dio,
   requestExecutor: requestExecutor,
+  streamExecutor: streamExecutor,
   credentialMode: credentialMode,
 );
 
@@ -329,12 +339,17 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
   _Sub2ApiAdminAccountsClient({
     required Dio dio,
     required Sub2ApiRequestExecutor requestExecutor,
+    required Sub2ApiProtectedStreamExecutor streamExecutor,
     required Sub2ApiAdminCredentialMode credentialMode,
-  }) : _requestExecutor = requestExecutor,
+  }) : _dio = dio,
+       _requestExecutor = requestExecutor,
+       _streamExecutor = streamExecutor,
        _credentialMode = credentialMode,
        _service = AdminAccountWireService(dio);
 
+  final Dio _dio;
   final Sub2ApiRequestExecutor _requestExecutor;
+  final Sub2ApiProtectedStreamExecutor _streamExecutor;
   final Sub2ApiAdminCredentialMode _credentialMode;
   final AdminAccountWireService _service;
 
@@ -570,6 +585,81 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
           ),
       decode: mapAdminAccount,
       requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Stream<Sub2ApiAdminAccountTestEvent> testConnection(
+    int accountId, {
+    Sub2ApiAdminAccountTestRequest request =
+        const Sub2ApiAdminAccountTestRequest(),
+    Sub2ApiRequestOptions? requestOptions,
+  }) async* {
+    _validateAccountId(accountId);
+    final modelId = request.modelId?.trim();
+    if (modelId != null && (modelId.isEmpty || modelId.runes.length > 200)) {
+      throw _validation('admin.accounts.invalid_test_model');
+    }
+    final prompt = request.prompt?.trim();
+    if (prompt != null && (prompt.isEmpty || prompt.runes.length > 10000)) {
+      throw _validation('admin.accounts.invalid_test_prompt');
+    }
+    final imageDataUrl = _validatedMediaDataUrl(
+      request.imageDataUrl,
+      expectedPrefix: 'image/',
+      code: 'admin.accounts.invalid_test_image',
+    );
+    final audioDataUrl = _validatedMediaDataUrl(
+      request.audioDataUrl,
+      expectedPrefix: 'audio/',
+      code: 'admin.accounts.invalid_test_audio',
+    );
+    final body = <String, Object?>{
+      'model_id': ?modelId,
+      'prompt': ?prompt,
+      'mode': _wireAccountTestMode(request.mode),
+      'image_data_url': ?imageDataUrl,
+      'audio_data_url': ?audioDataUrl,
+    };
+    final response = await _streamExecutor.protectedNonReplayableStreamRequest(
+      send: (cancelToken, options, credential) => _sendAccountTestStream(
+        accountId,
+        body,
+        cancelToken,
+        options,
+        credential,
+      ),
+      requestOptions: requestOptions,
+    );
+    final contentType = response.headers.value('content-type') ?? '';
+    if (!contentType.toLowerCase().startsWith('text/event-stream')) {
+      throw _invalidAccountTestStream;
+    }
+    yield* _decodeAccountTestEvents(response.data!.stream);
+  }
+
+  @Sub2ApiStreamRoute('POST', '/api/v1/admin/accounts/{id}/test')
+  Future<Response<ResponseBody>> _sendAccountTestStream(
+    int accountId,
+    Map<String, Object?> body,
+    CancelToken cancelToken,
+    Options options,
+    String? credential,
+  ) {
+    final headers = <String, Object?>{
+      ...?options.headers,
+      'Accept': 'text/event-stream',
+      'Authorization': ?_authorization(credential),
+      'x-api-key': ?_apiKey(credential),
+    };
+    return _dio.post<ResponseBody>(
+      '/api/v1/admin/accounts/$accountId/test',
+      data: body,
+      cancelToken: cancelToken,
+      options: options.copyWith(
+        headers: headers,
+        responseType: ResponseType.stream,
+      ),
     );
   }
 
@@ -2078,6 +2168,170 @@ double _nonNegativeDecimalDouble(
   return value;
 }
 
+String? _validatedMediaDataUrl(
+  String? value, {
+  required String expectedPrefix,
+  required String code,
+}) {
+  if (value == null) return null;
+  final normalized = value.trim();
+  final separator = normalized.indexOf(',');
+  if (!normalized.startsWith('data:') || separator <= 5) {
+    throw _validation(code);
+  }
+  final metadata = normalized.substring(5, separator);
+  final parts = metadata.split(';');
+  if (parts.length != 2 ||
+      !parts.first.toLowerCase().startsWith(expectedPrefix) ||
+      parts.last.toLowerCase() != 'base64') {
+    throw _validation(code);
+  }
+  try {
+    final decoded = base64.decode(normalized.substring(separator + 1));
+    if (decoded.isEmpty || decoded.length > 8 << 20) {
+      throw const FormatException();
+    }
+  } on Object {
+    throw _validation(code);
+  }
+  return normalized;
+}
+
+String _wireAccountTestMode(Sub2ApiAdminAccountTestMode mode) => switch (mode) {
+  Sub2ApiAdminAccountTestMode.defaultMode => 'default',
+  Sub2ApiAdminAccountTestMode.textToSpeech => 'tts',
+  Sub2ApiAdminAccountTestMode.speechToText => 'stt',
+  _ => mode.name,
+};
+
+Stream<Sub2ApiAdminAccountTestEvent> _decodeAccountTestEvents(
+  Stream<List<int>> bytes,
+) async* {
+  var sawEvent = false;
+  var started = false;
+  var terminal = false;
+  await for (final rawLine
+      in bytes
+          .map<List<int>>((chunk) => List<int>.from(chunk))
+          .transform(utf8.decoder)
+          .transform(const LineSplitter())) {
+    final line = rawLine.trim();
+    if (line.isEmpty || line.startsWith(':')) continue;
+    if (!line.startsWith('data:')) continue;
+    final payload = line.substring('data:'.length).trimLeft();
+    if (payload.isEmpty) throw _invalidAccountTestStream;
+    final Object? decoded;
+    try {
+      decoded = jsonDecode(payload);
+    } on Object {
+      throw _invalidAccountTestStream;
+    }
+    final event = _mapAccountTestEvent(decoded);
+    if (terminal) throw _invalidAccountTestStream;
+    sawEvent = true;
+    switch (event.type) {
+      case Sub2ApiAdminAccountTestEventType.testStart:
+        if (started) throw _invalidAccountTestStream;
+        started = true;
+      case Sub2ApiAdminAccountTestEventType.error:
+        terminal = true;
+      case Sub2ApiAdminAccountTestEventType.testComplete:
+        if (!started) throw _invalidAccountTestStream;
+        terminal = true;
+      case Sub2ApiAdminAccountTestEventType.content ||
+          Sub2ApiAdminAccountTestEventType.status ||
+          Sub2ApiAdminAccountTestEventType.image ||
+          Sub2ApiAdminAccountTestEventType.audio ||
+          Sub2ApiAdminAccountTestEventType.video:
+        if (!started) throw _invalidAccountTestStream;
+    }
+    yield event;
+  }
+  if (!sawEvent || !terminal) throw _invalidAccountTestStream;
+}
+
+Sub2ApiAdminAccountTestEvent _mapAccountTestEvent(Object? value) {
+  if (value is! Map) throw _invalidAccountTestStream;
+  final source = <String, Object?>{};
+  for (final entry in value.entries) {
+    if (entry.key is! String) throw _invalidAccountTestStream;
+    source[entry.key as String] = entry.value;
+  }
+  final rawType = _testEventRequiredString(source, 'type');
+  final type = switch (rawType) {
+    'test_start' => Sub2ApiAdminAccountTestEventType.testStart,
+    'content' => Sub2ApiAdminAccountTestEventType.content,
+    'status' => Sub2ApiAdminAccountTestEventType.status,
+    'image' => Sub2ApiAdminAccountTestEventType.image,
+    'audio' => Sub2ApiAdminAccountTestEventType.audio,
+    'video' => Sub2ApiAdminAccountTestEventType.video,
+    'test_complete' => Sub2ApiAdminAccountTestEventType.testComplete,
+    'error' => Sub2ApiAdminAccountTestEventType.error,
+    _ => throw _invalidAccountTestStream,
+  };
+  return switch (type) {
+    Sub2ApiAdminAccountTestEventType.testStart => Sub2ApiAdminAccountTestEvent(
+      type: type,
+      model: _testEventRequiredString(source, 'model'),
+    ),
+    Sub2ApiAdminAccountTestEventType.content ||
+    Sub2ApiAdminAccountTestEventType.status => Sub2ApiAdminAccountTestEvent(
+      type: type,
+      text: _testEventRequiredString(source, 'text'),
+    ),
+    Sub2ApiAdminAccountTestEventType.image => _testMediaEvent(
+      type,
+      source,
+      'image_url',
+    ),
+    Sub2ApiAdminAccountTestEventType.audio => _testMediaEvent(
+      type,
+      source,
+      'audio_url',
+    ),
+    Sub2ApiAdminAccountTestEventType.video => _testMediaEvent(
+      type,
+      source,
+      'video_url',
+    ),
+    Sub2ApiAdminAccountTestEventType.testComplete =>
+      source['success'] == true
+          ? Sub2ApiAdminAccountTestEvent(type: type, success: true)
+          : throw _invalidAccountTestStream,
+    Sub2ApiAdminAccountTestEventType.error => Sub2ApiAdminAccountTestEvent(
+      type: type,
+      error: _testEventRequiredString(source, 'error'),
+    ),
+  };
+}
+
+Sub2ApiAdminAccountTestEvent _testMediaEvent(
+  Sub2ApiAdminAccountTestEventType type,
+  Map<String, Object?> source,
+  String urlKey,
+) {
+  final rawUrl = _testEventRequiredString(source, urlKey);
+  final uri = Uri.tryParse(rawUrl);
+  if (uri == null ||
+      (uri.scheme != 'data' && uri.scheme != 'https') ||
+      (uri.scheme == 'https' && uri.host.isEmpty)) {
+    throw _invalidAccountTestStream;
+  }
+  return Sub2ApiAdminAccountTestEvent(
+    type: type,
+    mediaUrl: uri,
+    mimeType: _testEventRequiredString(source, 'mime_type'),
+  );
+}
+
+String _testEventRequiredString(Map<String, Object?> source, String key) {
+  final value = source[key];
+  if (value is! String || value.trim().isEmpty) {
+    throw _invalidAccountTestStream;
+  }
+  return value;
+}
+
 Map<String, Object?> _oauthCodeExchangeBody(
   Sub2ApiAdminOAuthCodeExchangeRequest request,
 ) {
@@ -2240,6 +2494,12 @@ const _setCookieAttributes = <String>{
   'httponly',
   'partitioned',
 };
+
+const _invalidAccountTestStream = Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_admin_account_test_stream',
+  retryable: false,
+);
 
 final _credentialNamePattern = RegExp(r'^[A-Za-z][A-Za-z0-9_.-]{0,127}$');
 const _ephemeralCredentialKeys = <String>{

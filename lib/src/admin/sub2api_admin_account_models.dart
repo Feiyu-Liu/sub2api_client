@@ -522,6 +522,65 @@ final class Sub2ApiAdminApplyOAuthCredentialsRequest {
   final Sub2ApiAdminJsonObject extra;
 }
 
+enum Sub2ApiAdminAccountTestMode {
+  defaultMode,
+  compact,
+  text,
+  image,
+  video,
+  search,
+  textToSpeech,
+  speechToText,
+  realtime,
+}
+
+final class Sub2ApiAdminAccountTestRequest {
+  const Sub2ApiAdminAccountTestRequest({
+    this.modelId,
+    this.prompt,
+    this.mode = Sub2ApiAdminAccountTestMode.defaultMode,
+    this.imageDataUrl,
+    this.audioDataUrl,
+  });
+
+  final String? modelId;
+  final String? prompt;
+  final Sub2ApiAdminAccountTestMode mode;
+  final String? imageDataUrl;
+  final String? audioDataUrl;
+}
+
+enum Sub2ApiAdminAccountTestEventType {
+  testStart,
+  content,
+  status,
+  image,
+  audio,
+  video,
+  testComplete,
+  error,
+}
+
+final class Sub2ApiAdminAccountTestEvent {
+  const Sub2ApiAdminAccountTestEvent({
+    required this.type,
+    this.text,
+    this.model,
+    this.mediaUrl,
+    this.mimeType,
+    this.success,
+    this.error,
+  });
+
+  final Sub2ApiAdminAccountTestEventType type;
+  final String? text;
+  final String? model;
+  final Uri? mediaUrl;
+  final String? mimeType;
+  final bool? success;
+  final String? error;
+}
+
 final class Sub2ApiAdminAccountListQuery {
   const Sub2ApiAdminAccountListQuery({
     this.page,

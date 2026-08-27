@@ -81,6 +81,7 @@ Sub2ApiOpsClient _create({
     accounts: createSub2ApiAdminAccountsClient(
       dio: dio,
       requestExecutor: executor,
+      streamExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
     ),
     dashboard: createSub2ApiAdminDashboardClient(

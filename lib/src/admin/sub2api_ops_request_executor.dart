@@ -7,10 +7,12 @@ import '../shared/errors/sub2api_exception.dart';
 import '../shared/request/sub2api_request_options.dart';
 import '../shared/serialization/response_decoder.dart';
 import '../shared/transport/request_executor.dart';
+import '../shared/transport/stream_error_decoder.dart';
 import 'sub2api_ops_credentials.dart';
 
 /// Admin API Key executor with no JWT, refresh, or credential fallback path.
-final class Sub2ApiOpsRequestExecutor implements Sub2ApiRequestExecutor {
+final class Sub2ApiOpsRequestExecutor
+    implements Sub2ApiRequestExecutor, Sub2ApiProtectedStreamExecutor {
   Sub2ApiOpsRequestExecutor({
     required Sub2ApiConfiguration configuration,
     required Sub2ApiAdminApiKeyProvider credentialProvider,
@@ -51,6 +53,45 @@ final class Sub2ApiOpsRequestExecutor implements Sub2ApiRequestExecutor {
     required T Function(Object? data) decode,
     Sub2ApiRequestOptions? requestOptions,
   }) => _execute(send: send, decode: decode, requestOptions: requestOptions);
+
+  @override
+  Future<Response<ResponseBody>> protectedNonReplayableStreamRequest({
+    required Sub2ApiWireStreamCall send,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    if (_closed) throw _closedFailure;
+    final key = await _credentialProvider.load();
+    final value = key?.reveal().trim();
+    if (value == null || value.isEmpty) throw _missingCredential;
+    final timeout =
+        requestOptions?.timeout ?? _configuration.totalRequestTimeout;
+    final cancelToken = CancelToken();
+    final timer = Timer(timeout, () => cancelToken.cancel(_timeoutFailure));
+    unawaited(
+      requestOptions?.cancellationToken?.whenCancelled.then((_) {
+        cancelToken.cancel(_cancelledFailure);
+      }),
+    );
+    try {
+      return await send(
+        cancelToken,
+        Options(
+          sendTimeout: _minimum(_configuration.sendTimeout, timeout),
+          receiveTimeout: _minimum(_configuration.receiveTimeout, timeout),
+          responseType: ResponseType.stream,
+        ),
+        value,
+      );
+    } on DioException catch (error) {
+      throw await decodeSub2ApiStreamDioException(_decoder, error);
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw _unknownFailure;
+    } finally {
+      timer.cancel();
+    }
+  }
 
   @override
   Future<void> protectedNonReplayableNoContentRequest({
