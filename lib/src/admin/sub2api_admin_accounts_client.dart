@@ -5,6 +5,7 @@ import 'package:retrofit/retrofit.dart';
 
 import '../shared/errors/sub2api_exception.dart';
 import '../shared/models/sensitive_value.dart';
+import '../shared/models/sub2api_decimal.dart';
 import '../shared/request/sub2api_request_options.dart';
 import '../shared/transport/request_executor.dart';
 import 'sub2api_admin_account_models.dart';
@@ -20,6 +21,16 @@ abstract interface class Sub2ApiAdminAccountsClient {
 
   Future<Sub2ApiAdminAccount> getById(
     int accountId, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminAccount> create(
+    Sub2ApiAdminCreateAccountRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  Future<Sub2ApiAdminBatchCreateAccountsResult> batchCreate(
+    Sub2ApiAdminBatchCreateAccountsRequest request, {
     Sub2ApiRequestOptions? requestOptions,
   });
 
@@ -366,6 +377,53 @@ final class _Sub2ApiAdminAccountsClient implements Sub2ApiAdminAccountsClient {
         _apiKey(credential),
       ),
       decode: mapAdminAccount,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminAccount> create(
+    Sub2ApiAdminCreateAccountRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final key = _requiredIdempotencyKey(request.idempotencyKey);
+    final body = _createAccountBody(request.account);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.createAccount(
+        body,
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+        key,
+      ),
+      decode: mapAdminAccount,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminBatchCreateAccountsResult> batchCreate(
+    Sub2ApiAdminBatchCreateAccountsRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final key = _requiredIdempotencyKey(request.idempotencyKey);
+    if (request.accounts.isEmpty) {
+      throw _validation('admin.accounts.batch_accounts_required');
+    }
+    final accounts = request.accounts
+        .map(_createAccountBody)
+        .toList(growable: false);
+    return _requestExecutor.protectedNonReplayableRequest(
+      send: (cancelToken, options, credential) => _service.batchCreateAccounts(
+        <String, Object?>{'accounts': accounts},
+        cancelToken,
+        options,
+        _authorization(credential),
+        _apiKey(credential),
+        key,
+      ),
+      decode: mapAdminBatchCreateAccountsResult,
       requestOptions: requestOptions,
     );
   }
@@ -1503,6 +1561,123 @@ List<String>? _normalizeCrsAccountIds(List<String>? ids) {
   return List.unmodifiable(normalized);
 }
 
+String _requiredIdempotencyKey(String value) {
+  final key = value.trim();
+  if (key.isEmpty) {
+    throw _validation('admin.accounts.idempotency_key_required');
+  }
+  return key;
+}
+
+Map<String, Object?> _createAccountBody(Sub2ApiAdminAccountCreateInput input) {
+  final name = input.name.trim();
+  if (name.isEmpty || name.runes.length > 100) {
+    throw _validation('admin.accounts.invalid_name');
+  }
+  if (input.proxyId != null && input.proxyId! <= 0) {
+    throw _validation('admin.accounts.invalid_proxy_id');
+  }
+  if (input.concurrency < 0) {
+    throw _validation('admin.accounts.invalid_concurrency');
+  }
+  if (input.priority < 0) {
+    throw _validation('admin.accounts.invalid_priority');
+  }
+  if (input.loadFactor != null &&
+      (input.loadFactor! <= 0 || input.loadFactor! > 10000)) {
+    throw _validation('admin.accounts.invalid_load_factor');
+  }
+  final groupIds = _normalizePositiveIds(
+    input.groupIds,
+    code: 'admin.accounts.invalid_group_id',
+  );
+  final credentials = _credentialSetBody(input.credentials);
+  if (credentials.isEmpty) {
+    throw _validation('admin.accounts.credentials_required');
+  }
+  final extra = input.extra.values.map(
+    (key, value) => MapEntry(key, value.toWire()),
+  );
+  if (extra.keys.any(_managedAccountExtraKeys.contains)) {
+    throw _validation('admin.accounts.managed_extra_not_writable');
+  }
+  final expiresAt = input.expiresAt;
+  int? expiresAtSeconds;
+  if (expiresAt != null) {
+    if (expiresAt.microsecondsSinceEpoch <= 0 ||
+        expiresAt.microsecondsSinceEpoch % Duration.microsecondsPerSecond !=
+            0) {
+      throw _validation('admin.accounts.invalid_expires_at');
+    }
+    expiresAtSeconds = expiresAt.toUtc().millisecondsSinceEpoch ~/ 1000;
+  }
+  return <String, Object?>{
+    'name': name,
+    'notes': ?input.notes?.trim(),
+    'platform': _wirePlatform(input.platform),
+    'type': _wireType(input.type),
+    'credentials': credentials,
+    if (extra.isNotEmpty) 'extra': extra,
+    'proxy_id': ?input.proxyId,
+    'concurrency': input.concurrency,
+    'priority': input.priority,
+    if (input.rateMultiplier != null)
+      'rate_multiplier': _nonNegativeDecimalDouble(
+        input.rateMultiplier!,
+        code: 'admin.accounts.invalid_rate_multiplier',
+      ),
+    'load_factor': ?input.loadFactor,
+    if (groupIds.isNotEmpty) 'group_ids': groupIds,
+    'expires_at': ?expiresAtSeconds,
+    'auto_pause_on_expired': ?input.autoPauseOnExpired,
+    'upstream_billing_probe_enabled': ?input.upstreamBillingProbeEnabled,
+    if (input.confirmMixedChannelRisk) 'confirm_mixed_channel_risk': true,
+  };
+}
+
+Map<String, Object?> _credentialSetBody(Sub2ApiAdminCredentialSet set) {
+  final result = <String, Object?>{};
+  for (final entry in set.entries) {
+    final name = entry.name.trim();
+    if (!_credentialNamePattern.hasMatch(name) || result.containsKey(name)) {
+      throw _validation('admin.accounts.invalid_credential_field');
+    }
+    if (_ephemeralCredentialKeys.contains(name)) {
+      throw _validation('admin.accounts.ephemeral_credential_not_writable');
+    }
+    final value = entry.value;
+    if (_sensitiveCredentialKeys.contains(name) &&
+        value is! Sub2ApiAdminCredentialSecretValue) {
+      throw _validation('admin.accounts.sensitive_credential_requires_secret');
+    }
+    result[name] = switch (value) {
+      Sub2ApiAdminCredentialSecretValue() => value.value.reveal(),
+      Sub2ApiAdminCredentialStringValue() => value.value,
+      Sub2ApiAdminCredentialBoolValue() => value.value,
+      Sub2ApiAdminCredentialIntegerValue() => value.value,
+      Sub2ApiAdminCredentialDecimalValue() => _nonNegativeDecimalDouble(
+        value.value,
+        code: 'admin.accounts.credential_decimal_not_representable',
+      ),
+      Sub2ApiAdminCredentialJsonValue() => value.value.toWire(),
+    };
+  }
+  return result;
+}
+
+double _nonNegativeDecimalDouble(
+  Sub2ApiDecimal decimal, {
+  required String code,
+}) {
+  if (decimal.compareTo(Sub2ApiDecimal.zero()) < 0) throw _validation(code);
+  final value = double.tryParse(decimal.toJson());
+  if (value == null || !value.isFinite) throw _validation(code);
+  if (Sub2ApiDecimal.parse(value.toString()) != decimal) {
+    throw _validation(code);
+  }
+  return value;
+}
+
 Map<String, Object?> _oauthCodeExchangeBody(
   Sub2ApiAdminOAuthCodeExchangeRequest request,
 ) {
@@ -1664,4 +1839,35 @@ const _setCookieAttributes = <String>{
   'secure',
   'httponly',
   'partitioned',
+};
+
+final _credentialNamePattern = RegExp(r'^[A-Za-z][A-Za-z0-9_.-]{0,127}$');
+const _ephemeralCredentialKeys = <String>{
+  'password',
+  'sso',
+  'sso-rw',
+  'clearTextPassword',
+};
+const _sensitiveCredentialKeys = <String>{
+  'access_token',
+  'refresh_token',
+  'id_token',
+  'agent_private_key',
+  'api_key',
+  'session_key',
+  'cookie',
+  'sso_token',
+  'aws_secret_access_key',
+  'aws_session_token',
+  'service_account_json',
+  'service_account',
+  'private_key',
+};
+const _managedAccountExtraKeys = <String>{
+  'upstream_billing_probe_enabled',
+  'upstream_billing_rate_sync_enabled',
+  'upstream_billing_probe',
+  'ollama_cloud_usage_session',
+  'ollama_cloud_usage_auto_refresh',
+  'ollama_cloud_usage_snapshot',
 };

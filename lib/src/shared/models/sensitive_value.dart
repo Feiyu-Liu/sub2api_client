@@ -99,6 +99,11 @@ final class Sub2ApiOAuthCookieSessionKey extends _SensitiveValue {
   const Sub2ApiOAuthCookieSessionKey(super.value);
 }
 
+/// Provider credential value accepted by Admin account write operations.
+final class Sub2ApiAdminCredentialSecret extends _SensitiveValue {
+  const Sub2ApiAdminCredentialSecret(super.value);
+}
+
 /// Signed token carried by a notification-email unsubscribe link.
 final class Sub2ApiNotificationUnsubscribeToken extends _SensitiveValue {
   const Sub2ApiNotificationUnsubscribeToken(super.value);

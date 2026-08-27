@@ -42,6 +42,150 @@ enum Sub2ApiAdminAccountSort {
 
 enum Sub2ApiAdminAccountUsageSource { active, passive }
 
+sealed class Sub2ApiAdminCredentialValue {
+  const Sub2ApiAdminCredentialValue();
+}
+
+final class Sub2ApiAdminCredentialSecretValue
+    extends Sub2ApiAdminCredentialValue {
+  const Sub2ApiAdminCredentialSecretValue(this.value);
+
+  final Sub2ApiAdminCredentialSecret value;
+}
+
+final class Sub2ApiAdminCredentialStringValue
+    extends Sub2ApiAdminCredentialValue {
+  const Sub2ApiAdminCredentialStringValue(this.value);
+
+  final String value;
+}
+
+final class Sub2ApiAdminCredentialBoolValue
+    extends Sub2ApiAdminCredentialValue {
+  const Sub2ApiAdminCredentialBoolValue(this.value);
+
+  final bool value;
+}
+
+final class Sub2ApiAdminCredentialIntegerValue
+    extends Sub2ApiAdminCredentialValue {
+  const Sub2ApiAdminCredentialIntegerValue(this.value);
+
+  final int value;
+}
+
+final class Sub2ApiAdminCredentialDecimalValue
+    extends Sub2ApiAdminCredentialValue {
+  const Sub2ApiAdminCredentialDecimalValue(this.value);
+
+  final Sub2ApiDecimal value;
+}
+
+final class Sub2ApiAdminCredentialJsonValue
+    extends Sub2ApiAdminCredentialValue {
+  const Sub2ApiAdminCredentialJsonValue(this.value);
+
+  final Sub2ApiAdminJsonValue value;
+}
+
+final class Sub2ApiAdminCredentialEntry {
+  const Sub2ApiAdminCredentialEntry({required this.name, required this.value});
+
+  final String name;
+  final Sub2ApiAdminCredentialValue value;
+}
+
+final class Sub2ApiAdminCredentialSet {
+  Sub2ApiAdminCredentialSet(List<Sub2ApiAdminCredentialEntry> entries)
+    : entries = List.unmodifiable(entries);
+
+  final List<Sub2ApiAdminCredentialEntry> entries;
+}
+
+final class Sub2ApiAdminAccountCreateInput {
+  Sub2ApiAdminAccountCreateInput({
+    required this.name,
+    required this.platform,
+    required this.type,
+    required this.credentials,
+    this.notes,
+    this.extra = const Sub2ApiAdminJsonObject({}),
+    this.proxyId,
+    this.concurrency = 0,
+    this.priority = 0,
+    this.rateMultiplier,
+    this.loadFactor,
+    List<int> groupIds = const [],
+    this.expiresAt,
+    this.autoPauseOnExpired,
+    this.upstreamBillingProbeEnabled,
+    this.confirmMixedChannelRisk = false,
+  }) : groupIds = List.unmodifiable(groupIds);
+
+  final String name;
+  final String? notes;
+  final Sub2ApiAdminAccountPlatform platform;
+  final Sub2ApiAdminAccountType type;
+  final Sub2ApiAdminCredentialSet credentials;
+  final Sub2ApiAdminJsonObject extra;
+  final int? proxyId;
+  final int concurrency;
+  final int priority;
+  final Sub2ApiDecimal? rateMultiplier;
+  final int? loadFactor;
+  final List<int> groupIds;
+  final DateTime? expiresAt;
+  final bool? autoPauseOnExpired;
+  final bool? upstreamBillingProbeEnabled;
+  final bool confirmMixedChannelRisk;
+}
+
+final class Sub2ApiAdminCreateAccountRequest {
+  const Sub2ApiAdminCreateAccountRequest({
+    required this.idempotencyKey,
+    required this.account,
+  });
+
+  final String idempotencyKey;
+  final Sub2ApiAdminAccountCreateInput account;
+}
+
+final class Sub2ApiAdminBatchCreateAccountsRequest {
+  Sub2ApiAdminBatchCreateAccountsRequest({
+    required this.idempotencyKey,
+    required List<Sub2ApiAdminAccountCreateInput> accounts,
+  }) : accounts = List.unmodifiable(accounts);
+
+  final String idempotencyKey;
+  final List<Sub2ApiAdminAccountCreateInput> accounts;
+}
+
+final class Sub2ApiAdminBatchCreateAccountItem {
+  const Sub2ApiAdminBatchCreateAccountItem({
+    required this.name,
+    required this.success,
+    required this.error,
+    this.accountId,
+  });
+
+  final String name;
+  final bool success;
+  final int? accountId;
+  final String error;
+}
+
+final class Sub2ApiAdminBatchCreateAccountsResult {
+  Sub2ApiAdminBatchCreateAccountsResult({
+    required this.success,
+    required this.failed,
+    required List<Sub2ApiAdminBatchCreateAccountItem> results,
+  }) : results = List.unmodifiable(results);
+
+  final int success;
+  final int failed;
+  final List<Sub2ApiAdminBatchCreateAccountItem> results;
+}
+
 final class Sub2ApiAdminAccountListQuery {
   const Sub2ApiAdminAccountListQuery({
     this.page,

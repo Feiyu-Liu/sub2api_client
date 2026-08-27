@@ -26,6 +26,26 @@ abstract class AdminAccountWireService {
     @Header('x-api-key') String? apiKey,
   );
 
+  @POST('/api/v1/admin/accounts')
+  Future<HttpResponse<Object?>> createAccount(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+    @Header('Idempotency-Key') String idempotencyKey,
+  );
+
+  @POST('/api/v1/admin/accounts/batch')
+  Future<HttpResponse<Object?>> batchCreateAccounts(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+    @Header('Idempotency-Key') String idempotencyKey,
+  );
+
   @POST('/api/v1/admin/accounts/{id}/duplicate')
   Future<HttpResponse<Object?>> duplicateAccount(
     @Path('id') int accountId,

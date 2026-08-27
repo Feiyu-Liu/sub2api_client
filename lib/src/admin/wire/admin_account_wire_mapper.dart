@@ -176,6 +176,42 @@ Sub2ApiAdminAccountBatchDeleteResult mapAdminAccountBatchDeleteResult(
   );
 });
 
+Sub2ApiAdminBatchCreateAccountsResult mapAdminBatchCreateAccountsResult(
+  Object? data,
+) => _map(() {
+  final source = _object(data);
+  final success = _nonNegativeInteger(source, 'success');
+  final failed = _nonNegativeInteger(source, 'failed');
+  final results = _list(source, 'results')
+      .map(_object)
+      .map((item) {
+        final itemSuccess = _boolean(item, 'success');
+        final accountId = _nullablePositiveInteger(item, 'id');
+        final error = _optionalString(item, 'error').trim();
+        if (itemSuccess
+            ? accountId == null || error.isNotEmpty
+            : accountId != null || error.isEmpty) {
+          throw const FormatException();
+        }
+        return Sub2ApiAdminBatchCreateAccountItem(
+          name: _nonEmptyString(item, 'name'),
+          success: itemSuccess,
+          accountId: accountId,
+          error: error,
+        );
+      })
+      .toList(growable: false);
+  if (results.where((item) => item.success).length != success ||
+      results.where((item) => !item.success).length != failed) {
+    throw const FormatException();
+  }
+  return Sub2ApiAdminBatchCreateAccountsResult(
+    success: success,
+    failed: failed,
+    results: results,
+  );
+});
+
 Sub2ApiAdminAccountBatchMaintenanceResult mapAdminAccountBatchMaintenanceResult(
   Object? data,
 ) =>
