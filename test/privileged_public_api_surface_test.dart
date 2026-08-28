@@ -71,6 +71,10 @@ void main() {
         admin.operationsDashboard;
     final Sub2ApiAdminOpsDashboardClient opsOperationsDashboard =
         ops.operationsDashboard;
+    final Sub2ApiAdminOpsRealtimeClient adminOperationsRealtime =
+        admin.operationsRealtime;
+    final Sub2ApiAdminOpsRealtimeClient opsOperationsRealtime =
+        ops.operationsRealtime;
     final Sub2ApiAdminPaymentOrdersClient adminPaymentOrders =
         admin.paymentOrders;
     final Sub2ApiAdminPaymentOrdersClient opsPaymentOrders = ops.paymentOrders;
@@ -190,6 +194,8 @@ void main() {
       opsOpenAI,
       adminOperationsDashboard,
       opsOperationsDashboard,
+      adminOperationsRealtime,
+      opsOperationsRealtime,
       adminPaymentOrders,
       opsPaymentOrders,
       adminPaymentCatalog,
