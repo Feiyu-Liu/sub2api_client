@@ -83,6 +83,10 @@ void main() {
         admin.operationsRealtime;
     final Sub2ApiAdminOpsRealtimeClient opsOperationsRealtime =
         ops.operationsRealtime;
+    final Sub2ApiAdminOpsSettingsClient adminOperationsSettings =
+        admin.operationsSettings;
+    final Sub2ApiAdminOpsSettingsClient opsOperationsSettings =
+        ops.operationsSettings;
     final Sub2ApiAdminPaymentOrdersClient adminPaymentOrders =
         admin.paymentOrders;
     final Sub2ApiAdminPaymentOrdersClient opsPaymentOrders = ops.paymentOrders;
@@ -208,6 +212,8 @@ void main() {
       opsOperationsErrors,
       adminOperationsRealtime,
       opsOperationsRealtime,
+      adminOperationsSettings,
+      opsOperationsSettings,
       adminPaymentOrders,
       opsPaymentOrders,
       adminPaymentCatalog,

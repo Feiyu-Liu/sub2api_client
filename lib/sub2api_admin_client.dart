@@ -65,6 +65,9 @@ export 'src/admin/sub2api_admin_ops_errors_client.dart'
 export 'src/admin/sub2api_admin_ops_realtime_client.dart'
     show Sub2ApiAdminOpsRealtimeClient;
 export 'src/admin/sub2api_admin_ops_realtime_models.dart';
+export 'src/admin/sub2api_admin_ops_settings_client.dart'
+    show Sub2ApiAdminOpsSettingsClient;
+export 'src/admin/sub2api_admin_ops_settings_models.dart';
 export 'src/admin/sub2api_admin_payment_catalog_client.dart'
     show Sub2ApiAdminPaymentCatalogClient;
 export 'src/admin/sub2api_admin_payment_catalog_models.dart';
