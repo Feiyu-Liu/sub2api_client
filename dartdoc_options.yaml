@@ -1,0 +1,5 @@
+dartdoc:
+  # Admin and Ops intentionally reexport the same typed management DTOs.
+  # Their canonicalization score can be zero even though either public library
+  # is an equivalent, stable import path.
+  ambiguousReexportScorerMinConfidence: 0
