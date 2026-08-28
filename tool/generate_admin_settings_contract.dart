@@ -52,11 +52,11 @@ void main(List<String> arguments) {
     final dartOutput = File(_dartOutput);
     final fixtureOutput = File(_fixtureOutput);
     if (!output.existsSync() ||
-        output.readAsStringSync() != rendered ||
+        _normalizeText(output.readAsStringSync()) != rendered ||
         !dartOutput.existsSync() ||
-        dartOutput.readAsStringSync() != dartRendered ||
+        _normalizeText(dartOutput.readAsStringSync()) != dartRendered ||
         !fixtureOutput.existsSync() ||
-        fixtureOutput.readAsStringSync() != fixtureRendered) {
+        _normalizeText(fixtureOutput.readAsStringSync()) != fixtureRendered) {
       stderr.writeln('Admin settings field contract is stale. Run:');
       stderr.writeln('  dart run tool/generate_admin_settings_contract.dart');
       exitCode = 1;
@@ -71,6 +71,9 @@ void main(List<String> arguments) {
     '${update.length} update fields.',
   );
 }
+
+String _normalizeText(String value) =>
+    value.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
 
 Object? _sampleValue(_Field field) {
   const overrides = <String, Object?>{

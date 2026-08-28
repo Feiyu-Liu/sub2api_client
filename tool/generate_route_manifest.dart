@@ -88,7 +88,8 @@ void main(List<String> arguments) {
 
   final output = File(_outputPath);
   if (check) {
-    if (!output.existsSync() || output.readAsStringSync() != rendered) {
+    if (!output.existsSync() ||
+        _normalizeText(output.readAsStringSync()) != rendered) {
       stderr.writeln('Route manifest is stale. Run:');
       stderr.writeln('  dart run tool/generate_route_manifest.dart');
       exitCode = 1;
@@ -102,6 +103,9 @@ void main(List<String> arguments) {
     '(${targetEntries.length} target).',
   );
 }
+
+String _normalizeText(String value) =>
+    value.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
 
 void _verifyCommit(String upstream) {
   final result = Process.runSync('git', <String>[
