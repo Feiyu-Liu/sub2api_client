@@ -109,6 +109,9 @@ Sub2ApiMonitorSnapshot mapMonitorSnapshot(Object? data) => _guard(() {
 Sub2ApiMonitorConfig mapMonitorConfig(Object? data) =>
     _guard(() => _config(_map(data)));
 
+Sub2ApiMonitorQuotaSnapshot mapMonitorQuotaSnapshot(Object? data) =>
+    _guard(() => _quota(_map(data)));
+
 Sub2ApiMonitorList<Sub2ApiMonitorModelRow> mapMonitorModels(Object? data) =>
     _guard(
       () => _coveredList(data, (item) {

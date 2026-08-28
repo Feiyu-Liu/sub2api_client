@@ -14,12 +14,15 @@ export 'src/admin/sub2api_admin_audit_log_models.dart';
 export 'src/admin/sub2api_admin_audit_logs_client.dart'
     show Sub2ApiAdminAuditLogsClient;
 export 'src/admin/sub2api_admin_channel_models.dart';
+export 'src/admin/sub2api_admin_channel_monitor_models.dart';
 export 'src/admin/sub2api_admin_channel_monitor_template_models.dart';
 export 'src/admin/sub2api_admin_channel_monitor_templates_client.dart'
     show Sub2ApiAdminChannelMonitorTemplatesClient;
 export 'src/admin/sub2api_admin_channel_monitor_v2_client.dart'
     show Sub2ApiAdminChannelMonitorV2Client;
 export 'src/admin/sub2api_admin_channel_monitor_v2_models.dart';
+export 'src/admin/sub2api_admin_channel_monitors_client.dart'
+    show Sub2ApiAdminChannelMonitorsClient;
 export 'src/admin/sub2api_admin_channels_client.dart'
     show Sub2ApiAdminChannelsClient;
 export 'src/admin/sub2api_admin_client.dart' show Sub2ApiAdminClient;
@@ -79,6 +82,7 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminProxyPassword,
         Sub2ApiAdminProxyDataArchive,
         Sub2ApiAdminCredentialSecret,
+        Sub2ApiAdminMaskedCredential,
         Sub2ApiApiKeySecret,
         Sub2ApiOAuthAuthorizationCode,
         Sub2ApiOAuthCookieSessionKey,

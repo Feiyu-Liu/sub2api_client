@@ -114,6 +114,13 @@ final class Sub2ApiAdminCredentialSecret extends _SensitiveValue {
   const Sub2ApiAdminCredentialSecret(super.value);
 }
 
+/// Server-masked administrator credential preview.
+///
+/// Even a short prefix is treated as sensitive and redacted from string output.
+final class Sub2ApiAdminMaskedCredential extends _SensitiveValue {
+  const Sub2ApiAdminMaskedCredential(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so
