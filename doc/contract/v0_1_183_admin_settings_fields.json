@@ -1,0 +1,3754 @@
+{
+  "sub2api_tag": "v0.1.183",
+  "source_revision": "e8cb019fabf8b55199436229044cbf9aa7a82564",
+  "response_struct": "dto.SystemSettings",
+  "update_struct": "admin.UpdateSettingsRequest",
+  "counts": {
+    "response_fields": 254,
+    "update_fields": 280,
+    "shared_fields": 222,
+    "secret_update_fields": 18
+  },
+  "response_fields": [
+    {
+      "go_name": "RegistrationEnabled",
+      "go_type": "bool",
+      "json_name": "registration_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EmailVerifyEnabled",
+      "go_type": "bool",
+      "json_name": "email_verify_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "RegistrationEmailSuffixWhitelist",
+      "go_type": "[]string",
+      "json_name": "registration_email_suffix_whitelist",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "RegistrationEmailDomainQuotaEnabled",
+      "go_type": "bool",
+      "json_name": "registration_email_domain_quota_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PromoCodeEnabled",
+      "go_type": "bool",
+      "json_name": "promo_code_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PasswordResetEnabled",
+      "go_type": "bool",
+      "json_name": "password_reset_enabled",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "FrontendURL",
+      "go_type": "string",
+      "json_name": "frontend_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "InvitationCodeEnabled",
+      "go_type": "bool",
+      "json_name": "invitation_code_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TotpEnabled",
+      "go_type": "bool",
+      "json_name": "totp_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TotpEncryptionKeyConfigured",
+      "go_type": "bool",
+      "json_name": "totp_encryption_key_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PasskeyEnabled",
+      "go_type": "bool",
+      "json_name": "passkey_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PasskeyConfigured",
+      "go_type": "bool",
+      "json_name": "passkey_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PasskeyRPID",
+      "go_type": "string",
+      "json_name": "passkey_rp_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PasskeyRPOrigins",
+      "go_type": "[]string",
+      "json_name": "passkey_rp_origins",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SessionBindingEnabled",
+      "go_type": "bool",
+      "json_name": "session_binding_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "StepUpEnabled",
+      "go_type": "bool",
+      "json_name": "step_up_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuditLogRetentionDays",
+      "go_type": "int",
+      "json_name": "audit_log_retention_days",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LoginAgreementEnabled",
+      "go_type": "bool",
+      "json_name": "login_agreement_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LoginAgreementMode",
+      "go_type": "string",
+      "json_name": "login_agreement_mode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LoginAgreementUpdatedAt",
+      "go_type": "string",
+      "json_name": "login_agreement_updated_at",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LoginAgreementDocuments",
+      "go_type": "[]LoginAgreementDocument",
+      "json_name": "login_agreement_documents",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPHost",
+      "go_type": "string",
+      "json_name": "smtp_host",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPPort",
+      "go_type": "int",
+      "json_name": "smtp_port",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPUsername",
+      "go_type": "string",
+      "json_name": "smtp_username",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPPasswordConfigured",
+      "go_type": "bool",
+      "json_name": "smtp_password_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPFrom",
+      "go_type": "string",
+      "json_name": "smtp_from_email",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPFromName",
+      "go_type": "string",
+      "json_name": "smtp_from_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPUseTLS",
+      "go_type": "bool",
+      "json_name": "smtp_use_tls",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TurnstileEnabled",
+      "go_type": "bool",
+      "json_name": "turnstile_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TurnstileSiteKey",
+      "go_type": "string",
+      "json_name": "turnstile_site_key",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TurnstileSecretKeyConfigured",
+      "go_type": "bool",
+      "json_name": "turnstile_secret_key_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TencentCaptchaEnabled",
+      "go_type": "bool",
+      "json_name": "tencent_captcha_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TencentCaptchaAppID",
+      "go_type": "string",
+      "json_name": "tencent_captcha_app_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TencentCaptchaAppSecretKeyConfigured",
+      "go_type": "bool",
+      "json_name": "tencent_captcha_app_secret_key_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TencentCaptchaCloudSecretIDConfigured",
+      "go_type": "bool",
+      "json_name": "tencent_captcha_cloud_secret_id_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TencentCaptchaCloudSecretKeyConfigured",
+      "go_type": "bool",
+      "json_name": "tencent_captcha_cloud_secret_key_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TencentCaptchaRegion",
+      "go_type": "string",
+      "json_name": "tencent_captcha_region",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AliyunCaptchaEnabled",
+      "go_type": "bool",
+      "json_name": "aliyun_captcha_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AliyunCaptchaAccessKeyID",
+      "go_type": "string",
+      "json_name": "aliyun_captcha_access_key_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AliyunCaptchaAccessKeySecretConfigured",
+      "go_type": "bool",
+      "json_name": "aliyun_captcha_access_key_secret_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AliyunCaptchaSceneID",
+      "go_type": "string",
+      "json_name": "aliyun_captcha_scene_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AliyunCaptchaPrefix",
+      "go_type": "string",
+      "json_name": "aliyun_captcha_prefix",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AliyunCaptchaRegion",
+      "go_type": "string",
+      "json_name": "aliyun_captcha_region",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "APIKeyACLTrustForwardedIP",
+      "go_type": "bool",
+      "json_name": "api_key_acl_trust_forwarded_ip",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ForwardedClientIPHeaders",
+      "go_type": "[]string",
+      "json_name": "forwarded_client_ip_headers",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LinuxDoConnectEnabled",
+      "go_type": "bool",
+      "json_name": "linuxdo_connect_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LinuxDoConnectClientID",
+      "go_type": "string",
+      "json_name": "linuxdo_connect_client_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LinuxDoConnectClientSecretConfigured",
+      "go_type": "bool",
+      "json_name": "linuxdo_connect_client_secret_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LinuxDoConnectRedirectURL",
+      "go_type": "string",
+      "json_name": "linuxdo_connect_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectEnabled",
+      "go_type": "bool",
+      "json_name": "dingtalk_connect_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectClientID",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_client_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectClientSecretConfigured",
+      "go_type": "bool",
+      "json_name": "dingtalk_connect_client_secret_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectRedirectURL",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectCorpRestrictionPolicy",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_corp_restriction_policy",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectInternalCorpID",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_internal_corp_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectBypassRegistration",
+      "go_type": "bool",
+      "json_name": "dingtalk_connect_bypass_registration",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncCorpEmail",
+      "go_type": "bool",
+      "json_name": "dingtalk_connect_sync_corp_email",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDisplayName",
+      "go_type": "bool",
+      "json_name": "dingtalk_connect_sync_display_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDept",
+      "go_type": "bool",
+      "json_name": "dingtalk_connect_sync_dept",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncCorpEmailAttrKey",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_corp_email_attr_key",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDisplayNameAttrKey",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_display_name_attr_key",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDeptAttrKey",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_dept_attr_key",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncCorpEmailAttrName",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_corp_email_attr_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDisplayNameAttrName",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_display_name_attr_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDeptAttrName",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_dept_attr_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectEnabled",
+      "go_type": "bool",
+      "json_name": "wechat_connect_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectAppID",
+      "go_type": "string",
+      "json_name": "wechat_connect_app_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectAppSecretConfigured",
+      "go_type": "bool",
+      "json_name": "wechat_connect_app_secret_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectOpenAppID",
+      "go_type": "string",
+      "json_name": "wechat_connect_open_app_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectOpenAppSecretConfigured",
+      "go_type": "bool",
+      "json_name": "wechat_connect_open_app_secret_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMPAppID",
+      "go_type": "string",
+      "json_name": "wechat_connect_mp_app_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMPAppSecretConfigured",
+      "go_type": "bool",
+      "json_name": "wechat_connect_mp_app_secret_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMobileAppID",
+      "go_type": "string",
+      "json_name": "wechat_connect_mobile_app_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMobileAppSecretConfigured",
+      "go_type": "bool",
+      "json_name": "wechat_connect_mobile_app_secret_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectOpenEnabled",
+      "go_type": "bool",
+      "json_name": "wechat_connect_open_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMPEnabled",
+      "go_type": "bool",
+      "json_name": "wechat_connect_mp_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMobileEnabled",
+      "go_type": "bool",
+      "json_name": "wechat_connect_mobile_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMode",
+      "go_type": "string",
+      "json_name": "wechat_connect_mode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectScopes",
+      "go_type": "string",
+      "json_name": "wechat_connect_scopes",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectRedirectURL",
+      "go_type": "string",
+      "json_name": "wechat_connect_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectFrontendRedirectURL",
+      "go_type": "string",
+      "json_name": "wechat_connect_frontend_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectEnabled",
+      "go_type": "bool",
+      "json_name": "oidc_connect_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectProviderName",
+      "go_type": "string",
+      "json_name": "oidc_connect_provider_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectClientID",
+      "go_type": "string",
+      "json_name": "oidc_connect_client_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectClientSecretConfigured",
+      "go_type": "bool",
+      "json_name": "oidc_connect_client_secret_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectIssuerURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_issuer_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectDiscoveryURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_discovery_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectAuthorizeURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_authorize_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectTokenURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_token_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectUserInfoURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_userinfo_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectJWKSURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_jwks_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectScopes",
+      "go_type": "string",
+      "json_name": "oidc_connect_scopes",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectRedirectURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectFrontendRedirectURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_frontend_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectTokenAuthMethod",
+      "go_type": "string",
+      "json_name": "oidc_connect_token_auth_method",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectUsePKCE",
+      "go_type": "bool",
+      "json_name": "oidc_connect_use_pkce",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectValidateIDToken",
+      "go_type": "bool",
+      "json_name": "oidc_connect_validate_id_token",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectAllowedSigningAlgs",
+      "go_type": "string",
+      "json_name": "oidc_connect_allowed_signing_algs",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectClockSkewSeconds",
+      "go_type": "int",
+      "json_name": "oidc_connect_clock_skew_seconds",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectRequireEmailVerified",
+      "go_type": "bool",
+      "json_name": "oidc_connect_require_email_verified",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectUserInfoEmailPath",
+      "go_type": "string",
+      "json_name": "oidc_connect_userinfo_email_path",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectUserInfoIDPath",
+      "go_type": "string",
+      "json_name": "oidc_connect_userinfo_id_path",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectUserInfoUsernamePath",
+      "go_type": "string",
+      "json_name": "oidc_connect_userinfo_username_path",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GitHubOAuthEnabled",
+      "go_type": "bool",
+      "json_name": "github_oauth_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GitHubOAuthClientID",
+      "go_type": "string",
+      "json_name": "github_oauth_client_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GitHubOAuthClientSecretConfigured",
+      "go_type": "bool",
+      "json_name": "github_oauth_client_secret_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GitHubOAuthRedirectURL",
+      "go_type": "string",
+      "json_name": "github_oauth_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GitHubOAuthFrontendRedirectURL",
+      "go_type": "string",
+      "json_name": "github_oauth_frontend_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GoogleOAuthEnabled",
+      "go_type": "bool",
+      "json_name": "google_oauth_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GoogleOAuthClientID",
+      "go_type": "string",
+      "json_name": "google_oauth_client_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GoogleOAuthClientSecretConfigured",
+      "go_type": "bool",
+      "json_name": "google_oauth_client_secret_configured",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GoogleOAuthRedirectURL",
+      "go_type": "string",
+      "json_name": "google_oauth_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GoogleOAuthFrontendRedirectURL",
+      "go_type": "string",
+      "json_name": "google_oauth_frontend_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SiteName",
+      "go_type": "string",
+      "json_name": "site_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SiteLogo",
+      "go_type": "string",
+      "json_name": "site_logo",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SiteSubtitle",
+      "go_type": "string",
+      "json_name": "site_subtitle",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "APIBaseURL",
+      "go_type": "string",
+      "json_name": "api_base_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ContactInfo",
+      "go_type": "string",
+      "json_name": "contact_info",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DocURL",
+      "go_type": "string",
+      "json_name": "doc_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "HomeContent",
+      "go_type": "string",
+      "json_name": "home_content",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CompactHomeEnabled",
+      "go_type": "bool",
+      "json_name": "compact_home_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "HideCcsImportButton",
+      "go_type": "bool",
+      "json_name": "hide_ccs_import_button",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PurchaseSubscriptionEnabled",
+      "go_type": "bool",
+      "json_name": "purchase_subscription_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PurchaseSubscriptionURL",
+      "go_type": "string",
+      "json_name": "purchase_subscription_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TableDefaultPageSize",
+      "go_type": "int",
+      "json_name": "table_default_page_size",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TablePageSizeOptions",
+      "go_type": "[]int",
+      "json_name": "table_page_size_options",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CustomMenuItems",
+      "go_type": "[]CustomMenuItem",
+      "json_name": "custom_menu_items",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CustomEndpoints",
+      "go_type": "[]CustomEndpoint",
+      "json_name": "custom_endpoints",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DefaultConcurrency",
+      "go_type": "int",
+      "json_name": "default_concurrency",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DefaultBalance",
+      "go_type": "float64",
+      "json_name": "default_balance",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AffiliateRebateRate",
+      "go_type": "float64",
+      "json_name": "affiliate_rebate_rate",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AffiliateRebateFreezeHours",
+      "go_type": "int",
+      "json_name": "affiliate_rebate_freeze_hours",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AffiliateRebateDurationDays",
+      "go_type": "int",
+      "json_name": "affiliate_rebate_duration_days",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AffiliateRebatePerInviteeCap",
+      "go_type": "float64",
+      "json_name": "affiliate_rebate_per_invitee_cap",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AdminRechargeRebateEnabled",
+      "go_type": "bool",
+      "json_name": "affiliate_admin_recharge_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DefaultUserRPMLimit",
+      "go_type": "int",
+      "json_name": "default_user_rpm_limit",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DefaultSubscriptions",
+      "go_type": "[]DefaultSubscriptionSetting",
+      "json_name": "default_subscriptions",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableModelFallback",
+      "go_type": "bool",
+      "json_name": "enable_model_fallback",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "FallbackModelAnthropic",
+      "go_type": "string",
+      "json_name": "fallback_model_anthropic",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "FallbackModelOpenAI",
+      "go_type": "string",
+      "json_name": "fallback_model_openai",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "FallbackModelGemini",
+      "go_type": "string",
+      "json_name": "fallback_model_gemini",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "FallbackModelAntigravity",
+      "go_type": "string",
+      "json_name": "fallback_model_antigravity",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableIdentityPatch",
+      "go_type": "bool",
+      "json_name": "enable_identity_patch",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "IdentityPatchPrompt",
+      "go_type": "string",
+      "json_name": "identity_patch_prompt",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpsMonitoringEnabled",
+      "go_type": "bool",
+      "json_name": "ops_monitoring_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpsRealtimeMonitoringEnabled",
+      "go_type": "bool",
+      "json_name": "ops_realtime_monitoring_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpsQueryModeDefault",
+      "go_type": "string",
+      "json_name": "ops_query_mode_default",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpsMetricsIntervalSeconds",
+      "go_type": "int",
+      "json_name": "ops_metrics_interval_seconds",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "MinClaudeCodeVersion",
+      "go_type": "string",
+      "json_name": "min_claude_code_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "MaxClaudeCodeVersion",
+      "go_type": "string",
+      "json_name": "max_claude_code_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AllowUngroupedKeyScheduling",
+      "go_type": "bool",
+      "json_name": "allow_ungrouped_key_scheduling",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "BackendModeEnabled",
+      "go_type": "bool",
+      "json_name": "backend_mode_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableFingerprintUnification",
+      "go_type": "bool",
+      "json_name": "enable_fingerprint_unification",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableMetadataPassthrough",
+      "go_type": "bool",
+      "json_name": "enable_metadata_passthrough",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableCCHSigning",
+      "go_type": "bool",
+      "json_name": "enable_cch_signing",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableClaudeOAuthSystemPromptInjection",
+      "go_type": "bool",
+      "json_name": "enable_claude_oauth_system_prompt_injection",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ClaudeOAuthSystemPrompt",
+      "go_type": "string",
+      "json_name": "claude_oauth_system_prompt",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "ClaudeOAuthSystemPromptBlocks",
+      "go_type": "string",
+      "json_name": "claude_oauth_system_prompt_blocks",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "EnableAnthropicCacheTTL1hInjection",
+      "go_type": "bool",
+      "json_name": "enable_anthropic_cache_ttl_1h_injection",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "RewriteMessageCacheControl",
+      "go_type": "bool",
+      "json_name": "rewrite_message_cache_control",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableClientDatelineNormalization",
+      "go_type": "bool",
+      "json_name": "enable_client_dateline_normalization",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AntigravityUserAgentVersion",
+      "go_type": "string",
+      "json_name": "antigravity_user_agent_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAICodexUserAgent",
+      "go_type": "string",
+      "json_name": "openai_codex_user_agent",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAICodexClientVersion",
+      "go_type": "string",
+      "json_name": "openai_codex_client_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAICodexClientVersionSynced",
+      "go_type": "string",
+      "json_name": "openai_codex_client_version_synced",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAICodexVersionAutoSyncEnabled",
+      "go_type": "bool",
+      "json_name": "openai_codex_version_auto_sync_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "MinCodexVersion",
+      "go_type": "string",
+      "json_name": "min_codex_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "MaxCodexVersion",
+      "go_type": "string",
+      "json_name": "max_codex_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CodexCLIOnlyBlacklist",
+      "go_type": "string",
+      "json_name": "codex_cli_only_blacklist",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CodexCLIOnlyWhitelist",
+      "go_type": "string",
+      "json_name": "codex_cli_only_whitelist",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CodexCLIOnlyAllowAppServerClients",
+      "go_type": "bool",
+      "json_name": "codex_cli_only_allow_app_server_clients",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CodexCLIOnlyEngineFingerprintSignals",
+      "go_type": "string",
+      "json_name": "codex_cli_only_engine_fingerprint_signals",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WebSearchEmulationEnabled",
+      "go_type": "bool",
+      "json_name": "web_search_emulation_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentVisibleMethodAlipaySource",
+      "go_type": "string",
+      "json_name": "payment_visible_method_alipay_source",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentVisibleMethodWxpaySource",
+      "go_type": "string",
+      "json_name": "payment_visible_method_wxpay_source",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentVisibleMethodAlipayEnabled",
+      "go_type": "bool",
+      "json_name": "payment_visible_method_alipay_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentVisibleMethodWxpayEnabled",
+      "go_type": "bool",
+      "json_name": "payment_visible_method_wxpay_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAILowUpstreamRatePriorityEnabled",
+      "go_type": "bool",
+      "json_name": "openai_low_upstream_rate_priority_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIOAuthSchedulingRateMultiplier",
+      "go_type": "float64",
+      "json_name": "openai_oauth_scheduling_rate_multiplier",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEnabled",
+      "go_type": "bool",
+      "json_name": "openai_advanced_scheduler_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerStickyWeightedEnabled",
+      "go_type": "bool",
+      "json_name": "openai_advanced_scheduler_sticky_weighted_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerSubscriptionPriorityEnabled",
+      "go_type": "bool",
+      "json_name": "openai_advanced_scheduler_subscription_priority_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerLBTopK",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_lb_top_k",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightPriority",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_weight_priority",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightLoad",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_weight_load",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightQueue",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_weight_queue",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightErrorRate",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_weight_error_rate",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightTTFT",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_weight_ttft",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightReset",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_weight_reset",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightQuotaHeadroom",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_weight_quota_headroom",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightUpstreamCost",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_weight_upstream_cost",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightPreviousResponse",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_weight_previous_response",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightSessionSticky",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_weight_session_sticky",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEffectiveLBTopK",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_effective_lb_top_k",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEffectiveWeightPriority",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_effective_weight_priority",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEffectiveWeightLoad",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_effective_weight_load",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEffectiveWeightQueue",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_effective_weight_queue",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEffectiveWeightErrorRate",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_effective_weight_error_rate",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEffectiveWeightTTFT",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_effective_weight_ttft",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEffectiveWeightReset",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_effective_weight_reset",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEffectiveWeightQuotaHeadroom",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_effective_weight_quota_headroom",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEffectiveWeightUpstreamCost",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_effective_weight_upstream_cost",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEffectiveWeightPreviousResponse",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_effective_weight_previous_response",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEffectiveWeightSessionSticky",
+      "go_type": "string",
+      "json_name": "openai_advanced_scheduler_effective_weight_session_sticky",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentEnabled",
+      "go_type": "bool",
+      "json_name": "payment_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentMinAmount",
+      "go_type": "float64",
+      "json_name": "payment_min_amount",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentMaxAmount",
+      "go_type": "float64",
+      "json_name": "payment_max_amount",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentDailyLimit",
+      "go_type": "float64",
+      "json_name": "payment_daily_limit",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentOrderTimeoutMin",
+      "go_type": "int",
+      "json_name": "payment_order_timeout_minutes",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentMaxPendingOrders",
+      "go_type": "int",
+      "json_name": "payment_max_pending_orders",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentEnabledTypes",
+      "go_type": "[]string",
+      "json_name": "payment_enabled_types",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentBalanceDisabled",
+      "go_type": "bool",
+      "json_name": "payment_balance_disabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentBalanceRechargeMultiplier",
+      "go_type": "float64",
+      "json_name": "payment_balance_recharge_multiplier",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentSubscriptionUSDToCNYRate",
+      "go_type": "float64",
+      "json_name": "payment_subscription_usd_to_cny_rate",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentRechargeFeeRate",
+      "go_type": "float64",
+      "json_name": "payment_recharge_fee_rate",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentLoadBalanceStrat",
+      "go_type": "string",
+      "json_name": "payment_load_balance_strategy",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentProductNamePrefix",
+      "go_type": "string",
+      "json_name": "payment_product_name_prefix",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentProductNameSuffix",
+      "go_type": "string",
+      "json_name": "payment_product_name_suffix",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentHelpImageURL",
+      "go_type": "string",
+      "json_name": "payment_help_image_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentHelpText",
+      "go_type": "string",
+      "json_name": "payment_help_text",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentCancelRateLimitEnabled",
+      "go_type": "bool",
+      "json_name": "payment_cancel_rate_limit_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentCancelRateLimitMax",
+      "go_type": "int",
+      "json_name": "payment_cancel_rate_limit_max",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentCancelRateLimitWindow",
+      "go_type": "int",
+      "json_name": "payment_cancel_rate_limit_window",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentCancelRateLimitUnit",
+      "go_type": "string",
+      "json_name": "payment_cancel_rate_limit_unit",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentCancelRateLimitMode",
+      "go_type": "string",
+      "json_name": "payment_cancel_rate_limit_window_mode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentAlipayForceQRCode",
+      "go_type": "bool",
+      "json_name": "payment_alipay_force_qrcode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentAlipayMobilePrecreateDeepLink",
+      "go_type": "bool",
+      "json_name": "payment_alipay_mobile_precreate_deep_link",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "BalanceLowNotifyEnabled",
+      "go_type": "bool",
+      "json_name": "balance_low_notify_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "BalanceLowNotifyThreshold",
+      "go_type": "float64",
+      "json_name": "balance_low_notify_threshold",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "BalanceLowNotifyRechargeURL",
+      "go_type": "string",
+      "json_name": "balance_low_notify_recharge_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SubscriptionExpiryNotifyEnabled",
+      "go_type": "bool",
+      "json_name": "subscription_expiry_notify_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AccountQuotaNotifyEnabled",
+      "go_type": "bool",
+      "json_name": "account_quota_notify_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AccountQuotaNotifyEmails",
+      "go_type": "[]NotifyEmailEntry",
+      "json_name": "account_quota_notify_emails",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ChannelMonitorEnabled",
+      "go_type": "bool",
+      "json_name": "channel_monitor_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ChannelMonitorMode",
+      "go_type": "string",
+      "json_name": "channel_monitor_mode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ChannelMonitorDefaultIntervalSeconds",
+      "go_type": "int",
+      "json_name": "channel_monitor_default_interval_seconds",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ChannelMonitorHideThroughput",
+      "go_type": "bool",
+      "json_name": "channel_monitor_hide_throughput",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ChannelMonitorShowQuota",
+      "go_type": "bool",
+      "json_name": "channel_monitor_show_quota",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GrokDefaultTextModel",
+      "go_type": "string",
+      "json_name": "grok_default_text_model",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GrokCrossClientModelMapEnabled",
+      "go_type": "bool",
+      "json_name": "grok_cross_client_model_map_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GrokDefaultBaseURLMode",
+      "go_type": "string",
+      "json_name": "grok_default_base_url_mode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AvailableChannelsEnabled",
+      "go_type": "bool",
+      "json_name": "available_channels_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ModelPlazaEnabled",
+      "go_type": "bool",
+      "json_name": "model_plaza_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ModelPlazaRequireAuth",
+      "go_type": "bool",
+      "json_name": "model_plaza_require_auth",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ModelPlazaDescription",
+      "go_type": "string",
+      "json_name": "model_plaza_description",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PluginManagementEnabled",
+      "go_type": "bool",
+      "json_name": "plugin_management_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "RiskControlEnabled",
+      "go_type": "bool",
+      "json_name": "risk_control_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CyberSessionBlockEnabled",
+      "go_type": "bool",
+      "json_name": "cyber_session_block_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CyberSessionBlockTTLSeconds",
+      "go_type": "int",
+      "json_name": "cyber_session_block_ttl_seconds",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AffiliateEnabled",
+      "go_type": "bool",
+      "json_name": "affiliate_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIFastPolicySettings",
+      "go_type": "*OpenAIFastPolicySettings",
+      "json_name": "openai_fast_policy_settings",
+      "omitempty": true,
+      "secret": false
+    },
+    {
+      "go_name": "DefaultPlatformQuotas",
+      "go_type": "map[string]*service.DefaultPlatformQuotaSetting",
+      "json_name": "default_platform_quotas",
+      "omitempty": true,
+      "secret": false
+    },
+    {
+      "go_name": "AccountSchedulingThresholds",
+      "go_type": "map[string]int",
+      "json_name": "account_scheduling_thresholds",
+      "omitempty": true,
+      "secret": false
+    },
+    {
+      "go_name": "AllowUserViewErrorRequests",
+      "go_type": "bool",
+      "json_name": "allow_user_view_error_requests",
+      "omitempty": false,
+      "secret": false
+    }
+  ],
+  "update_fields": [
+    {
+      "go_name": "RegistrationEnabled",
+      "go_type": "bool",
+      "json_name": "registration_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EmailVerifyEnabled",
+      "go_type": "bool",
+      "json_name": "email_verify_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "RegistrationEmailSuffixWhitelist",
+      "go_type": "[]string",
+      "json_name": "registration_email_suffix_whitelist",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "RegistrationEmailDomainQuotaEnabled",
+      "go_type": "*bool",
+      "json_name": "registration_email_domain_quota_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PromoCodeEnabled",
+      "go_type": "bool",
+      "json_name": "promo_code_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PasswordResetEnabled",
+      "go_type": "bool",
+      "json_name": "password_reset_enabled",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "FrontendURL",
+      "go_type": "string",
+      "json_name": "frontend_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "InvitationCodeEnabled",
+      "go_type": "bool",
+      "json_name": "invitation_code_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TotpEnabled",
+      "go_type": "bool",
+      "json_name": "totp_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PasskeyEnabled",
+      "go_type": "*bool",
+      "json_name": "passkey_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SessionBindingEnabled",
+      "go_type": "*bool",
+      "json_name": "session_binding_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "StepUpEnabled",
+      "go_type": "*bool",
+      "json_name": "step_up_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuditLogRetentionDays",
+      "go_type": "int",
+      "json_name": "audit_log_retention_days",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LoginAgreementEnabled",
+      "go_type": "bool",
+      "json_name": "login_agreement_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LoginAgreementMode",
+      "go_type": "string",
+      "json_name": "login_agreement_mode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LoginAgreementUpdatedAt",
+      "go_type": "string",
+      "json_name": "login_agreement_updated_at",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LoginAgreementDocuments",
+      "go_type": "[]dto.LoginAgreementDocument",
+      "json_name": "login_agreement_documents",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPHost",
+      "go_type": "string",
+      "json_name": "smtp_host",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPPort",
+      "go_type": "int",
+      "json_name": "smtp_port",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPUsername",
+      "go_type": "string",
+      "json_name": "smtp_username",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPPassword",
+      "go_type": "string",
+      "json_name": "smtp_password",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "SMTPFrom",
+      "go_type": "string",
+      "json_name": "smtp_from_email",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPFromName",
+      "go_type": "string",
+      "json_name": "smtp_from_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SMTPUseTLS",
+      "go_type": "bool",
+      "json_name": "smtp_use_tls",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TurnstileEnabled",
+      "go_type": "bool",
+      "json_name": "turnstile_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TurnstileSiteKey",
+      "go_type": "string",
+      "json_name": "turnstile_site_key",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TurnstileSecretKey",
+      "go_type": "string",
+      "json_name": "turnstile_secret_key",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "TencentCaptchaEnabled",
+      "go_type": "bool",
+      "json_name": "tencent_captcha_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TencentCaptchaAppID",
+      "go_type": "string",
+      "json_name": "tencent_captcha_app_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TencentCaptchaAppSecretKey",
+      "go_type": "string",
+      "json_name": "tencent_captcha_app_secret_key",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "TencentCaptchaCloudSecretID",
+      "go_type": "string",
+      "json_name": "tencent_captcha_cloud_secret_id",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "TencentCaptchaCloudSecretKey",
+      "go_type": "string",
+      "json_name": "tencent_captcha_cloud_secret_key",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "TencentCaptchaRegion",
+      "go_type": "string",
+      "json_name": "tencent_captcha_region",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AliyunCaptchaEnabled",
+      "go_type": "bool",
+      "json_name": "aliyun_captcha_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AliyunCaptchaAccessKeyID",
+      "go_type": "string",
+      "json_name": "aliyun_captcha_access_key_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AliyunCaptchaAccessKeySecret",
+      "go_type": "string",
+      "json_name": "aliyun_captcha_access_key_secret",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "AliyunCaptchaSceneID",
+      "go_type": "string",
+      "json_name": "aliyun_captcha_scene_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AliyunCaptchaPrefix",
+      "go_type": "string",
+      "json_name": "aliyun_captcha_prefix",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AliyunCaptchaRegion",
+      "go_type": "string",
+      "json_name": "aliyun_captcha_region",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "APIKeyACLTrustForwardedIP",
+      "go_type": "*bool",
+      "json_name": "api_key_acl_trust_forwarded_ip",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ForwardedClientIPHeaders",
+      "go_type": "*[]string",
+      "json_name": "forwarded_client_ip_headers",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LinuxDoConnectEnabled",
+      "go_type": "bool",
+      "json_name": "linuxdo_connect_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LinuxDoConnectClientID",
+      "go_type": "string",
+      "json_name": "linuxdo_connect_client_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "LinuxDoConnectClientSecret",
+      "go_type": "string",
+      "json_name": "linuxdo_connect_client_secret",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "LinuxDoConnectRedirectURL",
+      "go_type": "string",
+      "json_name": "linuxdo_connect_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectEnabled",
+      "go_type": "bool",
+      "json_name": "dingtalk_connect_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectClientID",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_client_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectClientSecret",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_client_secret",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "DingTalkConnectRedirectURL",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectCorpRestrictionPolicy",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_corp_restriction_policy",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectInternalCorpID",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_internal_corp_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectBypassRegistration",
+      "go_type": "bool",
+      "json_name": "dingtalk_connect_bypass_registration",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncCorpEmail",
+      "go_type": "bool",
+      "json_name": "dingtalk_connect_sync_corp_email",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDisplayName",
+      "go_type": "bool",
+      "json_name": "dingtalk_connect_sync_display_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDept",
+      "go_type": "bool",
+      "json_name": "dingtalk_connect_sync_dept",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncCorpEmailAttrKey",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_corp_email_attr_key",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDisplayNameAttrKey",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_display_name_attr_key",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDeptAttrKey",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_dept_attr_key",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncCorpEmailAttrName",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_corp_email_attr_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDisplayNameAttrName",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_display_name_attr_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DingTalkConnectSyncDeptAttrName",
+      "go_type": "string",
+      "json_name": "dingtalk_connect_sync_dept_attr_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectEnabled",
+      "go_type": "bool",
+      "json_name": "wechat_connect_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectAppID",
+      "go_type": "string",
+      "json_name": "wechat_connect_app_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectAppSecret",
+      "go_type": "string",
+      "json_name": "wechat_connect_app_secret",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "WeChatConnectOpenAppID",
+      "go_type": "string",
+      "json_name": "wechat_connect_open_app_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectOpenAppSecret",
+      "go_type": "string",
+      "json_name": "wechat_connect_open_app_secret",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "WeChatConnectMPAppID",
+      "go_type": "string",
+      "json_name": "wechat_connect_mp_app_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMPAppSecret",
+      "go_type": "string",
+      "json_name": "wechat_connect_mp_app_secret",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "WeChatConnectMobileAppID",
+      "go_type": "string",
+      "json_name": "wechat_connect_mobile_app_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMobileAppSecret",
+      "go_type": "string",
+      "json_name": "wechat_connect_mobile_app_secret",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "WeChatConnectOpenEnabled",
+      "go_type": "bool",
+      "json_name": "wechat_connect_open_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMPEnabled",
+      "go_type": "bool",
+      "json_name": "wechat_connect_mp_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMobileEnabled",
+      "go_type": "bool",
+      "json_name": "wechat_connect_mobile_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectMode",
+      "go_type": "string",
+      "json_name": "wechat_connect_mode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectScopes",
+      "go_type": "string",
+      "json_name": "wechat_connect_scopes",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectRedirectURL",
+      "go_type": "string",
+      "json_name": "wechat_connect_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "WeChatConnectFrontendRedirectURL",
+      "go_type": "string",
+      "json_name": "wechat_connect_frontend_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectEnabled",
+      "go_type": "bool",
+      "json_name": "oidc_connect_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectProviderName",
+      "go_type": "string",
+      "json_name": "oidc_connect_provider_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectClientID",
+      "go_type": "string",
+      "json_name": "oidc_connect_client_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectClientSecret",
+      "go_type": "string",
+      "json_name": "oidc_connect_client_secret",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "OIDCConnectIssuerURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_issuer_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectDiscoveryURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_discovery_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectAuthorizeURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_authorize_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectTokenURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_token_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectUserInfoURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_userinfo_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectJWKSURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_jwks_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectScopes",
+      "go_type": "string",
+      "json_name": "oidc_connect_scopes",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectRedirectURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectFrontendRedirectURL",
+      "go_type": "string",
+      "json_name": "oidc_connect_frontend_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectTokenAuthMethod",
+      "go_type": "string",
+      "json_name": "oidc_connect_token_auth_method",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectUsePKCE",
+      "go_type": "*bool",
+      "json_name": "oidc_connect_use_pkce",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectValidateIDToken",
+      "go_type": "*bool",
+      "json_name": "oidc_connect_validate_id_token",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectAllowedSigningAlgs",
+      "go_type": "string",
+      "json_name": "oidc_connect_allowed_signing_algs",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectClockSkewSeconds",
+      "go_type": "int",
+      "json_name": "oidc_connect_clock_skew_seconds",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectRequireEmailVerified",
+      "go_type": "bool",
+      "json_name": "oidc_connect_require_email_verified",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectUserInfoEmailPath",
+      "go_type": "string",
+      "json_name": "oidc_connect_userinfo_email_path",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectUserInfoIDPath",
+      "go_type": "string",
+      "json_name": "oidc_connect_userinfo_id_path",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OIDCConnectUserInfoUsernamePath",
+      "go_type": "string",
+      "json_name": "oidc_connect_userinfo_username_path",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GitHubOAuthEnabled",
+      "go_type": "bool",
+      "json_name": "github_oauth_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GitHubOAuthClientID",
+      "go_type": "string",
+      "json_name": "github_oauth_client_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GitHubOAuthClientSecret",
+      "go_type": "string",
+      "json_name": "github_oauth_client_secret",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "GitHubOAuthRedirectURL",
+      "go_type": "string",
+      "json_name": "github_oauth_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GitHubOAuthFrontendRedirectURL",
+      "go_type": "string",
+      "json_name": "github_oauth_frontend_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GoogleOAuthEnabled",
+      "go_type": "bool",
+      "json_name": "google_oauth_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GoogleOAuthClientID",
+      "go_type": "string",
+      "json_name": "google_oauth_client_id",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GoogleOAuthClientSecret",
+      "go_type": "string",
+      "json_name": "google_oauth_client_secret",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "GoogleOAuthRedirectURL",
+      "go_type": "string",
+      "json_name": "google_oauth_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GoogleOAuthFrontendRedirectURL",
+      "go_type": "string",
+      "json_name": "google_oauth_frontend_redirect_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SiteName",
+      "go_type": "string",
+      "json_name": "site_name",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SiteLogo",
+      "go_type": "string",
+      "json_name": "site_logo",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SiteSubtitle",
+      "go_type": "string",
+      "json_name": "site_subtitle",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "APIBaseURL",
+      "go_type": "string",
+      "json_name": "api_base_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ContactInfo",
+      "go_type": "string",
+      "json_name": "contact_info",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DocURL",
+      "go_type": "string",
+      "json_name": "doc_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "HomeContent",
+      "go_type": "string",
+      "json_name": "home_content",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CompactHomeEnabled",
+      "go_type": "bool",
+      "json_name": "compact_home_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "HideCcsImportButton",
+      "go_type": "bool",
+      "json_name": "hide_ccs_import_button",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PurchaseSubscriptionEnabled",
+      "go_type": "*bool",
+      "json_name": "purchase_subscription_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PurchaseSubscriptionURL",
+      "go_type": "*string",
+      "json_name": "purchase_subscription_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TableDefaultPageSize",
+      "go_type": "int",
+      "json_name": "table_default_page_size",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "TablePageSizeOptions",
+      "go_type": "[]int",
+      "json_name": "table_page_size_options",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CustomMenuItems",
+      "go_type": "*[]dto.CustomMenuItem",
+      "json_name": "custom_menu_items",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CustomEndpoints",
+      "go_type": "*[]dto.CustomEndpoint",
+      "json_name": "custom_endpoints",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DefaultConcurrency",
+      "go_type": "int",
+      "json_name": "default_concurrency",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DefaultBalance",
+      "go_type": "float64",
+      "json_name": "default_balance",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AffiliateRebateRate",
+      "go_type": "*float64",
+      "json_name": "affiliate_rebate_rate",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AffiliateRebateFreezeHours",
+      "go_type": "*int",
+      "json_name": "affiliate_rebate_freeze_hours",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AffiliateRebateDurationDays",
+      "go_type": "*int",
+      "json_name": "affiliate_rebate_duration_days",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AffiliateRebatePerInviteeCap",
+      "go_type": "*float64",
+      "json_name": "affiliate_rebate_per_invitee_cap",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AdminRechargeRebateEnabled",
+      "go_type": "*bool",
+      "json_name": "affiliate_admin_recharge_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DefaultUserRPMLimit",
+      "go_type": "int",
+      "json_name": "default_user_rpm_limit",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "DefaultSubscriptions",
+      "go_type": "[]dto.DefaultSubscriptionSetting",
+      "json_name": "default_subscriptions",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultEmailBalance",
+      "go_type": "*float64",
+      "json_name": "auth_source_default_email_balance",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultEmailConcurrency",
+      "go_type": "*int",
+      "json_name": "auth_source_default_email_concurrency",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultEmailSubscriptions",
+      "go_type": "*[]dto.DefaultSubscriptionSetting",
+      "json_name": "auth_source_default_email_subscriptions",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultEmailGrantOnSignup",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_email_grant_on_signup",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultEmailGrantOnFirstBind",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_email_grant_on_first_bind",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultLinuxDoBalance",
+      "go_type": "*float64",
+      "json_name": "auth_source_default_linuxdo_balance",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultLinuxDoConcurrency",
+      "go_type": "*int",
+      "json_name": "auth_source_default_linuxdo_concurrency",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultLinuxDoSubscriptions",
+      "go_type": "*[]dto.DefaultSubscriptionSetting",
+      "json_name": "auth_source_default_linuxdo_subscriptions",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultLinuxDoGrantOnSignup",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_linuxdo_grant_on_signup",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultLinuxDoGrantOnFirstBind",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_linuxdo_grant_on_first_bind",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultOIDCBalance",
+      "go_type": "*float64",
+      "json_name": "auth_source_default_oidc_balance",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultOIDCConcurrency",
+      "go_type": "*int",
+      "json_name": "auth_source_default_oidc_concurrency",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultOIDCSubscriptions",
+      "go_type": "*[]dto.DefaultSubscriptionSetting",
+      "json_name": "auth_source_default_oidc_subscriptions",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultOIDCGrantOnSignup",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_oidc_grant_on_signup",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultOIDCGrantOnFirstBind",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_oidc_grant_on_first_bind",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultWeChatBalance",
+      "go_type": "*float64",
+      "json_name": "auth_source_default_wechat_balance",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultWeChatConcurrency",
+      "go_type": "*int",
+      "json_name": "auth_source_default_wechat_concurrency",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultWeChatSubscriptions",
+      "go_type": "*[]dto.DefaultSubscriptionSetting",
+      "json_name": "auth_source_default_wechat_subscriptions",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultWeChatGrantOnSignup",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_wechat_grant_on_signup",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultWeChatGrantOnFirstBind",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_wechat_grant_on_first_bind",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultGitHubBalance",
+      "go_type": "*float64",
+      "json_name": "auth_source_default_github_balance",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultGitHubConcurrency",
+      "go_type": "*int",
+      "json_name": "auth_source_default_github_concurrency",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultGitHubSubscriptions",
+      "go_type": "*[]dto.DefaultSubscriptionSetting",
+      "json_name": "auth_source_default_github_subscriptions",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultGitHubGrantOnSignup",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_github_grant_on_signup",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultGitHubGrantOnFirstBind",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_github_grant_on_first_bind",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultGoogleBalance",
+      "go_type": "*float64",
+      "json_name": "auth_source_default_google_balance",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultGoogleConcurrency",
+      "go_type": "*int",
+      "json_name": "auth_source_default_google_concurrency",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultGoogleSubscriptions",
+      "go_type": "*[]dto.DefaultSubscriptionSetting",
+      "json_name": "auth_source_default_google_subscriptions",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultGoogleGrantOnSignup",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_google_grant_on_signup",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultGoogleGrantOnFirstBind",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_google_grant_on_first_bind",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultDingTalkBalance",
+      "go_type": "*float64",
+      "json_name": "auth_source_default_dingtalk_balance",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultDingTalkConcurrency",
+      "go_type": "*int",
+      "json_name": "auth_source_default_dingtalk_concurrency",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultDingTalkSubscriptions",
+      "go_type": "*[]dto.DefaultSubscriptionSetting",
+      "json_name": "auth_source_default_dingtalk_subscriptions",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultDingTalkGrantOnSignup",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_dingtalk_grant_on_signup",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDefaultDingTalkGrantOnFirstBind",
+      "go_type": "*bool",
+      "json_name": "auth_source_default_dingtalk_grant_on_first_bind",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ForceEmailOnThirdPartySignup",
+      "go_type": "*bool",
+      "json_name": "force_email_on_third_party_signup",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableModelFallback",
+      "go_type": "bool",
+      "json_name": "enable_model_fallback",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "FallbackModelAnthropic",
+      "go_type": "string",
+      "json_name": "fallback_model_anthropic",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "FallbackModelOpenAI",
+      "go_type": "string",
+      "json_name": "fallback_model_openai",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "FallbackModelGemini",
+      "go_type": "string",
+      "json_name": "fallback_model_gemini",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "FallbackModelAntigravity",
+      "go_type": "string",
+      "json_name": "fallback_model_antigravity",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableIdentityPatch",
+      "go_type": "bool",
+      "json_name": "enable_identity_patch",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "IdentityPatchPrompt",
+      "go_type": "string",
+      "json_name": "identity_patch_prompt",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpsMonitoringEnabled",
+      "go_type": "*bool",
+      "json_name": "ops_monitoring_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpsRealtimeMonitoringEnabled",
+      "go_type": "*bool",
+      "json_name": "ops_realtime_monitoring_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpsQueryModeDefault",
+      "go_type": "*string",
+      "json_name": "ops_query_mode_default",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpsMetricsIntervalSeconds",
+      "go_type": "*int",
+      "json_name": "ops_metrics_interval_seconds",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "MinClaudeCodeVersion",
+      "go_type": "string",
+      "json_name": "min_claude_code_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "MaxClaudeCodeVersion",
+      "go_type": "string",
+      "json_name": "max_claude_code_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AllowUngroupedKeyScheduling",
+      "go_type": "bool",
+      "json_name": "allow_ungrouped_key_scheduling",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "BackendModeEnabled",
+      "go_type": "bool",
+      "json_name": "backend_mode_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableFingerprintUnification",
+      "go_type": "*bool",
+      "json_name": "enable_fingerprint_unification",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableMetadataPassthrough",
+      "go_type": "*bool",
+      "json_name": "enable_metadata_passthrough",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableCCHSigning",
+      "go_type": "*bool",
+      "json_name": "enable_cch_signing",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableClaudeOAuthSystemPromptInjection",
+      "go_type": "*bool",
+      "json_name": "enable_claude_oauth_system_prompt_injection",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ClaudeOAuthSystemPrompt",
+      "go_type": "*string",
+      "json_name": "claude_oauth_system_prompt",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "ClaudeOAuthSystemPromptBlocks",
+      "go_type": "*string",
+      "json_name": "claude_oauth_system_prompt_blocks",
+      "omitempty": false,
+      "secret": true
+    },
+    {
+      "go_name": "EnableAnthropicCacheTTL1hInjection",
+      "go_type": "*bool",
+      "json_name": "enable_anthropic_cache_ttl_1h_injection",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "RewriteMessageCacheControl",
+      "go_type": "*bool",
+      "json_name": "rewrite_message_cache_control",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "EnableClientDatelineNormalization",
+      "go_type": "*bool",
+      "json_name": "enable_client_dateline_normalization",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AntigravityUserAgentVersion",
+      "go_type": "*string",
+      "json_name": "antigravity_user_agent_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAICodexUserAgent",
+      "go_type": "*string",
+      "json_name": "openai_codex_user_agent",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAICodexClientVersion",
+      "go_type": "*string",
+      "json_name": "openai_codex_client_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAICodexVersionAutoSyncEnabled",
+      "go_type": "*bool",
+      "json_name": "openai_codex_version_auto_sync_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "MinCodexVersion",
+      "go_type": "string",
+      "json_name": "min_codex_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "MaxCodexVersion",
+      "go_type": "string",
+      "json_name": "max_codex_version",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CodexCLIOnlyBlacklist",
+      "go_type": "string",
+      "json_name": "codex_cli_only_blacklist",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CodexCLIOnlyWhitelist",
+      "go_type": "string",
+      "json_name": "codex_cli_only_whitelist",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CodexCLIOnlyAllowAppServerClients",
+      "go_type": "*bool",
+      "json_name": "codex_cli_only_allow_app_server_clients",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CodexCLIOnlyEngineFingerprintSignals",
+      "go_type": "string",
+      "json_name": "codex_cli_only_engine_fingerprint_signals",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentVisibleMethodAlipaySource",
+      "go_type": "*string",
+      "json_name": "payment_visible_method_alipay_source",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentVisibleMethodWxpaySource",
+      "go_type": "*string",
+      "json_name": "payment_visible_method_wxpay_source",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentVisibleMethodAlipayEnabled",
+      "go_type": "*bool",
+      "json_name": "payment_visible_method_alipay_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentVisibleMethodWxpayEnabled",
+      "go_type": "*bool",
+      "json_name": "payment_visible_method_wxpay_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAILowUpstreamRatePriorityEnabled",
+      "go_type": "*bool",
+      "json_name": "openai_low_upstream_rate_priority_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIOAuthSchedulingRateMultiplier",
+      "go_type": "*float64",
+      "json_name": "openai_oauth_scheduling_rate_multiplier",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerEnabled",
+      "go_type": "*bool",
+      "json_name": "openai_advanced_scheduler_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerStickyWeightedEnabled",
+      "go_type": "*bool",
+      "json_name": "openai_advanced_scheduler_sticky_weighted_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerSubscriptionPriorityEnabled",
+      "go_type": "*bool",
+      "json_name": "openai_advanced_scheduler_subscription_priority_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerLBTopK",
+      "go_type": "*string",
+      "json_name": "openai_advanced_scheduler_lb_top_k",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightPriority",
+      "go_type": "*string",
+      "json_name": "openai_advanced_scheduler_weight_priority",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightLoad",
+      "go_type": "*string",
+      "json_name": "openai_advanced_scheduler_weight_load",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightQueue",
+      "go_type": "*string",
+      "json_name": "openai_advanced_scheduler_weight_queue",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightErrorRate",
+      "go_type": "*string",
+      "json_name": "openai_advanced_scheduler_weight_error_rate",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightTTFT",
+      "go_type": "*string",
+      "json_name": "openai_advanced_scheduler_weight_ttft",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightReset",
+      "go_type": "*string",
+      "json_name": "openai_advanced_scheduler_weight_reset",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightQuotaHeadroom",
+      "go_type": "*string",
+      "json_name": "openai_advanced_scheduler_weight_quota_headroom",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightUpstreamCost",
+      "go_type": "*string",
+      "json_name": "openai_advanced_scheduler_weight_upstream_cost",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightPreviousResponse",
+      "go_type": "*string",
+      "json_name": "openai_advanced_scheduler_weight_previous_response",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIAdvancedSchedulerWeightSessionSticky",
+      "go_type": "*string",
+      "json_name": "openai_advanced_scheduler_weight_session_sticky",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "BalanceLowNotifyEnabled",
+      "go_type": "*bool",
+      "json_name": "balance_low_notify_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "BalanceLowNotifyThreshold",
+      "go_type": "*float64",
+      "json_name": "balance_low_notify_threshold",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "BalanceLowNotifyRechargeURL",
+      "go_type": "*string",
+      "json_name": "balance_low_notify_recharge_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "SubscriptionExpiryNotifyEnabled",
+      "go_type": "*bool",
+      "json_name": "subscription_expiry_notify_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AccountQuotaNotifyEnabled",
+      "go_type": "*bool",
+      "json_name": "account_quota_notify_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AccountQuotaNotifyEmails",
+      "go_type": "*[]dto.NotifyEmailEntry",
+      "json_name": "account_quota_notify_emails",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentEnabled",
+      "go_type": "*bool",
+      "json_name": "payment_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentMinAmount",
+      "go_type": "*float64",
+      "json_name": "payment_min_amount",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentMaxAmount",
+      "go_type": "*float64",
+      "json_name": "payment_max_amount",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentDailyLimit",
+      "go_type": "*float64",
+      "json_name": "payment_daily_limit",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentOrderTimeoutMin",
+      "go_type": "*int",
+      "json_name": "payment_order_timeout_minutes",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentMaxPendingOrders",
+      "go_type": "*int",
+      "json_name": "payment_max_pending_orders",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentEnabledTypes",
+      "go_type": "[]string",
+      "json_name": "payment_enabled_types",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentBalanceDisabled",
+      "go_type": "*bool",
+      "json_name": "payment_balance_disabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentBalanceRechargeMultiplier",
+      "go_type": "*float64",
+      "json_name": "payment_balance_recharge_multiplier",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentSubscriptionUSDToCNYRate",
+      "go_type": "*float64",
+      "json_name": "payment_subscription_usd_to_cny_rate",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentRechargeFeeRate",
+      "go_type": "*float64",
+      "json_name": "payment_recharge_fee_rate",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentLoadBalanceStrat",
+      "go_type": "*string",
+      "json_name": "payment_load_balance_strategy",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentProductNamePrefix",
+      "go_type": "*string",
+      "json_name": "payment_product_name_prefix",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentProductNameSuffix",
+      "go_type": "*string",
+      "json_name": "payment_product_name_suffix",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentHelpImageURL",
+      "go_type": "*string",
+      "json_name": "payment_help_image_url",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentHelpText",
+      "go_type": "*string",
+      "json_name": "payment_help_text",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentCancelRateLimitEnabled",
+      "go_type": "*bool",
+      "json_name": "payment_cancel_rate_limit_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentCancelRateLimitMax",
+      "go_type": "*int",
+      "json_name": "payment_cancel_rate_limit_max",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentCancelRateLimitWindow",
+      "go_type": "*int",
+      "json_name": "payment_cancel_rate_limit_window",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentCancelRateLimitUnit",
+      "go_type": "*string",
+      "json_name": "payment_cancel_rate_limit_unit",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentCancelRateLimitMode",
+      "go_type": "*string",
+      "json_name": "payment_cancel_rate_limit_window_mode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentAlipayForceQRCode",
+      "go_type": "*bool",
+      "json_name": "payment_alipay_force_qrcode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PaymentAlipayMobilePrecreateDeepLink",
+      "go_type": "*bool",
+      "json_name": "payment_alipay_mobile_precreate_deep_link",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ChannelMonitorEnabled",
+      "go_type": "*bool",
+      "json_name": "channel_monitor_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ChannelMonitorMode",
+      "go_type": "*string",
+      "json_name": "channel_monitor_mode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ChannelMonitorDefaultIntervalSeconds",
+      "go_type": "*int",
+      "json_name": "channel_monitor_default_interval_seconds",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ChannelMonitorHideThroughput",
+      "go_type": "*bool",
+      "json_name": "channel_monitor_hide_throughput",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ChannelMonitorShowQuota",
+      "go_type": "*bool",
+      "json_name": "channel_monitor_show_quota",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GrokDefaultTextModel",
+      "go_type": "*string",
+      "json_name": "grok_default_text_model",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GrokCrossClientModelMapEnabled",
+      "go_type": "*bool",
+      "json_name": "grok_cross_client_model_map_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "GrokDefaultBaseURLMode",
+      "go_type": "*string",
+      "json_name": "grok_default_base_url_mode",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AvailableChannelsEnabled",
+      "go_type": "*bool",
+      "json_name": "available_channels_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ModelPlazaEnabled",
+      "go_type": "*bool",
+      "json_name": "model_plaza_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ModelPlazaRequireAuth",
+      "go_type": "*bool",
+      "json_name": "model_plaza_require_auth",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "ModelPlazaDescription",
+      "go_type": "*string",
+      "json_name": "model_plaza_description",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "PluginManagementEnabled",
+      "go_type": "*bool",
+      "json_name": "plugin_management_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AffiliateEnabled",
+      "go_type": "*bool",
+      "json_name": "affiliate_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "RiskControlEnabled",
+      "go_type": "*bool",
+      "json_name": "risk_control_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CyberSessionBlockEnabled",
+      "go_type": "*bool",
+      "json_name": "cyber_session_block_enabled",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "CyberSessionBlockTTLSeconds",
+      "go_type": "*int",
+      "json_name": "cyber_session_block_ttl_seconds",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "OpenAIFastPolicySettings",
+      "go_type": "*dto.OpenAIFastPolicySettings",
+      "json_name": "openai_fast_policy_settings",
+      "omitempty": true,
+      "secret": false
+    },
+    {
+      "go_name": "DefaultPlatformQuotas",
+      "go_type": "map[string]*service.DefaultPlatformQuotaSetting",
+      "json_name": "default_platform_quotas",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AccountSchedulingThresholds",
+      "go_type": "map[string]int",
+      "json_name": "account_scheduling_thresholds",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceEmailPlatformQuotas",
+      "go_type": "map[string]*service.DefaultPlatformQuotaSetting",
+      "json_name": "auth_source_default_email_platform_quotas",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceLinuxDoPlatformQuotas",
+      "go_type": "map[string]*service.DefaultPlatformQuotaSetting",
+      "json_name": "auth_source_default_linuxdo_platform_quotas",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceOIDCPlatformQuotas",
+      "go_type": "map[string]*service.DefaultPlatformQuotaSetting",
+      "json_name": "auth_source_default_oidc_platform_quotas",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceWeChatPlatformQuotas",
+      "go_type": "map[string]*service.DefaultPlatformQuotaSetting",
+      "json_name": "auth_source_default_wechat_platform_quotas",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceGitHubPlatformQuotas",
+      "go_type": "map[string]*service.DefaultPlatformQuotaSetting",
+      "json_name": "auth_source_default_github_platform_quotas",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceGooglePlatformQuotas",
+      "go_type": "map[string]*service.DefaultPlatformQuotaSetting",
+      "json_name": "auth_source_default_google_platform_quotas",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AuthSourceDingTalkPlatformQuotas",
+      "go_type": "map[string]*service.DefaultPlatformQuotaSetting",
+      "json_name": "auth_source_default_dingtalk_platform_quotas",
+      "omitempty": false,
+      "secret": false
+    },
+    {
+      "go_name": "AllowUserViewErrorRequests",
+      "go_type": "*bool",
+      "json_name": "allow_user_view_error_requests",
+      "omitempty": false,
+      "secret": false
+    }
+  ]
+}
