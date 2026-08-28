@@ -49,7 +49,7 @@ separation, and no credential fallback. Payment UI and local secure storage
 remain caller-owned.
 
 The pinned route inventory lives in
-`doc/contract/v0_1_183_route_manifest.json`. It currently distinguishes 552
+`tool/contracts/v0_1_183_route_manifest.json`. It currently distinguishes 552
 target management routes from 14 server-ingress exclusions and records the
 implementation/test state of every target route.
 

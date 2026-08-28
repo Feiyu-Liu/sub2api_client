@@ -35,7 +35,7 @@ Flutter SDK、UI 状态管理框架、安全存储插件、浏览器启动器或
 凭证自动回退。支付 UI 和本地安全存储仍由调用方负责。
 
 固定路由清单位于
-[`doc/contract/v0_1_183_route_manifest.json`](doc/contract/v0_1_183_route_manifest.json)。
+[`tool/contracts/v0_1_183_route_manifest.json`](tool/contracts/v0_1_183_route_manifest.json)。
 其中记录了 552 条目标管理路由和 14 条明确排除的服务端入口，并保存每条目标路由的实现与
 测试状态。Gateway 数据面、callback/webhook、setup、健康检查和静态资源入口不在当前范围内。
 

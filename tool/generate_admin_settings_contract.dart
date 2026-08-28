@@ -4,7 +4,7 @@ import 'dart:io';
 const _tag = 'v0.1.183';
 const _commit = 'e8cb019fabf8b55199436229044cbf9aa7a82564';
 const _upstream = 'github/sub2api';
-const _output = 'doc/contract/v0_1_183_admin_settings_fields.json';
+const _output = 'tool/contracts/v0_1_183_admin_settings_fields.json';
 const _dartOutput =
     'lib/src/admin/sub2api_admin_system_settings_generated.dart';
 const _fixtureOutput =

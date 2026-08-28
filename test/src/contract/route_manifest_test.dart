@@ -10,7 +10,7 @@ void main() {
       final manifest =
           jsonDecode(
                 File(
-                  'doc/contract/v0_1_183_route_manifest.json',
+                  'tool/contracts/v0_1_183_route_manifest.json',
                 ).readAsStringSync(),
               )
               as Map<String, Object?>;
@@ -48,7 +48,7 @@ void main() {
     final manifest =
         jsonDecode(
               File(
-                'doc/contract/v0_1_183_route_manifest.json',
+                'tool/contracts/v0_1_183_route_manifest.json',
               ).readAsStringSync(),
             )
             as Map<String, Object?>;
@@ -76,7 +76,7 @@ void main() {
     final manifest =
         jsonDecode(
               File(
-                'doc/contract/v0_1_183_route_manifest.json',
+                'tool/contracts/v0_1_183_route_manifest.json',
               ).readAsStringSync(),
             )
             as Map<String, Object?>;
@@ -113,7 +113,7 @@ void main() {
       final manifest =
           jsonDecode(
                 File(
-                  'doc/contract/v0_1_183_route_manifest.json',
+                  'tool/contracts/v0_1_183_route_manifest.json',
                 ).readAsStringSync(),
               )
               as Map<String, Object?>;
@@ -137,7 +137,7 @@ void main() {
     final manifest =
         jsonDecode(
               File(
-                'doc/contract/v0_1_183_route_manifest.json',
+                'tool/contracts/v0_1_183_route_manifest.json',
               ).readAsStringSync(),
             )
             as Map<String, Object?>;
@@ -168,7 +168,7 @@ void main() {
     final manifest =
         jsonDecode(
               File(
-                'doc/contract/v0_1_183_route_manifest.json',
+                'tool/contracts/v0_1_183_route_manifest.json',
               ).readAsStringSync(),
             )
             as Map<String, Object?>;
@@ -212,7 +212,7 @@ void main() {
     final manifest =
         jsonDecode(
               File(
-                'doc/contract/v0_1_183_route_manifest.json',
+                'tool/contracts/v0_1_183_route_manifest.json',
               ).readAsStringSync(),
             )
             as Map<String, Object?>;
