@@ -67,6 +67,8 @@ void main() {
     final Sub2ApiAdminOpenAIClient opsOpenAI = ops.openAI;
     final Sub2ApiAdminPluginsClient adminPlugins = admin.plugins;
     final Sub2ApiAdminPluginsClient opsPlugins = ops.plugins;
+    final Sub2ApiAdminPromptAuditClient adminPromptAudit = admin.promptAudit;
+    final Sub2ApiAdminPromptAuditClient opsPromptAudit = ops.promptAudit;
     final Sub2ApiAdminProxiesClient adminProxies = admin.proxies;
     final Sub2ApiAdminProxiesClient opsProxies = ops.proxies;
     final Sub2ApiAdminPromoCodesClient adminPromoCodes = admin.promoCodes;
@@ -168,6 +170,8 @@ void main() {
       opsOpenAI,
       adminPlugins,
       opsPlugins,
+      adminPromptAudit,
+      opsPromptAudit,
       exportAccountData,
       importAccountData,
       importCodexSessions,

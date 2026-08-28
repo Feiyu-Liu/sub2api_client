@@ -156,6 +156,26 @@ final class Sub2ApiAdminPluginUiUrl extends _SensitiveValue {
   const Sub2ApiAdminPluginUiUrl(super.value);
 }
 
+/// Bearer token configured for a prompt-audit guard endpoint.
+final class Sub2ApiAdminPromptAuditEndpointToken extends _SensitiveValue {
+  const Sub2ApiAdminPromptAuditEndpointToken(super.value);
+}
+
+/// Prompt or preview content visible only to privileged audit operators.
+final class Sub2ApiAdminPromptAuditContent extends _SensitiveValue {
+  const Sub2ApiAdminPromptAuditContent(super.value);
+}
+
+/// Scanner evidence that may contain excerpts from audited prompts.
+final class Sub2ApiAdminPromptAuditEvidence extends _SensitiveValue {
+  const Sub2ApiAdminPromptAuditEvidence(super.value);
+}
+
+/// Short-lived capability proving a prompt-audit filter deletion preview.
+final class Sub2ApiAdminPromptAuditDeleteToken extends _SensitiveValue {
+  const Sub2ApiAdminPromptAuditDeleteToken(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so
