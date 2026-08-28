@@ -27,6 +27,7 @@ import 'sub2api_admin_proxies_client.dart';
 import 'sub2api_admin_redeem_codes_client.dart';
 import 'sub2api_admin_risk_control_client.dart';
 import 'sub2api_admin_scheduled_tests_client.dart';
+import 'sub2api_admin_settings_client.dart';
 import 'sub2api_admin_subscriptions_client.dart';
 import 'sub2api_admin_system_client.dart';
 import 'sub2api_admin_tls_fingerprints_client.dart';
@@ -91,6 +92,7 @@ final class Sub2ApiOpsClient {
     required this.redeemCodes,
     required this.riskControl,
     required this.scheduledTests,
+    required this.settings,
     required this.subscriptions,
     required this.system,
     required this.tlsFingerprints,
@@ -129,6 +131,7 @@ final class Sub2ApiOpsClient {
   final Sub2ApiAdminRedeemCodesClient redeemCodes;
   final Sub2ApiAdminRiskControlClient riskControl;
   final Sub2ApiAdminScheduledTestsClient scheduledTests;
+  final Sub2ApiAdminSettingsClient settings;
   final Sub2ApiAdminSubscriptionsClient subscriptions;
   final Sub2ApiAdminSystemClient system;
   final Sub2ApiAdminTLSFingerprintsClient tlsFingerprints;
@@ -286,6 +289,11 @@ Sub2ApiOpsClient _create({
       dio: dio,
       requestExecutor: executor,
       rawMutationExecutor: executor,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
+    settings: createSub2ApiAdminSettingsClient(
+      dio: dio,
+      requestExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
     ),
     subscriptions: createSub2ApiAdminSubscriptionsClient(

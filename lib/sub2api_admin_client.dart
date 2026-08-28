@@ -77,6 +77,9 @@ export 'src/admin/sub2api_admin_risk_control_models.dart';
 export 'src/admin/sub2api_admin_scheduled_test_models.dart';
 export 'src/admin/sub2api_admin_scheduled_tests_client.dart'
     show Sub2ApiAdminScheduledTestsClient;
+export 'src/admin/sub2api_admin_setting_models.dart';
+export 'src/admin/sub2api_admin_settings_client.dart'
+    show Sub2ApiAdminSettingsClient;
 export 'src/admin/sub2api_admin_subscription_models.dart';
 export 'src/admin/sub2api_admin_subscriptions_client.dart'
     show Sub2ApiAdminSubscriptionsClient;
@@ -104,6 +107,7 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminOAuthSessionId,
         Sub2ApiAdminOAuthState,
         Sub2ApiAdminAccountDataArchive,
+        Sub2ApiAdminApiKey,
         Sub2ApiAdminCodexSessionPayload,
         Sub2ApiAdminProxyPassword,
         Sub2ApiAdminProxyDataArchive,
