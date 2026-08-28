@@ -117,12 +117,12 @@ void _verifyCommit(String upstream) {
 }
 
 List<_Route> _parseSource(String upstream, String sourceFile) {
-  final result = Process.runSync('git', <String>[
-    '-C',
-    upstream,
-    'show',
-    '$_tag:$sourceFile',
-  ]);
+  final result = Process.runSync(
+    'git',
+    <String>['-C', upstream, 'show', '$_tag:$sourceFile'],
+    stdoutEncoding: utf8,
+    stderrEncoding: utf8,
+  );
   if (result.exitCode != 0) {
     throw StateError('Unable to read $sourceFile at $_tag: ${result.stderr}');
   }
