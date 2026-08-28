@@ -119,7 +119,7 @@ void _verifyCommit(String upstream) {
 List<_Route> _parseSource(String upstream, String sourceFile) {
   final result = Process.runSync(
     'git',
-    <String>['-C', upstream, 'show', '$_tag:$sourceFile'],
+    <String>['-C', upstream, 'cat-file', '-p', '$_tag:$sourceFile'],
     stdoutEncoding: utf8,
     stderrEncoding: utf8,
   );
