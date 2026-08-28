@@ -1,5 +1,7 @@
 # sub2api_client
 
+**English** | [简体中文](README.zh-CN.md)
+
 A typed, pure-Dart client for the Sub2API management APIs. Version `0.1.0-dev.4`
 targets Sub2API `v0.1.183` at commit
 `e8cb019fabf8b55199436229044cbf9aa7a82564`.
@@ -39,14 +41,12 @@ plugin, browser launcher, or native dependency.
   subscription order creation, own-order lookup, cancellation, refund request,
   eligible-provider lookup, and signed or legacy public order recovery.
 
-All 127 fixed user-management target routes are typed and transport-tested.
-The isolated `Sub2ApiAdminClient` and `Sub2ApiOpsClient` entrypoints, Admin JWT
-role bootstrap, redacted Admin API Key provider, credential non-fallback, and
-typed Admin Dashboard and initial Admin user-resource operations are
-implemented. All 19 Admin Users routes and all 25 Admin Groups routes are typed
-and transport-tested. The remaining 368 Admin resource
-routes are still unsupported, so the package does not yet claim complete
-Admin/Ops coverage. Payment UI and local secure storage remain caller-owned.
+All 127 fixed user-management target routes and all 425 Admin-management target
+routes are typed and transport-tested. The isolated `Sub2ApiAdminClient` and
+`Sub2ApiOpsClient` entrypoints cover the complete pinned management plane with
+Admin JWT role bootstrap, a redacted Admin API Key provider, strict credential
+separation, and no credential fallback. Payment UI and local secure storage
+remain caller-owned.
 
 The pinned route inventory lives in
 `doc/contract/v0_1_183_route_manifest.json`. It currently distinguishes 552
@@ -63,6 +63,15 @@ import 'package:sub2api_client/sub2api_ops_client.dart';
 The user client never exposes `.admin` or `.ops`. The Admin client uses only a
 JWT session and verifies `role == admin`; the Ops client uses only `x-api-key`
 and never reads, refreshes, or falls back to a JWT session.
+
+## Installation
+
+The package is currently published as a development release. Add it with an
+explicit prerelease constraint:
+
+```sh
+dart pub add sub2api_client:^0.1.0-dev.4
+```
 
 ## Usage
 
