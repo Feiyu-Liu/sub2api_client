@@ -1,0 +1,28 @@
+{
+  "capabilities": {
+    "ai_studio_oauth_enabled": true,
+    "required_redirect_uris": ["http://localhost:8085/oauth2callback"]
+  },
+  "authorization": {
+    "auth_url": "https://accounts.google.com/o/oauth2/v2/auth?client_id=gemini-fixture",
+    "session_id": "gemini-session-sentinel",
+    "state": "gemini-state-sentinel"
+  },
+  "token": {
+    "access_token": "gemini-access-token-sentinel",
+    "refresh_token": "gemini-refresh-token-sentinel",
+    "token_type": "Bearer",
+    "scope": "openid email",
+    "expires_in": 3600,
+    "expires_at": 1910000000,
+    "project_id": "gemini-project-fixture",
+    "oauth_type": "google_one",
+    "tier_id": "google_ai_pro",
+    "extra": {
+      "drive_storage_limit": 2199023255552,
+      "drive_storage_usage": 1073741824,
+      "drive_tier_updated_at": "2026-08-27T10:11:12Z",
+      "future_additive_field": true
+    }
+  }
+}

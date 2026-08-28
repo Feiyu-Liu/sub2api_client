@@ -1,0 +1,10 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "active_requests": 3,
+    "requests_per_minute": 18,
+    "average_response_time": 245.5,
+    "error_rate": 0.015
+  }
+}

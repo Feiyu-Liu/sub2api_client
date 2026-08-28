@@ -1,0 +1,25 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "stats": {
+      "21": {
+        "user_id": 21,
+        "today_actual_cost": 0.75,
+        "total_actual_cost": 12.5,
+        "by_platform": [
+          {
+            "platform": "anthropic",
+            "today_actual_cost": 0.5,
+            "total_actual_cost": 10.0
+          }
+        ]
+      },
+      "22": {
+        "user_id": 22,
+        "today_actual_cost": 0.25,
+        "total_actual_cost": 2.5
+      }
+    }
+  }
+}

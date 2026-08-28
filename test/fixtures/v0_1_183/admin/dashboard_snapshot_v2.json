@@ -1,0 +1,97 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "generated_at": "2026-08-27T06:05:00Z",
+    "start_date": "2026-08-20",
+    "end_date": "2026-08-27",
+    "granularity": "day",
+    "stats": {
+      "total_users": 50,
+      "today_new_users": 2,
+      "active_users": 14,
+      "hourly_active_users": 6,
+      "stats_updated_at": "2026-08-27T06:00:00Z",
+      "stats_stale": false,
+      "total_api_keys": 75,
+      "active_api_keys": 60,
+      "total_accounts": 20,
+      "normal_accounts": 16,
+      "error_accounts": 2,
+      "ratelimit_accounts": 1,
+      "overload_accounts": 1,
+      "total_requests": 10000,
+      "total_input_tokens": 1000000,
+      "total_output_tokens": 250000,
+      "total_cache_creation_tokens": 10000,
+      "total_cache_read_tokens": 50000,
+      "total_tokens": 1310000,
+      "total_cost": 125.5,
+      "total_actual_cost": 100.4,
+      "total_account_cost": 75.25,
+      "today_requests": 500,
+      "today_input_tokens": 50000,
+      "today_output_tokens": 12500,
+      "today_cache_creation_tokens": 500,
+      "today_cache_read_tokens": 2500,
+      "today_tokens": 65500,
+      "today_cost": 6.25,
+      "today_actual_cost": 5.02,
+      "today_account_cost": 3.75,
+      "average_duration_ms": 245.5,
+      "rpm": 18,
+      "tpm": 2358,
+      "uptime": 86400
+    },
+    "trend": [
+      {
+        "date": "2026-08-20",
+        "requests": 120,
+        "input_tokens": 10000,
+        "output_tokens": 2500,
+        "cache_creation_tokens": 100,
+        "cache_read_tokens": 400,
+        "total_tokens": 13000,
+        "cost": 1.25,
+        "actual_cost": 1.0
+      }
+    ],
+    "models": [
+      {
+        "model": "claude-sonnet-4-20250514",
+        "requests": 90,
+        "input_tokens": 8000,
+        "output_tokens": 2000,
+        "cache_creation_tokens": 80,
+        "cache_read_tokens": 320,
+        "total_tokens": 10400,
+        "cost": 1.0,
+        "actual_cost": 0.8,
+        "account_cost": 0.6
+      }
+    ],
+    "groups": [
+      {
+        "group_id": 7,
+        "group_name": "standard",
+        "requests": 75,
+        "total_tokens": 9000,
+        "cost": 0.9,
+        "actual_cost": 0.72,
+        "account_cost": 0.54
+      }
+    ],
+    "users_trend": [
+      {
+        "date": "2026-08-20",
+        "user_id": 21,
+        "email": "admin-user@example.test",
+        "username": "admin-user",
+        "requests": 35,
+        "tokens": 4200,
+        "cost": 0.42,
+        "actual_cost": 0.336
+      }
+    ]
+  }
+}

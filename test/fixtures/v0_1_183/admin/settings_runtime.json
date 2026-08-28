@@ -1,0 +1,8 @@
+{
+  "overload": {"enabled": true, "cooldown_minutes": 15},
+  "rate429": {"enabled": true, "cooldown_seconds": 60},
+  "panel": {"enabled": true, "user_rpm": 240, "heavy_rpm": 60, "exempt_admin": true, "public_ip_rpm": 300},
+  "stream": {"enabled": true, "action": "temp_unsched", "temp_unsched_minutes": 5, "threshold_count": 3, "threshold_window_minutes": 10},
+  "rectifier": {"enabled": true, "thinking_signature_enabled": true, "thinking_budget_enabled": true, "apikey_signature_enabled": true, "apikey_signature_patterns": ["x-api-key"]},
+  "beta": {"rules": [{"beta_token": "prompt-caching", "action": "filter", "scope": "oauth", "error_message": "", "model_whitelist": ["claude-*"], "fallback_action": "block", "fallback_error_message": "unsupported"}]}
+}

@@ -1,0 +1,5 @@
+{
+  "code": 404,
+  "message": "group not found",
+  "reason": "GROUP_NOT_FOUND"
+}

@@ -1,0 +1,52 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "items": [
+      {
+        "id": 51,
+        "name": "OpenAI primary",
+        "provider": "openai",
+        "group_name": "Pro",
+        "primary_model": "gpt-5.6",
+        "primary_status": "operational",
+        "primary_latency_ms": 210,
+        "primary_ping_latency_ms": 32,
+        "availability_7d": 99.95,
+        "extra_models": [
+          {"model": "gpt-5-mini", "status": "degraded", "latency_ms": 410}
+        ],
+        "timeline": [
+          {
+            "status": "operational",
+            "latency_ms": 210,
+            "ping_latency_ms": 32,
+            "checked_at": "2026-08-27T06:00:00Z"
+          }
+        ],
+        "latest_quota": {
+          "source": "usage",
+          "success": true,
+          "tiers": [
+            {
+              "window": "7d",
+              "label": "shared",
+              "used_percent": 25,
+              "used": 25,
+              "limit": 100,
+              "reset_at": "2026-09-01T00:00:00Z"
+            }
+          ],
+          "balance": 12.5,
+          "balances": [{"currency": "USD", "balance": 12.5}],
+          "currency": "USD",
+          "plan_level": "pro",
+          "balance_low": false,
+          "credential_invalid": false,
+          "error": "",
+          "fetched_at": "2026-08-27T06:00:00Z"
+        }
+      }
+    ]
+  }
+}

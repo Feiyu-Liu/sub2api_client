@@ -1,0 +1,16 @@
+{
+  "template": {
+    "id": 4,
+    "name": "OpenAI Responses",
+    "provider": "openai",
+    "api_mode": "responses",
+    "description": "Responses monitor body",
+    "extra_headers": {"X-Monitor": "fixture"},
+    "body_override_mode": "merge",
+    "body_override": {"temperature": 0.2, "stream": false},
+    "created_at": "2026-08-27T00:00:00Z",
+    "updated_at": "2026-08-28T00:00:00Z",
+    "associated_monitors": 1
+  },
+  "monitor": {"id": 9, "name": "Primary", "provider": "openai", "api_mode": "responses", "enabled": true}
+}

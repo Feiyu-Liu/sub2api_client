@@ -1,0 +1,10 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "secret": "JBSWY3DPEHPK3PXP",
+    "qr_code_url": "otpauth://totp/Sub2API:user@example.test?secret=JBSWY3DPEHPK3PXP&issuer=Sub2API",
+    "setup_token": "totp-setup-token-sentinel",
+    "countdown": 300
+  }
+}

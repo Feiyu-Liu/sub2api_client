@@ -1,0 +1,22 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "users": [
+      {
+        "user_id": 21,
+        "email": "admin-user@example.test",
+        "requests": 350,
+        "input_tokens": 30000,
+        "output_tokens": 7500,
+        "cache_tokens": 4500,
+        "total_tokens": 42000,
+        "cost": 15.625,
+        "actual_cost": 12.5,
+        "account_cost": 9.375
+      }
+    ],
+    "start_date": "2026-08-20",
+    "end_date": "2026-08-27"
+  }
+}

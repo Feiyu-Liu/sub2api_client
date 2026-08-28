@@ -1,0 +1,23 @@
+{
+  "capabilities": {"password_auth_enabled": true},
+  "auth_url": {
+    "auth_url": "https://accounts.x.ai/authorize?state=grok-state-fixture",
+    "session_id": "grok-session-fixture",
+    "state": "grok-state-fixture"
+  },
+  "token": {
+    "access_token": "grok-access-fixture",
+    "refresh_token": "grok-refresh-fixture",
+    "id_token": "grok-id-fixture",
+    "token_type": "Bearer",
+    "expires_in": 21600,
+    "expires_at": 1787932800,
+    "client_id": "grok-client",
+    "scope": "openid profile email",
+    "email": "grok@example.test",
+    "sub": "subject-1",
+    "team_id": "team-1",
+    "subscription_tier": "premium",
+    "entitlement_status": "active"
+  }
+}

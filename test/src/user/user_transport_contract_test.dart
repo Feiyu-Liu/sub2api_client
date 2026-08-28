@@ -111,6 +111,43 @@ void main() {
       });
     },
   );
+
+  test(
+    'affiliate routes preserve exact quotas and use protected auth',
+    () async {
+      final adapter = JsonResponseAdapter((request) {
+        final fixture = switch (request.path) {
+          '/api/v1/user/aff' => 'user/affiliate_detail_success.json',
+          '/api/v1/user/aff/transfer' => 'user/affiliate_transfer_success.json',
+          _ => throw StateError('unexpected path ${request.path}'),
+        };
+        return JsonResponse(body: readFixture(fixture));
+      });
+      final client = _client(adapter, session);
+
+      final affiliate = await client.getAffiliate();
+      final transfer = await client.transferAffiliateQuota();
+
+      expect(affiliate.affiliateCode, 'AFF-7');
+      expect(affiliate.availableQuota.toString(), '2.75');
+      expect(affiliate.effectiveRebateRatePercent.toString(), '12.5');
+      expect(affiliate.invitees.single.totalRebate.toString(), '1.25');
+      expect(transfer.transferredQuota.toString(), '2.75');
+      expect(transfer.balance.toString(), '19.5');
+      expect(adapter.requests.map((request) => request.path), <String>[
+        '/api/v1/user/aff',
+        '/api/v1/user/aff/transfer',
+      ]);
+      expect(adapter.requests.first.method, 'GET');
+      expect(adapter.requests.last.method, 'POST');
+      for (final request in adapter.requests) {
+        expect(
+          request.headers,
+          containsPair('Authorization', 'Bearer user-transport-access'),
+        );
+      }
+    },
+  );
 }
 
 Sub2ApiUserClient _client(JsonResponseAdapter adapter, Sub2ApiSession session) {

@@ -1,0 +1,24 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "proxy_created": 1,
+    "proxy_reused": 1,
+    "proxy_failed": 1,
+    "account_created": 2,
+    "account_failed": 1,
+    "errors": [
+      {
+        "kind": "proxy",
+        "name": "fallback-proxy",
+        "proxy_key": "https|proxy.example.test|443||",
+        "message": "backup_proxy_name not found, fallback_mode downgraded to none"
+      },
+      {
+        "kind": "account",
+        "name": "broken-account",
+        "message": "proxy_key not found"
+      }
+    ]
+  }
+}

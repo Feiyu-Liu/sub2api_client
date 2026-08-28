@@ -11,7 +11,21 @@ final class Sub2ApiResponseDecoder {
     HttpResponse<Object?> response,
     T Function(Object? data) decodeData,
   ) {
-    if (response.response.statusCode != 200) {
+    return _decodeEnvelope(response, decodeData, expectedStatus: 200);
+  }
+
+  /// Decodes the standard envelope for a fixed HTTP 201 create contract.
+  T decodeCreated<T>(
+    HttpResponse<Object?> response,
+    T Function(Object? data) decodeData,
+  ) => _decodeEnvelope(response, decodeData, expectedStatus: 201);
+
+  T _decodeEnvelope<T>(
+    HttpResponse<Object?> response,
+    T Function(Object? data) decodeData, {
+    required int expectedStatus,
+  }) {
+    if (response.response.statusCode != expectedStatus) {
       throw _protocol('protocol.unexpected_success_status', response.response);
     }
     final envelope = _stringMap(response.data);
@@ -28,6 +42,39 @@ final class Sub2ApiResponseDecoder {
       rethrow;
     } on Object {
       throw _protocol('protocol.invalid_response_data', response.response);
+    }
+  }
+
+  /// Decodes an endpoint that explicitly permits either the standard envelope
+  /// or a raw 200 payload. A body containing `code` is always treated as an
+  /// attempted envelope and never falls back to raw decoding.
+  T decodeSuccessOrRaw<T>(
+    HttpResponse<Object?> response,
+    T Function(Object? data) decodeData,
+  ) {
+    if (response.response.statusCode != 200) {
+      throw _protocol('protocol.unexpected_success_status', response.response);
+    }
+    final body = _stringMap(response.data);
+    if (body != null && body.containsKey('code')) {
+      return decodeSuccess(response, decodeData);
+    }
+    try {
+      return decodeData(response.data);
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw _protocol('protocol.invalid_response_data', response.response);
+    }
+  }
+
+  /// Validates an endpoint whose fixed success contract is an empty HTTP 204.
+  void decodeNoContent(HttpResponse<Object?> response) {
+    if (response.response.statusCode != 204) {
+      throw _protocol('protocol.unexpected_success_status', response.response);
+    }
+    if (response.data != null) {
+      throw _protocol('protocol.unexpected_response_body', response.response);
     }
   }
 
@@ -162,6 +209,48 @@ final class Sub2ApiResponseDecoder {
     'REFRESH_TOKEN_INVALID' => 'auth.refresh_token_invalid',
     'REFRESH_TOKEN_EXPIRED' => 'auth.refresh_token_expired',
     'REFRESH_TOKEN_REUSED' => 'auth.refresh_token_reused',
+    'TOTP_NOT_ENABLED' => 'totp.not_enabled',
+    'TOTP_ALREADY_ENABLED' => 'totp.already_enabled',
+    'TOTP_NOT_SETUP' => 'totp.not_setup',
+    'TOTP_INVALID_CODE' => 'totp.invalid_code',
+    'TOTP_SETUP_EXPIRED' => 'totp.setup_expired',
+    'TOTP_TOO_MANY_ATTEMPTS' => 'totp.too_many_attempts',
+    'VERIFY_CODE_REQUIRED' => 'totp.verify_code_required',
+    'PASSWORD_REQUIRED' => 'totp.password_required',
+    'PASSWORD_INCORRECT' => 'auth.password_incorrect',
+    'EMAIL_VERIFY_NOT_ENABLED' => 'totp.email_verify_not_enabled',
+    'STEP_UP_ADMIN_API_KEY_FORBIDDEN' => 'auth.step_up_admin_api_key_forbidden',
+    'STEP_UP_TOTP_NOT_ENABLED' => 'auth.step_up_totp_not_enabled',
+    'STEP_UP_REQUIRED' => 'auth.step_up_required',
+    'STEP_UP_UNAVAILABLE' => 'auth.step_up_unavailable',
+    'IDENTITY_PROVIDER_INVALID' => 'identity.invalid_provider',
+    'IDENTITY_REDIRECT_INVALID' => 'identity.invalid_redirect',
+    'IDENTITY_UNBIND_LAST_METHOD' => 'identity.unbind_last_method',
+    'AUTH_IDENTITY_OWNERSHIP_CONFLICT' => 'identity.ownership_conflict',
+    'AUTH_IDENTITY_EMAIL_MISMATCH' => 'identity.email_mismatch',
+    'TOO_MANY_NOTIFY_EMAILS' => 'identity.too_many_notification_emails',
+    'NOTIFY_CODE_USER_RATE_LIMIT' => 'identity.notification_code_rate_limited',
+    'OAUTH_PROVIDER_INVALID' => 'oauth.invalid_provider',
+    'OAUTH_SUBJECT_MISSING' => 'oauth.subject_missing',
+    'OAUTH_EMAIL_NOT_VERIFIED' => 'oauth.email_not_verified',
+    'OAUTH_INVITATION_REQUIRED' => 'oauth.invitation_required',
+    'OAUTH_DISABLED' => 'oauth.disabled',
+    'OAUTH_PROVIDER_NOT_FOUND' => 'oauth.provider_not_found',
+    'OAUTH_CONFIG_INVALID' => 'oauth.invalid_configuration',
+    'PENDING_AUTH_SESSION_NOT_FOUND' => 'oauth.pending_session_not_found',
+    'PENDING_AUTH_SESSION_EXPIRED' => 'oauth.pending_session_expired',
+    'PENDING_AUTH_SESSION_CONSUMED' => 'oauth.pending_session_consumed',
+    'PENDING_AUTH_CODE_INVALID' => 'oauth.pending_code_invalid',
+    'PENDING_AUTH_CODE_EXPIRED' => 'oauth.pending_code_expired',
+    'PENDING_AUTH_CODE_CONSUMED' => 'oauth.pending_code_consumed',
+    'PENDING_AUTH_BROWSER_MISMATCH' => 'oauth.pending_browser_mismatch',
+    'PENDING_AUTH_SESSION_INVALID' => 'oauth.pending_session_invalid',
+    'PENDING_AUTH_TARGET_USER_MISMATCH' => 'oauth.target_user_mismatch',
+    'DATA_MANAGEMENT_DEPRECATED' => 'admin.data_management_deprecated',
+    'DATA_MANAGEMENT_AGENT_SOCKET_MISSING' =>
+      'admin.data_management_agent_socket_missing',
+    'DATA_MANAGEMENT_AGENT_UNAVAILABLE' =>
+      'admin.data_management_agent_unavailable',
     _ => 'server.${raw.toLowerCase()}',
   };
 
@@ -170,6 +259,48 @@ final class Sub2ApiResponseDecoder {
     'REFRESH_TOKEN_EXPIRED' => 'auth.refresh_token_expired',
     'REFRESH_TOKEN_REUSED' => 'auth.refresh_token_reused',
     'TOKEN_REVOKED' => 'auth.token_revoked',
+    'TOTP_NOT_ENABLED' => 'totp.not_enabled',
+    'TOTP_ALREADY_ENABLED' => 'totp.already_enabled',
+    'TOTP_NOT_SETUP' => 'totp.not_setup',
+    'TOTP_INVALID_CODE' => 'totp.invalid_code',
+    'TOTP_SETUP_EXPIRED' => 'totp.setup_expired',
+    'TOTP_TOO_MANY_ATTEMPTS' => 'totp.too_many_attempts',
+    'VERIFY_CODE_REQUIRED' => 'totp.verify_code_required',
+    'PASSWORD_REQUIRED' => 'totp.password_required',
+    'PASSWORD_INCORRECT' => 'auth.password_incorrect',
+    'EMAIL_VERIFY_NOT_ENABLED' => 'totp.email_verify_not_enabled',
+    'STEP_UP_ADMIN_API_KEY_FORBIDDEN' => 'auth.step_up_admin_api_key_forbidden',
+    'STEP_UP_TOTP_NOT_ENABLED' => 'auth.step_up_totp_not_enabled',
+    'STEP_UP_REQUIRED' => 'auth.step_up_required',
+    'STEP_UP_UNAVAILABLE' => 'auth.step_up_unavailable',
+    'IDENTITY_PROVIDER_INVALID' => 'identity.invalid_provider',
+    'IDENTITY_REDIRECT_INVALID' => 'identity.invalid_redirect',
+    'IDENTITY_UNBIND_LAST_METHOD' => 'identity.unbind_last_method',
+    'AUTH_IDENTITY_OWNERSHIP_CONFLICT' => 'identity.ownership_conflict',
+    'AUTH_IDENTITY_EMAIL_MISMATCH' => 'identity.email_mismatch',
+    'TOO_MANY_NOTIFY_EMAILS' => 'identity.too_many_notification_emails',
+    'NOTIFY_CODE_USER_RATE_LIMIT' => 'identity.notification_code_rate_limited',
+    'OAUTH_PROVIDER_INVALID' => 'oauth.invalid_provider',
+    'OAUTH_SUBJECT_MISSING' => 'oauth.subject_missing',
+    'OAUTH_EMAIL_NOT_VERIFIED' => 'oauth.email_not_verified',
+    'OAUTH_INVITATION_REQUIRED' => 'oauth.invitation_required',
+    'OAUTH_DISABLED' => 'oauth.disabled',
+    'OAUTH_PROVIDER_NOT_FOUND' => 'oauth.provider_not_found',
+    'OAUTH_CONFIG_INVALID' => 'oauth.invalid_configuration',
+    'PENDING_AUTH_SESSION_NOT_FOUND' => 'oauth.pending_session_not_found',
+    'PENDING_AUTH_SESSION_EXPIRED' => 'oauth.pending_session_expired',
+    'PENDING_AUTH_SESSION_CONSUMED' => 'oauth.pending_session_consumed',
+    'PENDING_AUTH_CODE_INVALID' => 'oauth.pending_code_invalid',
+    'PENDING_AUTH_CODE_EXPIRED' => 'oauth.pending_code_expired',
+    'PENDING_AUTH_CODE_CONSUMED' => 'oauth.pending_code_consumed',
+    'PENDING_AUTH_BROWSER_MISMATCH' => 'oauth.pending_browser_mismatch',
+    'PENDING_AUTH_SESSION_INVALID' => 'oauth.pending_session_invalid',
+    'PENDING_AUTH_TARGET_USER_MISMATCH' => 'oauth.target_user_mismatch',
+    'DATA_MANAGEMENT_DEPRECATED' => 'admin.data_management_deprecated',
+    'DATA_MANAGEMENT_AGENT_SOCKET_MISSING' =>
+      'admin.data_management_agent_socket_missing',
+    'DATA_MANAGEMENT_AGENT_UNAVAILABLE' =>
+      'admin.data_management_agent_unavailable',
     _ => 'server.${raw.toLowerCase()}',
   };
 

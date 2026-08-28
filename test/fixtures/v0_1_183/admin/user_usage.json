@@ -1,0 +1,11 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "period": "week",
+    "total_requests": 125,
+    "total_cost": 9.75,
+    "total_tokens": 45000,
+    "avg_duration_ms": 321.5
+  }
+}

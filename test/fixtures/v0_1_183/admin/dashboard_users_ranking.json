@@ -1,0 +1,21 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "ranking": [
+      {
+        "user_id": 21,
+        "email": "admin-user@example.test",
+        "username": "admin-user",
+        "actual_cost": 12.5,
+        "requests": 350,
+        "tokens": 42000
+      }
+    ],
+    "total_actual_cost": 100.4,
+    "total_requests": 10000,
+    "total_tokens": 1310000,
+    "start_date": "2026-08-20",
+    "end_date": "2026-08-27"
+  }
+}

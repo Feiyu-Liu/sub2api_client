@@ -1,0 +1,52 @@
+{
+  "rule": {
+    "id": 12,
+    "name": "OpenAI upstream error rate",
+    "description": "Alert when upstream failures exceed the threshold",
+    "enabled": true,
+    "severity": "P1",
+    "metric_type": "upstream_error_rate",
+    "operator": ">=",
+    "threshold": 85.5,
+    "window_minutes": 5,
+    "sustained_minutes": 2,
+    "cooldown_minutes": 15,
+    "notify_email": true,
+    "filters": {
+      "platform": "openai",
+      "group_id": 7
+    },
+    "last_triggered_at": "2026-08-28T04:05:06.123Z",
+    "created_at": "2026-08-27T01:02:03Z",
+    "updated_at": "2026-08-28T04:05:06Z"
+  },
+  "event": {
+    "id": 81,
+    "rule_id": 12,
+    "severity": "P1",
+    "status": "firing",
+    "title": "OpenAI upstream error rate",
+    "description": "Current upstream error rate is above threshold",
+    "metric_value": 91.25,
+    "threshold_value": 85.5,
+    "dimensions": {
+      "platform": "openai",
+      "group_id": 7
+    },
+    "fired_at": "2026-08-28T04:05:06.123Z",
+    "resolved_at": null,
+    "email_sent": true,
+    "created_at": "2026-08-28T04:05:06.123Z"
+  },
+  "silence": {
+    "id": 33,
+    "rule_id": 12,
+    "platform": "openai",
+    "group_id": 7,
+    "region": "us-east",
+    "until": "2026-08-29T04:05:06Z",
+    "reason": "Planned provider maintenance",
+    "created_by": 1,
+    "created_at": "2026-08-28T04:06:00Z"
+  }
+}

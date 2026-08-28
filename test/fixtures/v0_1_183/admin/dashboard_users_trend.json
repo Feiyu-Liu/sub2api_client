@@ -1,0 +1,21 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "trend": [
+      {
+        "date": "2026-08-20",
+        "user_id": 21,
+        "email": "admin-user@example.test",
+        "username": "admin-user",
+        "requests": 35,
+        "tokens": 4200,
+        "cost": 0.42,
+        "actual_cost": 0.336
+      }
+    ],
+    "start_date": "2026-08-20",
+    "end_date": "2026-08-27",
+    "granularity": "day"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "session_token": "passkey-login-session-sentinel",
+    "options": {
+      "publicKey": {
+        "challenge": "AQID",
+        "timeout": 300000,
+        "rpId": "sub2api.example.test",
+        "allowCredentials": [
+          {
+            "type": "public-key",
+            "id": "BAUG",
+            "transports": ["internal", "hybrid"]
+          }
+        ],
+        "userVerification": "required",
+        "hints": ["client-device"]
+      },
+      "mediation": "optional"
+    }
+  }
+}

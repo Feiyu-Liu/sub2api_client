@@ -1,0 +1,48 @@
+{
+  "proxy": {
+    "id": 11,
+    "name": "primary-proxy",
+    "protocol": "socks5",
+    "host": "127.0.0.1",
+    "port": 1080,
+    "username": "proxy-user",
+    "password": "proxy-password-sentinel",
+    "status": "active",
+    "account_count": 2,
+    "latency_ms": 145,
+    "latency_status": "success",
+    "latency_message": "ok",
+    "ip_address": "203.0.113.10",
+    "country": "United States",
+    "country_code": "US",
+    "region": "California",
+    "city": "San Francisco",
+    "quality_status": "healthy",
+    "quality_score": 96,
+    "quality_grade": "A",
+    "quality_summary": "healthy exit",
+    "quality_checked": 1800000000,
+    "expires_at": "2033-05-18T03:33:20Z",
+    "fallback_mode": "proxy",
+    "backup_proxy_id": 12,
+    "expiry_warn_days": 7,
+    "created_at": "2026-08-20T01:02:03Z",
+    "updated_at": "2026-08-27T04:05:06Z"
+  },
+  "accounts": [
+    {
+      "id": 42,
+      "name": "openai-primary",
+      "platform": "openai",
+      "type": "oauth",
+      "notes": "uses primary proxy"
+    }
+  ],
+  "stats": {
+    "total_accounts": 2,
+    "active_accounts": 1,
+    "total_requests": 1500,
+    "success_rate": 99.5,
+    "average_latency": 145.25
+  }
+}

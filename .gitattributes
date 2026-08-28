@@ -1,0 +1,2 @@
+# Keep hand-written and generated Dart source byte-stable across autocrlf hosts.
+*.dart text eol=lf

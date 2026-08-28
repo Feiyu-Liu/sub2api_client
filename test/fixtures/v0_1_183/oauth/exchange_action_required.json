@@ -1,0 +1,22 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "step": "choose_account_action_required",
+    "error": "invitation_required",
+    "provider": "oidc",
+    "intent": "login",
+    "email": "candidate@example.test",
+    "resolved_email": "candidate@example.test",
+    "redirect": "/auth/oidc/callback",
+    "adoption_required": true,
+    "suggested_display_name": "Candidate User",
+    "suggested_avatar_url": "https://cdn.example.test/candidate.png",
+    "create_account_allowed": true,
+    "force_email_on_signup": true,
+    "email_binding_required": true,
+    "existing_account_bindable": true,
+    "requires_email_completion": false,
+    "choice_reason": "invitation_required"
+  }
+}

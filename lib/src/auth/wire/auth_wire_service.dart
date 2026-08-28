@@ -8,6 +8,13 @@ part 'auth_wire_service.g.dart';
 abstract class AuthWireService {
   factory AuthWireService(Dio dio, {String? baseUrl}) = _AuthWireService;
 
+  @GET('/api/v1/auth/me')
+  Future<HttpResponse<Object?>> getCurrentUser(
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+  );
+
   @POST('/api/v1/auth/login')
   Future<HttpResponse<Object?>> login(
     @Body() Map<String, Object?> body,
@@ -40,6 +47,14 @@ abstract class AuthWireService {
     @Header('Authorization') String? authorization,
   );
 
+  @POST('/api/v1/auth/validate-promo-code')
+  Future<HttpResponse<Object?>> validatePromoCode(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+  );
+
   @POST('/api/v1/auth/forgot-password')
   Future<HttpResponse<Object?>> forgotPassword(
     @Body() Map<String, Object?> body,
@@ -59,6 +74,13 @@ abstract class AuthWireService {
   @POST('/api/v1/auth/logout')
   Future<HttpResponse<Object?>> logout(
     @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+  );
+
+  @POST('/api/v1/auth/revoke-all-sessions')
+  Future<HttpResponse<Object?>> revokeAllSessions(
     @CancelRequest() CancelToken cancelToken,
     @DioOptions() Options options,
     @Header('Authorization') String? authorization,

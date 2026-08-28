@@ -1,0 +1,5 @@
+{
+  "status": {"exists": true, "masked_key": "admin-1234...cdef"},
+  "regenerated": {"key": "admin-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"},
+  "deleted": {"message": "Admin API key deleted"}
+}

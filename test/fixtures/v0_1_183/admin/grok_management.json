@@ -1,0 +1,43 @@
+{
+  "reconcile": {
+    "dry_run": true, "scanned": 2, "actionable": 1, "would_block": 0, "would_refresh": 1,
+    "blocked": 0, "refreshed": 0, "skipped": 1, "failed": 0, "partial": 0,
+    "items": [{"account_id": 42, "reason": "near_expiry", "action": "refresh_credentials", "outcome": "planned"}],
+    "next_after_id": 42, "has_more": true
+  },
+  "quota": {
+    "source": "hybrid_probe", "model": "grok-4.5", "status_code": 200, "headers_observed": true,
+    "reset_supported": false, "fetched_at": 1787932800, "persisted": true, "probe_error": "",
+    "billing": {
+      "period_type": "monthly", "usage_percent": "25.5", "period_start": "2026-08-01", "period_end": "2026-09-01",
+      "product_usage": [{"product": "grok", "usage_percent": "25.5"}], "monthly_limit_cents": "10000",
+      "used_cents": "2550", "included_used_cents": "2000", "billing_period_start": "2026-08-01",
+      "billing_period_end": "2026-09-01", "used_percent": "25.5", "prepaid_balance": "12.5",
+      "monthly_limit": "100", "monthly_used": "25.5", "on_demand_cap": "50", "on_demand_used": "5",
+      "top_up_method": "card", "is_unified_billing_user": true, "plan": "SuperGrok", "status_code": 200,
+      "weekly_status_code": 200, "monthly_status_code": 200, "source": "billing", "fetched_at": "2026-08-28T08:00:00Z",
+      "updated_at": "2026-08-28T08:00:00Z", "weekly_updated_at": "2026-08-28T08:00:00Z",
+      "monthly_updated_at": "2026-08-28T08:00:00Z", "partial": false, "failed_windows": []
+    },
+    "snapshot": {
+      "requests": {"limit": 8300, "remaining": 7000, "reset_unix": 1787936400, "reset_at": "2026-08-28T09:00:00Z"},
+      "tokens": {"limit": 53000000, "remaining": 50000000, "reset_unix": 1787936400, "reset_at": "2026-08-28T09:00:00Z"},
+      "retry_after_seconds": 0, "subscription_tier": "heavy", "entitlement_status": "active", "status_code": 200,
+      "headers": {"x-ratelimit-limit-requests": "8300"}, "headers_observed": true, "observation_source": "responses",
+      "last_probe_at": "2026-08-28T08:00:00Z", "last_headers_seen_at": "2026-08-28T08:00:00Z",
+      "updated_at": "2026-08-28T08:00:00Z", "model": "grok-4.5", "plan_from_45_responses": "heavy",
+      "plan_from_45_responses_at": "2026-08-28T08:00:00Z"
+    },
+    "local_usage_24h": {"requests": 10, "tokens": 2000, "cost": "1.25", "standard_cost": "1.5", "user_cost": "1.75"},
+    "local_usage_7d": null, "local_usage_monthly": null
+  },
+  "reset": {"supported": false, "code": "GROK_QUOTA_RESET_UNSUPPORTED", "message": "quota reset is unsupported"},
+  "runtime": {
+    "base_url": {"value": "https://api.x.ai", "valid": true, "error": "", "is_default": true},
+    "oauth_authorize_url": {"value": "https://accounts.x.ai/authorize", "valid": true, "error": "", "is_default": true},
+    "oauth_token_url": {"value": "https://accounts.x.ai/token", "valid": true, "error": "", "is_default": true},
+    "oauth_redirect_uri": {"value": "https://console.x.ai/callback", "valid": true, "error": "", "is_default": true},
+    "unsafe_url_overrides": false, "unsafe_high_concurrency": false, "public_gateway_scope": "responses_only",
+    "proxy_policy": "account_proxy_optional"
+  }
+}

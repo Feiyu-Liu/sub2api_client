@@ -1,0 +1,14 @@
+{
+  "stats": {
+    "22": {
+      "api_key_id": 22,
+      "today_actual_cost": 0.45,
+      "total_actual_cost": 12.75
+    },
+    "23": {
+      "api_key_id": 23,
+      "today_actual_cost": 0,
+      "total_actual_cost": 1.25
+    }
+  }
+}

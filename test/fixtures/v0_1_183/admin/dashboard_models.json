@@ -1,0 +1,22 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "models": [
+      {
+        "model": "claude-sonnet-4-20250514",
+        "requests": 90,
+        "input_tokens": 8000,
+        "output_tokens": 2000,
+        "cache_creation_tokens": 80,
+        "cache_read_tokens": 320,
+        "total_tokens": 10400,
+        "cost": 1.0,
+        "actual_cost": 0.8,
+        "account_cost": 0.6
+      }
+    ],
+    "start_date": "2026-08-20",
+    "end_date": "2026-08-27"
+  }
+}

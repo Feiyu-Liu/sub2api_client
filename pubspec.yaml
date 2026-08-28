@@ -1,6 +1,6 @@
 name: sub2api_client
-description: A typed, pure-Dart client for the Sub2API user API.
-version: 0.1.0-dev.3
+description: A typed, pure-Dart client for the Sub2API management APIs.
+version: 0.1.0-dev.4
 repository: https://github.com/Feiyu-Liu/sub2api_client
 issue_tracker: https://github.com/Feiyu-Liu/sub2api_client/issues
 
@@ -16,6 +16,7 @@ dependencies:
 
 dev_dependencies:
   build_runner: '>=2.10.4 <2.16.0'
+  crypto: ^3.0.7
   freezed: 3.2.5
   frontend_server_client: ^4.0.0
   json_serializable: ^6.11.2

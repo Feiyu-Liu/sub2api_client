@@ -10,11 +10,17 @@ import '../serialization/response_decoder.dart';
 import '../session/session_coordinator.dart';
 import '../session/sub2api_session.dart';
 import 'request_executor.dart';
+import 'stream_error_decoder.dart';
 
 typedef Sub2ApiRefreshSession =
     Future<Sub2ApiSession> Function(Sub2ApiSession current);
 
-final class Sub2ApiRequestExecutorImpl implements Sub2ApiRequestExecutor {
+final class Sub2ApiRequestExecutorImpl
+    implements
+        Sub2ApiRequestExecutor,
+        Sub2ApiProtectedCreatedMutationExecutor,
+        Sub2ApiProtectedRawMutationExecutor,
+        Sub2ApiProtectedStreamExecutor {
   Sub2ApiRequestExecutorImpl({
     required Sub2ApiConfiguration configuration,
     required Sub2ApiSessionCoordinator sessions,
@@ -44,6 +50,48 @@ final class Sub2ApiRequestExecutorImpl implements Sub2ApiRequestExecutor {
       requestOptions: requestOptions,
     );
     return _attempt(control, send, decode, authorization: null);
+  }
+
+  @override
+  Future<T> publicRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    return _attempt(
+      control,
+      send,
+      decode,
+      authorization: null,
+      allowRawSuccess: true,
+    );
+  }
+
+  @override
+  Future<T> optionalAuthenticatedRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) {
+      return _attempt(control, send, decode, authorization: null);
+    }
+    return protectedRequest(
+      send: send,
+      decode: decode,
+      requestOptions: requestOptions,
+    );
   }
 
   @override
@@ -121,6 +169,74 @@ final class Sub2ApiRequestExecutorImpl implements Sub2ApiRequestExecutor {
   }
 
   @override
+  Future<T> protectedRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) throw _notAuthenticated;
+    try {
+      return await _attempt(
+        control,
+        send,
+        decode,
+        authorization: _authorization(snapshot.session),
+        allowRawSuccess: true,
+      );
+    } on Sub2ApiException catch (error) {
+      if (error.kind != Sub2ApiFailureKind.unauthorized) rethrow;
+    }
+
+    if (!_sessions.isCurrent(snapshot)) throw _notAuthenticated;
+    if (!snapshot.session.isRefreshable) {
+      await _sessions.clearIfCurrent(snapshot);
+      throw const Sub2ApiException(
+        kind: Sub2ApiFailureKind.unauthorized,
+        code: 'auth.login_required',
+        retryable: false,
+      );
+    }
+
+    late final Sub2ApiSession refreshed;
+    try {
+      refreshed = await control.waitFor(
+        _sessions.refresh(snapshot, () => _refreshSession(snapshot.session)),
+      );
+    } on Sub2ApiException catch (error) {
+      if (_decoder.isSessionInvalid(error)) {
+        await _sessions.clearIfCurrent(snapshot);
+      }
+      rethrow;
+    }
+
+    final replaySnapshot = await control.waitFor(_sessions.snapshot());
+    if (replaySnapshot == null ||
+        !identical(replaySnapshot.session, refreshed)) {
+      throw _notAuthenticated;
+    }
+    try {
+      return await _attempt(
+        control,
+        send,
+        decode,
+        authorization: _authorization(refreshed),
+        allowRawSuccess: true,
+      );
+    } on Sub2ApiException catch (error) {
+      if (error.kind == Sub2ApiFailureKind.unauthorized) {
+        await _sessions.clearIfCurrent(replaySnapshot);
+      }
+      rethrow;
+    }
+  }
+
+  @override
   Future<T> protectedNonReplayableRequest<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
@@ -143,6 +259,113 @@ final class Sub2ApiRequestExecutorImpl implements Sub2ApiRequestExecutor {
     );
   }
 
+  @override
+  Future<T> protectedNonReplayableCreatedRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) throw _notAuthenticated;
+    return _attempt(
+      control,
+      send,
+      decode,
+      authorization: _authorization(snapshot.session),
+      expectCreated: true,
+    );
+  }
+
+  @override
+  Future<T> protectedNonReplayableRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) throw _notAuthenticated;
+    return _attempt(
+      control,
+      send,
+      decode,
+      authorization: _authorization(snapshot.session),
+      allowRawSuccess: true,
+    );
+  }
+
+  @override
+  Future<Response<ResponseBody>> protectedNonReplayableStreamRequest({
+    required Sub2ApiWireStreamCall send,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) throw _notAuthenticated;
+    try {
+      return await control.executeStream(
+        (cancelToken, options) =>
+            send(cancelToken, options, _authorization(snapshot.session)),
+      );
+    } on DioException catch (error) {
+      throw await decodeSub2ApiStreamDioException(_decoder, error);
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw const Sub2ApiException(
+        kind: Sub2ApiFailureKind.unknown,
+        code: 'unknown.client',
+        retryable: false,
+      );
+    }
+  }
+
+  @override
+  Future<void> protectedNonReplayableNoContentRequest({
+    required Sub2ApiWireCall send,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) {
+      throw _notAuthenticated;
+    }
+    try {
+      final response = await control.execute(
+        (cancelToken, options) =>
+            send(cancelToken, options, _authorization(snapshot.session)),
+      );
+      _decoder.decodeNoContent(response);
+    } on DioException catch (error) {
+      throw _decoder.decodeDioException(error);
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw const Sub2ApiException(
+        kind: Sub2ApiFailureKind.unknown,
+        code: 'unknown.client',
+        retryable: false,
+      );
+    }
+  }
+
   void close() {
     _closed = true;
   }
@@ -152,12 +375,18 @@ final class Sub2ApiRequestExecutorImpl implements Sub2ApiRequestExecutor {
     Sub2ApiWireCall send,
     T Function(Object? data) decode, {
     required String? authorization,
+    bool allowRawSuccess = false,
+    bool expectCreated = false,
   }) async {
     try {
       final response = await control.execute(
         (cancelToken, options) => send(cancelToken, options, authorization),
       );
-      return _decoder.decodeSuccess(response, decode);
+      return expectCreated
+          ? _decoder.decodeCreated(response, decode)
+          : allowRawSuccess
+          ? _decoder.decodeSuccessOrRaw(response, decode)
+          : _decoder.decodeSuccess(response, decode);
     } on DioException catch (error) {
       throw _decoder.decodeDioException(error);
     } on Sub2ApiException {
@@ -233,6 +462,38 @@ final class _RequestControl {
         Options(
           sendTimeout: _minimum(_configuration.sendTimeout, remaining),
           receiveTimeout: _minimum(_configuration.receiveTimeout, remaining),
+        ),
+      );
+    } finally {
+      timer.cancel();
+    }
+  }
+
+  Future<Response<ResponseBody>> executeStream(
+    Future<Response<ResponseBody>> Function(
+      CancelToken cancelToken,
+      Options options,
+    )
+    send,
+  ) async {
+    _throwIfUnavailable();
+    final remaining = _remaining;
+    final cancelToken = CancelToken();
+    final timer = Timer(remaining, () {
+      cancelToken.cancel(_timeoutException);
+    });
+    unawaited(
+      _cancellationToken?.whenCancelled.then((_) {
+        cancelToken.cancel(_cancelledException);
+      }),
+    );
+    try {
+      return await send(
+        cancelToken,
+        Options(
+          sendTimeout: _minimum(_configuration.sendTimeout, remaining),
+          receiveTimeout: _minimum(_configuration.receiveTimeout, remaining),
+          responseType: ResponseType.stream,
         ),
       );
     } finally {

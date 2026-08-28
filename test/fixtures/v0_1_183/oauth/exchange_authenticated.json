@@ -1,0 +1,12 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "access_token": "oauth-access-token-sentinel",
+    "refresh_token": "oauth-refresh-token-sentinel",
+    "expires_in": 3600,
+    "token_type": "Bearer",
+    "auth_result": "login_success",
+    "redirect": "/dashboard"
+  }
+}

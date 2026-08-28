@@ -1,0 +1,58 @@
+{
+  "auth_url": {"auth_url": "https://auth.openai.com/oauth/authorize?state=fixture", "session_id": "openai-session-fixture"},
+  "token": {
+    "access_token": "openai-access-fixture",
+    "refresh_token": "openai-refresh-fixture",
+    "id_token": "openai-id-fixture",
+    "expires_in": 3600,
+    "expires_at": 1790000000,
+    "client_id": "app-openai",
+    "auth_mode": "oauth",
+    "email": "operator@example.test",
+    "chatgpt_account_id": "acct_fixture",
+    "chatgpt_user_id": "user_fixture",
+    "chatgpt_account_is_fedramp": false,
+    "organization_id": "org_fixture",
+    "plan_type": "pro",
+    "subscription_expires_at": "2026-09-30T00:00:00Z",
+    "privacy_mode": "enabled"
+  },
+  "quota": {
+    "user_id": "user_fixture",
+    "account_id": "acct_fixture",
+    "email": "operator@example.test",
+    "plan_type": "pro",
+    "rate_limit": {
+      "allowed": true,
+      "limit_reached": false,
+      "primary_window": {"used_percent": 25.5, "limit_window_seconds": 18000, "reset_after_seconds": 900, "reset_at": 1787896800},
+      "secondary_window": null
+    },
+    "additional_rate_limits": [
+      {"limit_name": "spark", "metered_feature": "codex_spark", "rate_limit": {"allowed": true, "limit_reached": false, "primary_window": null, "secondary_window": null}}
+    ],
+    "rate_limit_reset_credits": {"available_count": 2, "credits": [{"expires_at": "2026-09-01T00:00:00Z"}]},
+    "fetched_at": 1787896800
+  },
+  "quota_refresh": {
+    "user_id": "user_fixture",
+    "account_id": "acct_fixture",
+    "email": "operator@example.test",
+    "plan_type": "pro",
+    "rate_limit": null,
+    "additional_rate_limits": [],
+    "rate_limit_reset_credits": {"available_count": 2, "credits": []},
+    "fetched_at": 1787896800,
+    "cache_persisted": true
+  },
+  "quota_reset": {
+    "code": "ok",
+    "credit": {"id": "credit_fixture", "reset_type": "rate_limit", "status": "redeemed", "granted_at": "2026-08-20T00:00:00Z", "expires_at": "2026-09-01T00:00:00Z", "redeem_started_at": "2026-08-28T06:00:00Z", "redeemed_at": "2026-08-28T06:00:01Z"},
+    "windows_reset": 2,
+    "quota": null,
+    "account": null,
+    "cache_refreshed": true,
+    "account_state_recovered": true,
+    "warning_code": ""
+  }
+}

@@ -90,6 +90,74 @@ class _UserWireService implements UserWireService {
   }
 
   @override
+  Future<HttpResponse<Map<String, Object?>>> getAffiliate(
+    CancelToken cancelToken,
+    Options options,
+    String? authorization,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{r'Authorization': authorization};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final newOptions = newRequestOptions(options);
+    newOptions.extra.addAll(_extra);
+    newOptions.headers.addAll(_dio.options.headers);
+    newOptions.headers.addAll(_headers);
+    final _options = newOptions.copyWith(
+      method: 'GET',
+      baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl),
+      queryParameters: queryParameters,
+      path: '/api/v1/user/aff',
+    )..data = _data;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late Map<String, Object?> _value;
+    try {
+      _value = _result.data!.cast<String, Object?>();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<Map<String, Object?>>> transferAffiliateQuota(
+    CancelToken cancelToken,
+    Options options,
+    String? authorization,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{r'Authorization': authorization};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final newOptions = newRequestOptions(options);
+    newOptions.extra.addAll(_extra);
+    newOptions.headers.addAll(_dio.options.headers);
+    newOptions.headers.addAll(_headers);
+    final _options = newOptions.copyWith(
+      method: 'POST',
+      baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl),
+      queryParameters: queryParameters,
+      path: '/api/v1/user/aff/transfer',
+    )..data = _data;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late Map<String, Object?> _value;
+    try {
+      _value = _result.data!.cast<String, Object?>();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<Map<String, Object?>>> updateProfile(
     Map<String, Object?> body,
     CancelToken cancelToken,

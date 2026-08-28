@@ -1,0 +1,10 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "requires_2fa": true,
+    "temp_token": "oauth-2fa-token-sentinel",
+    "user_email_masked": "u***@example.test",
+    "redirect": "/dashboard"
+  }
+}

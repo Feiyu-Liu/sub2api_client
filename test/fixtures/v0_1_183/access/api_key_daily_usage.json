@@ -1,0 +1,22 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "items": [
+      {
+        "date": "2026-08-26",
+        "requests": 12,
+        "input_tokens": 1000,
+        "output_tokens": 250,
+        "cache_read_tokens": 100,
+        "cache_write_tokens": 25,
+        "total_tokens": 1375,
+        "cost": 1.25,
+        "actual_cost": 0.875
+      }
+    ],
+    "days": 7,
+    "start_date": "2026-08-20",
+    "end_date": "2026-08-26"
+  }
+}

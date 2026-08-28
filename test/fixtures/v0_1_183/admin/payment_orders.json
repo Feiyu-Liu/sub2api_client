@@ -1,0 +1,24 @@
+{
+  "order": {
+    "id": 91, "user_id": 21, "user_email": "payer@example.test", "user_name": "payer", "user_notes": "vip",
+    "amount": "100.25", "pay_amount": "102.26", "fee_rate": "2.00", "currency": "CNY",
+    "recharge_code": "PAY-REDEEM-91", "out_trade_no": "ORDER-91", "payment_type": "alipay",
+    "payment_trade_no": "TRADE-91", "pay_url": "https://pay.example.test/91", "qr_code": "qr-secret-91",
+    "qr_code_img": "data:image/png;base64,secret", "order_type": "balance", "plan_id": null,
+    "subscription_group_id": null, "subscription_days": null, "provider_instance_id": "3", "provider_key": "alipay",
+    "status": "PAID", "refund_amount": "0", "refund_reason": null, "refund_at": null, "force_refund": false,
+    "refund_requested_at": null, "refund_request_reason": null, "refund_requested_by": null,
+    "expires_at": "2026-08-28T12:00:00Z", "paid_at": "2026-08-28T10:00:00Z", "completed_at": null,
+    "failed_at": null, "failed_reason": null, "client_ip": "192.0.2.10", "src_host": "app.example.test",
+    "src_url": "https://app.example.test/pay", "created_at": "2026-08-28T09:55:00Z", "updated_at": "2026-08-28T10:00:00Z"
+  },
+  "audit": {"id": 7, "order_id": "91", "action": "paid", "detail": "{\"provider\":\"alipay\"}", "operator": "system", "created_at": "2026-08-28T10:00:00Z"},
+  "dashboard": {
+    "today_amount": {"CNY": "102.26"}, "total_amount": {"CNY": "204.52"}, "today_count": 1,
+    "total_count": 2, "avg_amount": {"CNY": "102.26"}, "pending_orders": 3,
+    "daily_series": [{"date": "2026-08-28", "amount": {"CNY": "102.26"}, "count": 1}],
+    "payment_methods": [{"type": "alipay", "amount": {"CNY": "102.26"}, "count": 1}],
+    "top_users": {"CNY": [{"user_id": 21, "email": "payer@example.test", "amount": "102.26"}]}
+  },
+  "refund": {"success": true, "warning": "", "require_force": false, "balance_deducted": "100.25", "subscription_days_deducted": 0}
+}

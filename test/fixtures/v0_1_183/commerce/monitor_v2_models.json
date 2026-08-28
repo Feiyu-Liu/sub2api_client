@@ -1,0 +1,13 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "coverage": {
+      "requested_start": "2026-08-26T06:00:00Z", "requested_end": "2026-08-27T06:00:00Z",
+      "coverage_start": "2026-08-26T06:00:00Z", "data_through": "2026-08-27T05:59:00Z",
+      "computed_at": "2026-08-27T06:00:00Z", "aggregation_lag_seconds": 60,
+      "coverage_complete": true, "bucket_seconds": 300
+    },
+    "items": []
+  }
+}

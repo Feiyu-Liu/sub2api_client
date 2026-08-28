@@ -1,0 +1,31 @@
+{
+  "required": {
+    "required": true,
+    "version": "v2026.06.10",
+    "document_path_zh": "docs/legal/admin-compliance.zh.md",
+    "document_path_en": "docs/legal/admin-compliance.en.md",
+    "document_url_zh": "https://github.com/Wei-Shaw/sub2api/blob/main/docs/legal/admin-compliance.zh.md",
+    "document_url_en": "https://github.com/Wei-Shaw/sub2api/blob/main/docs/legal/admin-compliance.en.md",
+    "ack_phrase_zh": "我已阅读、理解并同意 Sub2API 部署与运营合规承诺",
+    "ack_phrase_en": "I have read, understood, and agree to the Sub2API Deployment and Operation Compliance Commitment"
+  },
+  "accepted": {
+    "required": false,
+    "version": "v2026.06.10",
+    "document_path_zh": "docs/legal/admin-compliance.zh.md",
+    "document_path_en": "docs/legal/admin-compliance.en.md",
+    "document_url_zh": "https://github.com/Wei-Shaw/sub2api/blob/main/docs/legal/admin-compliance.zh.md",
+    "document_url_en": "https://github.com/Wei-Shaw/sub2api/blob/main/docs/legal/admin-compliance.en.md",
+    "ack_phrase_zh": "我已阅读、理解并同意 Sub2API 部署与运营合规承诺",
+    "ack_phrase_en": "I have read, understood, and agree to the Sub2API Deployment and Operation Compliance Commitment",
+    "acknowledgement": {
+      "version": "v2026.06.10",
+      "document_zh": "docs/legal/admin-compliance.zh.md",
+      "document_en": "docs/legal/admin-compliance.en.md",
+      "admin_user_id": 1,
+      "ip_address": "203.0.113.10",
+      "user_agent": "sub2api-client-test",
+      "accepted_at": "2026-08-27T06:07:08Z"
+    }
+  }
+}

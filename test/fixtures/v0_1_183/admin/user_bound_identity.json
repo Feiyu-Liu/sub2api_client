@@ -1,0 +1,28 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "user_id": 21,
+    "provider_type": "oidc",
+    "provider_key": "corp",
+    "provider_subject": "subject-21",
+    "verified_at": "2026-08-27T05:00:00Z",
+    "issuer": "https://issuer.example.test",
+    "metadata": {
+      "tenant": "research",
+      "level": 2,
+      "active": true,
+      "roles": ["reader", "writer"]
+    },
+    "created_at": "2026-08-27T05:00:00Z",
+    "updated_at": "2026-08-27T05:00:00Z",
+    "channel": {
+      "channel": "desktop",
+      "channel_app_id": "app-1",
+      "channel_subject": "device-21",
+      "metadata": {"managed": true},
+      "created_at": "2026-08-27T05:00:00Z",
+      "updated_at": "2026-08-27T05:00:00Z"
+    }
+  }
+}

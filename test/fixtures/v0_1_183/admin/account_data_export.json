@@ -1,0 +1,48 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "type": "sub2api-data",
+    "version": 1,
+    "exported_at": "2026-08-27T03:04:05Z",
+    "proxies": [
+      {
+        "proxy_key": "socks5|127.0.0.1|1080|proxy-user|proxy-password-sentinel",
+        "name": "primary-proxy",
+        "protocol": "socks5",
+        "host": "127.0.0.1",
+        "port": 1080,
+        "username": "proxy-user",
+        "password": "proxy-password-sentinel",
+        "status": "active",
+        "expires_at": 1800000000,
+        "fallback_mode": "direct",
+        "backup_proxy_name": "",
+        "expiry_warn_days": 7
+      }
+    ],
+    "accounts": [
+      {
+        "name": "openai-primary",
+        "notes": "authorized backup fixture",
+        "platform": "openai",
+        "type": "oauth",
+        "credentials": {
+          "access_token": "export-access-token-sentinel",
+          "refresh_token": "export-refresh-token-sentinel",
+          "email": "operator@example.test"
+        },
+        "extra": {
+          "project_id": "project-1"
+        },
+        "proxy_key": "socks5|127.0.0.1|1080|proxy-user|proxy-password-sentinel",
+        "concurrency": 3,
+        "priority": 50,
+        "rate_multiplier": 0.85,
+        "expires_at": 1800000000,
+        "auto_pause_on_expired": true
+      }
+    ],
+    "skipped_shadows": 1
+  }
+}

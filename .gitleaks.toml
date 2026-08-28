@@ -1,0 +1,6 @@
+[allowlist]
+description = "Generated Dart type identifiers that match generic-api-key entropy heuristics."
+regexes = [
+  '''^Sub2ApiDecimal$''',
+  '''^Sub2ApiApiKeySecret$''',
+]

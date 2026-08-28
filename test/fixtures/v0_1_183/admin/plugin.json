@@ -1,0 +1,39 @@
+{
+  "plugin": {
+    "id": 31,
+    "plugin_key": "example.openai.transport",
+    "name": "Example Transport",
+    "version": "1.2.3",
+    "description": "Fixture plugin",
+    "author": "Example",
+    "manifest": {
+      "schema_version": 1,
+      "id": "example.openai.transport",
+      "name": "Example Transport",
+      "version": "1.2.3",
+      "description": "Fixture plugin",
+      "author": "Example",
+      "requires": {"sub2api": ">=0.1.183", "recommended_sub2api_version": "0.1.183", "tested_sub2api_versions": ["0.1.183"], "plugin_protocol": 1, "transport_api": 1, "ui_bridge": 1},
+      "capabilities": [{"id": "openai.oauth.outbound_transport.v1", "platform": "openai", "account_type": "oauth"}],
+      "runtimes": {"darwin-arm64": {"path": "bin/plugin"}},
+      "ui": {"entrypoint": "ui/index.html"},
+      "files": {"bin/plugin": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "ui/index.html": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}
+    },
+    "binary_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "signature_status": "trusted",
+    "state": "enabled",
+    "last_error": "",
+    "installed_by": 1,
+    "installed_at": "2026-08-28T05:00:00Z",
+    "enabled_at": "2026-08-28T05:05:00Z",
+    "updated_at": "2026-08-28T05:05:00Z",
+    "bindings": [{"id": 41, "plugin_id": 31, "capability": "openai.oauth.outbound_transport.v1", "platform": "openai", "account_type": "oauth", "enabled": true, "rollout_percent": 50, "created_at": "2026-08-28T05:00:00Z", "updated_at": "2026-08-28T05:05:00Z"}],
+    "compatibility": {"compatible": true, "tested": true, "status": "compatible", "message": "", "current_sub2api_version": "0.1.183", "required_sub2api_version": ">=0.1.183", "recommended_sub2api_version": "0.1.183", "plugin_protocol": 1, "transport_api": 1, "ui_bridge": 1},
+    "runtime_healthy": true,
+    "runtime_message": "running"
+  },
+  "config": {"endpoint": "https://plugin.example.test", "secret": "redacted-fixture", "retries": 2},
+  "test": {"success": true, "message": "ok", "latency_ms": 125},
+  "delete": {"message": "插件已卸载"},
+  "ui_session": {"url": "/api/v1/plugin-ui/asset-token/index.html#bridge_token=bridge-fixture", "bridge_token": "bridge-fixture", "ui_bridge_version": 1, "expires_at": "2026-08-28T06:30:00Z"}
+}

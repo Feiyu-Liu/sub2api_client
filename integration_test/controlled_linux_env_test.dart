@@ -45,6 +45,10 @@ void main() {
         );
         expect(login, isA<Sub2ApiAuthenticated>());
 
+        final currentUser = await client.auth.getCurrentUser();
+        expect(currentUser.email, email);
+        expect(currentUser.role, anyOf('user', 'admin'));
+
         final profile = await client.user.getProfile();
         expect(profile.email, email);
         await client.keys.list(

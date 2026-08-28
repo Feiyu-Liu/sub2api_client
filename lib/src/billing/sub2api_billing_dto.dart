@@ -422,3 +422,115 @@ final class Sub2ApiVerifyOrderDto {
   @JsonKey(name: 'out_trade_no')
   final String outTradeNo;
 }
+
+@JsonSerializable(createFactory: false)
+final class Sub2ApiRefundRequestDto {
+  const Sub2ApiRefundRequestDto({required this.reason});
+
+  final String reason;
+
+  Map<String, Object?> toJson() => _$Sub2ApiRefundRequestDtoToJson(this);
+}
+
+@JsonSerializable(createFactory: false)
+final class Sub2ApiResolveOrderDto {
+  const Sub2ApiResolveOrderDto({required this.resumeToken});
+
+  @JsonKey(name: 'resume_token')
+  final String resumeToken;
+
+  Map<String, Object?> toJson() => _$Sub2ApiResolveOrderDtoToJson(this);
+}
+
+@JsonSerializable(createToJson: false)
+final class Sub2ApiPublicOrderVerificationDto {
+  const Sub2ApiPublicOrderVerificationDto({
+    required this.outTradeNo,
+    required this.status,
+    required this.paid,
+    required this.createdAt,
+    required this.expiresAt,
+    this.paidAt,
+    this.completedAt,
+  });
+
+  factory Sub2ApiPublicOrderVerificationDto.fromJson(
+    Map<String, Object?> json,
+  ) => _$Sub2ApiPublicOrderVerificationDtoFromJson(json);
+
+  @JsonKey(name: 'out_trade_no')
+  final String outTradeNo;
+  final String status;
+  final bool paid;
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
+  @JsonKey(name: 'expires_at')
+  final DateTime expiresAt;
+  @JsonKey(name: 'paid_at')
+  final DateTime? paidAt;
+  @JsonKey(name: 'completed_at')
+  final DateTime? completedAt;
+}
+
+@JsonSerializable(createToJson: false)
+final class Sub2ApiPublicPaymentOrderDto {
+  const Sub2ApiPublicPaymentOrderDto({
+    required this.id,
+    required this.outTradeNo,
+    required this.amount,
+    required this.payAmount,
+    required this.feeRate,
+    required this.currency,
+    required this.paymentType,
+    required this.orderType,
+    required this.status,
+    required this.createdAt,
+    required this.expiresAt,
+    required this.refundAmount,
+    this.paidAt,
+    this.completedAt,
+    this.refundReason,
+    this.refundRequestedAt,
+    this.refundRequestedBy,
+    this.refundRequestReason,
+    this.planId,
+  });
+
+  factory Sub2ApiPublicPaymentOrderDto.fromJson(Map<String, Object?> json) =>
+      _$Sub2ApiPublicPaymentOrderDtoFromJson(json);
+
+  final int id;
+  @JsonKey(name: 'out_trade_no')
+  final String outTradeNo;
+  final num amount;
+  @JsonKey(name: 'pay_amount')
+  final num payAmount;
+  @JsonKey(name: 'fee_rate')
+  final num feeRate;
+  final String currency;
+  @JsonKey(name: 'payment_type')
+  final String paymentType;
+  @JsonKey(name: 'order_type')
+  final String orderType;
+  final String status;
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
+  @JsonKey(name: 'expires_at')
+  final DateTime expiresAt;
+  @JsonKey(name: 'paid_at')
+  final DateTime? paidAt;
+  @JsonKey(name: 'completed_at')
+  final DateTime? completedAt;
+  @JsonKey(name: 'refund_amount')
+  final num refundAmount;
+  @JsonKey(name: 'refund_reason')
+  final String? refundReason;
+  @JsonKey(name: 'refund_requested_at')
+  final DateTime? refundRequestedAt;
+  @JsonKey(name: 'refund_requested_by')
+  final String? refundRequestedBy;
+  @JsonKey(name: 'refund_request_reason')
+  final String? refundRequestReason;
+  @JsonKey(name: 'plan_id')
+  final int? planId;
+}

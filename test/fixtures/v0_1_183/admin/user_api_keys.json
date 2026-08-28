@@ -1,0 +1,42 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "items": [
+      {
+        "id": 31,
+        "user_id": 21,
+        "key": "admin-api-key-list-secret-sentinel",
+        "name": "desktop",
+        "group_id": 7,
+        "status": "active",
+        "ip_whitelist": [],
+        "ip_blacklist": [],
+        "last_used_at": null,
+        "last_used_ip": null,
+        "quota": 50,
+        "quota_used": 12.5,
+        "expires_at": null,
+        "created_at": "2026-08-20T01:00:00Z",
+        "updated_at": "2026-08-27T01:00:00Z",
+        "current_concurrency": 1,
+        "rate_limit_5h": 10,
+        "rate_limit_1d": 20,
+        "rate_limit_7d": 50,
+        "usage_5h": 1,
+        "usage_1d": 2,
+        "usage_7d": 3,
+        "window_5h_start": null,
+        "window_1d_start": null,
+        "window_7d_start": null,
+        "reset_5h_at": null,
+        "reset_1d_at": null,
+        "reset_7d_at": null
+      }
+    ],
+    "total": 1,
+    "page": 3,
+    "page_size": 10,
+    "pages": 1
+  }
+}

@@ -1,7 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../shared/models/sensitive_value.dart';
+import '../../shared/models/sub2api_decimal.dart';
+import '../../shared/models/sub2api_user_account.dart';
 import '../../shared/session/sub2api_session.dart';
+
+export '../../shared/models/sub2api_user_account.dart';
 
 part 'sub2api_auth_models.freezed.dart';
 
@@ -14,6 +18,62 @@ abstract class Sub2ApiAuthenticatedUser with _$Sub2ApiAuthenticatedUser {
     required String role,
     required String username,
   }) = _Sub2ApiAuthenticatedUser;
+}
+
+/// Full authenticated-user and role snapshot returned by `/auth/me`.
+@freezed
+abstract class Sub2ApiCurrentUser with _$Sub2ApiCurrentUser {
+  const Sub2ApiCurrentUser._();
+
+  const factory Sub2ApiCurrentUser({
+    required Sub2ApiUserAccountSnapshot account,
+    required String runMode,
+  }) = _Sub2ApiCurrentUser;
+
+  int get id => account.id;
+  String get email => account.email;
+  String get username => account.username;
+  String get role => account.role;
+  Sub2ApiDecimal get balance => account.balance;
+  Sub2ApiDecimal get frozenBalance => account.frozenBalance;
+  int get concurrency => account.concurrency;
+  String get status => account.status;
+  List<int> get allowedGroups => account.allowedGroups;
+  bool get balanceNotifyEnabled => account.balanceNotifyEnabled;
+  String get balanceNotifyThresholdType => account.balanceNotifyThresholdType;
+  Sub2ApiDecimal? get balanceNotifyThreshold => account.balanceNotifyThreshold;
+  List<Sub2ApiNotifyEmailEntry> get balanceNotifyExtraEmails =>
+      account.balanceNotifyExtraEmails;
+  Sub2ApiDecimal get totalRecharged => account.totalRecharged;
+  int get rpmLimit => account.rpmLimit;
+  DateTime get createdAt => account.createdAt;
+  DateTime get updatedAt => account.updatedAt;
+  Sub2ApiUserIdentitySet get identities => account.identities;
+  Map<String, Sub2ApiIdentityBinding> get authBindings => account.authBindings;
+  Map<String, Sub2ApiIdentityBinding> get identityBindings =>
+      account.identityBindings;
+  bool get emailBound => account.emailBound;
+  bool get linuxDoBound => account.linuxDoBound;
+  bool get oidcBound => account.oidcBound;
+  bool get weChatBound => account.weChatBound;
+  bool get dingTalkBound => account.dingTalkBound;
+  DateTime? get lastActiveAt => account.lastActiveAt;
+  DateTime? get deletedAt => account.deletedAt;
+  String? get avatarUrl => account.avatarUrl;
+  Sub2ApiProfileSourceContext? get avatarSource => account.avatarSource;
+  Sub2ApiProfileSourceContext? get usernameSource => account.usernameSource;
+  Sub2ApiProfileSourceContext? get displayNameSource =>
+      account.displayNameSource;
+  Sub2ApiProfileSourceContext? get nicknameSource => account.nicknameSource;
+  Map<String, Sub2ApiProfileSourceContext>? get profileSources =>
+      account.profileSources;
+}
+
+/// Acknowledgement after every session for the current user is revoked.
+final class Sub2ApiRevokeAllSessionsResult {
+  const Sub2ApiRevokeAllSessionsResult({required this.message});
+
+  final String message;
 }
 
 /// Captcha proof accepted by the fixed Sub2API authentication endpoints.
@@ -156,6 +216,28 @@ final class Sub2ApiInvitationCodeValidation {
 
   /// Whether the invitation code may be used for registration.
   final bool isValid;
+}
+
+/// Request to validate a registration promo code before account creation.
+final class Sub2ApiPromoCodeValidationRequest {
+  const Sub2ApiPromoCodeValidationRequest({required this.code});
+
+  final String code;
+}
+
+/// Promo-code validity and optional exact registration bonus.
+final class Sub2ApiPromoCodeValidation {
+  const Sub2ApiPromoCodeValidation({
+    required this.isValid,
+    this.bonusAmount,
+    this.errorCode,
+    this.message,
+  });
+
+  final Sub2ApiDecimal? bonusAmount;
+  final String? errorCode;
+  final bool isValid;
+  final String? message;
 }
 
 /// Request for an email password-reset link.

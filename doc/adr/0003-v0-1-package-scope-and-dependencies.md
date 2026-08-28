@@ -1,6 +1,7 @@
 # ADR-0003：固定 v0.1 用户端范围与 package 依赖
 
-- **状态**：Accepted（library lockfile、工程 Gate 与实施计划由 ADR-0005 部分替代）
+- **状态**：Accepted（Admin/Ops 范围由 ADR-0008 替代；library lockfile、工程 Gate 与实施
+  计划由 ADR-0005 部分替代）
 - **日期**：2026-08-25
 - **决策者**：Package 主理人
 - **关联**：ADR-0001、ADR-0002

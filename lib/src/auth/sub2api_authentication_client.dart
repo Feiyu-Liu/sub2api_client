@@ -9,9 +9,15 @@ import '../shared/transport/request_executor.dart';
 import 'models/sub2api_auth_models.dart';
 import 'wire/auth_wire_service.dart';
 import 'wire/sub2api_auth_dto.dart';
+import 'wire/sub2api_current_user_dto.dart';
 
 /// Provides password authentication operations supported by v0.1.
 abstract interface class Sub2ApiAuthenticationClient {
+  /// Reads the full current-user, role, identity, and run-mode snapshot.
+  Future<Sub2ApiCurrentUser> getCurrentUser({
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
   /// Sends a registration verification code to an email address.
   Future<Sub2ApiEmailVerificationCodeSent> sendEmailVerificationCode(
     Sub2ApiEmailVerificationCodeRequest request, {
@@ -21,6 +27,12 @@ abstract interface class Sub2ApiAuthenticationClient {
   /// Validates an invitation code before registration.
   Future<Sub2ApiInvitationCodeValidation> validateInvitationCode(
     Sub2ApiInvitationCodeValidationRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Validates a promo code before registration.
+  Future<Sub2ApiPromoCodeValidation> validatePromoCode(
+    Sub2ApiPromoCodeValidationRequest request, {
     Sub2ApiRequestOptions? requestOptions,
   });
 
@@ -50,6 +62,11 @@ abstract interface class Sub2ApiAuthenticationClient {
 
   /// Revokes the current session without replaying the operation.
   Future<void> logout({Sub2ApiRequestOptions? requestOptions});
+
+  /// Revokes every user session and clears the local token pair first.
+  Future<Sub2ApiRevokeAllSessionsResult> revokeAllSessions({
+    Sub2ApiRequestOptions? requestOptions,
+  });
 
   /// Rotates and persists the current refreshable session.
   Future<Sub2ApiSession> refreshCurrentSession({
@@ -91,6 +108,19 @@ Future<Sub2ApiSession> refreshSub2ApiAuthenticationSession(
   throw StateError('Unsupported Sub2ApiAuthenticationClient implementation.');
 }
 
+/// Decodes and persists an authentication response from another auth method.
+Future<Sub2ApiLoginResult> acceptSub2ApiAuthenticationResponse(
+  Sub2ApiAuthenticationClient client,
+  Object? data,
+) async {
+  if (client case _Sub2ApiAuthenticationClient()) {
+    final result = client._decodeLogin(data);
+    await client._persistAuthenticatedResult(result);
+    return result;
+  }
+  throw StateError('Unsupported Sub2ApiAuthenticationClient implementation.');
+}
+
 final class _Sub2ApiAuthenticationClient
     implements Sub2ApiAuthenticationClient {
   /// Creates an authentication feature client backed by the shared executor.
@@ -108,6 +138,17 @@ final class _Sub2ApiAuthenticationClient
   final String _scope;
   final AuthWireService _service;
   final Sub2ApiSessionCoordinator _sessions;
+
+  /// Reads the full current-user, role, identity, and run-mode snapshot.
+  @override
+  Future<Sub2ApiCurrentUser> getCurrentUser({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.protectedRequest<Sub2ApiCurrentUser>(
+    send: (cancelToken, options, authorization) =>
+        _service.getCurrentUser(cancelToken, options, authorization),
+    decode: _decodeCurrentUser,
+    requestOptions: requestOptions,
+  );
 
   /// Sends a registration verification code to an email address.
   @override
@@ -144,6 +185,31 @@ final class _Sub2ApiAuthenticationClient
     decode: _decodeInvitationCodeValidation,
     requestOptions: requestOptions,
   );
+
+  @override
+  Future<Sub2ApiPromoCodeValidation> validatePromoCode(
+    Sub2ApiPromoCodeValidationRequest request, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final code = request.code.trim();
+    if (code.isEmpty) {
+      throw const Sub2ApiException(
+        kind: Sub2ApiFailureKind.validation,
+        code: 'auth.invalid_promo_code',
+        retryable: false,
+      );
+    }
+    return _requestExecutor.publicRequest<Sub2ApiPromoCodeValidation>(
+      send: (cancelToken, options, authorization) => _service.validatePromoCode(
+        <String, Object?>{'code': code},
+        cancelToken,
+        options,
+        authorization,
+      ),
+      decode: _decodePromoCodeValidation,
+      requestOptions: requestOptions,
+    );
+  }
 
   /// Requests an email password-reset link without exposing account existence.
   @override
@@ -236,6 +302,31 @@ final class _Sub2ApiAuthenticationClient
         'Bearer ${snapshot.session.accessToken.reveal()}',
       ),
       decode: (_) {},
+      requestOptions: requestOptions,
+    );
+  }
+
+  /// Revokes every user session without refresh or replay.
+  @override
+  Future<Sub2ApiRevokeAllSessionsResult> revokeAllSessions({
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    final snapshot = await _sessions.snapshot();
+    if (snapshot == null) {
+      throw const Sub2ApiException(
+        kind: Sub2ApiFailureKind.unauthorized,
+        code: 'auth.login_required',
+        retryable: false,
+      );
+    }
+    await _sessions.clear();
+    return _requestExecutor.publicRequest<Sub2ApiRevokeAllSessionsResult>(
+      send: (cancelToken, options, _) => _service.revokeAllSessions(
+        cancelToken,
+        options,
+        'Bearer ${snapshot.session.accessToken.reveal()}',
+      ),
+      decode: _decodeRevokeAllSessions,
       requestOptions: requestOptions,
     );
   }
@@ -350,6 +441,30 @@ final class _Sub2ApiAuthenticationClient
     }
   }
 
+  static Sub2ApiCurrentUser _decodeCurrentUser(Object? data) {
+    try {
+      return Sub2ApiCurrentUserDto.fromJson(
+        _objectMap(data, invalidCurrentUserResponse),
+      ).toPublicModel();
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw invalidCurrentUserResponse;
+    }
+  }
+
+  static Sub2ApiRevokeAllSessionsResult _decodeRevokeAllSessions(Object? data) {
+    try {
+      return Sub2ApiRevokeAllSessionsDto.fromJson(
+        _objectMap(data, invalidRevokeAllSessionsResponse),
+      ).toPublicModel();
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw invalidRevokeAllSessionsResponse;
+    }
+  }
+
   static Sub2ApiEmailVerificationCodeSent _decodeEmailVerificationCodeSent(
     Object? data,
   ) {
@@ -375,6 +490,18 @@ final class _Sub2ApiAuthenticationClient
       rethrow;
     } on Object {
       throw _invalidInvitationCodeValidationResponse;
+    }
+  }
+
+  static Sub2ApiPromoCodeValidation _decodePromoCodeValidation(Object? data) {
+    try {
+      return Sub2ApiPromoCodeValidationDto.fromJson(
+        _objectMap(data, _invalidPromoCodeValidationResponse),
+      ).toPublicModel();
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw _invalidPromoCodeValidationResponse;
     }
   }
 
@@ -438,6 +565,12 @@ const _invalidEmailVerificationCodeResponse = Sub2ApiException(
 const _invalidInvitationCodeValidationResponse = Sub2ApiException(
   kind: Sub2ApiFailureKind.protocol,
   code: 'protocol.invalid_invitation_code_validation_response',
+  retryable: false,
+);
+
+const _invalidPromoCodeValidationResponse = Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_promo_code_validation_response',
   retryable: false,
 );
 

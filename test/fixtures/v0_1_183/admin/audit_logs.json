@@ -1,0 +1,46 @@
+{
+  "list": {
+    "items": [
+      {
+        "id": 41,
+        "created_at": "2026-08-27T08:09:10Z",
+        "actor_user_id": 7,
+        "actor_email": "admin@example.test",
+        "actor_role": "admin",
+        "auth_method": "jwt",
+        "credential_masked": "Bearer****7890",
+        "action": "admin.users.update",
+        "method": "PUT",
+        "path": "/api/v1/admin/users/7",
+        "request_id": "request-41",
+        "client_ip": "203.0.113.41",
+        "user_agent": "sub2api-contract-test",
+        "status_code": 200,
+        "latency_ms": 42
+      }
+    ],
+    "total": 1,
+    "page": 2,
+    "page_size": 25,
+    "pages": 1
+  },
+  "detail": {
+    "id": 42,
+    "created_at": "2026-08-27T09:10:11Z",
+    "actor_user_id": 7,
+    "actor_email": "admin@example.test",
+    "actor_role": "admin",
+    "auth_method": "jwt",
+    "credential_masked": "Bearer****7890",
+    "action": "admin.audit_log.clear",
+    "method": "POST",
+    "path": "/api/v1/admin/audit-logs/clear",
+    "request_id": "request-42",
+    "client_ip": "203.0.113.42",
+    "user_agent": "sub2api-contract-test",
+    "request_body": "{\"totp_code\":\"***\"}",
+    "status_code": 200,
+    "latency_ms": 17,
+    "extra": {"deleted_rows": 12, "future_additive_field": true}
+  }
+}

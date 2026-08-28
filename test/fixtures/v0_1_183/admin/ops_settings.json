@@ -1,0 +1,99 @@
+{
+  "email": {
+    "alert": {
+      "enabled": true,
+      "recipients": ["ops@example.test"],
+      "min_severity": "warning",
+      "rate_limit_per_hour": 20,
+      "batching_window_seconds": 60,
+      "include_resolved_alerts": true
+    },
+    "report": {
+      "enabled": true,
+      "recipients": ["reports@example.test"],
+      "daily_summary_enabled": true,
+      "daily_summary_schedule": "0 9 * * *",
+      "weekly_summary_enabled": true,
+      "weekly_summary_schedule": "0 9 * * 1",
+      "error_digest_enabled": true,
+      "error_digest_schedule": "0 */6 * * *",
+      "error_digest_min_count": 10,
+      "account_health_enabled": true,
+      "account_health_schedule": "0 8 * * *",
+      "account_health_error_rate_threshold": 12.5
+    }
+  },
+  "alert_runtime": {
+    "evaluation_interval_seconds": 30,
+    "distributed_lock": {
+      "enabled": true,
+      "key": "ops:alert:evaluator:leader",
+      "ttl_seconds": 30
+    },
+    "silencing": {
+      "enabled": true,
+      "global_until_rfc3339": "2026-08-29T04:05:06Z",
+      "global_reason": "Maintenance",
+      "entries": [
+        {
+          "rule_id": 12,
+          "severities": ["P0", "P1"],
+          "until_rfc3339": "2026-08-29T05:05:06Z",
+          "reason": "Provider maintenance"
+        }
+      ]
+    },
+    "thresholds": {
+      "sla_percent_min": 99.5,
+      "ttft_p99_ms_max": 500,
+      "request_error_rate_percent_max": 5,
+      "upstream_error_rate_percent_max": 5
+    }
+  },
+  "logging": {
+    "level": "debug",
+    "enable_sampling": true,
+    "sampling_initial": 100,
+    "sampling_thereafter": 200,
+    "caller": true,
+    "stacktrace_level": "error",
+    "retention_days": 30,
+    "source": "runtime_setting",
+    "updated_at": "2026-08-28T05:06:07.123Z",
+    "updated_by_user_id": 1,
+    "extra": {
+      "applied": true
+    }
+  },
+  "advanced": {
+    "data_retention": {
+      "cleanup_enabled": true,
+      "cleanup_schedule": "0 3 * * *",
+      "error_log_retention_days": 30,
+      "minute_metrics_retention_days": 14,
+      "hourly_metrics_retention_days": 90
+    },
+    "aggregation": {
+      "aggregation_enabled": true
+    },
+    "openai_account_quota_auto_pause": {
+      "default_threshold_5h": 0.2,
+      "default_threshold_7d": 0.1
+    },
+    "ignore_count_tokens_errors": true,
+    "ignore_context_canceled": true,
+    "ignore_no_available_accounts": false,
+    "ignore_invalid_api_key_errors": true,
+    "ignore_insufficient_balance_errors": false,
+    "display_openai_token_stats": true,
+    "display_alert_events": true,
+    "auto_refresh_enabled": true,
+    "auto_refresh_interval_seconds": 30
+  },
+  "thresholds": {
+    "sla_percent_min": 99.5,
+    "ttft_p99_ms_max": 500,
+    "request_error_rate_percent_max": 5,
+    "upstream_error_rate_percent_max": 4.5
+  }
+}

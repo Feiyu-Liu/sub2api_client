@@ -1,0 +1,5701 @@
+{
+  "sub2api_tag": "v0.1.183",
+  "sub2api_commit": "e8cb019fabf8b55199436229044cbf9aa7a82564",
+  "generated_from": [
+    "backend/internal/server/routes/auth.go",
+    "backend/internal/server/routes/user.go",
+    "backend/internal/server/routes/payment.go",
+    "backend/internal/server/routes/admin.go",
+    "backend/internal/server/routes/model_plaza.go"
+  ],
+  "completion_definition": "All target entries must reach transport_tested; selected credential, permission, and step-up flows must additionally pass controlled E2E.",
+  "counts": {
+    "all_routes": 566,
+    "target_routes": 552,
+    "excluded_routes": 14,
+    "by_status": {
+      "excluded": 14,
+      "transport_tested": 552
+    },
+    "target_by_surface": {
+      "admin": 425,
+      "user": 127
+    }
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:360"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:367"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/accounts/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:381"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:366"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/accounts/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:373"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/apply-oauth-credentials",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:385"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/clear-error",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:389"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/clear-rate-limit",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:395"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/duplicate",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:368"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/:id/models",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:401"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/models/sync-upstream",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:402"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/:id/ollama-cloud-usage",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:376"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/accounts/:id/ollama-cloud-usage/auto-refresh",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:379"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/ollama-cloud-usage/refresh",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:380"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/accounts/:id/ollama-cloud-usage/session",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:378"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/accounts/:id/ollama-cloud-usage/session",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:377"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/recover-state",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:383"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/refresh",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:384"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/refresh-tier",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:387"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/reset-quota",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:396"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/revert-proxy-fallback",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:390"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/schedulable",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:399"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/:id/scheduled-test-plans",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:720"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/set-privacy",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:386"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/shadow",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:418"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/:id/stats",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:388"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/accounts/:id/temp-unschedulable",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:398"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/:id/temp-unschedulable",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:397"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/test",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:382"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/:id/today-stats",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:392"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/:id/upstream-billing-probe",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:375"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/accounts/:id/upstream-billing-probe",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:374"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/:id/usage",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:391"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/antigravity/default-model-mapping",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:415"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/batch",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:403"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/batch-clear-error",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:411"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/batch-delete",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:410"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/batch-refresh",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:412"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/batch-refresh-tier",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:408"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/batch-update-credentials",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:407"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/bulk-update",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:409"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/check-mixed-channel",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:369"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/cookie-auth",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:425"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/data",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:405"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/data",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:406"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/exchange-code",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:423"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/exchange-setup-token-code",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:424"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/generate-auth-url",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:421"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/generate-setup-token-url",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:422"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/import/codex-session",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:370"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/models/sync-upstream-preview",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:400"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/ollama-cloud-usage/settings",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:364"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/accounts/ollama-cloud-usage/settings",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:365"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/setup-token-cookie-auth",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:426"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/sync/crs",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:371"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/sync/crs/preview",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:372"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/today-stats/batch",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:394"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/upstream-billing-probe/batch",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:363"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accounts/upstream-billing-probe/settings",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:361"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/accounts/upstream-billing-probe/settings",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:362"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accounts/usage/batch",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:393"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/affiliates/invites",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:806"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/affiliates/rebates",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:807"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/affiliates/transfers",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:808"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/affiliates/users",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:812"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/affiliates/users/:user_id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:817"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/affiliates/users/:user_id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:816"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/affiliates/users/:user_id/overview",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:815"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/affiliates/users/batch-rate",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:814"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/affiliates/users/lookup",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:813"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/announcements",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:433"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/announcements",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:434"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/announcements/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:437"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/announcements/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:435"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/announcements/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:436"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/announcements/:id/read-status",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:438"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/antigravity/oauth/auth-url",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:469"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/antigravity/oauth/exchange-code",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:470"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/antigravity/oauth/refresh-token",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:471"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/api-keys/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:187"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/audit-logs",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:155"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/audit-logs/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:156"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/audit-logs/clear",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:158"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/backups",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:641"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/backups",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:640"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/backups/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:643"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/backups/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:642"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/backups/:id/download-url",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:645"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/backups/:id/restore",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:648"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/backups/image-storage",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:630"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/backups/image-storage",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:632"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/backups/image-storage/test",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:633"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/backups/s3-config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:624"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/backups/s3-config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:626"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/backups/s3-config/test",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:627"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/backups/schedule",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:636"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/backups/schedule",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:637"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitor-templates",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:792"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/channel-monitor-templates",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:793"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/channel-monitor-templates/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:796"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitor-templates/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:794"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/channel-monitor-templates/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:795"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/channel-monitor-templates/:id/apply",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:798"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitor-templates/:id/monitors",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:797"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitor-v2/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:833"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/channel-monitor-v2/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:834"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitor-v2/dimensions",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:839"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitor-v2/errors",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:843"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitor-v2/matrix",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:842"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitor-v2/models",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:841"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitor-v2/snapshot",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:840"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitor-v2/users",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:844"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitors",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:779"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/channel-monitors",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:780"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/channel-monitors/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:784"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitors/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:781"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/channel-monitors/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:783"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/channel-monitors/:id/duplicate",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:782"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channel-monitors/:id/history",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:786"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/channel-monitors/:id/run",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:785"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channels",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:764"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/channels",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:768"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/channels/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:770"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channels/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:767"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/channels/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:769"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channels/model-pricing",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:765"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/channels/pricing/sync-models",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:766"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/cn-providers/accounts/:id/balance",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:501"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/cn-providers/accounts/:id/quota",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:499"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/compliance",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:165"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/compliance/accept",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:166"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/dashboard/aggregation/backfill",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:296"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/dashboard/api-keys-trend",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:290"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/dashboard/api-keys-usage",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:294"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/dashboard/groups",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:289"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/dashboard/models",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:288"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/dashboard/realtime",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:286"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/dashboard/snapshot-v2",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:284"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/dashboard/stats",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:285"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/dashboard/trend",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:287"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/dashboard/user-breakdown",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:295"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/dashboard/users-ranking",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:292"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/dashboard/users-trend",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:291"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/dashboard/users-usage",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:293"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/data-management/agent/health",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:599"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/data-management/backups",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:615"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/data-management/backups",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:614"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/data-management/backups/:job_id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:616"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/data-management/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:600"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/data-management/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:601"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/data-management/s3/profiles",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:608"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/data-management/s3/profiles",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:610"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/data-management/s3/profiles/:profile_id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:612"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/data-management/s3/profiles/:profile_id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:611"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/data-management/s3/profiles/:profile_id/activate",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:613"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/data-management/s3/test",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:607"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/data-management/sources/:source_type/profiles",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:602"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/data-management/sources/:source_type/profiles",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:603"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/data-management/sources/:source_type/profiles/:profile_id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:605"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/data-management/sources/:source_type/profiles/:profile_id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:604"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/data-management/sources/:source_type/profiles/:profile_id/activate",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:606"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/error-passthrough-rules",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:726"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/error-passthrough-rules",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:728"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/error-passthrough-rules/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:730"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/error-passthrough-rules/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:727"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/error-passthrough-rules/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:729"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/gemini/oauth/auth-url",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:460"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/gemini/oauth/capabilities",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:462"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/gemini/oauth/exchange-code",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:461"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/grok/accounts/:id/quota",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:488"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/grok/accounts/:id/refresh",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:487"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/grok/accounts/:id/reset-quota",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:489"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/grok/oauth/auth-url",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:479"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/grok/oauth/capabilities",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:478"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/grok/oauth/create-from-oauth",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:484"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/grok/oauth/exchange-code",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:480"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/grok/oauth/password",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:483"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/grok/oauth/reconcile",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:486"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/grok/oauth/refresh-token",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:481"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/grok/oauth/sso-token",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:482"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/grok/runtime-sanity",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:490"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/grok/sso-to-oauth",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:485"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:330"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/groups",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:343"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/groups/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:346"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:342"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/groups/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:345"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups/:id/api-keys",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:353"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups/:id/composite-routes",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:337"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/groups/:id/composite-routes",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:338"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/groups/:id/composite-routes/:route_id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:341"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/groups/:id/composite-routes/:route_id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:340"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/groups/:id/composite-routes/preview",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:339"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/groups/:id/duplicate",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:344"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups/:id/models-list-candidates",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:336"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/groups/:id/rate-multipliers",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:350"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups/:id/rate-multipliers",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:348"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/groups/:id/rate-multipliers",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:349"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/groups/:id/rpm-overrides",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:352"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/groups/:id/rpm-overrides",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:351"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups/:id/stats",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:347"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups/:id/subscriptions",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:680"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups/all",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:331"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups/capacity-summary",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:333"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups/live-capability",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:334"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/groups/sort-order",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:335"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/groups/usage-summary",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:332"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/openai/accounts/:id/quota",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:451"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/openai/accounts/:id/quota/refresh",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:452"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/openai/accounts/:id/refresh",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:448"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/openai/accounts/:id/reset-quota",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:453"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/openai/create-from-codex-pat",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:450"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/openai/create-from-oauth",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:449"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/openai/exchange-code",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:446"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/openai/generate-auth-url",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:445"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/openai/refresh-token",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:447"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/account-availability",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:197"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/advanced-settings",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:225"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/ops/advanced-settings",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:226"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/alert-events",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:205"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/alert-events/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:206"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/ops/alert-events/:id/status",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:207"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/alert-rules",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:201"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/ops/alert-rules",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:202"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/ops/alert-rules/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:204"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/ops/alert-rules/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:203"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/ops/alert-silences",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:208"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/auth-cache-invalidation/health",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:255"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/concurrency",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:195"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/dashboard/error-distribution",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:276"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/dashboard/error-trend",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:275"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/dashboard/latency-histogram",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:274"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/dashboard/openai-token-stats",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:277"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/dashboard/overview",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:272"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/dashboard/snapshot-v2",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:271"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/dashboard/throughput-trend",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:273"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/email-notification/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:211"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/ops/email-notification/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:212"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/errors",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:242"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/errors/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:243"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/ops/errors/:id/resolve",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:244"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/ingress-rejections",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:253"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/ingress-rejections/health",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:254"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/realtime-traffic",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:198"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/request-errors",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:247"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/request-errors/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:248"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/ops/request-errors/:id/resolve",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:250"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/request-errors/:id/upstream-errors",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:249"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/requests",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:263"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/runtime/alert",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:217"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/ops/runtime/alert",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:218"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/runtime/logging",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:219"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/ops/runtime/logging",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:220"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/ops/runtime/logging/reset",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:221"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/settings/metric-thresholds",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:231"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/ops/settings/metric-thresholds",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:232"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/system-logs",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:266"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/ops/system-logs/cleanup",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:267"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/system-logs/health",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:268"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/upstream-errors",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:258"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/upstream-errors/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:259"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/ops/upstream-errors/:id/resolve",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:260"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/user-concurrency",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:196"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/ops/ws/qps",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:238"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/payment/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:81"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/payment/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:82"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/payment/dashboard",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:78"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/payment/orders",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:87"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/payment/orders/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:88"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/payment/orders/:id/cancel",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:89"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/payment/orders/:id/refund",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:91"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/payment/orders/:id/refund/query",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:92"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/payment/orders/:id/retry",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:90"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/payment/plans",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:98"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/payment/plans",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:99"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/payment/plans/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:101"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/payment/plans/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:100"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/payment/providers",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:107"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/payment/providers",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:108"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/payment/providers/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:110"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/payment/providers/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:109"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/plugins",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:748"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/plugins/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:753"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/plugins/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:749"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/plugins/:id/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:754"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/plugins/:id/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:755"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/plugins/:id/disable",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:752"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/plugins/:id/enable",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:751"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/plugins/:id/test",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:756"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/plugins/:id/ui-session",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:757"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/plugins/upload",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:750"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/promo-codes",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:545"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/promo-codes",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:547"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/promo-codes/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:549"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/promo-codes/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:546"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/promo-codes/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:548"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/promo-codes/:id/usages",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:550"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/prompt-audit/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:139"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/prompt-audit/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:140"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/prompt-audit/endpoints/probe",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:141"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/prompt-audit/events",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:143"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/prompt-audit/events/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:145"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/prompt-audit/events/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:144"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/prompt-audit/events/batch-delete",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:146"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/prompt-audit/events/delete-by-filter",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:148"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/prompt-audit/events/delete-preview",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:147"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/prompt-audit/runtime",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:142"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/proxies",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:508"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/proxies",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:514"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/proxies/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:516"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/proxies/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:513"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/proxies/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:515"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/proxies/:id/accounts",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:520"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/proxies/:id/quality-check",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:518"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/proxies/:id/stats",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:519"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/proxies/:id/test",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:517"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/proxies/all",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:509"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/proxies/batch",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:522"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/proxies/batch-delete",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:521"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/proxies/data",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "required_by_route",
+      "source": "backend/internal/server/routes/admin.go:511"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/proxies/data",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:512"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/redeem-codes",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:529"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/redeem-codes/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:535"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/redeem-codes/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:532"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/redeem-codes/:id/expire",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:538"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/redeem-codes/batch-delete",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:536"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/redeem-codes/batch-update",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:537"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/redeem-codes/create-and-redeem",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:533"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/redeem-codes/export",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:531"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/redeem-codes/generate",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:534"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/redeem-codes/stats",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:530"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/risk-control/api-keys/test",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:175"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/risk-control/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:173"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/risk-control/config",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:174"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/risk-control/hashes",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:179"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/risk-control/hashes/all",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:180"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/risk-control/logs",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:177"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/risk-control/status",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:176"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/risk-control/users/:user_id/unban",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:178"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/scheduled-test-plans",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:714"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/scheduled-test-plans/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:716"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/scheduled-test-plans/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:715"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/scheduled-test-plans/:id/results",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:717"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/settings",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:557"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/settings",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:558"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/settings/admin-api-key",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:569"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/settings/admin-api-key",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:567"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/settings/admin-api-key/regenerate",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:568"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/settings/beta-policy",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:586"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/settings/beta-policy",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:587"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/settings/email-template-preview",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:562"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/settings/email-templates",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:561"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/settings/email-templates/:event/:locale",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:563"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/settings/email-templates/:event/:locale",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:564"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/settings/email-templates/:event/:locale/restore-official",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:565"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/settings/overload-cooldown",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:571"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/settings/overload-cooldown",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:572"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/settings/panel-rate-limit",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:577"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/settings/panel-rate-limit",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:578"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/settings/rate-limit-429-cooldown",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:574"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/settings/rate-limit-429-cooldown",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:575"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/settings/rectifier",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:583"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/settings/rectifier",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:584"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/settings/send-test-email",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:560"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/settings/stream-timeout",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:580"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/settings/stream-timeout",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:581"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/settings/test-smtp",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:559"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/settings/web-search-emulation",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:589"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/settings/web-search-emulation",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:590"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/settings/web-search-emulation/reset-usage",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:592"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/settings/web-search-emulation/test",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:591"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/subscriptions",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:667"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/subscriptions/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:676"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/subscriptions/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:668"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/subscriptions/:id/extend",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:672"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/subscriptions/:id/progress",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:669"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/subscriptions/:id/reset-quota",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:673"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/subscriptions/:id/restore",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:675"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/subscriptions/:id/revoke",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:674"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/subscriptions/assign",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:670"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/subscriptions/bulk-assign",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:671"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/system/check-updates",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:656"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/system/restart",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:660"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/system/rollback",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:659"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/system/rollback-versions",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:657"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/system/update",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:658"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/system/version",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:655"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/tls-fingerprint-profiles",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:737"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/tls-fingerprint-profiles",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:739"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/tls-fingerprint-profiles/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:741"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/tls-fingerprint-profiles/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:738"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/tls-fingerprint-profiles/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:740"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/usage",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:689"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/usage/cleanup-tasks",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:693"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/usage/cleanup-tasks",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:694"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/usage/cleanup-tasks/:id/cancel",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:695"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/usage/search-api-keys",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:692"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/usage/search-users",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:691"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/usage/stats",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:690"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/user-attributes",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:702"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/user-attributes",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:703"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/user-attributes/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:707"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/user-attributes/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:706"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/user-attributes/batch",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:704"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/user-attributes/reorder",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:705"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/users",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:303"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/users",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:306"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/admin/users/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:308"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/users/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:304"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/users/:id",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:307"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/users/:id/api-keys",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:310"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/users/:id/attributes",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:322"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/users/:id/attributes",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:323"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/users/:id/auth-identities",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:305"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/users/:id/balance",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:309"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/users/:id/balance-history",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:312"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/users/:id/platform-quotas",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:317"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/admin/users/:id/platform-quotas",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:318"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/users/:id/platform-quotas/reset",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:319"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/users/:id/replace-group",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:313"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/users/:id/rpm-status",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:314"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/users/:id/subscriptions",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:683"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/users/:id/usage",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:311"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/users/batch-concurrency",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:315"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/users/batch-limits",
+      "surface": "admin",
+      "authentication": "admin_jwt_or_admin_api_key",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/admin.go:316"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/announcements",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:118"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/announcements/:id/read",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:119"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/forgot-password",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:68"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:38"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login/2fa",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:41"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/logout",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:58"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:257"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/bind-token",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:260"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/dingtalk/bind-login",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:227"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/dingtalk/bind/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:214"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/dingtalk/callback",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "oauth_callback",
+      "source": "backend/internal/server/routes/auth.go:220"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/dingtalk/complete-registration",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:221"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/dingtalk/create-account",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:233"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/dingtalk/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:210"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/dingtalk/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:211"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/github/callback",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "oauth_callback",
+      "source": "backend/internal/server/routes/auth.go:83"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/github/complete-registration",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:84"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/github/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:79"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/github/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:80"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/google/callback",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "oauth_callback",
+      "source": "backend/internal/server/routes/auth.go:94"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/google/complete-registration",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:95"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/google/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:90"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/google/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:91"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/linuxdo/bind-login",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:151"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/linuxdo/bind/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:101"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/linuxdo/callback",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "oauth_callback",
+      "source": "backend/internal/server/routes/auth.go:107"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/linuxdo/complete-registration",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:145"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/linuxdo/create-account",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:157"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/linuxdo/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:75"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/linuxdo/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:76"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/oidc/bind-login",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:198"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/oidc/bind/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:185"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/oidc/callback",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "oauth_callback",
+      "source": "backend/internal/server/routes/auth.go:191"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/oidc/complete-registration",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:192"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/oidc/create-account",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:204"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/oidc/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:181"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/oidc/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:182"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/pending/bind-login",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:139"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/pending/create-account",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:133"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/pending/exchange",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:121"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/pending/send-verify-code",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:127"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/wechat/bind-login",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:169"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/wechat/bind/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:112"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/wechat/callback",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "oauth_callback",
+      "source": "backend/internal/server/routes/auth.go:118"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/wechat/complete-registration",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:163"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/wechat/create-account",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:175"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/wechat/payment/callback",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "oauth_callback",
+      "source": "backend/internal/server/routes/auth.go:120"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/wechat/payment/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:119"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/oauth/wechat/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:108"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/oauth/wechat/start",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:109"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/passkey/login/begin",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:44"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/passkey/login/finish",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:47"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/refresh",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:54"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/register",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:35"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/reset-password",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:72"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/revoke-all-sessions",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:259"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/send-verify-code",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:50"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/validate-invitation-code",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:64"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/validate-promo-code",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:60"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/channel-monitor-v2/dimensions",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:150"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/channel-monitor-v2/errors",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:154"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/channel-monitor-v2/matrix",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:153"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/channel-monitor-v2/models",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:152"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/channel-monitor-v2/snapshot",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:151"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/channel-monitor-v2/users",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:155"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/channel-monitors",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:141"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/channel-monitors/:id/status",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:142"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/channels/available",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:95"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/groups/available",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:88"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/groups/rates",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:89"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/keys",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:78"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/keys",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:80"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/keys/:id",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:82"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/keys/:id",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:79"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/keys/:id",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:81"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/model-plaza",
+      "surface": "user",
+      "authentication": "public_or_user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/model_plaza.go:28"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/payment/checkout-info",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:33"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/payment/config",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:32"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/payment/limits",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:35"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/payment/orders",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:39"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/payment/orders/:id",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:42"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/payment/orders/:id/cancel",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:43"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/payment/orders/:id/refund-request",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:44"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/payment/orders/my",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:41"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/payment/orders/refund-eligible-providers",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:45"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/payment/orders/verify",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:40"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/payment/plans",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:34"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/payment/public/orders/resolve",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:56"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/payment/public/orders/verify",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/payment.go:55"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/payment/webhook/airwallex",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "payment_webhook",
+      "source": "backend/internal/server/routes/payment.go:68"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/payment/webhook/alipay",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "payment_webhook",
+      "source": "backend/internal/server/routes/payment.go:65"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/payment/webhook/easypay",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "payment_webhook",
+      "source": "backend/internal/server/routes/payment.go:63"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/payment/webhook/easypay",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "payment_webhook",
+      "source": "backend/internal/server/routes/payment.go:64"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/payment/webhook/stripe",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "payment_webhook",
+      "source": "backend/internal/server/routes/payment.go:67"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/payment/webhook/wxpay",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "payment_webhook",
+      "source": "backend/internal/server/routes/payment.go:66"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/plugin-ui/:token/*path",
+      "surface": "server_ingress",
+      "authentication": "not_applicable",
+      "target": false,
+      "status": "excluded",
+      "step_up": "none_at_route",
+      "exclusion_reason": "static_asset",
+      "source": "backend/internal/server/routes/admin.go:24"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/redeem",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:125"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/redeem/history",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:126"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/settings/email-unsubscribe",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:247"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/settings/public",
+      "surface": "user",
+      "authentication": "public",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/auth.go:246"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/subscriptions",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:132"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/subscriptions/active",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:133"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/subscriptions/progress",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:134"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/subscriptions/summary",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:135"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/usage",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:102"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/usage/:id",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:105"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/usage/dashboard/api-keys-usage",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:112"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/usage/dashboard/models",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:110"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/usage/dashboard/snapshot-v2",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:111"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/usage/dashboard/stats",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:108"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/usage/dashboard/trend",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:109"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/usage/errors",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:103"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/usage/errors/:id",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:104"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/usage/stats",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:106"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/user",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:33"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/user/account-bindings/:provider",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:38"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/account-bindings/email",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:37"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/account-bindings/email/send-code",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:36"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/user/aff",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:34"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/aff/transfer",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:35"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/user/api-keys/:id/usage/daily",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:40"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/auth-identities/bind/start",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:39"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/user/notify-email",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:49"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/notify-email/send-code",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:46"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/user/notify-email/toggle",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:48"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/notify-email/verify",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:47"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/user/passkeys",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:67"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/user/passkeys/:id",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:71"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/user/passkeys/:id",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:70"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/passkeys/register/begin",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:68"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/passkeys/register/finish",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:69"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/user/password",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:32"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/user/platform-quotas",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:41"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/user/profile",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:31"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/totp/disable",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:60"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/totp/enable",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:59"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/totp/send-code",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:57"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/totp/setup",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:58"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/user/totp/status",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:55"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/user/totp/step-up",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:62"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/user/totp/verification-method",
+      "surface": "user",
+      "authentication": "user_jwt",
+      "target": true,
+      "status": "transport_tested",
+      "step_up": "none_at_route",
+      "source": "backend/internal/server/routes/user.go:56"
+    }
+  ]
+}

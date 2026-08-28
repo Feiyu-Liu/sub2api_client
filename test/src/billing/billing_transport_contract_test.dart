@@ -86,6 +86,63 @@ void main() {
       'out_trade_no': 'sub2_20260825aB3kX9mQ',
     });
   });
+
+  test(
+    'remaining user payment routes preserve auth and public boundaries',
+    () async {
+      final adapter = JsonResponseAdapter((request) {
+        final fixture = switch (request.path) {
+          '/api/v1/payment/orders/77/cancel' => 'billing/mutation_success.json',
+          '/api/v1/payment/orders/77/refund-request' =>
+            'billing/refund_requested.json',
+          '/api/v1/payment/orders/refund-eligible-providers' =>
+            'billing/refund_eligible_providers.json',
+          '/api/v1/payment/public/orders/verify' =>
+            'billing/public_order_verification.json',
+          '/api/v1/payment/public/orders/resolve' =>
+            'billing/public_order_resolved.json',
+          _ => throw StateError('unexpected path ${request.path}'),
+        };
+        return JsonResponse(body: _fixture(fixture));
+      });
+      final client = _client(adapter, session);
+
+      final cancelled = await client.cancelOrder(77);
+      final refunded = await client.requestRefund(
+        77,
+        const Sub2ApiRefundRequest(reason: ' Duplicate charge '),
+      );
+      final providers = await client.getRefundEligibleProviders();
+      final verified = await client.verifyPublicOrder(' trade-public-1 ');
+      final resolved = await client.resolvePublicOrder(
+        const Sub2ApiCheckoutSecret('resume-token-sentinel'),
+      );
+
+      expect(cancelled.message, 'ok');
+      expect(refunded.message, 'refund requested');
+      expect(providers, <String>['stripe-main', 'alipay-cn']);
+      expect(verified.paid, isTrue);
+      expect(resolved.payAmount.toString(), '10.3');
+      expect(adapter.requests[1].data, <String, Object?>{
+        'reason': 'Duplicate charge',
+      });
+      expect(adapter.requests[3].data, <String, Object?>{
+        'out_trade_no': 'trade-public-1',
+      });
+      expect(adapter.requests[4].data, <String, Object?>{
+        'resume_token': 'resume-token-sentinel',
+      });
+      for (final request in adapter.requests.take(3)) {
+        expect(
+          request.headers,
+          containsPair('Authorization', 'Bearer billing-transport-access'),
+        );
+      }
+      for (final request in adapter.requests.skip(3)) {
+        expect(request.headers, isNot(contains('Authorization')));
+      }
+    },
+  );
 }
 
 Object? _fixture(String relativePath) =>

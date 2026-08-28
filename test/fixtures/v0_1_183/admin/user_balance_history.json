@@ -1,0 +1,32 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "items": [
+      {
+        "id": 61,
+        "code": "admin-balance-61",
+        "type": "admin_balance",
+        "value": 15.5,
+        "status": "used",
+        "used_by": 21,
+        "used_at": "2026-08-27T06:00:00Z",
+        "created_at": "2026-08-27T06:00:00Z",
+        "expires_at": null,
+        "group_id": null,
+        "validity_days": 0,
+        "notes": "support adjustment",
+        "user": {
+          "id": 21,
+          "email": "admin-user@example.test"
+        },
+        "group": null
+      }
+    ],
+    "total": 1,
+    "page": 4,
+    "page_size": 15,
+    "pages": 1,
+    "total_recharged": 100
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "valid": true,
+    "bonus_amount": 12.5
+  }
+}

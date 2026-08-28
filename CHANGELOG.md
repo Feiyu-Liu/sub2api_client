@@ -1,3 +1,48 @@
+## 0.1.0-dev.4
+
+- Add typed `/auth/me` current-user, identity-binding, role, and run-mode facts.
+- Add fail-secure revocation of every user session without refresh or replay.
+- Add a pure-Dart Passkey module for typed WebAuthn login and registration
+  ceremonies plus credential listing, renaming, and password-gated deletion.
+- Add a typed TOTP module for enrollment, verification policy, email codes,
+  enable/disable, and non-replayable session-bound step-up grants.
+- Add typed email/third-party identity and notification-email operations with
+  shared complete account snapshots and fail-secure session clearing when the
+  server revokes tokens after email binding or identity unbinding.
+- Add all v0.1.183 user OAuth start, pending exchange/create/bind, provider
+  compatibility, bind-cookie, and browser GET routes with typed state unions,
+  explicit same-user-agent cookie requirements, and stable pending errors.
+- Decode Base64URL WebAuthn options into byte arrays and serialize platform
+  credential results without exposing raw wire maps or browser dependencies.
+- Complete all 127 user-management target routes, including access resources,
+  failed-request and Dashboard observability, promo and affiliate operations,
+  announcements, redemption, subscriptions, model plaza, payment cancellation
+  and refunds, public order recovery, and channel-monitor v1/v2.
+- Add isolated `sub2api_admin_client.dart` and `sub2api_ops_client.dart`
+  entrypoints with Admin JWT role bootstrap, a redacted Admin API Key provider,
+  strict `Authorization` versus `x-api-key` separation, no credential fallback,
+  stable step-up failures, and typed Admin Dashboard statistics.
+- Complete all 19 typed Admin Users routes in both privileged credential modes,
+  including lifecycle, identity binding, balance updates, API keys, usage,
+  balance history, group replacement, RPM status, batch limits, platform
+  quotas, quota-window reset, and user attribute values.
+- Add 11 typed read-only Admin Groups routes for complete group facts,
+  capacity and usage summaries, Live capability, model candidates, composite
+  routes, statistics, per-user rates, and group API keys.
+- Add 11 non-replayable Admin Groups actions for sort order, idempotent
+  duplication, deletion, composite-route lifecycle and preview, per-user rate
+  multipliers, and RPM overrides.
+- Add complete typed Admin Group create/update requests, including nested model
+  pricing and exact float64 checks, model routing, account copying, reasoning
+  controls, and explicit unchanged/clear/set limit semantics.
+- Complete all 25 Admin Groups routes with the paginated group-subscription
+  view, preserving administrator assignment metadata instead of narrowing it
+  to the ordinary user subscription contract.
+- Add the generated v0.1.183 management route manifest: 566 registered routes,
+  552 target client routes, and explicit callback/webhook/static exclusions.
+- Accept ADR-0008 to complete the User and Admin/Ops management surfaces with
+  isolated JWT and Admin API Key facades.
+
 ## 0.1.0-dev.3
 
 - Upgrade the immutable Sub2API contract baseline from `v0.1.155` to

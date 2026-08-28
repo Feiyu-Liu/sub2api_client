@@ -9,6 +9,20 @@ void main() {
       Sub2ApiRefreshToken(sentinel),
       Sub2ApiApiKeySecret(sentinel),
       Sub2ApiCheckoutSecret(sentinel),
+      Sub2ApiPassword(sentinel),
+      Sub2ApiVerificationCode(sentinel),
+      Sub2ApiTwoFactorTemporaryToken(sentinel),
+      Sub2ApiPasswordResetToken(sentinel),
+      Sub2ApiPasskeySessionToken(sentinel),
+      Sub2ApiTotpSecret(sentinel),
+      Sub2ApiTotpQrCodeUri(sentinel),
+      Sub2ApiTotpSetupToken(sentinel),
+      Sub2ApiOAuthPendingToken(sentinel),
+      Sub2ApiAdminAccountDataArchive(sentinel),
+      Sub2ApiAdminCodexSessionPayload(sentinel),
+      Sub2ApiAdminProxyPassword(sentinel),
+      Sub2ApiAdminProxyDataArchive(sentinel),
+      Sub2ApiNotificationUnsubscribeToken(sentinel),
     ];
 
     for (final value in values) {

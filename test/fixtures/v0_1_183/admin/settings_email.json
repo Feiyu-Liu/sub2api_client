@@ -1,0 +1,15 @@
+{
+  "list": {
+    "events": [{"value": "welcome", "label": "Welcome", "description": "New user", "category": "account", "optional": false}],
+    "locales": ["en-US", "zh-CN"],
+    "templates": [{"event": "welcome", "locale": "en-US", "subject": "Welcome", "is_custom": true, "updated_at": "2026-08-28T03:00:00Z"}],
+    "placeholders": ["site_name", "username"]
+  },
+  "detail": {
+    "event": "welcome", "locale": "en-US", "subject": "Welcome", "html": "<p>Hello {{username}}</p>",
+    "is_custom": true, "updated_at": "2026-08-28T03:00:00Z", "placeholders": ["username"]
+  },
+  "preview": {"subject": "Welcome Ada", "html": "<p>Hello Ada</p>"},
+  "smtp": {"message": "SMTP connection successful"},
+  "sent": {"message": "Test email sent successfully"}
+}

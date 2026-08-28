@@ -121,6 +121,13 @@ Dio _dio(_FixtureAdapter adapter) {
 
 final class _EnvelopeExecutor implements Sub2ApiRequestExecutor {
   @override
+  Future<T> optionalAuthenticatedRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _execute(send: send, decode: decode);
+
+  @override
   Future<T> protectedRequest<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
@@ -128,6 +135,13 @@ final class _EnvelopeExecutor implements Sub2ApiRequestExecutor {
   }) {
     return _execute(send: send, decode: decode);
   }
+
+  @override
+  Future<T> protectedRequestAllowingRawSuccess<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _execute(send: send, decode: decode);
 
   @override
   Future<T> protectedNonReplayableRequest<T>({
@@ -139,7 +153,22 @@ final class _EnvelopeExecutor implements Sub2ApiRequestExecutor {
   }
 
   @override
+  Future<void> protectedNonReplayableNoContentRequest({
+    required Sub2ApiWireCall send,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => throw UnimplementedError();
+
+  @override
   Future<T> publicRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    return _execute(send: send, decode: decode);
+  }
+
+  @override
+  Future<T> publicRequestAllowingRawSuccess<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
     Sub2ApiRequestOptions? requestOptions,

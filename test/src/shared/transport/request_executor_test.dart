@@ -403,6 +403,21 @@ void main() {
     );
     expect(called, isFalse);
   });
+
+  test('explicit public policy accepts a raw 200 success payload', () async {
+    final sessions = Sub2ApiSessionCoordinator(RecordingSessionStore());
+    final executor = _executor(
+      sessions,
+      refreshSession: (_) => throw StateError('refresh must not run'),
+    );
+
+    final value = await executor.publicRequestAllowingRawSuccess<String>(
+      send: _wire((_) => _rawSuccess(<String, Object?>{'step': 'choice'})),
+      decode: (data) => (data! as Map<String, Object?>)['step']! as String,
+    );
+
+    expect(value, 'choice');
+  });
 }
 
 Sub2ApiRequestExecutorImpl _executor(
@@ -426,6 +441,14 @@ HttpResponse<Object?> _success(Object? data) {
     'message': 'success',
     'data': data,
   }, Response<Object?>(requestOptions: options, statusCode: 200));
+}
+
+HttpResponse<Object?> _rawSuccess(Object? data) {
+  final options = RequestOptions(path: '/api/v1/test');
+  return HttpResponse<Object?>(
+    data,
+    Response<Object?>(requestOptions: options, statusCode: 200),
+  );
 }
 
 DioException _unauthorized() {

@@ -23,6 +23,20 @@ abstract class UserWireService {
     @Header('Authorization') String? authorization,
   );
 
+  @GET('/api/v1/user/aff')
+  Future<HttpResponse<Map<String, Object?>>> getAffiliate(
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+  );
+
+  @POST('/api/v1/user/aff/transfer')
+  Future<HttpResponse<Map<String, Object?>>> transferAffiliateQuota(
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+  );
+
   @PUT('/api/v1/user')
   Future<HttpResponse<Map<String, Object?>>> updateProfile(
     @Body() Map<String, Object?> body,

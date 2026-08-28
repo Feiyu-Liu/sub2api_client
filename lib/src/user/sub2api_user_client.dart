@@ -27,6 +27,16 @@ abstract interface class Sub2ApiUserClient {
     Sub2ApiUpdateUserProfileRequest request, {
     Sub2ApiRequestOptions? requestOptions,
   });
+
+  /// Reads the current user's affiliate and invitee facts.
+  Future<Sub2ApiAffiliateDetail> getAffiliate({
+    Sub2ApiRequestOptions? requestOptions,
+  });
+
+  /// Transfers all available affiliate quota into the current balance.
+  Future<Sub2ApiAffiliateTransfer> transferAffiliateQuota({
+    Sub2ApiRequestOptions? requestOptions,
+  });
 }
 
 /// Creates the package-internal user implementation.
@@ -84,6 +94,28 @@ final class _Sub2ApiUserClient implements Sub2ApiUserClient {
       requestOptions: requestOptions,
     );
   }
+
+  @override
+  Future<Sub2ApiAffiliateDetail> getAffiliate({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.protectedRequest(
+    send: (cancelToken, options, authorization) => _asObjectResponse(
+      _service.getAffiliate(cancelToken, options, authorization),
+    ),
+    decode: _decodeAffiliate,
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAffiliateTransfer> transferAffiliateQuota({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _requestExecutor.protectedNonReplayableRequest(
+    send: (cancelToken, options, authorization) => _asObjectResponse(
+      _service.transferAffiliateQuota(cancelToken, options, authorization),
+    ),
+    decode: _decodeAffiliateTransfer,
+    requestOptions: requestOptions,
+  );
 
   /// Updates the supplied fields of the current authenticated user's profile.
   @override
@@ -155,6 +187,66 @@ final class _Sub2ApiUserClient implements Sub2ApiUserClient {
     }
   }
 
+  static Sub2ApiAffiliateDetail _decodeAffiliate(Object? data) {
+    try {
+      final wire = AffiliateDetailWireDto.fromJson(_objectMap(data));
+      if (wire.userId <= 0 || wire.affCode.isEmpty || wire.affCount < 0) {
+        throw _invalidAffiliate;
+      }
+      return Sub2ApiAffiliateDetail(
+        userId: wire.userId,
+        affiliateCode: wire.affCode,
+        inviterId: wire.inviterId,
+        affiliateCount: wire.affCount,
+        availableQuota: Sub2ApiDecimal.fromJson(wire.affQuota),
+        frozenQuota: Sub2ApiDecimal.fromJson(wire.affFrozenQuota),
+        historicalQuota: Sub2ApiDecimal.fromJson(wire.affHistoryQuota),
+        effectiveRebateRatePercent: Sub2ApiDecimal.fromJson(
+          wire.effectiveRebateRatePercent,
+        ),
+        invitees: wire.invitees
+            .map(
+              (invitee) => Sub2ApiAffiliateInvitee(
+                userId: invitee.userId,
+                email: invitee.email,
+                username: invitee.username,
+                createdAt: invitee.createdAt,
+                totalRebate: Sub2ApiDecimal.fromJson(invitee.totalRebate),
+              ),
+            )
+            .toList(growable: false),
+      );
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw _invalidAffiliate;
+    }
+  }
+
+  static Sub2ApiAffiliateTransfer _decodeAffiliateTransfer(Object? data) {
+    try {
+      final wire = AffiliateTransferWireDto.fromJson(_objectMap(data));
+      return Sub2ApiAffiliateTransfer(
+        transferredQuota: Sub2ApiDecimal.fromJson(wire.transferredQuota),
+        balance: Sub2ApiDecimal.fromJson(wire.balance),
+      );
+    } on Sub2ApiException {
+      rethrow;
+    } on Object {
+      throw _invalidAffiliateTransfer;
+    }
+  }
+
+  static Map<String, Object?> _objectMap(Object? data) {
+    if (data is! Map) throw _invalidAffiliate;
+    final result = <String, Object?>{};
+    for (final entry in data.entries) {
+      if (entry.key is! String) throw _invalidAffiliate;
+      result[entry.key as String] = entry.value;
+    }
+    return result;
+  }
+
   static Map<String, Object?> _updateProfileRequestBody(
     Sub2ApiUpdateUserProfileRequest request,
   ) {
@@ -170,3 +262,15 @@ final class _Sub2ApiUserClient implements Sub2ApiUserClient {
     };
   }
 }
+
+const _invalidAffiliate = Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_affiliate_response',
+  retryable: false,
+);
+
+const _invalidAffiliateTransfer = Sub2ApiException(
+  kind: Sub2ApiFailureKind.protocol,
+  code: 'protocol.invalid_affiliate_transfer_response',
+  retryable: false,
+);

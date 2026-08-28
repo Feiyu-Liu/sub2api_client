@@ -1,0 +1,46 @@
+{
+  "delete": {
+    "message": "Proxy deleted successfully"
+  },
+  "test": {
+    "success": true,
+    "message": "Proxy is accessible",
+    "latency_ms": 145,
+    "ip_address": "203.0.113.10",
+    "city": "San Francisco",
+    "region": "California",
+    "country": "United States",
+    "country_code": "US"
+  },
+  "quality": {
+    "proxy_id": 11,
+    "score": 75,
+    "grade": "B",
+    "summary": "mostly healthy",
+    "exit_ip": "203.0.113.10",
+    "country": "United States",
+    "country_code": "US",
+    "base_latency_ms": 145,
+    "passed_count": 1,
+    "warn_count": 1,
+    "failed_count": 1,
+    "challenge_count": 1,
+    "checked_at": 1800000000,
+    "items": [
+      {"target": "openai", "status": "pass", "http_status": 200, "latency_ms": 120},
+      {"target": "anthropic", "status": "warn", "http_status": 429, "latency_ms": 160, "message": "rate limited"},
+      {"target": "gemini", "status": "fail", "http_status": 502, "message": "bad gateway"},
+      {"target": "cloudflare", "status": "challenge", "http_status": 403, "cf_ray": "ray-sentinel"}
+    ]
+  },
+  "batch_create": {
+    "created": 1,
+    "skipped": 1
+  },
+  "batch_delete": {
+    "deleted_ids": [11],
+    "skipped": [
+      {"id": 12, "reason": "proxy is in use"}
+    ]
+  }
+}

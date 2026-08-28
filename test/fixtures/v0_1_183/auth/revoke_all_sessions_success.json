@@ -1,0 +1,7 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "message": "All sessions have been revoked. Please log in again."
+  }
+}
