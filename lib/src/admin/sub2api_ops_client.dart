@@ -6,6 +6,7 @@ import 'sub2api_admin_affiliates_client.dart';
 import 'sub2api_admin_announcements_client.dart';
 import 'sub2api_admin_antigravity_oauth_client.dart';
 import 'sub2api_admin_audit_logs_client.dart';
+import 'sub2api_admin_backups_client.dart';
 import 'sub2api_admin_channel_monitor_templates_client.dart';
 import 'sub2api_admin_channel_monitor_v2_client.dart';
 import 'sub2api_admin_channel_monitors_client.dart';
@@ -80,6 +81,7 @@ final class Sub2ApiOpsClient {
     required this.antigravityOAuth,
     required this.announcements,
     required this.auditLogs,
+    required this.backups,
     required this.channelMonitorTemplates,
     required this.channelMonitorV2,
     required this.channelMonitors,
@@ -127,6 +129,7 @@ final class Sub2ApiOpsClient {
   final Sub2ApiAdminAntigravityOAuthClient antigravityOAuth;
   final Sub2ApiAdminAnnouncementsClient announcements;
   final Sub2ApiAdminAuditLogsClient auditLogs;
+  final Sub2ApiAdminBackupsClient backups;
   final Sub2ApiAdminChannelMonitorTemplatesClient channelMonitorTemplates;
   final Sub2ApiAdminChannelMonitorV2Client channelMonitorV2;
   final Sub2ApiAdminChannelMonitorsClient channelMonitors;
@@ -209,6 +212,11 @@ Sub2ApiOpsClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
     ),
     auditLogs: createSub2ApiAdminAuditLogsClient(
+      dio: dio,
+      requestExecutor: executor,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
+    backups: createSub2ApiAdminBackupsClient(
       dio: dio,
       requestExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,

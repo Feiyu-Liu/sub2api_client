@@ -16,6 +16,9 @@ export 'src/admin/sub2api_admin_antigravity_oauth_models.dart';
 export 'src/admin/sub2api_admin_audit_log_models.dart';
 export 'src/admin/sub2api_admin_audit_logs_client.dart'
     show Sub2ApiAdminAuditLogsClient;
+export 'src/admin/sub2api_admin_backup_models.dart';
+export 'src/admin/sub2api_admin_backups_client.dart'
+    show Sub2ApiAdminBackupsClient;
 export 'src/admin/sub2api_admin_channel_models.dart';
 export 'src/admin/sub2api_admin_channel_monitor_models.dart';
 export 'src/admin/sub2api_admin_channel_monitor_template_models.dart';

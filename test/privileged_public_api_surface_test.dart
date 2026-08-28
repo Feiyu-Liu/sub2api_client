@@ -40,6 +40,8 @@ void main() {
     final Sub2ApiAdminAnnouncementsClient opsAnnouncements = ops.announcements;
     final Sub2ApiAdminAuditLogsClient adminAuditLogs = admin.auditLogs;
     final Sub2ApiAdminAuditLogsClient opsAuditLogs = ops.auditLogs;
+    final Sub2ApiAdminBackupsClient adminBackups = admin.backups;
+    final Sub2ApiAdminBackupsClient opsBackups = ops.backups;
     final Sub2ApiAdminChannelMonitorTemplatesClient adminMonitorTemplates =
         admin.channelMonitorTemplates;
     final Sub2ApiAdminChannelMonitorTemplatesClient opsMonitorTemplates =
@@ -198,6 +200,8 @@ void main() {
       opsAnnouncements,
       adminAuditLogs,
       opsAuditLogs,
+      adminBackups,
+      opsBackups,
       adminMonitorTemplates,
       opsMonitorTemplates,
       adminMonitorV2,

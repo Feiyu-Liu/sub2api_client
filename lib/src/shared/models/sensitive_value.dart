@@ -251,6 +251,26 @@ final class Sub2ApiAdminOpsSystemLogContent extends _SensitiveValue {
   const Sub2ApiAdminOpsSystemLogContent(super.value);
 }
 
+/// S3 access-key identifier used by backup and image-storage configuration.
+final class Sub2ApiAdminBackupAccessKeyId extends _SensitiveValue {
+  const Sub2ApiAdminBackupAccessKeyId(super.value);
+}
+
+/// S3 secret access key used by backup and image-storage configuration.
+final class Sub2ApiAdminBackupSecretAccessKey extends _SensitiveValue {
+  const Sub2ApiAdminBackupSecretAccessKey(super.value);
+}
+
+/// Object-store key identifying a privileged database backup artifact.
+final class Sub2ApiAdminBackupObjectKey extends _SensitiveValue {
+  const Sub2ApiAdminBackupObjectKey(super.value);
+}
+
+/// Presigned URL granting temporary download access to a database backup.
+final class Sub2ApiAdminBackupDownloadUrl extends _SensitiveValue {
+  const Sub2ApiAdminBackupDownloadUrl(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so
