@@ -67,6 +67,10 @@ void main() {
         ops.errorPassthrough;
     final Sub2ApiAdminOpenAIClient adminOpenAI = admin.openAI;
     final Sub2ApiAdminOpenAIClient opsOpenAI = ops.openAI;
+    final Sub2ApiAdminOpsDashboardClient adminOperationsDashboard =
+        admin.operationsDashboard;
+    final Sub2ApiAdminOpsDashboardClient opsOperationsDashboard =
+        ops.operationsDashboard;
     final Sub2ApiAdminPaymentOrdersClient adminPaymentOrders =
         admin.paymentOrders;
     final Sub2ApiAdminPaymentOrdersClient opsPaymentOrders = ops.paymentOrders;
@@ -184,6 +188,8 @@ void main() {
       opsCNProviders,
       adminOpenAI,
       opsOpenAI,
+      adminOperationsDashboard,
+      opsOperationsDashboard,
       adminPaymentOrders,
       opsPaymentOrders,
       adminPaymentCatalog,
