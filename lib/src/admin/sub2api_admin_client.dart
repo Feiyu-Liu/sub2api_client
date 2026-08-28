@@ -28,6 +28,7 @@ import 'sub2api_admin_plugins_client.dart';
 import 'sub2api_admin_promo_codes_client.dart';
 import 'sub2api_admin_prompt_audit_client.dart';
 import 'sub2api_admin_proxies_client.dart';
+import 'sub2api_admin_redeem_codes_client.dart';
 import 'sub2api_admin_risk_control_client.dart';
 import 'sub2api_admin_role_executor.dart';
 import 'sub2api_admin_scheduled_tests_client.dart';
@@ -73,6 +74,7 @@ final class Sub2ApiAdminClient {
     required this.promptAudit,
     required this.proxies,
     required this.promoCodes,
+    required this.redeemCodes,
     required this.riskControl,
     required this.scheduledTests,
     required this.system,
@@ -111,6 +113,7 @@ final class Sub2ApiAdminClient {
   final Sub2ApiAdminPromptAuditClient promptAudit;
   final Sub2ApiAdminProxiesClient proxies;
   final Sub2ApiAdminPromoCodesClient promoCodes;
+  final Sub2ApiAdminRedeemCodesClient redeemCodes;
   final Sub2ApiAdminRiskControlClient riskControl;
   final Sub2ApiAdminScheduledTestsClient scheduledTests;
   final Sub2ApiAdminSystemClient system;
@@ -261,6 +264,11 @@ Sub2ApiAdminClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
     ),
     promoCodes: createSub2ApiAdminPromoCodesClient(
+      dio: dio,
+      requestExecutor: adminExecutor,
+      credentialMode: Sub2ApiAdminCredentialMode.jwt,
+    ),
+    redeemCodes: createSub2ApiAdminRedeemCodesClient(
       dio: dio,
       requestExecutor: adminExecutor,
       credentialMode: Sub2ApiAdminCredentialMode.jwt,

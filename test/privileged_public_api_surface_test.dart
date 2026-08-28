@@ -73,6 +73,8 @@ void main() {
     final Sub2ApiAdminProxiesClient opsProxies = ops.proxies;
     final Sub2ApiAdminPromoCodesClient adminPromoCodes = admin.promoCodes;
     final Sub2ApiAdminPromoCodesClient opsPromoCodes = ops.promoCodes;
+    final Sub2ApiAdminRedeemCodesClient adminRedeemCodes = admin.redeemCodes;
+    final Sub2ApiAdminRedeemCodesClient opsRedeemCodes = ops.redeemCodes;
     final Sub2ApiAdminRiskControlClient adminRiskControl = admin.riskControl;
     final Sub2ApiAdminRiskControlClient opsRiskControl = ops.riskControl;
     final Sub2ApiAdminScheduledTestsClient adminScheduledTests =
@@ -179,6 +181,8 @@ void main() {
       opsProxies,
       adminPromoCodes,
       opsPromoCodes,
+      adminRedeemCodes,
+      opsRedeemCodes,
       adminRiskControl,
       opsRiskControl,
       adminScheduledTests,

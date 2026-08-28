@@ -176,6 +176,16 @@ final class Sub2ApiAdminPromptAuditDeleteToken extends _SensitiveValue {
   const Sub2ApiAdminPromptAuditDeleteToken(super.value);
 }
 
+/// Administrator-visible redeem code granting balance, quota, or subscription value.
+final class Sub2ApiRedeemCodeSecret extends _SensitiveValue {
+  const Sub2ApiRedeemCodeSecret(super.value);
+}
+
+/// CSV export containing administrator-visible redeem codes.
+final class Sub2ApiAdminRedeemCodeExport extends _SensitiveValue {
+  const Sub2ApiAdminRedeemCodeExport(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so

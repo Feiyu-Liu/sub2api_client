@@ -1,0 +1,37 @@
+{
+  "code": {
+    "id": 41,
+    "code": "REDEEM-SECRET-41",
+    "type": "subscription",
+    "value": "9007199254740993.125",
+    "status": "unused",
+    "used_by": null,
+    "used_at": null,
+    "created_at": "2026-08-28T04:00:00Z",
+    "expires_at": "2026-09-28T04:00:00Z",
+    "group_id": 7,
+    "validity_days": 30,
+    "notes": "fixture note",
+    "user": {
+      "id": 21,
+      "email": "redeem-user@example.test",
+      "username": "redeem-user"
+    },
+    "group": {
+      "id": 7,
+      "name": "Pro"
+    }
+  },
+  "stats": {
+    "total_codes": 10,
+    "active_codes": 6,
+    "used_codes": 3,
+    "expired_codes": 1,
+    "total_value_distributed": "12345678901234567890.125",
+    "by_type": {
+      "balance": 4,
+      "concurrency": 2,
+      "subscription": 4
+    }
+  }
+}

@@ -62,6 +62,9 @@ export 'src/admin/sub2api_admin_prompt_audit_models.dart';
 export 'src/admin/sub2api_admin_proxies_client.dart'
     show Sub2ApiAdminProxiesClient;
 export 'src/admin/sub2api_admin_proxy_models.dart';
+export 'src/admin/sub2api_admin_redeem_code_models.dart';
+export 'src/admin/sub2api_admin_redeem_codes_client.dart'
+    show Sub2ApiAdminRedeemCodesClient;
 export 'src/admin/sub2api_admin_risk_control_client.dart'
     show Sub2ApiAdminRiskControlClient;
 export 'src/admin/sub2api_admin_risk_control_models.dart';
@@ -107,6 +110,8 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminPromptAuditDeleteToken,
         Sub2ApiAdminPromptAuditEndpointToken,
         Sub2ApiAdminPromptAuditEvidence,
+        Sub2ApiAdminRedeemCodeExport,
+        Sub2ApiRedeemCodeSecret,
         Sub2ApiAccessToken,
         Sub2ApiApiKeySecret,
         Sub2ApiOAuthAuthorizationCode,
