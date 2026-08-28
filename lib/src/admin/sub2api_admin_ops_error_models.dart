@@ -162,3 +162,85 @@ final class Sub2ApiAdminOpsResolutionResult {
   const Sub2ApiAdminOpsResolutionResult({required this.ok});
   final bool ok;
 }
+
+typedef Sub2ApiAdminOpsRequestPage = Sub2ApiPage<Sub2ApiAdminOpsRequestRecord>;
+
+enum Sub2ApiAdminOpsRequestKind { all, success, error }
+
+enum Sub2ApiAdminOpsRequestSort { createdAtDescending, durationDescending }
+
+final class Sub2ApiAdminOpsRequestQuery {
+  const Sub2ApiAdminOpsRequestQuery({
+    this.page = 1,
+    this.pageSize = 50,
+    this.timeRange = Sub2ApiAdminOpsTimeRange.oneHour,
+    this.startAt,
+    this.endAt,
+    this.kind = Sub2ApiAdminOpsRequestKind.all,
+    this.platform,
+    this.groupId,
+    this.userId,
+    this.apiKeyId,
+    this.accountId,
+    this.model,
+    this.requestId,
+    this.query,
+    this.minDurationMs,
+    this.maxDurationMs,
+    this.sort = Sub2ApiAdminOpsRequestSort.createdAtDescending,
+  });
+  final int page;
+  final int pageSize;
+  final Sub2ApiAdminOpsTimeRange timeRange;
+  final DateTime? startAt;
+  final DateTime? endAt;
+  final Sub2ApiAdminOpsRequestKind kind;
+  final String? platform;
+  final int? groupId;
+  final int? userId;
+  final int? apiKeyId;
+  final int? accountId;
+  final String? model;
+  final String? requestId;
+  final String? query;
+  final int? minDurationMs;
+  final int? maxDurationMs;
+  final Sub2ApiAdminOpsRequestSort sort;
+}
+
+final class Sub2ApiAdminOpsRequestRecord {
+  const Sub2ApiAdminOpsRequestRecord({
+    required this.kind,
+    required this.createdAt,
+    required this.requestId,
+    required this.platform,
+    required this.model,
+    this.durationMs,
+    this.statusCode,
+    this.errorId,
+    required this.phase,
+    required this.severity,
+    this.message,
+    this.userId,
+    this.apiKeyId,
+    this.accountId,
+    this.groupId,
+    required this.stream,
+  });
+  final Sub2ApiAdminOpsRequestKind kind;
+  final DateTime createdAt;
+  final String requestId;
+  final String platform;
+  final String model;
+  final int? durationMs;
+  final int? statusCode;
+  final int? errorId;
+  final String phase;
+  final String severity;
+  final Sub2ApiAdminOpsErrorContent? message;
+  final int? userId;
+  final int? apiKeyId;
+  final int? accountId;
+  final int? groupId;
+  final bool stream;
+}

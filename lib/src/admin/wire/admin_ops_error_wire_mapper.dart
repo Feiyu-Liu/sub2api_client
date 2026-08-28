@@ -18,6 +18,43 @@ Sub2ApiAdminOpsErrorRecord mapAdminOpsErrorDetail(Object? data) =>
 Sub2ApiAdminOpsResolutionResult mapAdminOpsResolution(Object? data) => _guard(
   () => Sub2ApiAdminOpsResolutionResult(ok: _bool(_object(data)['ok'])),
 );
+Sub2ApiAdminOpsRequestPage mapAdminOpsRequestPage(Object? data) => _guard(() {
+  final s = _object(data);
+  return Sub2ApiPage(
+    items: _list(s['items'])
+        .map(_object)
+        .map(
+          (r) => Sub2ApiAdminOpsRequestRecord(
+            kind: _requestKind(_required(r['kind'])),
+            createdAt: _date(r['created_at']),
+            requestId: _required(r['request_id']),
+            platform: _text(r['platform']),
+            model: _text(r['model']),
+            durationMs: _nullableNonNegative(r['duration_ms']),
+            statusCode: _nullableNonNegative(r['status_code']),
+            errorId: _nullablePositive(r['error_id']),
+            phase: _text(r['phase']),
+            severity: _text(r['severity']),
+            message: _secret(r['message'], Sub2ApiAdminOpsErrorContent.new),
+            userId: _nullablePositive(r['user_id']),
+            apiKeyId: _nullablePositive(r['api_key_id']),
+            accountId: _nullablePositive(r['account_id']),
+            groupId: _nullablePositive(r['group_id']),
+            stream: _bool(r['stream']),
+          ),
+        )
+        .toList(),
+    total: _nonNegative(s['total']),
+    page: _positive(s['page']),
+    pageSize: _positive(s['page_size']),
+    pages: _nonNegative(s['pages']),
+  );
+});
+Sub2ApiAdminOpsRequestKind _requestKind(String v) => switch (v) {
+  'success' => Sub2ApiAdminOpsRequestKind.success,
+  'error' => Sub2ApiAdminOpsRequestKind.error,
+  _ => throw const FormatException(),
+};
 
 Sub2ApiAdminOpsErrorRecord _record(Map<String, Object?> s) =>
     Sub2ApiAdminOpsErrorRecord(

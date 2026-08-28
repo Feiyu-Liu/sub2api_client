@@ -45,6 +45,23 @@ abstract interface class Sub2ApiAdminOpsErrorsClient {
     required bool resolved,
     Sub2ApiRequestOptions? requestOptions,
   });
+  Future<Sub2ApiAdminOpsErrorPage> listUpstreamErrors({
+    Sub2ApiAdminOpsErrorQuery query = const Sub2ApiAdminOpsErrorQuery(),
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminOpsErrorRecord> getUpstreamError(
+    int id, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminOpsResolutionResult> resolveUpstreamError(
+    int id, {
+    required bool resolved,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminOpsRequestPage> listRequests({
+    Sub2ApiAdminOpsRequestQuery query = const Sub2ApiAdminOpsRequestQuery(),
+    Sub2ApiRequestOptions? requestOptions,
+  });
 }
 
 Sub2ApiAdminOpsErrorsClient createSub2ApiAdminOpsErrorsClient({
@@ -109,6 +126,39 @@ final class _Client implements Sub2ApiAdminOpsErrorsClient {
     required bool resolved,
     Sub2ApiRequestOptions? requestOptions,
   }) => _resolve(id, resolved, _service.requestResolve, requestOptions);
+
+  @override
+  Future<Sub2ApiAdminOpsErrorPage> listUpstreamErrors({
+    Sub2ApiAdminOpsErrorQuery query = const Sub2ApiAdminOpsErrorQuery(),
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _list(query, _service.upstreamList, requestOptions);
+
+  @override
+  Future<Sub2ApiAdminOpsErrorRecord> getUpstreamError(
+    int id, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _detail(id, _service.upstreamDetail, requestOptions);
+
+  @override
+  Future<Sub2ApiAdminOpsResolutionResult> resolveUpstreamError(
+    int id, {
+    required bool resolved,
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _resolve(id, resolved, _service.upstreamResolve, requestOptions);
+
+  @override
+  Future<Sub2ApiAdminOpsRequestPage> listRequests({
+    Sub2ApiAdminOpsRequestQuery query = const Sub2ApiAdminOpsRequestQuery(),
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final q = _requestQuery(query);
+    return _executor.protectedRequest(
+      send: (c, o, v) => _service.requests(q, c, o, _a(v), _k(v)),
+      decode: mapAdminOpsRequestPage,
+      requestOptions: requestOptions,
+    );
+  }
+
   Future<Sub2ApiAdminOpsErrorPage> _list(
     Sub2ApiAdminOpsErrorQuery query,
     Future<HttpResponse<Object?>> Function(
@@ -220,6 +270,58 @@ final class _Client implements Sub2ApiAdminOpsErrorsClient {
       'sort_order': q.sortOrder == Sub2ApiAdminOpsSortOrder.ascending
           ? 'asc'
           : 'desc',
+    };
+  }
+
+  Map<String, Object?> _requestQuery(Sub2ApiAdminOpsRequestQuery q) {
+    if (q.page < 1) throw _validation('admin.ops.invalid_page');
+    if (q.pageSize < 1 || q.pageSize > 100) {
+      throw _validation('admin.ops.invalid_page_size');
+    }
+    for (final id in <int?>[q.groupId, q.userId, q.apiKeyId, q.accountId]) {
+      if (id != null && id <= 0) {
+        throw _validation('admin.ops.invalid_filter_id');
+      }
+    }
+    if ((q.minDurationMs != null && q.minDurationMs! < 0) ||
+        (q.maxDurationMs != null && q.maxDurationMs! < 0)) {
+      throw _validation('admin.ops.invalid_duration');
+    }
+    if (q.minDurationMs != null &&
+        q.maxDurationMs != null &&
+        q.minDurationMs! > q.maxDurationMs!) {
+      throw _validation('admin.ops.invalid_duration_range');
+    }
+    final start = q.startAt?.toUtc();
+    final end = q.endAt?.toUtc();
+    if (start != null && end != null && start.isAfter(end)) {
+      throw _validation('admin.ops.invalid_time_range');
+    }
+    if (start != null &&
+        end != null &&
+        end.difference(start) > const Duration(days: 30)) {
+      throw _validation('admin.ops.time_range_too_large');
+    }
+    return <String, Object?>{
+      'page': q.page,
+      'page_size': q.pageSize,
+      'time_range': _timeRange(q.timeRange),
+      'start_time': ?start?.toIso8601String(),
+      'end_time': ?end?.toIso8601String(),
+      'kind': q.kind.name,
+      'platform': ?_optional(q.platform),
+      'group_id': ?q.groupId,
+      'user_id': ?q.userId,
+      'api_key_id': ?q.apiKeyId,
+      'account_id': ?q.accountId,
+      'model': ?_optional(q.model),
+      'request_id': ?_optional(q.requestId),
+      'q': ?_optional(q.query),
+      'min_duration_ms': ?q.minDurationMs,
+      'max_duration_ms': ?q.maxDurationMs,
+      'sort': q.sort == Sub2ApiAdminOpsRequestSort.durationDescending
+          ? 'duration_desc'
+          : 'created_at_desc',
     };
   }
 
