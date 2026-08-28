@@ -3,7 +3,7 @@ import 'dart:io';
 
 const _tag = 'v0.1.183';
 const _commit = 'e8cb019fabf8b55199436229044cbf9aa7a82564';
-const _outputPath = 'doc/contract/v0_1_183_route_manifest.json';
+const _outputPath = 'tool/contracts/v0_1_183_route_manifest.json';
 const _routeFiles = <String>[
   'backend/internal/server/routes/auth.go',
   'backend/internal/server/routes/user.go',

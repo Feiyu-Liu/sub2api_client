@@ -8,7 +8,7 @@ void main() {
     final contract =
         jsonDecode(
               File(
-                'doc/contract/v0_1_183_admin_settings_fields.json',
+                'tool/contracts/v0_1_183_admin_settings_fields.json',
               ).readAsStringSync(),
             )
             as Map<String, Object?>;
