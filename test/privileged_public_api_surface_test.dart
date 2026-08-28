@@ -59,6 +59,8 @@ void main() {
     final Sub2ApiAdminComplianceClient opsCompliance = ops.compliance;
     final Sub2ApiAdminGeminiOAuthClient adminGeminiOAuth = admin.geminiOAuth;
     final Sub2ApiAdminGeminiOAuthClient opsGeminiOAuth = ops.geminiOAuth;
+    final Sub2ApiAdminGrokOAuthClient adminGrokOAuth = admin.grokOAuth;
+    final Sub2ApiAdminGrokOAuthClient opsGrokOAuth = ops.grokOAuth;
     final Sub2ApiAdminErrorPassthroughClient adminErrorPassthrough =
         admin.errorPassthrough;
     final Sub2ApiAdminErrorPassthroughClient opsErrorPassthrough =
@@ -223,6 +225,8 @@ void main() {
       opsCompliance,
       adminGeminiOAuth,
       opsGeminiOAuth,
+      adminGrokOAuth,
+      opsGrokOAuth,
       adminErrorPassthrough,
       opsErrorPassthrough,
     ], everyElement(isNotNull));

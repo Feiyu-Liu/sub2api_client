@@ -43,6 +43,9 @@ export 'src/admin/sub2api_admin_error_passthrough_models.dart';
 export 'src/admin/sub2api_admin_gemini_oauth_client.dart'
     show Sub2ApiAdminGeminiOAuthClient;
 export 'src/admin/sub2api_admin_gemini_oauth_models.dart';
+export 'src/admin/sub2api_admin_grok_oauth_client.dart'
+    show Sub2ApiAdminGrokOAuthClient;
+export 'src/admin/sub2api_admin_grok_oauth_models.dart';
 export 'src/admin/sub2api_admin_group_models.dart';
 export 'src/admin/sub2api_admin_groups_client.dart'
     show Sub2ApiAdminGroupsClient;
@@ -143,6 +146,11 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminEmailTemplateContent,
         Sub2ApiAdminSmtpPassword,
         Sub2ApiAdminSettingSecret,
+        Sub2ApiGrokIdToken,
+        Sub2ApiGrokOAuthAuthorizationUrl,
+        Sub2ApiGrokOAuthSessionId,
+        Sub2ApiGrokOAuthState,
+        Sub2ApiGrokSsoToken,
         Sub2ApiAdminRedeemCodeExport,
         Sub2ApiRedeemCodeSecret,
         Sub2ApiAccessToken,

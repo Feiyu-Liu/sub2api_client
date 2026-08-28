@@ -211,6 +211,31 @@ final class Sub2ApiAdminSettingSecret extends _SensitiveValue {
   const Sub2ApiAdminSettingSecret(super.value);
 }
 
+/// Authorization URL containing a Grok OAuth state and PKCE ceremony context.
+final class Sub2ApiGrokOAuthAuthorizationUrl extends _SensitiveValue {
+  const Sub2ApiGrokOAuthAuthorizationUrl(super.value);
+}
+
+/// Server-side session identifier for a single Grok OAuth code exchange.
+final class Sub2ApiGrokOAuthSessionId extends _SensitiveValue {
+  const Sub2ApiGrokOAuthSessionId(super.value);
+}
+
+/// CSRF state returned by a Grok OAuth authorization ceremony.
+final class Sub2ApiGrokOAuthState extends _SensitiveValue {
+  const Sub2ApiGrokOAuthState(super.value);
+}
+
+/// Web SSO cookie token accepted only for an ephemeral Grok conversion.
+final class Sub2ApiGrokSsoToken extends _SensitiveValue {
+  const Sub2ApiGrokSsoToken(super.value);
+}
+
+/// Grok OAuth ID token returned to a privileged management caller.
+final class Sub2ApiGrokIdToken extends _SensitiveValue {
+  const Sub2ApiGrokIdToken(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so

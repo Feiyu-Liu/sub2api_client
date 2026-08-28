@@ -21,6 +21,7 @@ import 'sub2api_admin_credential_mode.dart';
 import 'sub2api_admin_dashboard_client.dart';
 import 'sub2api_admin_error_passthrough_client.dart';
 import 'sub2api_admin_gemini_oauth_client.dart';
+import 'sub2api_admin_grok_oauth_client.dart';
 import 'sub2api_admin_groups_client.dart';
 import 'sub2api_admin_models.dart';
 import 'sub2api_admin_openai_client.dart';
@@ -73,6 +74,7 @@ final class Sub2ApiAdminClient {
     required this.errorPassthrough,
     required this.geminiOAuth,
     required this.groups,
+    required this.grokOAuth,
     required this.openAI,
     required this.paymentOrders,
     required this.paymentCatalog,
@@ -116,6 +118,7 @@ final class Sub2ApiAdminClient {
   final Sub2ApiAdminErrorPassthroughClient errorPassthrough;
   final Sub2ApiAdminGeminiOAuthClient geminiOAuth;
   final Sub2ApiAdminGroupsClient groups;
+  final Sub2ApiAdminGrokOAuthClient grokOAuth;
   final Sub2ApiAdminOpenAIClient openAI;
   final Sub2ApiAdminPaymentOrdersClient paymentOrders;
   final Sub2ApiAdminPaymentCatalogClient paymentCatalog;
@@ -250,6 +253,11 @@ Sub2ApiAdminClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
     ),
     groups: createSub2ApiAdminGroupsClient(
+      dio: dio,
+      requestExecutor: adminExecutor,
+      credentialMode: Sub2ApiAdminCredentialMode.jwt,
+    ),
+    grokOAuth: createSub2ApiAdminGrokOAuthClient(
       dio: dio,
       requestExecutor: adminExecutor,
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
