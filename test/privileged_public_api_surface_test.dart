@@ -60,6 +60,10 @@ void main() {
         admin.tlsFingerprints;
     final Sub2ApiAdminTLSFingerprintsClient opsTLSFingerprints =
         ops.tlsFingerprints;
+    final Sub2ApiAdminUserAttributesClient adminUserAttributes =
+        admin.userAttributes;
+    final Sub2ApiAdminUserAttributesClient opsUserAttributes =
+        ops.userAttributes;
     final Future<Sub2ApiAdminProxyDataExport> Function({
       Sub2ApiAdminProxyDataExportQuery query,
       Sub2ApiRequestOptions? requestOptions,
@@ -136,6 +140,8 @@ void main() {
       opsScheduledTests,
       adminTLSFingerprints,
       opsTLSFingerprints,
+      adminUserAttributes,
+      opsUserAttributes,
       exportProxyData,
       importProxyData,
       updateAdminApiKey,

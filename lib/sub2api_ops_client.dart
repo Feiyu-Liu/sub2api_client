@@ -44,6 +44,9 @@ export 'src/admin/sub2api_admin_subscription_models.dart';
 export 'src/admin/sub2api_admin_tls_fingerprint_models.dart';
 export 'src/admin/sub2api_admin_tls_fingerprints_client.dart'
     show Sub2ApiAdminTLSFingerprintsClient;
+export 'src/admin/sub2api_admin_user_attribute_models.dart';
+export 'src/admin/sub2api_admin_user_attributes_client.dart'
+    show Sub2ApiAdminUserAttributesClient;
 export 'src/admin/sub2api_admin_user_models.dart';
 export 'src/admin/sub2api_admin_users_client.dart' show Sub2ApiAdminUsersClient;
 export 'src/admin/sub2api_ops_client.dart' show Sub2ApiOpsClient;

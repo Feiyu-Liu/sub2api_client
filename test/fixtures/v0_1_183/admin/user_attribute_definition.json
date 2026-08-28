@@ -1,0 +1,18 @@
+{
+  "definition": {
+    "id": 6,
+    "key": "department",
+    "name": "Department",
+    "description": "Corporate department",
+    "type": "select",
+    "options": [{"value": "engineering", "label": "Engineering"}],
+    "required": true,
+    "validation": {"min_length": 2, "max_length": 100, "pattern": "^[a-z]+$", "message": "lowercase only"},
+    "placeholder": "Select department",
+    "display_order": 2,
+    "enabled": true,
+    "created_at": "2026-08-26T00:00:00Z",
+    "updated_at": "2026-08-27T00:00:00Z"
+  },
+  "batch": {"attributes": {"11": {"6": "engineering"}, "12": {"6": "sales"}}}
+}
