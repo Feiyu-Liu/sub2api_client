@@ -146,6 +146,16 @@ final class Sub2ApiOpenAICodexPersonalAccessToken extends _SensitiveValue {
   const Sub2ApiOpenAICodexPersonalAccessToken(super.value);
 }
 
+/// Short-lived bridge token embedded in a privileged plugin UI session.
+final class Sub2ApiAdminPluginBridgeToken extends _SensitiveValue {
+  const Sub2ApiAdminPluginBridgeToken(super.value);
+}
+
+/// Capability URL granting temporary access to isolated plugin UI assets.
+final class Sub2ApiAdminPluginUiUrl extends _SensitiveValue {
+  const Sub2ApiAdminPluginUiUrl(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so

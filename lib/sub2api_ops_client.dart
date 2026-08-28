@@ -49,6 +49,9 @@ export 'src/admin/sub2api_admin_models.dart';
 export 'src/admin/sub2api_admin_openai_client.dart'
     show Sub2ApiAdminOpenAIClient;
 export 'src/admin/sub2api_admin_openai_models.dart';
+export 'src/admin/sub2api_admin_plugin_models.dart';
+export 'src/admin/sub2api_admin_plugins_client.dart'
+    show Sub2ApiAdminPluginsClient;
 export 'src/admin/sub2api_admin_promo_code_models.dart';
 export 'src/admin/sub2api_admin_promo_codes_client.dart'
     show Sub2ApiAdminPromoCodesClient;
@@ -95,6 +98,8 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminModerationExcerpt,
         Sub2ApiAdminModerationImage,
         Sub2ApiAdminModerationPrompt,
+        Sub2ApiAdminPluginBridgeToken,
+        Sub2ApiAdminPluginUiUrl,
         Sub2ApiAdminOAuthSessionId,
         Sub2ApiAdminOAuthState,
         Sub2ApiAccessToken,

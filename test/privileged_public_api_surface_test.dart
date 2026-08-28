@@ -65,6 +65,8 @@ void main() {
         ops.errorPassthrough;
     final Sub2ApiAdminOpenAIClient adminOpenAI = admin.openAI;
     final Sub2ApiAdminOpenAIClient opsOpenAI = ops.openAI;
+    final Sub2ApiAdminPluginsClient adminPlugins = admin.plugins;
+    final Sub2ApiAdminPluginsClient opsPlugins = ops.plugins;
     final Sub2ApiAdminProxiesClient adminProxies = admin.proxies;
     final Sub2ApiAdminProxiesClient opsProxies = ops.proxies;
     final Sub2ApiAdminPromoCodesClient adminPromoCodes = admin.promoCodes;
@@ -164,6 +166,8 @@ void main() {
       opsCNProviders,
       adminOpenAI,
       opsOpenAI,
+      adminPlugins,
+      opsPlugins,
       exportAccountData,
       importAccountData,
       importCodexSessions,

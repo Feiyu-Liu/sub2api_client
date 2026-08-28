@@ -24,6 +24,7 @@ import 'sub2api_admin_gemini_oauth_client.dart';
 import 'sub2api_admin_groups_client.dart';
 import 'sub2api_admin_models.dart';
 import 'sub2api_admin_openai_client.dart';
+import 'sub2api_admin_plugins_client.dart';
 import 'sub2api_admin_promo_codes_client.dart';
 import 'sub2api_admin_proxies_client.dart';
 import 'sub2api_admin_risk_control_client.dart';
@@ -67,6 +68,7 @@ final class Sub2ApiAdminClient {
     required this.geminiOAuth,
     required this.groups,
     required this.openAI,
+    required this.plugins,
     required this.proxies,
     required this.promoCodes,
     required this.riskControl,
@@ -103,6 +105,7 @@ final class Sub2ApiAdminClient {
   final Sub2ApiAdminGeminiOAuthClient geminiOAuth;
   final Sub2ApiAdminGroupsClient groups;
   final Sub2ApiAdminOpenAIClient openAI;
+  final Sub2ApiAdminPluginsClient plugins;
   final Sub2ApiAdminProxiesClient proxies;
   final Sub2ApiAdminPromoCodesClient promoCodes;
   final Sub2ApiAdminRiskControlClient riskControl;
@@ -236,6 +239,12 @@ Sub2ApiAdminClient _create({
     openAI: createSub2ApiAdminOpenAIClient(
       dio: dio,
       requestExecutor: adminExecutor,
+      credentialMode: Sub2ApiAdminCredentialMode.jwt,
+    ),
+    plugins: createSub2ApiAdminPluginsClient(
+      dio: dio,
+      requestExecutor: adminExecutor,
+      rawMutationExecutor: adminExecutor,
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
     ),
     proxies: createSub2ApiAdminProxiesClient(
