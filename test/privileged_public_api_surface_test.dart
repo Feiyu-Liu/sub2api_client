@@ -29,6 +29,8 @@ void main() {
     final Sub2ApiAdminUsersClient opsUsers = ops.users;
     final Sub2ApiAdminAccountsClient adminAccounts = admin.accounts;
     final Sub2ApiAdminAccountsClient opsAccounts = ops.accounts;
+    final Sub2ApiAdminAffiliatesClient adminAffiliates = admin.affiliates;
+    final Sub2ApiAdminAffiliatesClient opsAffiliates = ops.affiliates;
     final Sub2ApiAdminAntigravityOAuthClient adminAntigravityOAuth =
         admin.antigravityOAuth;
     final Sub2ApiAdminAntigravityOAuthClient opsAntigravityOAuth =
@@ -140,6 +142,8 @@ void main() {
       opsUsers,
       adminAccounts,
       opsAccounts,
+      adminAffiliates,
+      opsAffiliates,
       adminAntigravityOAuth,
       opsAntigravityOAuth,
       adminAnnouncements,
