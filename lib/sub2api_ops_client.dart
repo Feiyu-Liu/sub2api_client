@@ -61,6 +61,9 @@ export 'src/admin/sub2api_admin_ops_dashboard_models.dart';
 export 'src/admin/sub2api_admin_ops_error_models.dart';
 export 'src/admin/sub2api_admin_ops_errors_client.dart'
     show Sub2ApiAdminOpsErrorsClient;
+export 'src/admin/sub2api_admin_ops_observability_client.dart'
+    show Sub2ApiAdminOpsObservabilityClient;
+export 'src/admin/sub2api_admin_ops_observability_models.dart';
 export 'src/admin/sub2api_admin_ops_realtime_client.dart'
     show Sub2ApiAdminOpsRealtimeClient;
 export 'src/admin/sub2api_admin_ops_realtime_models.dart';

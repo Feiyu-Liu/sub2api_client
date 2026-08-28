@@ -246,6 +246,11 @@ final class Sub2ApiAdminOpsClientAddress extends _SensitiveValue {
   const Sub2ApiAdminOpsClientAddress(super.value);
 }
 
+/// System-log message or structured extra content visible only to operators.
+final class Sub2ApiAdminOpsSystemLogContent extends _SensitiveValue {
+  const Sub2ApiAdminOpsSystemLogContent(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so

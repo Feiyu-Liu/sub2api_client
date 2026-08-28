@@ -79,6 +79,10 @@ void main() {
         admin.operationsErrors;
     final Sub2ApiAdminOpsErrorsClient opsOperationsErrors =
         ops.operationsErrors;
+    final Sub2ApiAdminOpsObservabilityClient adminOperationsObservability =
+        admin.operationsObservability;
+    final Sub2ApiAdminOpsObservabilityClient opsOperationsObservability =
+        ops.operationsObservability;
     final Sub2ApiAdminOpsRealtimeClient adminOperationsRealtime =
         admin.operationsRealtime;
     final Sub2ApiAdminOpsRealtimeClient opsOperationsRealtime =
@@ -210,6 +214,8 @@ void main() {
       opsOperationsDashboard,
       adminOperationsErrors,
       opsOperationsErrors,
+      adminOperationsObservability,
+      opsOperationsObservability,
       adminOperationsRealtime,
       opsOperationsRealtime,
       adminOperationsSettings,

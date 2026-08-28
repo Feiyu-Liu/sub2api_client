@@ -1,0 +1,104 @@
+{
+  "ingress": {
+    "items": [
+      {
+        "id": 91,
+        "bucket_start": "2026-08-28T06:00:00Z",
+        "reject_reason": "invalid_api_key",
+        "route_family": "chat_completions",
+        "protocol": "openai",
+        "client_ip": "2001:db8::",
+        "user_id": 21,
+        "api_key_id": 9,
+        "request_count": 12,
+        "first_seen": "2026-08-28T06:00:01Z",
+        "last_seen": "2026-08-28T06:00:59Z"
+      }
+    ],
+    "total": 1,
+    "page": 1,
+    "page_size": 20
+  },
+  "ingress_health": {
+    "cardinality": 12,
+    "capacity": 8192,
+    "pending_batches": 1,
+    "pending_rows": 4,
+    "overflowed_count": 2,
+    "dropped_count": 1,
+    "flushed_request_count": 99,
+    "flush_failure_count": 3,
+    "accepting": true,
+    "last_error": ""
+  },
+  "auth_cache_health": {
+    "outbox": {
+      "running": true,
+      "processed": 120,
+      "failures": 2,
+      "pending": 3,
+      "oldest_lag": 5000000000,
+      "last_error": "",
+      "stats_error": "",
+      "healthy_sla": 10000000000,
+      "recovery_sla": 60000000000,
+      "max_attempts": 4
+    },
+    "subscriber": {
+      "connected": true,
+      "failures": 1
+    },
+    "lookup": {
+      "total": 1000,
+      "rejected": 4,
+      "in_flight": 2,
+      "capacity": 64
+    },
+    "invalid_abuse": {
+      "enabled": true,
+      "tracked": 8,
+      "capacity": 10000,
+      "recorded": 40,
+      "blocks": 4,
+      "rejected": 3,
+      "expired": 2,
+      "overflowed": 1,
+      "global_blocked": 0
+    }
+  },
+  "system_logs": {
+    "items": [
+      {
+        "id": 71,
+        "created_at": "2026-08-28T06:05:06.123Z",
+        "host": "sub2api-1",
+        "level": "error",
+        "component": "provider.openai",
+        "message": "provider returned a request-specific error",
+        "request_id": "request-81",
+        "client_request_id": "client-81",
+        "user_id": 21,
+        "api_key_id": 9,
+        "account_id": 42,
+        "platform": "openai",
+        "model": "gpt-5.6",
+        "extra": {
+          "upstream_reference": "provider-reference"
+        }
+      }
+    ],
+    "total": 1,
+    "page": 1,
+    "page_size": 20,
+    "pages": 1
+  },
+  "system_log_health": {
+    "queue_depth": 4,
+    "queue_capacity": 5000,
+    "dropped_count": 2,
+    "write_failed_count": 1,
+    "written_count": 900,
+    "avg_write_delay_ms": 12,
+    "last_error": ""
+  }
+}

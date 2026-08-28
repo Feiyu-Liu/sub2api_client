@@ -28,6 +28,7 @@ import 'sub2api_admin_openai_client.dart';
 import 'sub2api_admin_ops_alerts_client.dart';
 import 'sub2api_admin_ops_dashboard_client.dart';
 import 'sub2api_admin_ops_errors_client.dart';
+import 'sub2api_admin_ops_observability_client.dart';
 import 'sub2api_admin_ops_realtime_client.dart';
 import 'sub2api_admin_ops_settings_client.dart';
 import 'sub2api_admin_payment_catalog_client.dart';
@@ -84,6 +85,7 @@ final class Sub2ApiAdminClient {
     required this.operationsAlerts,
     required this.operationsDashboard,
     required this.operationsErrors,
+    required this.operationsObservability,
     required this.operationsRealtime,
     required this.operationsSettings,
     required this.paymentOrders,
@@ -133,6 +135,7 @@ final class Sub2ApiAdminClient {
   final Sub2ApiAdminOpsAlertsClient operationsAlerts;
   final Sub2ApiAdminOpsDashboardClient operationsDashboard;
   final Sub2ApiAdminOpsErrorsClient operationsErrors;
+  final Sub2ApiAdminOpsObservabilityClient operationsObservability;
   final Sub2ApiAdminOpsRealtimeClient operationsRealtime;
   final Sub2ApiAdminOpsSettingsClient operationsSettings;
   final Sub2ApiAdminPaymentOrdersClient paymentOrders;
@@ -293,6 +296,11 @@ Sub2ApiAdminClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
     ),
     operationsErrors: createSub2ApiAdminOpsErrorsClient(
+      dio: dio,
+      requestExecutor: adminExecutor,
+      credentialMode: Sub2ApiAdminCredentialMode.jwt,
+    ),
+    operationsObservability: createSub2ApiAdminOpsObservabilityClient(
       dio: dio,
       requestExecutor: adminExecutor,
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
