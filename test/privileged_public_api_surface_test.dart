@@ -56,6 +56,8 @@ void main() {
         admin.scheduledTests;
     final Sub2ApiAdminScheduledTestsClient opsScheduledTests =
         ops.scheduledTests;
+    final Sub2ApiAdminSystemClient adminSystem = admin.system;
+    final Sub2ApiAdminSystemClient opsSystem = ops.system;
     final Sub2ApiAdminTLSFingerprintsClient adminTLSFingerprints =
         admin.tlsFingerprints;
     final Sub2ApiAdminTLSFingerprintsClient opsTLSFingerprints =
@@ -138,6 +140,8 @@ void main() {
       opsPromoCodes,
       adminScheduledTests,
       opsScheduledTests,
+      adminSystem,
+      opsSystem,
       adminTLSFingerprints,
       opsTLSFingerprints,
       adminUserAttributes,

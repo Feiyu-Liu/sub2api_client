@@ -1,0 +1,19 @@
+{
+  "version": {"version": "0.1.183"},
+  "update_info": {
+    "current_version": "0.1.183",
+    "latest_version": "0.1.184",
+    "has_update": true,
+    "release_info": {
+      "name": "v0.1.184",
+      "body": "Maintenance release",
+      "published_at": "2026-08-27T08:00:00Z",
+      "html_url": "https://github.com/Wei-Shaw/sub2api/releases/tag/v0.1.184",
+      "assets": [{"name": "sub2api-linux-amd64", "download_url": "https://github.com/Wei-Shaw/sub2api/releases/download/v0.1.184/sub2api-linux-amd64", "size": 12345678}]
+    },
+    "cached": false,
+    "warning": "",
+    "build_type": "release"
+  },
+  "rollback_versions": {"versions": [{"version": "0.1.182", "published_at": "2026-08-26T08:00:00Z", "html_url": "https://github.com/Wei-Shaw/sub2api/releases/tag/v0.1.182"}]}
+}
