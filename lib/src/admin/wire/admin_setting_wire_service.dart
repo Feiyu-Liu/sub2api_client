@@ -8,6 +8,23 @@ abstract class AdminSettingWireService {
   factory AdminSettingWireService(Dio dio, {String? baseUrl}) =
       _AdminSettingWireService;
 
+  @GET('/api/v1/admin/settings')
+  Future<HttpResponse<Object?>> getSettings(
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
+  @PUT('/api/v1/admin/settings')
+  Future<HttpResponse<Object?>> updateSettings(
+    @Body() Map<String, Object?> body,
+    @CancelRequest() CancelToken cancelToken,
+    @DioOptions() Options options,
+    @Header('Authorization') String? authorization,
+    @Header('x-api-key') String? apiKey,
+  );
+
   @GET('/api/v1/admin/settings/admin-api-key')
   Future<HttpResponse<Object?>> getAdminApiKey(
     @CancelRequest() CancelToken cancelToken,

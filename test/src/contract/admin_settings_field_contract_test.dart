@@ -21,7 +21,7 @@ void main() {
     expect(counts['response_fields'], 254);
     expect(counts['update_fields'], 280);
     expect(counts['shared_fields'], 222);
-    expect(counts['secret_update_fields'], 18);
+    expect(counts['secret_update_fields'], 17);
 
     final update = (contract['update_fields']! as List)
         .cast<Map<String, Object?>>();

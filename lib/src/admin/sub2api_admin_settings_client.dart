@@ -5,10 +5,18 @@ import '../shared/request/sub2api_request_options.dart';
 import '../shared/transport/request_executor.dart';
 import 'sub2api_admin_credential_mode.dart';
 import 'sub2api_admin_setting_models.dart';
+import 'sub2api_admin_system_settings_models.dart';
 import 'wire/admin_setting_wire_mapper.dart';
 import 'wire/admin_setting_wire_service.dart';
 
 abstract interface class Sub2ApiAdminSettingsClient {
+  Future<Sub2ApiAdminSystemSettings> getSystemSettings({
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminSystemSettings> updateSystemSettings(
+    Sub2ApiAdminSystemSettingsPatch patch, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
   Future<Sub2ApiAdminApiKeyStatus> getAdminApiKeyStatus({
     Sub2ApiRequestOptions? requestOptions,
   });
@@ -120,6 +128,31 @@ final class _Client implements Sub2ApiAdminSettingsClient {
   final Sub2ApiRequestExecutor _executor;
   final Sub2ApiAdminCredentialMode _mode;
   final AdminSettingWireService _service;
+
+  @override
+  Future<Sub2ApiAdminSystemSettings> getSystemSettings({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _executor.protectedRequest(
+    send: (c, o, v) => _service.getSettings(c, o, _a(v), _k(v)),
+    decode: mapAdminSystemSettings,
+    requestOptions: requestOptions,
+  );
+
+  @override
+  Future<Sub2ApiAdminSystemSettings> updateSystemSettings(
+    Sub2ApiAdminSystemSettingsPatch patch, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (patch.isEmpty) {
+      throw _validation('admin.settings.empty_system_settings_patch');
+    }
+    final body = adminSystemSettingsPatchBody(patch);
+    return _executor.protectedNonReplayableRequest(
+      send: (c, o, v) => _service.updateSettings(body, c, o, _a(v), _k(v)),
+      decode: mapAdminSystemSettings,
+      requestOptions: requestOptions,
+    );
+  }
 
   @override
   Future<Sub2ApiAdminApiKeyStatus> getAdminApiKeyStatus({

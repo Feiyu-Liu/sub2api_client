@@ -7,7 +7,7 @@
     "response_fields": 254,
     "update_fields": 280,
     "shared_fields": 222,
-    "secret_update_fields": 18
+    "secret_update_fields": 17
   },
   "response_fields": [
     {
@@ -50,7 +50,7 @@
       "go_type": "bool",
       "json_name": "password_reset_enabled",
       "omitempty": false,
-      "secret": true
+      "secret": false
     },
     {
       "go_name": "FrontendURL",
@@ -1830,7 +1830,7 @@
       "go_type": "bool",
       "json_name": "password_reset_enabled",
       "omitempty": false,
-      "secret": true
+      "secret": false
     },
     {
       "go_name": "FrontendURL",

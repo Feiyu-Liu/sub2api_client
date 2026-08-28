@@ -85,6 +85,22 @@ export 'src/admin/sub2api_admin_subscriptions_client.dart'
 export 'src/admin/sub2api_admin_system_client.dart'
     show Sub2ApiAdminSystemClient;
 export 'src/admin/sub2api_admin_system_models.dart';
+export 'src/admin/sub2api_admin_system_settings_models.dart'
+    show
+        Sub2ApiAdminCustomEndpoint,
+        Sub2ApiAdminCustomMenuItem,
+        Sub2ApiAdminDefaultSubscriptionSetting,
+        Sub2ApiAdminLoginAgreementDocument,
+        Sub2ApiAdminNotifyEmailEntry,
+        Sub2ApiAdminOpenAIFastPolicyRule,
+        Sub2ApiAdminOpenAIFastPolicySettings,
+        Sub2ApiAdminPlatformQuota,
+        Sub2ApiAdminSystemSettingField,
+        Sub2ApiAdminSystemSettingFields,
+        Sub2ApiAdminSystemSettingUpdate,
+        Sub2ApiAdminSystemSettingUpdates,
+        Sub2ApiAdminSystemSettings,
+        Sub2ApiAdminSystemSettingsPatch;
 export 'src/admin/sub2api_admin_tls_fingerprint_models.dart';
 export 'src/admin/sub2api_admin_tls_fingerprints_client.dart'
     show Sub2ApiAdminTLSFingerprintsClient;
@@ -125,6 +141,7 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminPaymentCheckoutSecret,
         Sub2ApiAdminEmailTemplateContent,
         Sub2ApiAdminSmtpPassword,
+        Sub2ApiAdminSettingSecret,
         Sub2ApiAdminRedeemCodeExport,
         Sub2ApiRedeemCodeSecret,
         Sub2ApiAdminOAuthSessionId,

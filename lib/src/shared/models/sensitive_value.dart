@@ -206,6 +206,11 @@ final class Sub2ApiAdminEmailTemplateContent extends _SensitiveValue {
   const Sub2ApiAdminEmailTemplateContent(super.value);
 }
 
+/// Secret value accepted by the whole-document administrator settings patch.
+final class Sub2ApiAdminSettingSecret extends _SensitiveValue {
+  const Sub2ApiAdminSettingSecret(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so
