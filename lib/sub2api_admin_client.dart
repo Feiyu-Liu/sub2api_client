@@ -13,9 +13,12 @@ export 'src/admin/sub2api_admin_antigravity_oauth_models.dart';
 export 'src/admin/sub2api_admin_audit_log_models.dart';
 export 'src/admin/sub2api_admin_audit_logs_client.dart'
     show Sub2ApiAdminAuditLogsClient;
+export 'src/admin/sub2api_admin_channel_models.dart';
 export 'src/admin/sub2api_admin_channel_monitor_template_models.dart';
 export 'src/admin/sub2api_admin_channel_monitor_templates_client.dart'
     show Sub2ApiAdminChannelMonitorTemplatesClient;
+export 'src/admin/sub2api_admin_channels_client.dart'
+    show Sub2ApiAdminChannelsClient;
 export 'src/admin/sub2api_admin_client.dart' show Sub2ApiAdminClient;
 export 'src/admin/sub2api_admin_cn_provider_models.dart';
 export 'src/admin/sub2api_admin_cn_providers_client.dart'

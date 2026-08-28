@@ -6,6 +6,7 @@ import 'sub2api_admin_announcements_client.dart';
 import 'sub2api_admin_antigravity_oauth_client.dart';
 import 'sub2api_admin_audit_logs_client.dart';
 import 'sub2api_admin_channel_monitor_templates_client.dart';
+import 'sub2api_admin_channels_client.dart';
 import 'sub2api_admin_cn_providers_client.dart';
 import 'sub2api_admin_compliance_client.dart';
 import 'sub2api_admin_credential_mode.dart';
@@ -58,6 +59,7 @@ final class Sub2ApiOpsClient {
     required this.announcements,
     required this.auditLogs,
     required this.channelMonitorTemplates,
+    required this.channels,
     required this.cnProviders,
     required this.compliance,
     required this.dashboard,
@@ -83,6 +85,7 @@ final class Sub2ApiOpsClient {
   final Sub2ApiAdminAnnouncementsClient announcements;
   final Sub2ApiAdminAuditLogsClient auditLogs;
   final Sub2ApiAdminChannelMonitorTemplatesClient channelMonitorTemplates;
+  final Sub2ApiAdminChannelsClient channels;
   final Sub2ApiAdminCNProvidersClient cnProviders;
   final Sub2ApiAdminComplianceClient compliance;
   final Sub2ApiAdminDashboardClient dashboard;
@@ -142,6 +145,11 @@ Sub2ApiOpsClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
     ),
     channelMonitorTemplates: createSub2ApiAdminChannelMonitorTemplatesClient(
+      dio: dio,
+      requestExecutor: executor,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
+    channels: createSub2ApiAdminChannelsClient(
       dio: dio,
       requestExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
