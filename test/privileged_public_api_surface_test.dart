@@ -42,6 +42,10 @@ void main() {
         admin.channelMonitorTemplates;
     final Sub2ApiAdminChannelMonitorTemplatesClient opsMonitorTemplates =
         ops.channelMonitorTemplates;
+    final Sub2ApiAdminChannelMonitorV2Client adminMonitorV2 =
+        admin.channelMonitorV2;
+    final Sub2ApiAdminChannelMonitorV2Client opsMonitorV2 =
+        ops.channelMonitorV2;
     final Sub2ApiAdminChannelsClient adminChannels = admin.channels;
     final Sub2ApiAdminChannelsClient opsChannels = ops.channels;
     final Sub2ApiAdminCNProvidersClient adminCNProviders = admin.cnProviders;
@@ -139,6 +143,8 @@ void main() {
       opsAuditLogs,
       adminMonitorTemplates,
       opsMonitorTemplates,
+      adminMonitorV2,
+      opsMonitorV2,
       adminChannels,
       opsChannels,
       adminCNProviders,

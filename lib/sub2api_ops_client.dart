@@ -17,6 +17,9 @@ export 'src/admin/sub2api_admin_channel_models.dart';
 export 'src/admin/sub2api_admin_channel_monitor_template_models.dart';
 export 'src/admin/sub2api_admin_channel_monitor_templates_client.dart'
     show Sub2ApiAdminChannelMonitorTemplatesClient;
+export 'src/admin/sub2api_admin_channel_monitor_v2_client.dart'
+    show Sub2ApiAdminChannelMonitorV2Client;
+export 'src/admin/sub2api_admin_channel_monitor_v2_models.dart';
 export 'src/admin/sub2api_admin_channels_client.dart'
     show Sub2ApiAdminChannelsClient;
 export 'src/admin/sub2api_admin_cn_provider_models.dart';
@@ -63,6 +66,7 @@ export 'src/admin/sub2api_admin_users_client.dart' show Sub2ApiAdminUsersClient;
 export 'src/admin/sub2api_ops_client.dart' show Sub2ApiOpsClient;
 export 'src/admin/sub2api_ops_credentials.dart';
 export 'src/commerce/sub2api_commerce_models.dart' show Sub2ApiUserSubscription;
+export 'src/commerce/sub2api_monitor_models.dart';
 export 'src/keys/sub2api_key_models.dart'
     show Sub2ApiKeyDetails, Sub2ApiKeySummary, Sub2ApiKeyUsageWindow;
 export 'src/shared/configuration/sub2api_configuration.dart';
