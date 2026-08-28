@@ -18,6 +18,7 @@ typedef Sub2ApiRefreshSession =
 final class Sub2ApiRequestExecutorImpl
     implements
         Sub2ApiRequestExecutor,
+        Sub2ApiProtectedCreatedMutationExecutor,
         Sub2ApiProtectedRawMutationExecutor,
         Sub2ApiProtectedStreamExecutor {
   Sub2ApiRequestExecutorImpl({
@@ -259,6 +260,28 @@ final class Sub2ApiRequestExecutorImpl
   }
 
   @override
+  Future<T> protectedNonReplayableCreatedRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    _ensureOpen();
+    final control = _RequestControl(
+      configuration: _configuration,
+      requestOptions: requestOptions,
+    );
+    final snapshot = await control.waitFor(_sessions.snapshot());
+    if (snapshot == null) throw _notAuthenticated;
+    return _attempt(
+      control,
+      send,
+      decode,
+      authorization: _authorization(snapshot.session),
+      expectCreated: true,
+    );
+  }
+
+  @override
   Future<T> protectedNonReplayableRequestAllowingRawSuccess<T>({
     required Sub2ApiWireCall send,
     required T Function(Object? data) decode,
@@ -353,12 +376,15 @@ final class Sub2ApiRequestExecutorImpl
     T Function(Object? data) decode, {
     required String? authorization,
     bool allowRawSuccess = false,
+    bool expectCreated = false,
   }) async {
     try {
       final response = await control.execute(
         (cancelToken, options) => send(cancelToken, options, authorization),
       );
-      return allowRawSuccess
+      return expectCreated
+          ? _decoder.decodeCreated(response, decode)
+          : allowRawSuccess
           ? _decoder.decodeSuccessOrRaw(response, decode)
           : _decoder.decodeSuccess(response, decode);
     } on DioException catch (error) {

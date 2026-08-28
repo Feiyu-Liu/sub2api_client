@@ -68,6 +68,10 @@ void main() {
     final Sub2ApiAdminPaymentOrdersClient adminPaymentOrders =
         admin.paymentOrders;
     final Sub2ApiAdminPaymentOrdersClient opsPaymentOrders = ops.paymentOrders;
+    final Sub2ApiAdminPaymentCatalogClient adminPaymentCatalog =
+        admin.paymentCatalog;
+    final Sub2ApiAdminPaymentCatalogClient opsPaymentCatalog =
+        ops.paymentCatalog;
     final Sub2ApiAdminPluginsClient adminPlugins = admin.plugins;
     final Sub2ApiAdminPluginsClient opsPlugins = ops.plugins;
     final Sub2ApiAdminPromptAuditClient adminPromptAudit = admin.promptAudit;
@@ -178,6 +182,8 @@ void main() {
       opsOpenAI,
       adminPaymentOrders,
       opsPaymentOrders,
+      adminPaymentCatalog,
+      opsPaymentCatalog,
       adminPlugins,
       opsPlugins,
       adminPromptAudit,

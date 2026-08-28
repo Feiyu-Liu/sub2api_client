@@ -11,7 +11,21 @@ final class Sub2ApiResponseDecoder {
     HttpResponse<Object?> response,
     T Function(Object? data) decodeData,
   ) {
-    if (response.response.statusCode != 200) {
+    return _decodeEnvelope(response, decodeData, expectedStatus: 200);
+  }
+
+  /// Decodes the standard envelope for a fixed HTTP 201 create contract.
+  T decodeCreated<T>(
+    HttpResponse<Object?> response,
+    T Function(Object? data) decodeData,
+  ) => _decodeEnvelope(response, decodeData, expectedStatus: 201);
+
+  T _decodeEnvelope<T>(
+    HttpResponse<Object?> response,
+    T Function(Object? data) decodeData, {
+    required int expectedStatus,
+  }) {
+    if (response.response.statusCode != expectedStatus) {
       throw _protocol('protocol.unexpected_success_status', response.response);
     }
     final envelope = _stringMap(response.data);

@@ -49,6 +49,9 @@ export 'src/admin/sub2api_admin_models.dart';
 export 'src/admin/sub2api_admin_openai_client.dart'
     show Sub2ApiAdminOpenAIClient;
 export 'src/admin/sub2api_admin_openai_models.dart';
+export 'src/admin/sub2api_admin_payment_catalog_client.dart'
+    show Sub2ApiAdminPaymentCatalogClient;
+export 'src/admin/sub2api_admin_payment_catalog_models.dart';
 export 'src/admin/sub2api_admin_payment_order_models.dart';
 export 'src/admin/sub2api_admin_payment_orders_client.dart'
     show Sub2ApiAdminPaymentOrdersClient;

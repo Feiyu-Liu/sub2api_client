@@ -10,6 +10,7 @@ import 'sub2api_admin_models.dart';
 final class Sub2ApiAdminRoleExecutor
     implements
         Sub2ApiRequestExecutor,
+        Sub2ApiProtectedCreatedMutationExecutor,
         Sub2ApiProtectedRawMutationExecutor,
         Sub2ApiProtectedStreamExecutor {
   Sub2ApiAdminRoleExecutor({
@@ -71,6 +72,25 @@ final class Sub2ApiAdminRoleExecutor
       decode: decode,
       requestOptions: requestOptions,
     );
+  }
+
+  @override
+  Future<T> protectedNonReplayableCreatedRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  }) async {
+    await bootstrap(requestOptions: requestOptions);
+    final delegate = _delegate;
+    if (delegate is! Sub2ApiProtectedCreatedMutationExecutor) {
+      throw UnsupportedError('Delegate does not support created mutations.');
+    }
+    return (delegate as Sub2ApiProtectedCreatedMutationExecutor)
+        .protectedNonReplayableCreatedRequest(
+          send: send,
+          decode: decode,
+          requestOptions: requestOptions,
+        );
   }
 
   @override

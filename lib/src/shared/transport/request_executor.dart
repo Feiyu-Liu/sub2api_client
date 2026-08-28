@@ -34,6 +34,15 @@ abstract interface class Sub2ApiProtectedRawMutationExecutor {
   });
 }
 
+/// Internal seam for non-replayable create operations returning HTTP 201.
+abstract interface class Sub2ApiProtectedCreatedMutationExecutor {
+  Future<T> protectedNonReplayableCreatedRequest<T>({
+    required Sub2ApiWireCall send,
+    required T Function(Object? data) decode,
+    Sub2ApiRequestOptions? requestOptions,
+  });
+}
+
 /// Internal execution seam that owns envelope, error, deadline, and refresh.
 abstract interface class Sub2ApiRequestExecutor {
   Future<T> publicRequest<T>({
