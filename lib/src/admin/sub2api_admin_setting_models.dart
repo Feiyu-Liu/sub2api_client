@@ -149,3 +149,98 @@ final class Sub2ApiAdminEmailTemplatePreview {
   final String subject;
   final Sub2ApiAdminEmailTemplateContent html;
 }
+
+final class Sub2ApiAdminOverloadCooldownSettings {
+  const Sub2ApiAdminOverloadCooldownSettings({
+    required this.enabled,
+    required this.cooldownMinutes,
+  });
+  final bool enabled;
+  final int cooldownMinutes;
+}
+
+final class Sub2ApiAdminRateLimit429CooldownSettings {
+  const Sub2ApiAdminRateLimit429CooldownSettings({
+    required this.enabled,
+    required this.cooldownSeconds,
+  });
+  final bool enabled;
+  final int cooldownSeconds;
+}
+
+final class Sub2ApiAdminPanelRateLimitSettings {
+  const Sub2ApiAdminPanelRateLimitSettings({
+    required this.enabled,
+    required this.userRpm,
+    required this.heavyRpm,
+    required this.exemptAdmin,
+    required this.publicIpRpm,
+  });
+  final bool enabled;
+  final int userRpm;
+  final int heavyRpm;
+  final bool exemptAdmin;
+  final int publicIpRpm;
+}
+
+enum Sub2ApiAdminStreamTimeoutAction { tempUnsched, error, none }
+
+final class Sub2ApiAdminStreamTimeoutSettings {
+  const Sub2ApiAdminStreamTimeoutSettings({
+    required this.enabled,
+    required this.action,
+    required this.tempUnschedMinutes,
+    required this.thresholdCount,
+    required this.thresholdWindowMinutes,
+  });
+  final bool enabled;
+  final Sub2ApiAdminStreamTimeoutAction action;
+  final int tempUnschedMinutes;
+  final int thresholdCount;
+  final int thresholdWindowMinutes;
+}
+
+final class Sub2ApiAdminRectifierSettings {
+  Sub2ApiAdminRectifierSettings({
+    required this.enabled,
+    required this.thinkingSignatureEnabled,
+    required this.thinkingBudgetEnabled,
+    required this.apiKeySignatureEnabled,
+    required List<String> apiKeySignaturePatterns,
+  }) : apiKeySignaturePatterns = List.unmodifiable(apiKeySignaturePatterns);
+  final bool enabled;
+  final bool thinkingSignatureEnabled;
+  final bool thinkingBudgetEnabled;
+  final bool apiKeySignatureEnabled;
+  final List<String> apiKeySignaturePatterns;
+}
+
+enum Sub2ApiAdminBetaPolicyAction { pass, filter, block }
+
+enum Sub2ApiAdminBetaPolicyScope { all, oauth, apiKey, bedrock }
+
+final class Sub2ApiAdminBetaPolicyRule {
+  Sub2ApiAdminBetaPolicyRule({
+    required this.betaToken,
+    required this.action,
+    required this.scope,
+    this.errorMessage = '',
+    List<String> modelWhitelist = const <String>[],
+    this.fallbackAction,
+    this.fallbackErrorMessage = '',
+  }) : modelWhitelist = List.unmodifiable(modelWhitelist);
+  final String betaToken;
+  final Sub2ApiAdminBetaPolicyAction action;
+  final Sub2ApiAdminBetaPolicyScope scope;
+  final String errorMessage;
+  final List<String> modelWhitelist;
+  final Sub2ApiAdminBetaPolicyAction? fallbackAction;
+  final String fallbackErrorMessage;
+}
+
+final class Sub2ApiAdminBetaPolicySettings {
+  Sub2ApiAdminBetaPolicySettings({
+    required List<Sub2ApiAdminBetaPolicyRule> rules,
+  }) : rules = List.unmodifiable(rules);
+  final List<Sub2ApiAdminBetaPolicyRule> rules;
+}

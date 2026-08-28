@@ -93,4 +93,95 @@ abstract class AdminSettingWireService {
     @Header('Authorization') String? a,
     @Header('x-api-key') String? k,
   );
+
+  @GET('/api/v1/admin/settings/overload-cooldown')
+  Future<HttpResponse<Object?>> getOverloadCooldown(
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @PUT('/api/v1/admin/settings/overload-cooldown')
+  Future<HttpResponse<Object?>> updateOverloadCooldown(
+    @Body() Map<String, Object?> b,
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @GET('/api/v1/admin/settings/rate-limit-429-cooldown')
+  Future<HttpResponse<Object?>> getRateLimit429Cooldown(
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @PUT('/api/v1/admin/settings/rate-limit-429-cooldown')
+  Future<HttpResponse<Object?>> updateRateLimit429Cooldown(
+    @Body() Map<String, Object?> b,
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @GET('/api/v1/admin/settings/panel-rate-limit')
+  Future<HttpResponse<Object?>> getPanelRateLimit(
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @PUT('/api/v1/admin/settings/panel-rate-limit')
+  Future<HttpResponse<Object?>> updatePanelRateLimit(
+    @Body() Map<String, Object?> b,
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @GET('/api/v1/admin/settings/stream-timeout')
+  Future<HttpResponse<Object?>> getStreamTimeout(
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @PUT('/api/v1/admin/settings/stream-timeout')
+  Future<HttpResponse<Object?>> updateStreamTimeout(
+    @Body() Map<String, Object?> b,
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @GET('/api/v1/admin/settings/rectifier')
+  Future<HttpResponse<Object?>> getRectifier(
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @PUT('/api/v1/admin/settings/rectifier')
+  Future<HttpResponse<Object?>> updateRectifier(
+    @Body() Map<String, Object?> b,
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @GET('/api/v1/admin/settings/beta-policy')
+  Future<HttpResponse<Object?>> getBetaPolicy(
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @PUT('/api/v1/admin/settings/beta-policy')
+  Future<HttpResponse<Object?>> updateBetaPolicy(
+    @Body() Map<String, Object?> b,
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
 }

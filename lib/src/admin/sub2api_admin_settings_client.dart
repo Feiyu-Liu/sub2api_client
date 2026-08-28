@@ -49,6 +49,48 @@ abstract interface class Sub2ApiAdminSettingsClient {
     Sub2ApiAdminPreviewEmailTemplateRequest request, {
     Sub2ApiRequestOptions? requestOptions,
   });
+  Future<Sub2ApiAdminOverloadCooldownSettings> getOverloadCooldown({
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminOverloadCooldownSettings> updateOverloadCooldown(
+    Sub2ApiAdminOverloadCooldownSettings settings, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminRateLimit429CooldownSettings> getRateLimit429Cooldown({
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminRateLimit429CooldownSettings> updateRateLimit429Cooldown(
+    Sub2ApiAdminRateLimit429CooldownSettings settings, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminPanelRateLimitSettings> getPanelRateLimit({
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminPanelRateLimitSettings> updatePanelRateLimit(
+    Sub2ApiAdminPanelRateLimitSettings settings, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminStreamTimeoutSettings> getStreamTimeout({
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminStreamTimeoutSettings> updateStreamTimeout(
+    Sub2ApiAdminStreamTimeoutSettings settings, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminRectifierSettings> getRectifier({
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminRectifierSettings> updateRectifier(
+    Sub2ApiAdminRectifierSettings settings, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminBetaPolicySettings> getBetaPolicy({
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminBetaPolicySettings> updateBetaPolicy(
+    Sub2ApiAdminBetaPolicySettings settings, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
 }
 
 Sub2ApiAdminSettingsClient createSub2ApiAdminSettingsClient({
@@ -249,6 +291,216 @@ final class _Client implements Sub2ApiAdminSettingsClient {
     );
   }
 
+  @override
+  Future<Sub2ApiAdminOverloadCooldownSettings> getOverloadCooldown({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _executor.protectedRequest(
+    send: (c, o, v) => _service.getOverloadCooldown(c, o, _a(v), _k(v)),
+    decode: mapAdminOverloadCooldown,
+    requestOptions: requestOptions,
+  );
+  @override
+  Future<Sub2ApiAdminOverloadCooldownSettings> updateOverloadCooldown(
+    Sub2ApiAdminOverloadCooldownSettings s, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (s.enabled && (s.cooldownMinutes < 1 || s.cooldownMinutes > 120)) {
+      throw _validation('admin.settings.invalid_overload_cooldown');
+    }
+    return _executor.protectedNonReplayableRequest(
+      send: (c, o, v) => _service.updateOverloadCooldown(
+        <String, Object?>{
+          'enabled': s.enabled,
+          'cooldown_minutes': s.cooldownMinutes,
+        },
+        c,
+        o,
+        _a(v),
+        _k(v),
+      ),
+      decode: mapAdminOverloadCooldown,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminRateLimit429CooldownSettings> getRateLimit429Cooldown({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _executor.protectedRequest(
+    send: (c, o, v) => _service.getRateLimit429Cooldown(c, o, _a(v), _k(v)),
+    decode: mapAdminRateLimit429Cooldown,
+    requestOptions: requestOptions,
+  );
+  @override
+  Future<Sub2ApiAdminRateLimit429CooldownSettings> updateRateLimit429Cooldown(
+    Sub2ApiAdminRateLimit429CooldownSettings s, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (s.enabled && (s.cooldownSeconds < 1 || s.cooldownSeconds > 7200)) {
+      throw _validation('admin.settings.invalid_429_cooldown');
+    }
+    return _executor.protectedNonReplayableRequest(
+      send: (c, o, v) => _service.updateRateLimit429Cooldown(
+        <String, Object?>{
+          'enabled': s.enabled,
+          'cooldown_seconds': s.cooldownSeconds,
+        },
+        c,
+        o,
+        _a(v),
+        _k(v),
+      ),
+      decode: mapAdminRateLimit429Cooldown,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminPanelRateLimitSettings> getPanelRateLimit({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _executor.protectedRequest(
+    send: (c, o, v) => _service.getPanelRateLimit(c, o, _a(v), _k(v)),
+    decode: mapAdminPanelRateLimit,
+    requestOptions: requestOptions,
+  );
+  @override
+  Future<Sub2ApiAdminPanelRateLimitSettings> updatePanelRateLimit(
+    Sub2ApiAdminPanelRateLimitSettings s, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (<int>[
+      s.userRpm,
+      s.heavyRpm,
+      s.publicIpRpm,
+    ].any((v) => v < 0 || v > 100000)) {
+      throw _validation('admin.settings.invalid_panel_rate_limit');
+    }
+    return _executor.protectedNonReplayableRequest(
+      send: (c, o, v) => _service.updatePanelRateLimit(
+        <String, Object?>{
+          'enabled': s.enabled,
+          'user_rpm': s.userRpm,
+          'heavy_rpm': s.heavyRpm,
+          'exempt_admin': s.exemptAdmin,
+          'public_ip_rpm': s.publicIpRpm,
+        },
+        c,
+        o,
+        _a(v),
+        _k(v),
+      ),
+      decode: mapAdminPanelRateLimit,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminStreamTimeoutSettings> getStreamTimeout({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _executor.protectedRequest(
+    send: (c, o, v) => _service.getStreamTimeout(c, o, _a(v), _k(v)),
+    decode: mapAdminStreamTimeout,
+    requestOptions: requestOptions,
+  );
+  @override
+  Future<Sub2ApiAdminStreamTimeoutSettings> updateStreamTimeout(
+    Sub2ApiAdminStreamTimeoutSettings s, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (s.tempUnschedMinutes < 1 ||
+        s.tempUnschedMinutes > 60 ||
+        s.thresholdCount < 1 ||
+        s.thresholdCount > 10 ||
+        s.thresholdWindowMinutes < 1 ||
+        s.thresholdWindowMinutes > 60) {
+      throw _validation('admin.settings.invalid_stream_timeout');
+    }
+    return _executor.protectedNonReplayableRequest(
+      send: (c, o, v) => _service.updateStreamTimeout(
+        <String, Object?>{
+          'enabled': s.enabled,
+          'action': _streamAction(s.action),
+          'temp_unsched_minutes': s.tempUnschedMinutes,
+          'threshold_count': s.thresholdCount,
+          'threshold_window_minutes': s.thresholdWindowMinutes,
+        },
+        c,
+        o,
+        _a(v),
+        _k(v),
+      ),
+      decode: mapAdminStreamTimeout,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminRectifierSettings> getRectifier({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _executor.protectedRequest(
+    send: (c, o, v) => _service.getRectifier(c, o, _a(v), _k(v)),
+    decode: mapAdminRectifier,
+    requestOptions: requestOptions,
+  );
+  @override
+  Future<Sub2ApiAdminRectifierSettings> updateRectifier(
+    Sub2ApiAdminRectifierSettings s, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (s.apiKeySignaturePatterns.length > 50 ||
+        s.apiKeySignaturePatterns.any((p) => p.trim().length > 500)) {
+      throw _validation('admin.settings.invalid_rectifier_patterns');
+    }
+    final patterns = s.apiKeySignaturePatterns
+        .map((p) => p.trim())
+        .where((p) => p.isNotEmpty)
+        .toList();
+    return _executor.protectedNonReplayableRequest(
+      send: (c, o, v) => _service.updateRectifier(
+        <String, Object?>{
+          'enabled': s.enabled,
+          'thinking_signature_enabled': s.thinkingSignatureEnabled,
+          'thinking_budget_enabled': s.thinkingBudgetEnabled,
+          'apikey_signature_enabled': s.apiKeySignatureEnabled,
+          'apikey_signature_patterns': patterns,
+        },
+        c,
+        o,
+        _a(v),
+        _k(v),
+      ),
+      decode: mapAdminRectifier,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<Sub2ApiAdminBetaPolicySettings> getBetaPolicy({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _executor.protectedRequest(
+    send: (c, o, v) => _service.getBetaPolicy(c, o, _a(v), _k(v)),
+    decode: mapAdminBetaPolicy,
+    requestOptions: requestOptions,
+  );
+  @override
+  Future<Sub2ApiAdminBetaPolicySettings> updateBetaPolicy(
+    Sub2ApiAdminBetaPolicySettings s, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    final rules = s.rules.map(_betaRuleBody).toList();
+    return _executor.protectedNonReplayableRequest(
+      send: (c, o, v) => _service.updateBetaPolicy(
+        <String, Object?>{'rules': rules},
+        c,
+        o,
+        _a(v),
+        _k(v),
+      ),
+      decode: mapAdminBetaPolicy,
+      requestOptions: requestOptions,
+    );
+  }
+
   Future<Sub2ApiAdminSettingActionResult> _mutation({
     required Sub2ApiWireCall send,
     required Sub2ApiRequestOptions? requestOptions,
@@ -286,3 +538,39 @@ Sub2ApiException _validation(String code) => Sub2ApiException(
   code: code,
   retryable: false,
 );
+
+String _streamAction(Sub2ApiAdminStreamTimeoutAction v) => switch (v) {
+  Sub2ApiAdminStreamTimeoutAction.tempUnsched => 'temp_unsched',
+  Sub2ApiAdminStreamTimeoutAction.error => 'error',
+  Sub2ApiAdminStreamTimeoutAction.none => 'none',
+};
+String _betaAction(Sub2ApiAdminBetaPolicyAction v) => switch (v) {
+  Sub2ApiAdminBetaPolicyAction.pass => 'pass',
+  Sub2ApiAdminBetaPolicyAction.filter => 'filter',
+  Sub2ApiAdminBetaPolicyAction.block => 'block',
+};
+String _betaScope(Sub2ApiAdminBetaPolicyScope v) => switch (v) {
+  Sub2ApiAdminBetaPolicyScope.all => 'all',
+  Sub2ApiAdminBetaPolicyScope.oauth => 'oauth',
+  Sub2ApiAdminBetaPolicyScope.apiKey => 'apikey',
+  Sub2ApiAdminBetaPolicyScope.bedrock => 'bedrock',
+};
+Map<String, Object?> _betaRuleBody(Sub2ApiAdminBetaPolicyRule r) {
+  final token = r.betaToken.trim();
+  if (token.isEmpty) throw _validation('admin.settings.beta_token_required');
+  final models = r.modelWhitelist.map((m) => m.trim()).toList();
+  if (models.any((m) => m.isEmpty)) {
+    throw _validation('admin.settings.invalid_beta_model');
+  }
+  return <String, Object?>{
+    'beta_token': token,
+    'action': _betaAction(r.action),
+    'scope': _betaScope(r.scope),
+    'error_message': r.errorMessage.trim(),
+    'model_whitelist': models,
+    'fallback_action': r.fallbackAction == null
+        ? ''
+        : _betaAction(r.fallbackAction!),
+    'fallback_error_message': r.fallbackErrorMessage.trim(),
+  };
+}
