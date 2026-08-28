@@ -81,6 +81,9 @@ void main() {
         admin.scheduledTests;
     final Sub2ApiAdminScheduledTestsClient opsScheduledTests =
         ops.scheduledTests;
+    final Sub2ApiAdminSubscriptionsClient adminSubscriptions =
+        admin.subscriptions;
+    final Sub2ApiAdminSubscriptionsClient opsSubscriptions = ops.subscriptions;
     final Sub2ApiAdminSystemClient adminSystem = admin.system;
     final Sub2ApiAdminSystemClient opsSystem = ops.system;
     final Sub2ApiAdminTLSFingerprintsClient adminTLSFingerprints =
@@ -187,6 +190,8 @@ void main() {
       opsRiskControl,
       adminScheduledTests,
       opsScheduledTests,
+      adminSubscriptions,
+      opsSubscriptions,
       adminSystem,
       opsSystem,
       adminTLSFingerprints,

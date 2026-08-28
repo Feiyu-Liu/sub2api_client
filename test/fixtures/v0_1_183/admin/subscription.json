@@ -1,0 +1,71 @@
+{
+  "subscription": {
+    "id": 301,
+    "user_id": 21,
+    "group_id": 7,
+    "starts_at": "2026-08-01T00:00:00Z",
+    "expires_at": "2026-09-30T00:00:00Z",
+    "status": "active",
+    "daily_window_start": "2026-08-28T00:00:00Z",
+    "weekly_window_start": "2026-08-24T00:00:00Z",
+    "monthly_window_start": "2026-08-01T00:00:00Z",
+    "daily_usage_usd": "1.25",
+    "weekly_usage_usd": "4.5",
+    "monthly_usage_usd": "12.75",
+    "created_at": "2026-08-01T00:00:00Z",
+    "updated_at": "2026-08-28T02:00:00Z",
+    "revoked_at": null,
+    "assigned_by": 1,
+    "assigned_at": "2026-08-01T00:00:00Z",
+    "notes": "research pilot",
+    "user": {
+      "id": 21,
+      "email": "subscriber@example.test",
+      "username": "subscriber",
+      "role": "user",
+      "status": "active"
+    },
+    "group": {
+      "id": 7,
+      "name": "Pro",
+      "platform": "openai",
+      "subscription_type": "standard"
+    },
+    "assigned_by_user": {
+      "id": 1,
+      "email": "admin@example.test",
+      "username": "Admin",
+      "role": "admin",
+      "status": "active"
+    }
+  },
+  "progress": {
+    "id": 301,
+    "group_name": "Pro",
+    "expires_at": "2026-09-30T00:00:00Z",
+    "expires_in_days": 33,
+    "daily": {
+      "limit_usd": "10.5",
+      "used_usd": "1.25",
+      "remaining_usd": "9.25",
+      "percentage": "11.9047619047619",
+      "window_start": "2026-08-28T00:00:00Z",
+      "resets_at": "2026-08-29T00:00:00Z",
+      "resets_in_seconds": 3600
+    },
+    "weekly": null,
+    "monthly": null
+  },
+  "bulk": {
+    "success_count": 2,
+    "created_count": 1,
+    "reused_count": 1,
+    "failed_count": 0,
+    "subscriptions": [],
+    "errors": [],
+    "statuses": {
+      "21": "created",
+      "22": "reused"
+    }
+  }
+}

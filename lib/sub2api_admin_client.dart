@@ -72,6 +72,8 @@ export 'src/admin/sub2api_admin_scheduled_test_models.dart';
 export 'src/admin/sub2api_admin_scheduled_tests_client.dart'
     show Sub2ApiAdminScheduledTestsClient;
 export 'src/admin/sub2api_admin_subscription_models.dart';
+export 'src/admin/sub2api_admin_subscriptions_client.dart'
+    show Sub2ApiAdminSubscriptionsClient;
 export 'src/admin/sub2api_admin_system_client.dart'
     show Sub2ApiAdminSystemClient;
 export 'src/admin/sub2api_admin_system_models.dart';
