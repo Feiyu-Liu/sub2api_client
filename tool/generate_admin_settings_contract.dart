@@ -249,14 +249,14 @@ String _kind(_Field field) {
 }
 
 String _show(String path) {
-  final result = Process.runSync('git', <String>[
-    '-C',
-    _upstream,
-    'show',
-    '$_tag:$path',
-  ]);
+  final result = Process.runSync(
+    'git',
+    <String>['-C', _upstream, 'cat-file', '-p', '$_tag:$path'],
+    stdoutEncoding: utf8,
+    stderrEncoding: utf8,
+  );
   if (result.exitCode != 0) throw StateError('Unable to read $path');
-  return result.stdout as String;
+  return (result.stdout as String).replaceAll('\r', '');
 }
 
 void _verifyCommit() {
