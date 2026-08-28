@@ -236,6 +236,16 @@ final class Sub2ApiGrokIdToken extends _SensitiveValue {
   const Sub2ApiGrokIdToken(super.value);
 }
 
+/// Error/request content visible only to privileged operations personnel.
+final class Sub2ApiAdminOpsErrorContent extends _SensitiveValue {
+  const Sub2ApiAdminOpsErrorContent(super.value);
+}
+
+/// Client network address visible only to privileged operations personnel.
+final class Sub2ApiAdminOpsClientAddress extends _SensitiveValue {
+  const Sub2ApiAdminOpsClientAddress(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so
