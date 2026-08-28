@@ -126,7 +126,10 @@ List<_Route> _parseSource(String upstream, String sourceFile) {
   if (result.exitCode != 0) {
     throw StateError('Unable to read $sourceFile at $_tag: ${result.stderr}');
   }
-  final source = result.stdout as String;
+  // Git for Windows can expose CRLF here even though the pinned Git blob is
+  // identical. Normalize before using multiline route-registration regexes so
+  // the manifest is deterministic across the three validation hosts.
+  final source = (result.stdout as String).replaceAll('\r\n', '\n');
   final functionPattern = RegExp(
     r'^func\s+(\w+)\s*\(([\s\S]*?)\)\s*[^\{\n]*\{',
     multiLine: true,
