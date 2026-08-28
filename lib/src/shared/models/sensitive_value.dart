@@ -121,6 +121,21 @@ final class Sub2ApiAdminMaskedCredential extends _SensitiveValue {
   const Sub2ApiAdminMaskedCredential(super.value);
 }
 
+/// Content supplied only to an administrator moderation connectivity test.
+final class Sub2ApiAdminModerationPrompt extends _SensitiveValue {
+  const Sub2ApiAdminModerationPrompt(super.value);
+}
+
+/// Image URL or data URL supplied to an administrator moderation test.
+final class Sub2ApiAdminModerationImage extends _SensitiveValue {
+  const Sub2ApiAdminModerationImage(super.value);
+}
+
+/// User-content excerpt visible only in administrator risk-control logs.
+final class Sub2ApiAdminModerationExcerpt extends _SensitiveValue {
+  const Sub2ApiAdminModerationExcerpt(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so

@@ -50,6 +50,9 @@ export 'src/admin/sub2api_admin_promo_codes_client.dart'
 export 'src/admin/sub2api_admin_proxies_client.dart'
     show Sub2ApiAdminProxiesClient;
 export 'src/admin/sub2api_admin_proxy_models.dart';
+export 'src/admin/sub2api_admin_risk_control_client.dart'
+    show Sub2ApiAdminRiskControlClient;
+export 'src/admin/sub2api_admin_risk_control_models.dart';
 export 'src/admin/sub2api_admin_scheduled_test_models.dart';
 export 'src/admin/sub2api_admin_scheduled_tests_client.dart'
     show Sub2ApiAdminScheduledTestsClient;
@@ -83,6 +86,9 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminProxyDataArchive,
         Sub2ApiAdminCredentialSecret,
         Sub2ApiAdminMaskedCredential,
+        Sub2ApiAdminModerationExcerpt,
+        Sub2ApiAdminModerationImage,
+        Sub2ApiAdminModerationPrompt,
         Sub2ApiApiKeySecret,
         Sub2ApiOAuthAuthorizationCode,
         Sub2ApiOAuthCookieSessionKey,
