@@ -49,6 +49,9 @@ export 'src/admin/sub2api_admin_models.dart';
 export 'src/admin/sub2api_admin_openai_client.dart'
     show Sub2ApiAdminOpenAIClient;
 export 'src/admin/sub2api_admin_openai_models.dart';
+export 'src/admin/sub2api_admin_payment_order_models.dart';
+export 'src/admin/sub2api_admin_payment_orders_client.dart'
+    show Sub2ApiAdminPaymentOrdersClient;
 export 'src/admin/sub2api_admin_plugin_models.dart';
 export 'src/admin/sub2api_admin_plugins_client.dart'
     show Sub2ApiAdminPluginsClient;
@@ -112,6 +115,8 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminPromptAuditDeleteToken,
         Sub2ApiAdminPromptAuditEndpointToken,
         Sub2ApiAdminPromptAuditEvidence,
+        Sub2ApiAdminPaymentAuditDetail,
+        Sub2ApiAdminPaymentCheckoutSecret,
         Sub2ApiAdminRedeemCodeExport,
         Sub2ApiRedeemCodeSecret,
         Sub2ApiAdminOAuthSessionId,

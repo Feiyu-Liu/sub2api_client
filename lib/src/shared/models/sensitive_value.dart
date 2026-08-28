@@ -186,6 +186,16 @@ final class Sub2ApiAdminRedeemCodeExport extends _SensitiveValue {
   const Sub2ApiAdminRedeemCodeExport(super.value);
 }
 
+/// Checkout URL, QR payload, or QR image returned to a payment administrator.
+final class Sub2ApiAdminPaymentCheckoutSecret extends _SensitiveValue {
+  const Sub2ApiAdminPaymentCheckoutSecret(super.value);
+}
+
+/// Serialized payment audit detail that may contain provider references.
+final class Sub2ApiAdminPaymentAuditDetail extends _SensitiveValue {
+  const Sub2ApiAdminPaymentAuditDetail(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so
