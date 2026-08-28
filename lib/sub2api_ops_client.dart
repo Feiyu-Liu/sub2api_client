@@ -39,6 +39,9 @@ export 'src/admin/sub2api_admin_compliance_client.dart'
 export 'src/admin/sub2api_admin_compliance_models.dart';
 export 'src/admin/sub2api_admin_dashboard_client.dart'
     show Sub2ApiAdminDashboardClient;
+export 'src/admin/sub2api_admin_data_management_client.dart'
+    show Sub2ApiAdminDataManagementClient;
+export 'src/admin/sub2api_admin_data_management_models.dart';
 export 'src/admin/sub2api_admin_error_passthrough_client.dart'
     show Sub2ApiAdminErrorPassthroughClient;
 export 'src/admin/sub2api_admin_error_passthrough_models.dart';

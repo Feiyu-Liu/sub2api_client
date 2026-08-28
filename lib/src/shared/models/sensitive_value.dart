@@ -271,6 +271,11 @@ final class Sub2ApiAdminBackupDownloadUrl extends _SensitiveValue {
   const Sub2ApiAdminBackupDownloadUrl(super.value);
 }
 
+/// Local filesystem or Unix-socket path returned by data management.
+final class Sub2ApiAdminDataManagementPath extends _SensitiveValue {
+  const Sub2ApiAdminDataManagementPath(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so

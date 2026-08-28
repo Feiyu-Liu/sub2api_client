@@ -20,6 +20,7 @@ import 'sub2api_admin_cn_providers_client.dart';
 import 'sub2api_admin_compliance_client.dart';
 import 'sub2api_admin_credential_mode.dart';
 import 'sub2api_admin_dashboard_client.dart';
+import 'sub2api_admin_data_management_client.dart';
 import 'sub2api_admin_error_passthrough_client.dart';
 import 'sub2api_admin_gemini_oauth_client.dart';
 import 'sub2api_admin_grok_oauth_client.dart';
@@ -80,6 +81,7 @@ final class Sub2ApiAdminClient {
     required this.cnProviders,
     required this.compliance,
     required this.dashboard,
+    required this.dataManagement,
     required this.errorPassthrough,
     required this.geminiOAuth,
     required this.groups,
@@ -132,6 +134,7 @@ final class Sub2ApiAdminClient {
   final Sub2ApiAdminCNProvidersClient cnProviders;
   final Sub2ApiAdminComplianceClient compliance;
   final Sub2ApiAdminDashboardClient dashboard;
+  final Sub2ApiAdminDataManagementClient dataManagement;
   final Sub2ApiAdminErrorPassthroughClient errorPassthrough;
   final Sub2ApiAdminGeminiOAuthClient geminiOAuth;
   final Sub2ApiAdminGroupsClient groups;
@@ -268,6 +271,11 @@ Sub2ApiAdminClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.jwt,
     ),
     dashboard: createSub2ApiAdminDashboardClient(
+      dio: dio,
+      requestExecutor: adminExecutor,
+      credentialMode: Sub2ApiAdminCredentialMode.jwt,
+    ),
+    dataManagement: createSub2ApiAdminDataManagementClient(
       dio: dio,
       requestExecutor: adminExecutor,
       credentialMode: Sub2ApiAdminCredentialMode.jwt,

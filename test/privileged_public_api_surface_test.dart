@@ -25,6 +25,10 @@ void main() {
 
     final Sub2ApiAdminDashboardClient adminDashboard = admin.dashboard;
     final Sub2ApiAdminDashboardClient opsDashboard = ops.dashboard;
+    final Sub2ApiAdminDataManagementClient adminDataManagement =
+        admin.dataManagement;
+    final Sub2ApiAdminDataManagementClient opsDataManagement =
+        ops.dataManagement;
     final Sub2ApiAdminUsersClient adminUsers = admin.users;
     final Sub2ApiAdminUsersClient opsUsers = ops.users;
     final Sub2ApiAdminAccountsClient adminAccounts = admin.accounts;
@@ -202,6 +206,8 @@ void main() {
       opsAuditLogs,
       adminBackups,
       opsBackups,
+      adminDataManagement,
+      opsDataManagement,
       adminMonitorTemplates,
       opsMonitorTemplates,
       adminMonitorV2,
