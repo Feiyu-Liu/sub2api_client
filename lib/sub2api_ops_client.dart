@@ -52,6 +52,9 @@ export 'src/admin/sub2api_admin_models.dart';
 export 'src/admin/sub2api_admin_openai_client.dart'
     show Sub2ApiAdminOpenAIClient;
 export 'src/admin/sub2api_admin_openai_models.dart';
+export 'src/admin/sub2api_admin_ops_alert_models.dart';
+export 'src/admin/sub2api_admin_ops_alerts_client.dart'
+    show Sub2ApiAdminOpsAlertsClient;
 export 'src/admin/sub2api_admin_ops_dashboard_client.dart'
     show Sub2ApiAdminOpsDashboardClient;
 export 'src/admin/sub2api_admin_ops_dashboard_models.dart';

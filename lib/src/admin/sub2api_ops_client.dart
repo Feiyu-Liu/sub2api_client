@@ -19,6 +19,7 @@ import 'sub2api_admin_gemini_oauth_client.dart';
 import 'sub2api_admin_grok_oauth_client.dart';
 import 'sub2api_admin_groups_client.dart';
 import 'sub2api_admin_openai_client.dart';
+import 'sub2api_admin_ops_alerts_client.dart';
 import 'sub2api_admin_ops_dashboard_client.dart';
 import 'sub2api_admin_ops_errors_client.dart';
 import 'sub2api_admin_ops_realtime_client.dart';
@@ -88,6 +89,7 @@ final class Sub2ApiOpsClient {
     required this.groups,
     required this.grokOAuth,
     required this.openAI,
+    required this.operationsAlerts,
     required this.operationsDashboard,
     required this.operationsErrors,
     required this.operationsRealtime,
@@ -131,6 +133,7 @@ final class Sub2ApiOpsClient {
   final Sub2ApiAdminGroupsClient groups;
   final Sub2ApiAdminGrokOAuthClient grokOAuth;
   final Sub2ApiAdminOpenAIClient openAI;
+  final Sub2ApiAdminOpsAlertsClient operationsAlerts;
   final Sub2ApiAdminOpsDashboardClient operationsDashboard;
   final Sub2ApiAdminOpsErrorsClient operationsErrors;
   final Sub2ApiAdminOpsRealtimeClient operationsRealtime;
@@ -256,6 +259,11 @@ Sub2ApiOpsClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
     ),
     openAI: createSub2ApiAdminOpenAIClient(
+      dio: dio,
+      requestExecutor: executor,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
+    operationsAlerts: createSub2ApiAdminOpsAlertsClient(
       dio: dio,
       requestExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,

@@ -67,6 +67,10 @@ void main() {
         ops.errorPassthrough;
     final Sub2ApiAdminOpenAIClient adminOpenAI = admin.openAI;
     final Sub2ApiAdminOpenAIClient opsOpenAI = ops.openAI;
+    final Sub2ApiAdminOpsAlertsClient adminOperationsAlerts =
+        admin.operationsAlerts;
+    final Sub2ApiAdminOpsAlertsClient opsOperationsAlerts =
+        ops.operationsAlerts;
     final Sub2ApiAdminOpsDashboardClient adminOperationsDashboard =
         admin.operationsDashboard;
     final Sub2ApiAdminOpsDashboardClient opsOperationsDashboard =
@@ -196,6 +200,8 @@ void main() {
       opsCNProviders,
       adminOpenAI,
       opsOpenAI,
+      adminOperationsAlerts,
+      opsOperationsAlerts,
       adminOperationsDashboard,
       opsOperationsDashboard,
       adminOperationsErrors,

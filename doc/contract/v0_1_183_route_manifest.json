@@ -15,8 +15,8 @@
     "excluded_routes": 14,
     "by_status": {
       "excluded": 14,
-      "transport_tested": 495,
-      "unsupported": 57
+      "transport_tested": 503,
+      "unsupported": 49
     },
     "target_by_surface": {
       "admin": 425,
@@ -2220,7 +2220,7 @@
       "surface": "admin",
       "authentication": "admin_jwt_or_admin_api_key",
       "target": true,
-      "status": "unsupported",
+      "status": "transport_tested",
       "step_up": "none_at_route",
       "source": "backend/internal/server/routes/admin.go:205"
     },
@@ -2230,7 +2230,7 @@
       "surface": "admin",
       "authentication": "admin_jwt_or_admin_api_key",
       "target": true,
-      "status": "unsupported",
+      "status": "transport_tested",
       "step_up": "none_at_route",
       "source": "backend/internal/server/routes/admin.go:206"
     },
@@ -2240,7 +2240,7 @@
       "surface": "admin",
       "authentication": "admin_jwt_or_admin_api_key",
       "target": true,
-      "status": "unsupported",
+      "status": "transport_tested",
       "step_up": "none_at_route",
       "source": "backend/internal/server/routes/admin.go:207"
     },
@@ -2250,7 +2250,7 @@
       "surface": "admin",
       "authentication": "admin_jwt_or_admin_api_key",
       "target": true,
-      "status": "unsupported",
+      "status": "transport_tested",
       "step_up": "none_at_route",
       "source": "backend/internal/server/routes/admin.go:201"
     },
@@ -2260,7 +2260,7 @@
       "surface": "admin",
       "authentication": "admin_jwt_or_admin_api_key",
       "target": true,
-      "status": "unsupported",
+      "status": "transport_tested",
       "step_up": "none_at_route",
       "source": "backend/internal/server/routes/admin.go:202"
     },
@@ -2270,7 +2270,7 @@
       "surface": "admin",
       "authentication": "admin_jwt_or_admin_api_key",
       "target": true,
-      "status": "unsupported",
+      "status": "transport_tested",
       "step_up": "none_at_route",
       "source": "backend/internal/server/routes/admin.go:204"
     },
@@ -2280,7 +2280,7 @@
       "surface": "admin",
       "authentication": "admin_jwt_or_admin_api_key",
       "target": true,
-      "status": "unsupported",
+      "status": "transport_tested",
       "step_up": "none_at_route",
       "source": "backend/internal/server/routes/admin.go:203"
     },
@@ -2290,7 +2290,7 @@
       "surface": "admin",
       "authentication": "admin_jwt_or_admin_api_key",
       "target": true,
-      "status": "unsupported",
+      "status": "transport_tested",
       "step_up": "none_at_route",
       "source": "backend/internal/server/routes/admin.go:208"
     },
