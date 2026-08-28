@@ -185,6 +185,36 @@ void main() {
   );
 
   test(
+    'current user normalizes nullable profile lists from the live handler',
+    () async {
+      final fixture = readFixture('auth/current_user_success.json');
+      final data = Map<String, Object?>.from(fixture['data']! as Map)
+        ..['allowed_groups'] = null
+        ..['balance_notify_extra_emails'] = null
+        ..['balance_notify_threshold'] = null;
+      final adapter = JsonResponseAdapter(
+        (_) => JsonResponse(
+          body: <String, Object?>{
+            'code': 0,
+            'message': 'success',
+            'data': data,
+          },
+        ),
+      );
+      final client = _client(
+        adapter,
+        store: RecordingSessionStore(authenticatedSession),
+      );
+
+      final current = await client.getCurrentUser();
+
+      expect(current.allowedGroups, isEmpty);
+      expect(current.balanceNotifyExtraEmails, isEmpty);
+      expect(current.balanceNotifyThreshold, isNull);
+    },
+  );
+
+  test(
     'revoke all sessions is non-replayable and clears local tokens',
     () async {
       final adapter = JsonResponseAdapter(

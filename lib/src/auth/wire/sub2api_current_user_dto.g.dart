@@ -131,13 +131,15 @@ Sub2ApiCurrentUserDto _$Sub2ApiCurrentUserDtoFromJson(
       ),
       balanceNotifyExtraEmails: $checkedConvert(
         'balance_notify_extra_emails',
-        (v) => (v as List<dynamic>)
-            .map(
-              (e) => Sub2ApiNotifyEmailEntryDto.fromJson(
-                e as Map<String, dynamic>,
-              ),
-            )
-            .toList(),
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map(
+                  (e) => Sub2ApiNotifyEmailEntryDto.fromJson(
+                    e as Map<String, dynamic>,
+                  ),
+                )
+                .toList() ??
+            [],
       ),
       balanceNotifyThreshold: $checkedConvert(
         'balance_notify_threshold',

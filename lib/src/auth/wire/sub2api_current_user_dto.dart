@@ -182,6 +182,7 @@ final class Sub2ApiCurrentUserDto {
   final Map<String, Sub2ApiIdentityBindingDto> authBindings;
   final num balance;
   final bool balanceNotifyEnabled;
+  @JsonKey(defaultValue: <Sub2ApiNotifyEmailEntryDto>[])
   final List<Sub2ApiNotifyEmailEntryDto> balanceNotifyExtraEmails;
   final num? balanceNotifyThreshold;
   final String balanceNotifyThresholdType;
