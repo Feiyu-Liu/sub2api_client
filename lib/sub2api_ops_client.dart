@@ -53,6 +53,8 @@ export 'src/admin/sub2api_admin_system_models.dart';
 export 'src/admin/sub2api_admin_tls_fingerprint_models.dart';
 export 'src/admin/sub2api_admin_tls_fingerprints_client.dart'
     show Sub2ApiAdminTLSFingerprintsClient;
+export 'src/admin/sub2api_admin_usage_client.dart' show Sub2ApiAdminUsageClient;
+export 'src/admin/sub2api_admin_usage_models.dart';
 export 'src/admin/sub2api_admin_user_attribute_models.dart';
 export 'src/admin/sub2api_admin_user_attributes_client.dart'
     show Sub2ApiAdminUserAttributesClient;
@@ -88,3 +90,5 @@ export 'src/shared/models/sub2api_page.dart';
 export 'src/shared/models/sub2api_user_account.dart'
     show Sub2ApiNotifyEmailEntry;
 export 'src/shared/request/sub2api_request_options.dart';
+export 'src/usage/sub2api_usage_models.dart'
+    show Sub2ApiUsageRecord, Sub2ApiUsageStats;

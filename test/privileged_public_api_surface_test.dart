@@ -68,6 +68,8 @@ void main() {
         admin.tlsFingerprints;
     final Sub2ApiAdminTLSFingerprintsClient opsTLSFingerprints =
         ops.tlsFingerprints;
+    final Sub2ApiAdminUsageClient adminUsage = admin.usage;
+    final Sub2ApiAdminUsageClient opsUsage = ops.usage;
     final Sub2ApiAdminUserAttributesClient adminUserAttributes =
         admin.userAttributes;
     final Sub2ApiAdminUserAttributesClient opsUserAttributes =
@@ -154,6 +156,8 @@ void main() {
       opsSystem,
       adminTLSFingerprints,
       opsTLSFingerprints,
+      adminUsage,
+      opsUsage,
       adminUserAttributes,
       opsUserAttributes,
       exportProxyData,

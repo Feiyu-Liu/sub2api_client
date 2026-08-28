@@ -19,6 +19,7 @@ import 'sub2api_admin_proxies_client.dart';
 import 'sub2api_admin_scheduled_tests_client.dart';
 import 'sub2api_admin_system_client.dart';
 import 'sub2api_admin_tls_fingerprints_client.dart';
+import 'sub2api_admin_usage_client.dart';
 import 'sub2api_admin_user_attributes_client.dart';
 import 'sub2api_admin_users_client.dart';
 import 'sub2api_ops_credentials.dart';
@@ -71,6 +72,7 @@ final class Sub2ApiOpsClient {
     required this.scheduledTests,
     required this.system,
     required this.tlsFingerprints,
+    required this.usage,
     required this.userAttributes,
     required this.users,
     required Dio dio,
@@ -97,6 +99,7 @@ final class Sub2ApiOpsClient {
   final Sub2ApiAdminScheduledTestsClient scheduledTests;
   final Sub2ApiAdminSystemClient system;
   final Sub2ApiAdminTLSFingerprintsClient tlsFingerprints;
+  final Sub2ApiAdminUsageClient usage;
   final Sub2ApiAdminUserAttributesClient userAttributes;
   final Sub2ApiAdminUsersClient users;
   final Dio _dio;
@@ -206,6 +209,11 @@ Sub2ApiOpsClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
     ),
     tlsFingerprints: createSub2ApiAdminTLSFingerprintsClient(
+      dio: dio,
+      requestExecutor: executor,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
+    usage: createSub2ApiAdminUsageClient(
       dio: dio,
       requestExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
