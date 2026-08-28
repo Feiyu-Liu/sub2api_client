@@ -194,10 +194,10 @@ Object? _decodeSetting(_AdminSettingKind kind, Object? value) => switch (kind) {
   _AdminSettingKind.string => _string(value),
   _AdminSettingKind.integer => _int(value),
   _AdminSettingKind.decimal => Sub2ApiDecimal.fromJson(value),
-  _AdminSettingKind.stringList => _list(value).map(_string).toList(),
-  _AdminSettingKind.intList => _list(value).map(_int).toList(),
+  _AdminSettingKind.stringList => _listOrEmpty(value).map(_string).toList(),
+  _AdminSettingKind.intList => _listOrEmpty(value).map(_int).toList(),
   _AdminSettingKind.customMenuList =>
-    _list(value)
+    _listOrEmpty(value)
         .map(_object)
         .map(
           (s) => Sub2ApiAdminCustomMenuItem(
@@ -212,7 +212,7 @@ Object? _decodeSetting(_AdminSettingKind kind, Object? value) => switch (kind) {
         )
         .toList(),
   _AdminSettingKind.customEndpointList =>
-    _list(value)
+    _listOrEmpty(value)
         .map(_object)
         .map(
           (s) => Sub2ApiAdminCustomEndpoint(
@@ -223,7 +223,7 @@ Object? _decodeSetting(_AdminSettingKind kind, Object? value) => switch (kind) {
         )
         .toList(),
   _AdminSettingKind.defaultSubscriptionList =>
-    _list(value)
+    _listOrEmpty(value)
         .map(_object)
         .map(
           (s) => Sub2ApiAdminDefaultSubscriptionSetting(
@@ -233,7 +233,7 @@ Object? _decodeSetting(_AdminSettingKind kind, Object? value) => switch (kind) {
         )
         .toList(),
   _AdminSettingKind.loginAgreementList =>
-    _list(value)
+    _listOrEmpty(value)
         .map(_object)
         .map(
           (s) => Sub2ApiAdminLoginAgreementDocument(
@@ -244,7 +244,7 @@ Object? _decodeSetting(_AdminSettingKind kind, Object? value) => switch (kind) {
         )
         .toList(),
   _AdminSettingKind.notifyEmailList =>
-    _list(value)
+    _listOrEmpty(value)
         .map(_object)
         .map(
           (s) => Sub2ApiAdminNotifyEmailEntry(
@@ -343,7 +343,7 @@ Object? _encodeSetting(_AdminSettingKind kind, Object? value) => switch (kind) {
 
 Sub2ApiAdminOpenAIFastPolicySettings _openAIFast(Map<String, Object?> s) =>
     Sub2ApiAdminOpenAIFastPolicySettings(
-      rules: _list(s['rules'])
+      rules: _listOrEmpty(s['rules'])
           .map(_object)
           .map(
             (r) => Sub2ApiAdminOpenAIFastPolicyRule(

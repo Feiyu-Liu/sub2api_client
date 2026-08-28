@@ -90,6 +90,45 @@ void main() {
     },
   );
 
+  test('system settings normalizes nullable server collection fields', () {
+    final data = Map<String, Object?>.from(_fixture()['data']! as Map)
+      ..['registration_email_suffix_whitelist'] = null
+      ..['passkey_rp_origins'] = null
+      ..['table_page_size_options'] = null
+      ..['custom_menu_items'] = null
+      ..['default_subscriptions'] = null
+      ..['account_quota_notify_emails'] = null;
+
+    final settings = mapAdminSystemSettings(data);
+
+    expect(
+      settings.read(
+        Sub2ApiAdminSystemSettingFields.registrationEmailSuffixWhitelist,
+      ),
+      isEmpty,
+    );
+    expect(
+      settings.read(Sub2ApiAdminSystemSettingFields.passkeyRpOrigins),
+      isEmpty,
+    );
+    expect(
+      settings.read(Sub2ApiAdminSystemSettingFields.tablePageSizeOptions),
+      isEmpty,
+    );
+    expect(
+      settings.read(Sub2ApiAdminSystemSettingFields.customMenuItems),
+      isEmpty,
+    );
+    expect(
+      settings.read(Sub2ApiAdminSystemSettingFields.defaultSubscriptions),
+      isEmpty,
+    );
+    expect(
+      settings.read(Sub2ApiAdminSystemSettingFields.accountQuotaNotifyEmails),
+      isEmpty,
+    );
+  });
+
   test(
     'empty patch and malformed response fail before unsafe behavior',
     () async {
