@@ -296,6 +296,11 @@ final class Sub2ApiResponseDecoder {
     'PENDING_AUTH_BROWSER_MISMATCH' => 'oauth.pending_browser_mismatch',
     'PENDING_AUTH_SESSION_INVALID' => 'oauth.pending_session_invalid',
     'PENDING_AUTH_TARGET_USER_MISMATCH' => 'oauth.target_user_mismatch',
+    'DATA_MANAGEMENT_DEPRECATED' => 'admin.data_management_deprecated',
+    'DATA_MANAGEMENT_AGENT_SOCKET_MISSING' =>
+      'admin.data_management_agent_socket_missing',
+    'DATA_MANAGEMENT_AGENT_UNAVAILABLE' =>
+      'admin.data_management_agent_unavailable',
     _ => 'server.${raw.toLowerCase()}',
   };
 

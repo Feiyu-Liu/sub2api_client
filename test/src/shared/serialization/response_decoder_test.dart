@@ -161,6 +161,22 @@ void main() {
     expect(stepUpRequired.toString(), isNot(contains('must not escape')));
   });
 
+  test('maps data-management deprecation from an integer reason envelope', () {
+    final error = decoder.decodeDioException(
+      _dioError(
+        statusCode: 503,
+        data: {
+          'code': 503,
+          'message': 'must not escape',
+          'reason': 'DATA_MANAGEMENT_DEPRECATED',
+        },
+      ),
+    );
+
+    expect(error.kind, Sub2ApiFailureKind.server);
+    expect(error.code, 'admin.data_management_deprecated');
+  });
+
   test('maps identity and notification-email failures to stable codes', () {
     final lastMethod = decoder.decodeDioException(
       _dioError(
