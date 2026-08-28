@@ -91,6 +91,21 @@ abstract interface class Sub2ApiAdminSettingsClient {
     Sub2ApiAdminBetaPolicySettings settings, {
     Sub2ApiRequestOptions? requestOptions,
   });
+  Future<Sub2ApiAdminWebSearchConfig> getWebSearchEmulation({
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminWebSearchConfig> updateWebSearchEmulation(
+    Sub2ApiAdminWebSearchConfig config, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<void> resetWebSearchUsage(
+    Sub2ApiAdminWebSearchProviderType providerType, {
+    Sub2ApiRequestOptions? requestOptions,
+  });
+  Future<Sub2ApiAdminWebSearchTestResult> testWebSearchEmulation({
+    String query = '',
+    Sub2ApiRequestOptions? requestOptions,
+  });
 }
 
 Sub2ApiAdminSettingsClient createSub2ApiAdminSettingsClient({
@@ -501,6 +516,93 @@ final class _Client implements Sub2ApiAdminSettingsClient {
     );
   }
 
+  @override
+  Future<Sub2ApiAdminWebSearchConfig> getWebSearchEmulation({
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _executor.protectedRequest(
+    send: (c, o, v) => _service.getWebSearch(c, o, _a(v), _k(v)),
+    decode: mapAdminWebSearchConfig,
+    requestOptions: requestOptions,
+  );
+  @override
+  Future<Sub2ApiAdminWebSearchConfig> updateWebSearchEmulation(
+    Sub2ApiAdminWebSearchConfig config, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) {
+    if (config.providers.length > 10) {
+      throw _validation('admin.settings.too_many_web_search_providers');
+    }
+    final seen = <Sub2ApiAdminWebSearchProviderType>{};
+    final providers = <Map<String, Object?>>[];
+    for (final p in config.providers) {
+      if (!seen.add(p.type)) {
+        throw _validation('admin.settings.duplicate_web_search_provider');
+      }
+      if (p.quotaLimit != null && p.quotaLimit! < 0) {
+        throw _validation('admin.settings.invalid_web_search_quota');
+      }
+      if (p.proxyId != null && p.proxyId! <= 0) {
+        throw _validation('admin.settings.invalid_web_search_proxy');
+      }
+      providers.add(<String, Object?>{
+        'type': _webSearchType(p.type),
+        'api_key': p.apiKey?.reveal() ?? '',
+        'api_key_configured': p.apiKeyConfigured,
+        'quota_limit': p.quotaLimit,
+        'subscribed_at': p.subscribedAt?.toUtc().millisecondsSinceEpoch == null
+            ? null
+            : p.subscribedAt!.toUtc().millisecondsSinceEpoch ~/ 1000,
+        'quota_used': p.quotaUsed,
+        'proxy_id': p.proxyId,
+        'expires_at': p.expiresAt?.toUtc().millisecondsSinceEpoch == null
+            ? null
+            : p.expiresAt!.toUtc().millisecondsSinceEpoch ~/ 1000,
+      });
+    }
+    return _executor.protectedNonReplayableRequest(
+      send: (c, o, v) => _service.updateWebSearch(
+        <String, Object?>{'enabled': config.enabled, 'providers': providers},
+        c,
+        o,
+        _a(v),
+        _k(v),
+      ),
+      decode: mapAdminWebSearchConfig,
+      requestOptions: requestOptions,
+    );
+  }
+
+  @override
+  Future<void> resetWebSearchUsage(
+    Sub2ApiAdminWebSearchProviderType providerType, {
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _executor.protectedNonReplayableRequest<void>(
+    send: (c, o, v) => _service.resetWebSearchUsage(
+      <String, Object?>{'provider_type': _webSearchType(providerType)},
+      c,
+      o,
+      _a(v),
+      _k(v),
+    ),
+    decode: (_) {},
+    requestOptions: requestOptions,
+  );
+  @override
+  Future<Sub2ApiAdminWebSearchTestResult> testWebSearchEmulation({
+    String query = '',
+    Sub2ApiRequestOptions? requestOptions,
+  }) => _executor.protectedNonReplayableRequest(
+    send: (c, o, v) => _service.testWebSearch(
+      <String, Object?>{'query': query.trim()},
+      c,
+      o,
+      _a(v),
+      _k(v),
+    ),
+    decode: mapAdminWebSearchTest,
+    requestOptions: requestOptions,
+  );
+
   Future<Sub2ApiAdminSettingActionResult> _mutation({
     required Sub2ApiWireCall send,
     required Sub2ApiRequestOptions? requestOptions,
@@ -574,3 +676,8 @@ Map<String, Object?> _betaRuleBody(Sub2ApiAdminBetaPolicyRule r) {
     'fallback_error_message': r.fallbackErrorMessage.trim(),
   };
 }
+
+String _webSearchType(Sub2ApiAdminWebSearchProviderType v) => switch (v) {
+  Sub2ApiAdminWebSearchProviderType.brave => 'brave',
+  Sub2ApiAdminWebSearchProviderType.tavily => 'tavily',
+};

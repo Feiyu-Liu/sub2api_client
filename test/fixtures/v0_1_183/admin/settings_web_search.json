@@ -1,0 +1,10 @@
+{
+  "config": {
+    "enabled": true,
+    "providers": [{"type": "brave", "api_key_configured": true, "quota_limit": 2000, "subscribed_at": 1787875200, "quota_used": 125, "proxy_id": 3, "expires_at": 1798761600}]
+  },
+  "test": {
+    "provider": "brave", "query": "Dart news",
+    "results": [{"url": "https://example.test/dart", "title": "Dart", "snippet": "Dart result", "page_age": "1 day"}]
+  }
+}

@@ -244,3 +244,59 @@ final class Sub2ApiAdminBetaPolicySettings {
   }) : rules = List.unmodifiable(rules);
   final List<Sub2ApiAdminBetaPolicyRule> rules;
 }
+
+enum Sub2ApiAdminWebSearchProviderType { brave, tavily }
+
+final class Sub2ApiAdminWebSearchProvider {
+  const Sub2ApiAdminWebSearchProvider({
+    required this.type,
+    this.apiKey,
+    required this.apiKeyConfigured,
+    this.quotaLimit,
+    this.subscribedAt,
+    required this.quotaUsed,
+    this.proxyId,
+    this.expiresAt,
+  });
+  final Sub2ApiAdminWebSearchProviderType type;
+  final Sub2ApiAdminCredentialSecret? apiKey;
+  final bool apiKeyConfigured;
+  final int? quotaLimit;
+  final DateTime? subscribedAt;
+  final int quotaUsed;
+  final int? proxyId;
+  final DateTime? expiresAt;
+}
+
+final class Sub2ApiAdminWebSearchConfig {
+  Sub2ApiAdminWebSearchConfig({
+    required this.enabled,
+    required List<Sub2ApiAdminWebSearchProvider> providers,
+  }) : providers = List.unmodifiable(providers);
+  final bool enabled;
+  final List<Sub2ApiAdminWebSearchProvider> providers;
+}
+
+final class Sub2ApiAdminWebSearchResult {
+  const Sub2ApiAdminWebSearchResult({
+    required this.url,
+    required this.title,
+    required this.snippet,
+    required this.pageAge,
+  });
+  final Uri url;
+  final String title;
+  final String snippet;
+  final String pageAge;
+}
+
+final class Sub2ApiAdminWebSearchTestResult {
+  Sub2ApiAdminWebSearchTestResult({
+    required this.provider,
+    required this.query,
+    required List<Sub2ApiAdminWebSearchResult> results,
+  }) : results = List.unmodifiable(results);
+  final String provider;
+  final String query;
+  final List<Sub2ApiAdminWebSearchResult> results;
+}

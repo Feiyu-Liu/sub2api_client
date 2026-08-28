@@ -157,6 +157,51 @@ Sub2ApiAdminBetaPolicySettings mapAdminBetaPolicy(Object? data) => _guard(() {
   );
 });
 
+Sub2ApiAdminWebSearchConfig mapAdminWebSearchConfig(Object? data) => _guard(() {
+  final s = _object(data);
+  return Sub2ApiAdminWebSearchConfig(
+    enabled: _boolean(s['enabled']),
+    providers: _list(s['providers'])
+        .map(_object)
+        .map(
+          (p) => Sub2ApiAdminWebSearchProvider(
+            type: _webSearchType(_required(p['type'])),
+            apiKey: null,
+            apiKeyConfigured: _boolean(p['api_key_configured']),
+            quotaLimit: _nullableNonNegative(p['quota_limit']),
+            subscribedAt: _unixDate(p['subscribed_at']),
+            quotaUsed: _nonNegative(p['quota_used'] ?? 0),
+            proxyId: _nullablePositive(p['proxy_id']),
+            expiresAt: _unixDate(p['expires_at']),
+          ),
+        )
+        .toList(),
+  );
+});
+Sub2ApiAdminWebSearchTestResult mapAdminWebSearchTest(Object? data) =>
+    _guard(() {
+      final s = _object(data);
+      return Sub2ApiAdminWebSearchTestResult(
+        provider: _required(s['provider']),
+        query: _required(s['query']),
+        results: _list(s['results']).map(_object).map((r) {
+          final uri = Uri.parse(_required(r['url']));
+          if (!uri.hasScheme) throw const FormatException();
+          return Sub2ApiAdminWebSearchResult(
+            url: uri,
+            title: _required(r['title']),
+            snippet: _text(r['snippet']),
+            pageAge: _text(r['page_age']),
+          );
+        }).toList(),
+      );
+    });
+Sub2ApiAdminWebSearchProviderType _webSearchType(String v) => switch (v) {
+  'brave' => Sub2ApiAdminWebSearchProviderType.brave,
+  'tavily' => Sub2ApiAdminWebSearchProviderType.tavily,
+  _ => throw const FormatException(),
+};
+
 Sub2ApiAdminStreamTimeoutAction _streamAction(String v) => switch (v) {
   'temp_unsched' => Sub2ApiAdminStreamTimeoutAction.tempUnsched,
   'error' => Sub2ApiAdminStreamTimeoutAction.error,
@@ -209,6 +254,16 @@ int _nonNegative(Object? value) {
   final n = _integer(value);
   if (n < 0) throw const FormatException();
   return n;
+}
+
+int? _nullableNonNegative(Object? value) =>
+    value == null ? null : _nonNegative(value);
+int? _nullablePositive(Object? value) =>
+    value == null ? null : _positive(value);
+DateTime? _unixDate(Object? value) {
+  if (value == null) return null;
+  final seconds = _positive(value);
+  return DateTime.fromMillisecondsSinceEpoch(seconds * 1000, isUtc: true);
 }
 
 List<Object?> _list(Object? value) {

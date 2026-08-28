@@ -184,4 +184,35 @@ abstract class AdminSettingWireService {
     @Header('Authorization') String? a,
     @Header('x-api-key') String? k,
   );
+  @GET('/api/v1/admin/settings/web-search-emulation')
+  Future<HttpResponse<Object?>> getWebSearch(
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @PUT('/api/v1/admin/settings/web-search-emulation')
+  Future<HttpResponse<Object?>> updateWebSearch(
+    @Body() Map<String, Object?> b,
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @POST('/api/v1/admin/settings/web-search-emulation/reset-usage')
+  Future<HttpResponse<Object?>> resetWebSearchUsage(
+    @Body() Map<String, Object?> b,
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
+  @POST('/api/v1/admin/settings/web-search-emulation/test')
+  Future<HttpResponse<Object?>> testWebSearch(
+    @Body() Map<String, Object?> b,
+    @CancelRequest() CancelToken c,
+    @DioOptions() Options o,
+    @Header('Authorization') String? a,
+    @Header('x-api-key') String? k,
+  );
 }
