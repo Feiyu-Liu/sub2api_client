@@ -239,7 +239,10 @@ int _matchingBrace(String source, int openBrace) {
 
 Set<String> _annotatedRoutes(Directory root) {
   final routes = <String>{};
-  final retrofitPattern = RegExp(r"@(GET|POST|PUT|DELETE|PATCH)\('([^']+)'\)");
+  final retrofitPattern = RegExp(
+    r"@(GET|POST|PUT|DELETE|PATCH)\(\s*'([^']+)'\s*,?\s*\)",
+    multiLine: true,
+  );
   final browserPattern = RegExp(
     r"@Sub2ApiBrowserRoute\(\s*'([^']+)'\s*,\s*'([^']+)'\s*\)",
     multiLine: true,

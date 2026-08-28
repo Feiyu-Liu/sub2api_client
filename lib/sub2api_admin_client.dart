@@ -124,6 +124,8 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminPromptAuditEvidence,
         Sub2ApiAdminPaymentAuditDetail,
         Sub2ApiAdminPaymentCheckoutSecret,
+        Sub2ApiAdminEmailTemplateContent,
+        Sub2ApiAdminSmtpPassword,
         Sub2ApiAdminRedeemCodeExport,
         Sub2ApiRedeemCodeSecret,
         Sub2ApiAccessToken,

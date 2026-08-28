@@ -196,6 +196,16 @@ final class Sub2ApiAdminPaymentAuditDetail extends _SensitiveValue {
   const Sub2ApiAdminPaymentAuditDetail(super.value);
 }
 
+/// SMTP password used only by an administrator connectivity test.
+final class Sub2ApiAdminSmtpPassword extends _SensitiveValue {
+  const Sub2ApiAdminSmtpPassword(super.value);
+}
+
+/// Administrator-authored or rendered notification email HTML.
+final class Sub2ApiAdminEmailTemplateContent extends _SensitiveValue {
+  const Sub2ApiAdminEmailTemplateContent(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so
