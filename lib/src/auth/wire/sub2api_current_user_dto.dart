@@ -220,7 +220,6 @@ final class Sub2ApiCurrentUserDto {
   Sub2ApiCurrentUser toPublicModel() {
     if (id <= 0 ||
         email.isEmpty ||
-        username.isEmpty ||
         role.isEmpty ||
         status.isEmpty ||
         balanceNotifyThresholdType.isEmpty ||

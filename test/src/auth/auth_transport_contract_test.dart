@@ -191,7 +191,8 @@ void main() {
       final data = Map<String, Object?>.from(fixture['data']! as Map)
         ..['allowed_groups'] = null
         ..['balance_notify_extra_emails'] = null
-        ..['balance_notify_threshold'] = null;
+        ..['balance_notify_threshold'] = null
+        ..['username'] = '';
       final adapter = JsonResponseAdapter(
         (_) => JsonResponse(
           body: <String, Object?>{
@@ -211,6 +212,7 @@ void main() {
       expect(current.allowedGroups, isEmpty);
       expect(current.balanceNotifyExtraEmails, isEmpty);
       expect(current.balanceNotifyThreshold, isNull);
+      expect(current.username, isEmpty);
     },
   );
 
