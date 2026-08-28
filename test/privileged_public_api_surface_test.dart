@@ -83,6 +83,8 @@ void main() {
         admin.operationsObservability;
     final Sub2ApiAdminOpsObservabilityClient opsOperationsObservability =
         ops.operationsObservability;
+    final Sub2ApiAdminOpsQpsClient adminOperationsQps = admin.operationsQps;
+    final Sub2ApiAdminOpsQpsClient opsOperationsQps = ops.operationsQps;
     final Sub2ApiAdminOpsRealtimeClient adminOperationsRealtime =
         admin.operationsRealtime;
     final Sub2ApiAdminOpsRealtimeClient opsOperationsRealtime =
@@ -216,6 +218,8 @@ void main() {
       opsOperationsErrors,
       adminOperationsObservability,
       opsOperationsObservability,
+      adminOperationsQps,
+      opsOperationsQps,
       adminOperationsRealtime,
       opsOperationsRealtime,
       adminOperationsSettings,

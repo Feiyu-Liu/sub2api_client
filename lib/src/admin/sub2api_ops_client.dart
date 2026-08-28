@@ -23,6 +23,7 @@ import 'sub2api_admin_ops_alerts_client.dart';
 import 'sub2api_admin_ops_dashboard_client.dart';
 import 'sub2api_admin_ops_errors_client.dart';
 import 'sub2api_admin_ops_observability_client.dart';
+import 'sub2api_admin_ops_qps_client.dart';
 import 'sub2api_admin_ops_realtime_client.dart';
 import 'sub2api_admin_ops_settings_client.dart';
 import 'sub2api_admin_payment_catalog_client.dart';
@@ -95,6 +96,7 @@ final class Sub2ApiOpsClient {
     required this.operationsDashboard,
     required this.operationsErrors,
     required this.operationsObservability,
+    required this.operationsQps,
     required this.operationsRealtime,
     required this.operationsSettings,
     required this.paymentOrders,
@@ -141,6 +143,7 @@ final class Sub2ApiOpsClient {
   final Sub2ApiAdminOpsDashboardClient operationsDashboard;
   final Sub2ApiAdminOpsErrorsClient operationsErrors;
   final Sub2ApiAdminOpsObservabilityClient operationsObservability;
+  final Sub2ApiAdminOpsQpsClient operationsQps;
   final Sub2ApiAdminOpsRealtimeClient operationsRealtime;
   final Sub2ApiAdminOpsSettingsClient operationsSettings;
   final Sub2ApiAdminPaymentOrdersClient paymentOrders;
@@ -167,6 +170,7 @@ final class Sub2ApiOpsClient {
   void close() {
     if (_closed) return;
     _closed = true;
+    operationsQps.close();
     _executor.close();
     if (_ownsDio) _dio.close(force: true);
   }
@@ -288,6 +292,14 @@ Sub2ApiOpsClient _create({
       dio: dio,
       requestExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
+    operationsQps: createSub2ApiAdminOpsQpsClient(
+      configuration: configuration,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+      credentialLoader: (_) async {
+        final key = await credentialProvider.load();
+        return key?.reveal();
+      },
     ),
     operationsRealtime: createSub2ApiAdminOpsRealtimeClient(
       dio: dio,
