@@ -136,6 +136,16 @@ final class Sub2ApiAdminModerationExcerpt extends _SensitiveValue {
   const Sub2ApiAdminModerationExcerpt(super.value);
 }
 
+/// OpenAI OAuth ID token returned only to privileged management callers.
+final class Sub2ApiOpenAIIdToken extends _SensitiveValue {
+  const Sub2ApiOpenAIIdToken(super.value);
+}
+
+/// Codex `at-*` personal access token used to create an OpenAI account.
+final class Sub2ApiOpenAICodexPersonalAccessToken extends _SensitiveValue {
+  const Sub2ApiOpenAICodexPersonalAccessToken(super.value);
+}
+
 /// Authorized account-data archive returned by an administrator export.
 ///
 /// The JSON payload can contain provider credentials and proxy passwords, so

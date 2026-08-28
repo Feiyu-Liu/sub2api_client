@@ -63,6 +63,8 @@ void main() {
         admin.errorPassthrough;
     final Sub2ApiAdminErrorPassthroughClient opsErrorPassthrough =
         ops.errorPassthrough;
+    final Sub2ApiAdminOpenAIClient adminOpenAI = admin.openAI;
+    final Sub2ApiAdminOpenAIClient opsOpenAI = ops.openAI;
     final Sub2ApiAdminProxiesClient adminProxies = admin.proxies;
     final Sub2ApiAdminProxiesClient opsProxies = ops.proxies;
     final Sub2ApiAdminPromoCodesClient adminPromoCodes = admin.promoCodes;
@@ -160,6 +162,8 @@ void main() {
       opsChannels,
       adminCNProviders,
       opsCNProviders,
+      adminOpenAI,
+      opsOpenAI,
       exportAccountData,
       importAccountData,
       importCodexSessions,

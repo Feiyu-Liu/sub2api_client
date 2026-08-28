@@ -17,6 +17,7 @@ import 'sub2api_admin_dashboard_client.dart';
 import 'sub2api_admin_error_passthrough_client.dart';
 import 'sub2api_admin_gemini_oauth_client.dart';
 import 'sub2api_admin_groups_client.dart';
+import 'sub2api_admin_openai_client.dart';
 import 'sub2api_admin_promo_codes_client.dart';
 import 'sub2api_admin_proxies_client.dart';
 import 'sub2api_admin_risk_control_client.dart';
@@ -74,6 +75,7 @@ final class Sub2ApiOpsClient {
     required this.errorPassthrough,
     required this.geminiOAuth,
     required this.groups,
+    required this.openAI,
     required this.proxies,
     required this.promoCodes,
     required this.riskControl,
@@ -105,6 +107,7 @@ final class Sub2ApiOpsClient {
   final Sub2ApiAdminErrorPassthroughClient errorPassthrough;
   final Sub2ApiAdminGeminiOAuthClient geminiOAuth;
   final Sub2ApiAdminGroupsClient groups;
+  final Sub2ApiAdminOpenAIClient openAI;
   final Sub2ApiAdminProxiesClient proxies;
   final Sub2ApiAdminPromoCodesClient promoCodes;
   final Sub2ApiAdminRiskControlClient riskControl;
@@ -210,6 +213,11 @@ Sub2ApiOpsClient _create({
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,
     ),
     groups: createSub2ApiAdminGroupsClient(
+      dio: dio,
+      requestExecutor: executor,
+      credentialMode: Sub2ApiAdminCredentialMode.apiKey,
+    ),
+    openAI: createSub2ApiAdminOpenAIClient(
       dio: dio,
       requestExecutor: executor,
       credentialMode: Sub2ApiAdminCredentialMode.apiKey,

@@ -47,6 +47,9 @@ export 'src/admin/sub2api_admin_group_models.dart';
 export 'src/admin/sub2api_admin_groups_client.dart'
     show Sub2ApiAdminGroupsClient;
 export 'src/admin/sub2api_admin_models.dart';
+export 'src/admin/sub2api_admin_openai_client.dart'
+    show Sub2ApiAdminOpenAIClient;
+export 'src/admin/sub2api_admin_openai_models.dart';
 export 'src/admin/sub2api_admin_promo_code_models.dart';
 export 'src/admin/sub2api_admin_promo_codes_client.dart'
     show Sub2ApiAdminPromoCodesClient;
@@ -92,10 +95,13 @@ export 'src/shared/models/sensitive_value.dart'
         Sub2ApiAdminModerationExcerpt,
         Sub2ApiAdminModerationImage,
         Sub2ApiAdminModerationPrompt,
+        Sub2ApiAccessToken,
         Sub2ApiApiKeySecret,
         Sub2ApiOAuthAuthorizationCode,
         Sub2ApiOAuthCookieSessionKey,
         Sub2ApiOllamaCloudSession,
+        Sub2ApiOpenAICodexPersonalAccessToken,
+        Sub2ApiOpenAIIdToken,
         Sub2ApiPassword,
         Sub2ApiPromoCode,
         Sub2ApiRefreshToken,
