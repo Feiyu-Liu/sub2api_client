@@ -38,6 +38,10 @@ void main() {
     final Sub2ApiAdminAnnouncementsClient opsAnnouncements = ops.announcements;
     final Sub2ApiAdminAuditLogsClient adminAuditLogs = admin.auditLogs;
     final Sub2ApiAdminAuditLogsClient opsAuditLogs = ops.auditLogs;
+    final Sub2ApiAdminChannelMonitorTemplatesClient adminMonitorTemplates =
+        admin.channelMonitorTemplates;
+    final Sub2ApiAdminChannelMonitorTemplatesClient opsMonitorTemplates =
+        ops.channelMonitorTemplates;
     final Sub2ApiAdminCNProvidersClient adminCNProviders = admin.cnProviders;
     final Sub2ApiAdminCNProvidersClient opsCNProviders = ops.cnProviders;
     final Sub2ApiAdminComplianceClient adminCompliance = admin.compliance;
@@ -129,6 +133,8 @@ void main() {
       opsAnnouncements,
       adminAuditLogs,
       opsAuditLogs,
+      adminMonitorTemplates,
+      opsMonitorTemplates,
       adminCNProviders,
       opsCNProviders,
       exportAccountData,
